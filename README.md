@@ -83,6 +83,26 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 ---
 
+### Flashing toos
+
+* [Sony Emma flashing tool for Windows 10](https://developerworld.wpp.developer.sony.com/file/download/download-the-flash-tool/)
+
+* [XperiFirm: a Xperia Firmware Downloader v5.6.5 on XDA Forums](https://forum.xda-developers.com/t/tool-xperifirm-xperia-firmware-downloader-v5-6-5.2834142/)
+
+Sony Emma flashing tool does not seems able to run on a GNU/Linux distribution but the XperiFirm does:
+
+```
+$ sudo apt-get install mono-complete
+$ sudo cert-sync /etc/ssl/certs/ca-certificates.crt
+$ sudo certmgr -ssl -m https://software.sonymobile.com
+
+$ mono XperiFirm-x64.exe
+```
+
+The last command executed after having extracted the .exe out of the archive. Unfortunately, XperiFirm can download just few AOSP versions compared to Sony Emma.
+
+---
+
 ### List of components available on Github
 
 * [hibrys boot](https://github.com/robang74/hybris-boot) - This project enables the building of boot images for Google Android fastboot based devices.
