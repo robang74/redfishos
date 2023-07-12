@@ -1,6 +1,10 @@
 # RedFish OS
 
-Refactoring SailFish OS 4.5.0.19 while it is running on a Sony Xperia 10 II smartphone.
+```diff
++ Refactoring SailFish OS 4.5.0.19 while it is running on a Sony Xperia 10 II smartphone.
+```
+
+> __Note__: support for others smartphone like Sony Xperia 10 III or IV, Gigaset GS5 and its variant in particular the Volla and the Rephone one, could be added as far as concrete support and mainteneirs will be available. 
 
 ---
 
@@ -19,29 +23,31 @@ Roberto Foglietta is the document-id real persona name behind on-line `Roberto A
 
 in the files headers, in the ChangeLogs, in the documents authoship or referal sections, at end of websites, etc.
 
-The report of activities and related proof of expences will be submited to those contributed, only. On regular basis monthly, quarterly or yearly depending on the amount of support they trusted to delegate to my management. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
+> __Note__: the report of activities and related proof of expences will be submited to those contributed, only. On regular basis monthly, quarterly or yearly depending on the amount of support they trusted to delegate to my management. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
 
 ---
 
 ### About SailFish OS
 
-The SailFish OS is not open-source nor software libre and cannot be redistributed but can be downloaded for free (gratis) from the Jolla Shop:  
+> __Warning__: the SailFish OS is **not** *open source* **nor** *software libre*
+
+Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded for free (gratis) from the Jolla Shop:  
 
 * [Jolla SailFish OS download shop](https://shop.jolla.com/)
 * [Jolla SailFish OS website](https://sailfishos.org/)
 * [Jolla offial documentation](https://docs.sailfishos.org/)
 
-The licensed version adds the supports for Android by Alien Dalvik proprietary middle-ware framework plus some others features. The zero-budget version is supported by its related community:
+The paid licensed version adds the support for Android integrating the Alien Dalvik middle-ware framework plus some others features. The zero-budget version is supported by its related community:
 
 * [Community Forum](https://forum.sailfishos.org/)
 * [Community apps repository](https://sailfish.openrepos.net/)
 * [Patch Manager Web Catalog](http://coderus.openrepos.net/pm2/)
 
-Few components in SailFish OS are proprietary and because the package downloaded from their shop contains such proprietary software, it cannot considered open-source nor software libre. Some other proprietary software cames from Sony Open Device AOSP, instead.
+Few components in SailFish OS are proprietary and because the package downloaded from their shop contains such proprietary software and vendor firmware. Some other proprietary software and vendor firmare cames from Sony Open Device AOSP.
 
 Instead, the boot images are compositions of binaries from on open source and software libre projects, only. Therefore the boot images can be freely redistribute as far as those redistribuite them fulfil the FOSS licenses obbligations related to that binaries. 
 
-The alternative is to link this page which the aim is to collect all those FOSS contributes. However, you have to check by yourself if these list of resources is complete and updated respect the boot image that you wish to distribute.
+> __Note__  The alternative to fullfil yourself that obbligations is to link this page which the aim is to collect all those FOSS contributes. However, you have to check by yourself if these list of resources is complete and updated respect the boot image that you wish to distribute.
 
 ---
 
