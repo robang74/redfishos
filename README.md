@@ -78,6 +78,8 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 ### List of components available on Github
 
+* [hibrys boot](https://github.com/robang74/hybris-boot) - This project enables the building of boot images for Google Android fastboot based devices.
+
 * [yamui](https://github.com/robang74/yamui) - Yet Another Minimal UI. Tool for displaying graphical notifications in minimal evironments like early boot / initrd
 
 * [busybox-static](https://github.com/robang74/sailfish-os-busybox) - The busybox config and RPM spec for SailFish OS
@@ -96,13 +98,26 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [Waydroid packaging](https://github.com/robang74/waydroid) - Waydroid packaging for Sailfish OS
 
-* [SailJail](https://github.com/robang74/sailjail) - SailJail is a thin Firejail wrapper and it command is used to create Sailfish OS application sandboxes
+* [SailJail sandbox](https://github.com/robang74/sailjail) - SailJail is a thin Firejail wrapper and it command is used to create Sailfish OS application sandboxes
+
+* [SailJail permissions](https://github.com/robang74/sailjail-permissions) - SailFish OS application sandboxing and permissions system built on top of FireJail.
+This project enables the building of boot images for Google Android fastboot based devices.
+* [mce-tools](https://github.com/robang74/mce) - mcetool command line executable to set some SailFish OS parameter about timeouts and power management.
+
+* [advance camera](https://github.com/robang74/harbour-advanced-camera) - Advanced Camera application for SailFish OS.
+
+* [Sony Open Telephony](https://github.com/robang74/SonyOpenTelephony) - A boot-time modem flasher for the appropriate firmware configurations for SIMs subscriptions.
+
+* [ofono fork](https://github.com/robang74/ofono) - An oFono fork with QRTR support, the Qualcomm IPC router protocol which is used to communicate with services provided by other hardware blocks in the system.
+
+* [connman iptables](https://github.com/robang74/sailfish-connman-plugin-iptables) - The connman plugin that provides d-bus API for controlling iptables rules. 
+
 
 ---
 
 ## License
 
-Almost all the files are under MIT license or GPLv2 and the others are in the public domain. Instead, the composition of these files is protected by the GPLv3 license under the effects of the Copyright Act, title 17. U.S.C. § 101.
+Almost all the files are under MIT license or GPLv2 or v3 and the others are in the public domain. Instead, the composition of these files is protected by the GPLv3 license under the effects of the Copyright Act, title 17. U.S.C. § 101.
 
 > Under the Copyright Act, a compilation [EdN: "composition" is used here as synonym because compilation might confuse the reader about code compiling] is defined as a "collection and assembling of preexisting materials or of data [EdN: source code, as well] that are selected in such a way that the resulting work as a whole constitutes an original work of authorship."
 
