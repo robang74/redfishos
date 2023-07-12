@@ -63,9 +63,7 @@ Obviously, downloading data that help to get a faster localisation on the urban/
 
 ---
 
-I have received the smartphone with Android 12 and I do not see how this might influence the Sailfish OS installation but probably because I am not acknoledged about this kind of hardware/system.
-
-Moreover, in the installation instructions there is the suggestion of to upgrade 11 from 10 but nothing about downgrading 12 to 11. There is also no any warning about, like DO NOT INSTALL SAILFISH UNLESS bla bla.
+In the installation instructions there is the suggestion of to upgrade 11 from 10 but nothing about downgrading 12 to 11. There is also no any warning about, like DO NOT INSTALL SAILFISH UNLESS bla bla.
 
 > __Note__: some users on the forum reported to not having particular problems with SailFish OS in combination with Android 12. However, end-user support can be difficult and community support can be hostile for those did not followed pedantically the flashing instructions. 
 
