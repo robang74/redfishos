@@ -29,7 +29,7 @@ in the files headers, in the ChangeLogs, in the documents authoship or referal s
 
 ### About SailFish OS
 
-> __Warning__: the SailFish OS is **not** *open source* **nor** *software libre* but largerly based on some FOSS projects.
+> __Warning__: the SailFish OS is **not** *open source* **nor** *software libre* but largerly based on several FOSS projects.
 
 * [SailFish OS on Wikipedia](https://en.wikipedia.org/wiki/Sailfish_OS)
 
