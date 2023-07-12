@@ -83,7 +83,7 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 Almost all the files are under MIT license or GPLv2 and the others are in the public domain. Instead, the composition of these files is protected by the GPLv3 license under the effects of the Copyright Act, title 17. U.S.C. § 101.
 
-> Under the Copyright Act, a compilation [NDR: "composition" is used here as synonym because compilation might confuse the reader about code compiling] is defined as a "collection and assembling of preexisting materials or of data [NDR: source code, as well] that are selected in such a way that the resulting work as a whole constitutes an original work of authorship."
+> Under the Copyright Act, a compilation [EdN: "composition" is used here as synonym because compilation might confuse the reader about code compiling] is defined as a "collection and assembling of preexisting materials or of data [EdN: source code, as well] that are selected in such a way that the resulting work as a whole constitutes an original work of authorship."
 
 This means that everyone can use a single MIT licensed file or a part of it under the MIT license terms. Instead, using two of them or two parts of them implies that you are using a subset of this collection. Thus a derived work of this collection which is licensed under the GPLv3 also.
 
