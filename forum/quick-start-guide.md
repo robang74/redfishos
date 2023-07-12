@@ -2,19 +2,24 @@
 
 If you want use the url-links in this guide for configuring your `SailFish OS` smartphone scan the `QR`-code below with the default native camera app:
 
-> ![quick-start-guide-qrcode.png](./quick-start-guide-qrcode.png)
->
+> <img src="./quick-start-guide-qrcode.png" width="175px" height="175px">
+> 
 > short url: [https://t.ly/p4Qf](https://t.ly/p4Qf)
+
+<!-- img src="https://raw.githubusercontent.com/robang74/redfishos/main/forum/quick-start-guide-qrcode.png" width=50% height=50% //-->
+<!-- img src="https://forum.sailfishos.org/uploads/db4219/original/2X/e/e742d186a7075a7ac05501a720b995b135255415.png" width=50% height=50% //--> 
 
 Then open the encoded url-link with the default native browser and save it into your bookmark for future and faster accesses to this guide.
 
 **Support the guide**
 
-If you like this guide and you like the idea that it will be continued to be extended and improved then consider to offer me a coffe, a beer or a pizza as your concrete sign of support and appreciation of my on-line activities. Thanks. R-
+If you like this guide and you like the idea that it will be continued to be extended and improved then consider to offer me a coffe, a beer or a pizza as your concrete sign of support and appreciation of my on-line activities.
 
 * [free amount **PayPal donation** form](https://tinyurl.com/robang74)
 
-Note: the donation form accepts credit cards, also.
+Thanks. R-
+
+> __Note__: the donation form accepts credit cards, also.
 
 ---
 
