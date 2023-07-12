@@ -4,6 +4,25 @@ Refactoring SailFish OS 4.5.0.19 while it is running on a Sony Xperia 10 II smar
 
 ---
 
+### Fund raising
+
+As much as you are interested in this project, you can concretely support a specific task or just provide a free donation.
+
+* [PayPal.me](https://www.paypal.com/paypalme/rfoglietta) to Roberto Foglietta aka @rfoglietta on PayPal Me platform
+* [Donation Form](https://tinyurl.com/robang74) to Roberto Foglietta aka @robang74 on PayPal Italia
+
+Roberto Foglietta is the document-id real persona name behind on-line `Roberto A. Foglietta` authotship brand, usually presented as:
+
+```
+(C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+```
+
+in the files headers, in the ChangeLogs, in the documents authoship or referal sections, at end of websites, etc.
+
+The report of activities and related proof of expences will be submited to those contributed, only. On regular basis monthly, quarterly or yearly depending on the amount of support they trusted to delegate to my management. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
+
+---
+
 ### About SailFish OS
 
 The SailFish OS is not open-source nor software libre and cannot be redistributed but can be downloaded for free (gratis) from the Jolla Shop:  
@@ -71,4 +90,5 @@ An exception is this specific file which is "all rights reserved, but fair use a
 For further information or requests about licensing and how to obtain your own business-like fork, please write to the project maintainer:
 
 [Roberto A. Foglietta](roberto.foglietta@gmail.com)
+
 Have fun! <3 
