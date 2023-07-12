@@ -8,3 +8,11 @@ This is a list of original contents written in the SailFish OS community forum:
 * [An users backup analisys](./users-backup-analisys.md) - The users data backup is a critical matter still not addressed
 
 More contributes will be add later.
+
+## Knowhow from the forum
+
+This is a list of relevant information shared in and collected from the SailFish OS community forum:
+
+* [Sony Xperia flashing guide](./knowhow/flashing-tools-for-Xperia-phones.md)  - Some pratical knowledge for integrating the Jolla's official procedure
+
+More contributes will be add later.
