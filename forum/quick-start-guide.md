@@ -2,7 +2,7 @@
 
 If you want use the url-links in this guide for configuring your `SailFish OS` smartphone scan the `QR`-code below with the default native camera app:
 
->![quick-start-guide-qrcode|350x350, 50%](upload://wZPs7vsGcMwqNG2HxcdQQwlDxuR.png) 
+> ![quick-start-guide-qrcode.png](./quick-start-guide-qrcode.png)
 >
 > short url: [https://t.ly/p4Qf](https://t.ly/p4Qf)
 
