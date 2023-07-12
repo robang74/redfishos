@@ -29,7 +29,9 @@ in the files headers, in the ChangeLogs, in the documents authoship or referal s
 
 ### About SailFish OS
 
-> __Warning__: the SailFish OS is **not** *open source* **nor** *software libre*
+> __Warning__: the SailFish OS is **not** *open source* **nor** *software libre* but largerly based on some FOSS projects.
+
+* [SailFish OS on Wikipedia](https://en.wikipedia.org/wiki/Sailfish_OS)
 
 Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded for free (gratis) from the Jolla Shop:  
 
@@ -37,7 +39,7 @@ Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded fo
 * [Jolla SailFish OS website](https://sailfishos.org/)
 * [Jolla offial documentation](https://docs.sailfishos.org/)
 
-The paid licensed version adds the support for Android integrating the Alien Dalvik middle-ware framework plus some others features. The zero-budget version is supported by its related community:
+The paid licensed version adds the support for Android integrating the proprietary [Alien Dalvik](https://en.wikipedia.org/wiki/Dalvik_Turbo_virtual_machine) middle-ware framework plus some others features. The zero-budget version is supported by its related community:
 
 * [Community Forum](https://forum.sailfishos.org/)
 * [Community apps repository](https://sailfish.openrepos.net/)
