@@ -37,6 +37,7 @@ Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded fo
 
 * [Jolla SailFish OS download shop](https://shop.jolla.com/)
 * [Jolla how to flash SFOS with Linux](https://jolla.com/how-to-install-sailfish-x-on-xperia-10-ii-on-linux/)
+* [Jolla reverting Xperia back to Android](https://docs.sailfishos.org/Support/Help_Articles/Managing_Sailfish_OS/Reinstalling_Sailfish_OS/#reverting-xperia-back-to-android-os)
 * [Jolla SailFish OS website](https://sailfishos.org/)
 * [Jolla offial documentation](https://docs.sailfishos.org/)
 
