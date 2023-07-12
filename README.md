@@ -65,6 +65,17 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 ---
 
+### Useful documentation
+
+* [degoogle](https://github.com/robang74/degoogle) - A huge list of alternatives to Google products. Privacy tips, tricks, and links.
+
+* [awesome SFOS](https://github.com/robang74/awesome-sailfishos) - A curated list of awesome Sailfish OS resources
+  
+* [Equivalents in SFOS](https://github.com/robang74/equivalentsinsailfish): a list of Android apps and their Sailfish equivalents
+
+
+---
+
 ### List of components available on Github
 
 * [yamui](https://github.com/robang74/yamui) - Yet Another Minimal UI. Tool for displaying graphical notifications in minimal evironments like early boot / initrd
@@ -76,6 +87,16 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 * [Patch Manager](https://github.com/robang74/patchmanager) - The Patch Manager page in Settings:System for Sailfish OS
 
 * [lipstick](https://github.com/robang74/lipstick) - The lipstick aims to offers an easy to modify user experiences for varying mobile device form factors, e.g. handsets, netbooks, tablets. User interface components are written in [QML](https://doc.qt.io/qt-6/qml-tutorial.html). Here an example of QML application: [home-example](https://github.com/robang74/lipstick-example-home).
+
+* [device tree](https://github.com/robang74/android_device_sony_pdx201) - The device tree for the Sony Xperia 10 II
+
+* [vendor's blobs](https://github.com/robang74/proprietary_vendor_sony_pdx201) - Vendor's proprietary blobs for Sony Xperia 10 II
+
+* [patches by ichthyosaurus](https://github.com/robang74/sailfish-public-patch-sources) - Sources for all ichthyosaurus Sailfish OS patches
+
+* [Waydroid packaging](https://github.com/robang74/waydroid) - Waydroid packaging for Sailfish OS
+
+* [SailJail](https://github.com/robang74/sailjail) - SailJail is a thin Firejail wrapper and it command is used to create Sailfish OS application sandboxes
 
 ---
 
@@ -91,10 +112,10 @@ The GPLv3 license applies to the composition unless you are the original copyrig
 
 An exception is this specific file which is "all rights reserved, but fair use allowed", here:
 
-* none for now but just in case, it will be listed here
+* Vendor's proprietary blobs for Sony Xperia 10 II (github repository)
 
 For further information or requests about licensing and how to obtain your own business-like fork, please write to the project maintainer:
 
-[Roberto A. Foglietta](roberto.foglietta@gmail.com)
+* [Roberto A. Foglietta](roberto.foglietta@gmail.com)
 
 Have fun! <3 
