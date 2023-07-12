@@ -70,5 +70,5 @@ An exception is this specific file which is "all rights reserved, but fair use a
 
 For further information or requests about licensing and how to obtain your own business-like fork, please write to the project maintainer:
 
-Roberto A. Foglietta roberto.foglietta@gmail.com
+[Roberto A. Foglietta](roberto.foglietta@gmail.com)
 Have fun! <3 
