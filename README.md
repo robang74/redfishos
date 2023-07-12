@@ -37,7 +37,6 @@ Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded fo
 
 * [Jolla SailFish OS download shop](https://shop.jolla.com/)
 * [Jolla how to flash SFOS with Linux](https://jolla.com/how-to-install-sailfish-x-on-xperia-10-ii-on-linux/)
-* [Jolla reverting Xperia back to Android](https://docs.sailfishos.org/Support/Help_Articles/Managing_Sailfish_OS/Reinstalling_Sailfish_OS/#reverting-xperia-back-to-android-os)
 * [Jolla SailFish OS website](https://sailfishos.org/)
 * [Jolla offial documentation](https://docs.sailfishos.org/)
 
@@ -71,6 +70,8 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 ### Useful documentation
 
+* [Sony Xperia flashing guide](forum/knowhow/) - Some pratical knowledge for integrating the Jolla's official procedure
+
 * [Start Quick Quide](forum/start-quick-guide.md) - An end-users step-by-step guide for a quick start
 
 * [SFOS install on Xperias](https://gitlab.com/Olf0/sailfishX) - A guide for installing SailfishX on Sony Xperias
@@ -80,30 +81,6 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 * [awesome SFOS](https://github.com/robang74/awesome-sailfishos) - A curated list of awesome Sailfish OS resources
   
 * [Equivalents in SFOS](https://github.com/robang74/equivalentsinsailfish): a list of Android apps and their Sailfish equivalents
-
----
-
-### Flashing toos
-
-* [Sony Emma flashing tool for Windows 10](https://developerworld.wpp.developer.sony.com/file/download/download-the-flash-tool/)
-
-* [XperiFirm: a Xperia Firmware Downloader v5.6.5 on XDA Forums](https://forum.xda-developers.com/t/tool-xperifirm-xperia-firmware-downloader-v5-6-5.2834142/)
-
-Sony Emma flashing tool does not seems able to run on a GNU/Linux distribution but the XperiFirm does:
-
-```
-$ sudo apt-get install mono-complete
-$ sudo cert-sync /etc/ssl/certs/ca-certificates.crt
-$ sudo certmgr -ssl -m https://software.sonymobile.com
-
-$ url=https://forum.xda-developers.com/attachments/xperifirm-5-6-5-by-igor-eisberg-zip.5488139/
-$ wget $url -O xperifirm-5-6-5-by-igor-eisberg-zip
-$ unzip xperifirm-5-6-5-by-igor-eisberg-zip
-
-$ mono XperiFirm-x64.exe
-```
-
-The last command executed after having extracted the .exe out of the archive. Unfortunately, XperiFirm can download just few AOSP versions compared to Sony Emma.
 
 ---
 
