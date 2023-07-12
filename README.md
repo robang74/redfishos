@@ -130,7 +130,7 @@ This means that everyone can use a single MIT licensed file or a part of it unde
 
 The GPLv3 license applies to the composition unless you are the original copyright owner or the author of a specific unmodified file. This means that every one that can legally claim rights about the original files maintains its rights, obviously. So, it should not need to complain with the GPLv3 license applied to the composition. Unless, the composition is adopted for the part which had not the rights, before.
 
-An exception is this specific file which is "all rights reserved, but fair use allowed", here:
+Some pages, documents, software or firmare components can make an exception to the above general approch due to their specific copyright and license restriction. In doubt follow the thumb rule of the fair use. Here a list of them: 
 
 * Vendor's proprietary blobs for Sony Xperia 10 II (github repository)
 
