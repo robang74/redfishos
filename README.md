@@ -96,6 +96,10 @@ $ sudo apt-get install mono-complete
 $ sudo cert-sync /etc/ssl/certs/ca-certificates.crt
 $ sudo certmgr -ssl -m https://software.sonymobile.com
 
+$ url=https://forum.xda-developers.com/attachments/xperifirm-5-6-5-by-igor-eisberg-zip.5488139/
+$ wget $url -O xperifirm-5-6-5-by-igor-eisberg-zip
+$ unzip xperifirm-5-6-5-by-igor-eisberg-zip
+
 $ mono XperiFirm-x64.exe
 ```
 
