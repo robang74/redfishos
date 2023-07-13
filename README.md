@@ -96,7 +96,7 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [Patch Manager](https://github.com/robang74/patchmanager) - The Patch Manager page in Settings:System for Sailfish OS
 
-* [lipstick](https://github.com/robang74/lipstick) - The lipstick aims to offers an easy to modify user experiences for varying mobile device form factors, e.g. handsets, netbooks, tablets. User interface components are written in [QML](https://doc.qt.io/qt-6/qml-tutorial.html). Here an example of QML application: [home-example](https://github.com/robang74/lipstick-example-home).
+* [lipstick](https://github.com/robang74/lipstick) - The lipstick aims to offers an easy to modify user experiences for varying mobile device form factors, e.g. handsets, netbooks, tablets. User interface components are written in [QML](https://doc.qt.io/qt-6/qml-tutorial.html). Here an example of QML application: [home example](https://github.com/robang74/lipstick-example-home). Here another simply one with instruction: [hello world](https://github.com/robang74/hello-world-for-sailfish).
 
 * [device tree](https://github.com/robang74/android_device_sony_pdx201) - The device tree for the Sony Xperia 10 II
 
