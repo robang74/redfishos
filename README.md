@@ -74,9 +74,9 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [Sony Xperia flashing guide](forum/knowhow/) - Some pratical knowledge for integrating the Jolla's official procedure.
 
-* [Start Quick Quide](forum/start-quick-guide.md) - An end-users step-by-step guide for a quick start.
+* [Quick Start Quide](forum/start-quick-guide.md) - An end-users step-by-step guide for a quick start with SailFish OS.
 
-* [SFOS install on Xperias](https://gitlab.com/Olf0/sailfishX) - A guide for installing SailfishX on Sony Xperias.
+* [SFOS install on Xperias](https://gitlab.com/Olf0/sailfishX) - A guide for installing SailFish OS on Sony Xperias.
 
 * [degoogle](https://github.com/robang74/degoogle) - A huge list of alternatives to Google products. Privacy tips, tricks, and links.
 
