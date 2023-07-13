@@ -124,6 +124,7 @@ This project enables the building of boot images for Google Android fastboot bas
 
 * [connman iptables](https://github.com/robang74/sailfish-connman-plugin-iptables) - The connman plugin that provides d-bus API for controlling iptables rules. 
 
+* [Github action for SFOS apps](https://github.com/robang74/github-sfos-apps-build) - Github action for building SailFish OS apps.
 
 ---
 
