@@ -49,7 +49,21 @@ Version: 59.2.A.0.463-R14C
 Size: 2.66 GB
 ```
 
-In the installation instructions by Jolla there is the suggestion of to upgrade to Android 11 from 10 but nothing about downgrading 12 to 11. There is also no any warning about the imperative need of having Android 11, like DO NOT INSTALL UNLESS Andorid 11 is flashed before into the device. Therefore, it seems that there is not any reason to not go with the factory Andorid 12 or using XperiFirm for flashing it. Unfortunately the reality presents us another story but further investigation can be conducted to check if Android 12 can be supported as well 11 and 10.
+In the installation instructions by Jolla there is the suggestion of to upgrade to Android 11 from 10 but nothing about downgrading 12 to 11. There is also no any warning about the imperative need of having Android 11, like DO NOT INSTALL UNLESS Andorid 11 is flashed before into the device.
+
+Therefore, it seems that there is not any reason to not go with the factory Andorid 12 or using XperiFirm for flashing it. Unfortunately the reality presents us another story but further investigation can be conducted to check if Android 12 can be supported as well 11 and 10.
+
+Android 11 AOSP available on XperiFirm:
+
+* XQ-AU52_Service Exchange Unit_59.1.A.2.192-R3B for Xperia 10 II dual SIM
+* XQ-AU51_Service Exchange Unit_59.1.A.2.192-R2B for Xperia 10 II single SIM
+
+Android 10 AOSP available on XperiFirm:
+
+* XQ-AU52_StoreFront_59.0.A.6.24-R4A for Xperia 10 II dual SIM
+* XQ-AU51_StoreFront_59.0.A.6.24-R4A for Xperia 10 II single SIM
+
+None of these seems suitable for end-users but they can be fine for supporting the SailFish OS.
 
 > __Note__: some users on the forum reported to not having particular problems with SailFish OS in combination with Android 12. However, end-user support can be difficult and community support can be hostile for those did not followed pedantically the flashing instructions.
 
