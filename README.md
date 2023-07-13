@@ -46,9 +46,11 @@ The paid licensed version adds the support for Android integrating the proprieta
 * [Community apps repository](https://sailfish.openrepos.net/)
 * [Patch Manager Web Catalog](http://coderus.openrepos.net/pm2/)
 
-Few components in SailFish OS are proprietary and because the package downloaded from their shop contains such proprietary software and vendor firmware. Some other proprietary software and vendor firmare cames from Sony Open Device AOSP.
+Few components in SailFish OS are proprietary and the package downloaded from their shop contains such proprietary software and vendor firmware. The framework to build the images is an open source project:
 
-Instead, the boot images are compositions of binaries from on open source and software libre projects, only. Therefore the boot images can be freely redistribute as far as those redistribuite them fulfil the FOSS licenses obbligations related to that binaries. 
+* [MER project Wiki page](https://wiki.merproject.org/wiki/Main_Page)
+
+Some other proprietary software and vendor firmare cames from Sony Open Device AOSP. Instead, the boot images are compositions of binaries from on open source and software libre projects, only. Therefore the boot images can be freely redistribute as far as those redistribuite them fulfil the FOSS licenses obbligations related to that binaries. 
 
 > __Note__  The alternative to fullfil yourself that obbligations is to link this page which the aim is to collect all those FOSS contributes. However, you have to check by yourself if these list of resources is complete and updated respect the boot image that you wish to distribute.
 
