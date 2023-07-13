@@ -112,8 +112,8 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [SailJail sandbox](https://github.com/robang74/sailjail) - SailJail is a thin Firejail wrapper and it command is used to create Sailfish OS application sandboxes
 
-* [SailJail permissions](https://github.com/robang74/sailjail-permissions) - SailFish OS application sandboxing and permissions system built on top of FireJail.
-This project enables the building of boot images for Google Android fastboot based devices.
+* [SailJail permissions](https://github.com/robang74/sailjail-permissions) - SailFish OS application sandboxing and permissions system built on top of FireJail.This project enables the building of boot images for Google Android fastboot based devices.
+
 * [mce-tools](https://github.com/robang74/mce) - mcetool command line executable to set some SailFish OS parameter about timeouts and power management.
 
 * [advance camera](https://github.com/robang74/harbour-advanced-camera) - Advanced Camera application for SailFish OS.
@@ -125,6 +125,8 @@ This project enables the building of boot images for Google Android fastboot bas
 * [connman iptables](https://github.com/robang74/sailfish-connman-plugin-iptables) - The connman plugin that provides d-bus API for controlling iptables rules. 
 
 * [Github action for SFOS apps](https://github.com/robang74/github-sfos-apps-build) - Github action for building SailFish OS apps.
+
+* [SailFish OS git repositories](https://github.com/sailfishos) - A collection of 907 git repositories about SailFish OS.
 
 ---
 
