@@ -1,8 +1,8 @@
-## Quick Start Guide v1.7.3.5
+## Quick Start Guide v1.7.3.6
 
 This is the guide originally written for the SailFish OS community forum reported here in Github .md format.
 
-> (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com> released under [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/) terms.
+> (C) 2023, Roberto A. Foglietta \<<roberto.foglietta@gmail.com>\> released under [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/) terms.
 
 **Support the guide**
 
@@ -39,17 +39,11 @@ Currently the Xperia 10 II are delivered with Android 12 (since 2022-06-13, last
 
 Reading the [flashing procedure described by Jolla](https://jolla.com/sailfishxinstall/), the suggested version and almost required is the Android 11, instead. Therefore you the need to re-flash your smartphone in order to downgrade the Android version. To accomplish this task you need to download the [Sony Emma flashing tool](https://developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/flash-tool) which runs only on Microsoft Windows and to follow these instructions about [reverting Xperia device to Android OS](https://docs.sailfishos.org/Support/Help_Articles/Managing_Sailfish_OS/Reinstalling_Sailfish_OS/#reverting-xperia-device-to-android-os-and-reinstalling-sailfish-os).
 
-The alternative to Sony Emma flashtool is [Xperifirm](https://xperifirmtool.com/category/tool) which requires mono to run on a GNU/Linux distribution and have a limited access to the firmware. For example, Xperia 10 III is not supported and for Xperia 10 II offers geographic areas customized firmware based on Android 12 and just two alternatives which are customization:
-<small>
+The alternative to Sony Emma flashtool is [Xperifirm](https://xperifirmtool.com/category/tool) which requires mono to run on a GNU/Linux distribution and have a limited access to the firmware. For example, Xperia 10 III is not supported and for Xperia 10 II offers geographic areas customized firmware based on Android 12 and just a couple of alternatives which are customization.
 
-* XQ-AU52_Service Exchange Unit_59.1.A.2.192-R3B for Xperia 10 II dual SIM
-* XQ-AU52_StoreFront_59.0.A.6.24-R4A for Xperia 10 II dual SIM
-* XQ-AU51_Service Exchange Unit_59.1.A.2.192-R2B for Xperia 10 II single SIM
-* XQ-AU51_StoreFront_59.0.A.6.24-R4A for Xperia 10 II single SIM
+* [Sony Xperia flashing guide](/forum/knowhow/flashing-tools-for-Xperia-phones.md)
 
-</small>
-
-If you wish to try one of these variants rather that reinstall windows on you laptop, please let us know about the outcoming. **Important**: in case you will fill a bug report, include your Android `AOSP` version that you choose.
+This guide provides some pratical knowledge for integrating the Jolla's official procedure.
 
 ---
 
