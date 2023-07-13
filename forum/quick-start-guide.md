@@ -1,4 +1,4 @@
-## Quick Start Guide v1.7.3.4
+## Quick Start Guide v1.7.3.5
 
 This is the guide originally written for the SailFish OS community forum reported here in Github .md format.
 
