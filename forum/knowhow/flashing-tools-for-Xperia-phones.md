@@ -28,6 +28,8 @@ $ mono XperiFirm-x64.exe
 
 Unfortunately, XperiFirm can download just few AOSP versions compared to Sony Emma.
 
+---
+
 ### Android version
 
 The Xperia X10 II by factoy cames with Android 12 since 2021 but it will be probably the last major release update that they will receive:
@@ -73,7 +75,16 @@ Instead, if you are planning to bring back your Xperia smartphone to work with A
 
 This is the page in which you can find the Android restore procedure using Sony Emma flashing tool.
 
-### SailFish fastboot
+---
+
+### SailFish OS images
+
+* [SailFish OS v4.5.0.19 for xqau52](https://d2lokee10frdc2.cloudfront.net/images/4.5.0.19/Sailfish_OS-Jolla-4.5.0.19-xqau52-1.0.0.19.zip)
+* [Sony binaries for AOSP Android 10](https://developer.sony.com/file/download/software-binaries-for-aosp-android-10-0-kernel-4-14-seine)
+
+---
+
+### SailFish OS fastboot
 
 What is above is related to Andorid but to flash SailFish OS into the smartphone another tool is used which leverate the fastboot mode.
 
