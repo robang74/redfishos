@@ -72,7 +72,7 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 ### Useful documentation
 
-* [Sony Xperia flashing guide](forum/knowhow/) - Some pratical knowledge for integrating the Jolla's official procedure.
+* [Sony Xperia flashing guide](forum/knowhow/flashing-tools-for-Xperia-phones.md) - Some pratical knowledge for integrating the Jolla's official procedure.
 
 * [Quick Start Quide](forum/quick-start-guide.md) - An end-users step-by-step guide for a quick start with SailFish OS.
 
