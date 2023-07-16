@@ -10,7 +10,7 @@ If you like this guide and you like the idea that it will be continued to be ext
 
 * [free amount **PayPal donation** form](https://tinyurl.com/robang74)
 
-If you are going to use this guide for commercial pourposes, feel free to contact me to negotiate a license for your business specific needs.
+If you are going to use this guide for commercial purposes, feel free to contact me to negotiate a license for your business specific needs.
 
 > __Note__: the donation form accepts credit cards, also.
 
