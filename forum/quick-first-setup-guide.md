@@ -1,8 +1,8 @@
-## Quick first setup guide
+## Quick First Setup Guide v1.0.4
 
 This is a step-by-step mini guide to follow immediately after having flashed your smartphone with SailFish OS. It has been written and tested with a Sony Xperia 10 II smartphone.
 
-Some suggestion about flashing your smartphone with SailFish OS and copying with the USB v3.x problems have been reported at the begging of the [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857) and that sections belong to this guide more that the other one. Unfortunately the other one is not anymore editable therefore, I cannot move here such information and I wish not duplicate them here.
+Some suggestion about flashing your smartphone with SailFish OS and copying with the USB v3.x problems have been reported at the begging of the [Quick Start Guide](quick-start-guide.md) and that sections belong to this guide more that the other one. Unfortunately the other one is not anymore editable therefore, I cannot move here such information and I wish not duplicate them here.
 
 ---
 
@@ -42,7 +42,7 @@ For everybody:
 Now the smartphone need a little more effort to be completely configure on the basics:
 
  1. Swipe from the bottom on the home display, choose Settings and its System tab
- 2.  in Settings:System -> Display -> Text size: chose the one confortable for you
+ 2.  in Settings:System -> Display -> Text size: chose the one comfortable for you
  3. in Settings:System -> Sounds and feedback raise all the volumes to 100%, fine tuning later
  4. in Settings:System -> Gestures -> Show hints and tips: OFF, learning later
  5. swipe from the bottom on the bottom edge and choose Messages app
@@ -71,7 +71,7 @@ This part of the configuration is optional but it will be useful for the many:
 
 Make all other changes you wish. 
 
-About the *VPN*, it should be configured before using it, check the [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857/1) for it.
+About the *VPN*, it should be configured before using it, check the [Quick Start Guide](quick-start-guide.md) for it.
 
 About the *NFC* is usefull only if you are going to use it otherwise disable it in 
 
@@ -79,7 +79,7 @@ About the *NFC* is usefull only if you are going to use it otherwise disable it 
 
 About *Screenshot", the keys combination `volume up + down` is a much faster way to get your display screenshoted.
 
-About *Take a selfie*, it is a straighforward misdefined shortcut to the camera therefore 
+About *Take a selfie*, it is a straightforward misdefined shortcut to the camera therefore 
 
 * Settings:System -> Gesture -> Quick access to the Camera: OFF 
 
@@ -99,7 +99,7 @@ Now it is time to take some decisions:
  
 * Are you going to use a WiFi connection or do you wish that your smartphone share the mobile data connection with your others devices? In this case, you have to configure the **tethering**.
 
-About the tethering: the one via WiFi is quite immediate to configure by the UI and will be explained later in this guide while the one via USB requires a package to be installed and you will find the related section in the [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857/1).
+About the tethering: the one via WiFi is quite immediate to configure by the UI and will be explained later in this guide while the one via USB requires a package to be installed and you will find the related section in the [Quick Start Guide](quick-start-guide.md).
 
 ---
 
@@ -120,7 +120,7 @@ At this point you have two ways to access to the SSH connection: via USB and via
 
 You will need two digit your password two times: the first for the SSH login and the second to became root otherwise you will not able to configure, administer the system and install packages.
 
-In the [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857/1), it is explained how to configure a secure and quick way to access via SSH as root to your smartphone without the use of the password but this functionality is limited to trusted devices only.
+In the [Quick Start Guide](quick-start-guide.md), it is explained how to configure a secure and quick way to access via SSH as root to your smartphone without the use of the password but this functionality is limited to trusted devices only.
 
 * [patch to enable the SSH login by key only](https://coderus.openrepos.net/pm2/project/sshd-publickey-login-only)
 
@@ -165,7 +165,7 @@ In the future you can activate the WiFi hotspot/tethering also from the top-menu
 
 **ADVANCED SSH**
 
-For those connect to their SFOS smartphone frequently both via USB and via WiFi, these two simple functions added into your `.bashrc` will avoid you to digit the same stuff everytime:
+For those connect to their SFOS smartphone frequently both via USB and via WiFi, these two simple functions added into your `.bashrc` will avoid you to digit the same stuff every time:
 
 > ```
 > wfish() { ssh root@172.28.172.1 "$@"; }
@@ -212,6 +212,6 @@ extras:
 
 Continue to explore SailFish OS and leverage its functionality with the
 
-* [Quick Start Guide v1.7.3.4](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857/1)
+* [Quick Start Guide](quick-start-guide.md)
 
 Have fun <3, R-
