@@ -152,4 +152,4 @@ For further information or requests about licensing and how to obtain your own b
 
 * [Roberto A. Foglietta](roberto.foglietta@gmail.com)
 
-Have fun! <3 
+Have fun! <3, R-
