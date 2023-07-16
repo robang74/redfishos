@@ -1,8 +1,28 @@
-## Quick First Setup Guide v1.0.4
+## Quick First Setup Guide v1.0.5
+
+This is the guide originally written for the SailFish OS community forum reported here in Github .md format.
+
+> (C) 2023, Roberto A. Foglietta \<<roberto.foglietta@gmail.com>\> released under [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/) terms.
+
+**Support the guide**
+
+If you like this guide and you like the idea that it will be continued to be extended and improved then consider to offer me a coffe, a beer or a pizza as your concrete sign of support and appreciation of my on-line activities.
+
+* [free amount **PayPal donation** form](https://tinyurl.com/robang74)
+
+If you are going to use this guide for commercial pourposes, feel free to contact me to negotiate a license for your business specific needs.
+
+> __Note__: the donation form accepts credit cards, also.
+
+---
+
+**RATIONALE**
 
 This is a step-by-step mini guide to follow immediately after having flashed your smartphone with SailFish OS. It has been written and tested with a Sony Xperia 10 II smartphone.
 
 Some suggestion about flashing your smartphone with SailFish OS and copying with the USB v3.x problems have been reported at the begging of the [Quick Start Guide](quick-start-guide.md) and that sections belong to this guide more that the other one. Unfortunately the other one is not anymore editable therefore, I cannot move here such information and I wish not duplicate them here.
+
+Moreover, having such guide allows everyone involved in supporting the hardware to have a standard starting point in order to reduce - as much as possible - the interference caused to a different setup procedure.
 
 ---
 
