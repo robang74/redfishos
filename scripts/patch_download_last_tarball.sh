@@ -1,8 +1,7 @@
 #!/bin/bash
 ################################################################################
 #
-# Copyright (C) 2023, Roberto A. Foglietta
-#     Contact: roberto.foglietta@gmail.com
+# Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,25 +22,40 @@
 set -ue -o pipefail
 
 export owc_url="https://coderus.openrepos.net/"
+
 export prj_url="${owc_url}/pm2/project/"
 export prj_path="/media/documents/"
 export prj_name="${1:-}"
 
 export pkg_url=""
+export pkg_prov=""
+export pkg_name=""
+export pkg_vern=""
+export pkg_extn=""
+
 export patch_name=""
 export patch_path=""
-export patch_dir="/etc/patches"
+export patch_dir="/etc/patches.d"
+export patch_db="/etc/patches.db"
 
 export hdr_strn=""
 export hdr_name=""
 export hdr_vern=""
 export hdr_srvs=""
 export hdr_prov=""
+export hdr_targ=""
 
-patch_dir="./"
+# TEST DEFINITIONS
+patch_dir="./patches.d"
+patch_db="./patches.db"
+prj_name="dnsmasq-connman-integration"
 
-patch_get_header() {
+# INTERNAL FUNCTIONS ###########################################################
+
+_patch_get_header() {
 	local hstr="" hlns hcmd flnm=${1:-}
+	test -n "$flnm" || return 1
+	
 	while true; do
 		hlns=$(grep -nE "^#[\\header|/header]" "$flnm" | cut -d: -f1 | sort -rn)
 		test $(echo $hlns | wc -w) -ne 2 && break
@@ -53,79 +67,173 @@ patch_get_header() {
 	done | grep .
 }
 
-patch_get_lastpkg() {
-	test -n "${1:-}" || return 1
-	curl -sL --connect-timeout 5 ${prj_url}/${prj_name} |\
-		sed -ne "s,.* href=\"\(${prj_path}.*${1:-}.*\)\".*,${owc_url}\\1,p" |\
-			head -n1 | grep .
+_patch_get_lastpkg() {
+	prj_name="${1:-$prj_name}"
+	test -n "$prj_name" -a -n "$prj_url" -a \
+	     -n "$prj_path" -a -n "$owc_url" || return 1
+
+	curl -sL --connect-timeout 5 ${prj_url}/${prj_name} \
+	| sed -ne "s,.* href=\"\(${prj_path}.*${prj_name}.*\)\".*,${owc_url}\\1,p" \
+	| head -n1 | grep .
 }
 
-patch_download_lastpkg() {
+_patch_download_lastpkg() {
 	local tmp_strn
-	pkg_url=$(patch_get_lastpkg "${1:-}")
+	prj_name="${1:-$prj_name}"
+	
+	mkdir -p "$patch_dir/" || return 1
+	test -n "$prj_name" -a -d "$patch_dir/" -a \
+	     -n "$prj_path" -a -n "$owc_url" || return 1
+	test -n "$pkg_url" || pkg_url=$(_patch_get_lastpkg "$prj_name")
 	tmp_strn=$(echo $pkg_url | sed -e "s,${owc_url}/*${prj_path},,")
 	patch_name=$(echo $tmp_strn | sed -E "s,\.zip|\.tar\..z.*$,,").patch
 	patch_path="$patch_dir/$patch_name"
-	curl -sL $pkg_url | tar xz -O > "$patch_path" || break
+	
+	curl -sL --connect-timeout 5 $pkg_url | tar xz -O > "$patch_path"
+	test -s "$patch_path"
 }
 
-get_hdr_strn_field() {
+_get_hdr_strn_field() {
 	test -n "${1:-}" || return 1
-	echo "$hdr_strn" | sed -ne "s/# *${1:-}: *\(.*\)/\\1/p"
+	echo "$hdr_strn" | sed -ne "s/# *$1: *\(.*\)/\\1/p"
 }
+
+# SCRIPT FUNCTION ##############################################################
 
 check_patch_download_lastpkg() {
-	prj_name="${1:-}"
+	prj_name="${1:-$prj_name}"
 	test -n "$prj_name" || return 1
 	
-	patch_download_lastpkg "$prj_name"
+	_patch_download_lastpkg "$prj_name" || return 1
 
-	hdr_strn=$(patch_get_header "$patch_path")
-	hdr_type=$(get_hdr_strn_field "type")
+	hdr_strn=$(_patch_get_header "$patch_path")
+	hdr_type=$(_get_hdr_strn_field "type")
+	hdr_targ=$(_get_hdr_strn_field "target")
 
-	if ! echo $hdr_type | grep -qw system; then
-		echo
-		echo "WARNING: $prj_name is not a system patch, skip."
-		echo
+	if echo $hdr_targ | grep -qw "sfos" \
+	&& echo $hdr_type | grep -qw "system"
+	then
+       :
+    else
+		echo -e "\nWARNING: $prj_name is not a SFOS system patch, removed.\n"
+		rm -f "$patch_path"
 		return 1
-	fi
-
-	hdr_targ=$(get_hdr_strn_field "target")
-
-	if ! echo $hdr_targ | grep -qw sfos; then
-		echo
-		echo "WARNING: $prj_name is not a system patch, skip."
-		echo
-		return 1
-	fi
-	
-	get_hdr_params_from_patch
+	fi >&2 
+	return 0
 }
 
 get_hdr_params_from_patch() {
-	hdr_name=$(get_hdr_strn_field "name")
-	hdr_vern=$(get_hdr_strn_field "version")
-	hdr_srvs=$(get_hdr_strn_field "services")
-	hdr_prov=$(get_hdr_strn_field "provider")
+	test -n "$hdr_strn" || return 1
+	hdr_name=$(_get_hdr_strn_field "name")
+	hdr_vern=$(_get_hdr_strn_field "version")
+	hdr_srvs=$(_get_hdr_strn_field "services")
+	hdr_prov=$(_get_hdr_strn_field "provider")
 }
 
-check_patch_download_lastpkg "dnsmasq-connman-integration"
+get_pkg_params_from_patch() {
+	local tmp_strn
+	prj_name=${1:-$prj_name}
+	test -n "$prj_name" -a -n "$pkg_url" -a -n "$hdr_srvs" || return 1
+	
+	tmp_strn=$(echo $pkg_url  | sed -e "s,${owc_url}/*${prj_path},,")
+	pkg_prov=$(echo $tmp_strn | cut -d- -f1)
+	tmp_strn=$(echo $tmp_strn | cut -d- -f2- | sed -e "s,${prj_name}-,,")
+	# supported archive file extensions: .zip .tar.gz .tar.bz2 .tar.xz
+	pkg_vern=$(echo $tmp_strn | sed -E "s,\.zip|\.tar\.[gbx]z2*$,,")
+	pkg_extn=$(echo $tmp_strn | sed -e "s,${pkg_vern}\.,,")
+	pkg_name=$prj_name
+}
 
-tmp_strn=$(echo $pkg_url  | sed -e "s,${owc_url}/*${prj_path},,")
-pkg_prov=$(echo $tmp_strn | cut -d- -f1)
-tmp_strn=$(echo $tmp_strn | cut -d- -f2- | sed -e "s,${prj_name}-,,")
-pkg_vern=$(echo $tmp_strn | sed -E "s,\.zip|\.tar\..z.*,,")
-pkg_extn=$(echo $tmp_strn | sed -e "s,${pkg_vern}\.,,")
-pkg_name=$prj_name
+print_pkg_params_string() {
+	echo "${hdr_prov}, ${hdr_name}, ${hdr_vern}, ${pkg_extn}, ${hdr_srvs};" |\
+	grep "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};" ||\
+	echo "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};"
+}
 
-echo "${hdr_prov}, ${hdr_name}, ${hdr_vern}, ${pkg_extn}, ${hdr_srvs};" |\
-grep "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};" ||\
-echo "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};"
-# prov  , name                       , vern , extn  , srvs   
-# supported archive file extensions: .zip .tar.gz .tar.bz2 .tar.xz
+# LOCK FUNCTIONS ###############################################################
 
+export lockfile="${patch_db}.lck"
 
+rmdb_lock() {
+	rm -f "$(readlink -f $lockfile)" "$lockfile"
+}
 
+mkdb_lock() {
+	local i pid cmdline tempfile=$(mktemp -p "${TMPDIR:-/tmp}" -t lock.XXXX)
+	test -e "$tempfile" && echo "$$" >"$tempfile"
+	
+	for i in $(seq 1 10); do
+		if test -s "$tempfile" \
+		&& ln -s "$tempfile" "$lockfile" 2>/dev/null; then
+			return 0
+		else
+			pid=$(cat "$lockfile")
+			if [ "$pid" = "$$" ]; then
+				echo "\nWARNING: multiple attempts to lock database.\n"
+				return 0
+			fi >&2
+			cmdline=$(cat "/proc/$pid/cmdline" | tr '\0' ' ')
+			if [ -n "$pid" -a -n "$cmdline" ]; then
+				printf "\nERROR: patches database is locked by pid: %d." $pid
+				echo -e "\n"
+				exit 1
+			fi >&2
+			rmdb_lock
+		fi
+	done
+	echo "\nERROR: cannot lock the patches database, abort.\n"
+	exit 1
+}
 
+# SCRIPT MAIN ##################################################################
+# set -x
 
+export prj_prov=""
+export prj_vern=""
+export prj_extn=""
+export prj_srvs=""
 
+get_prj_params_from_db() {
+	prj_name=${1:-$prj_name}
+	test -n "$prj_name" -a -s "$patch_db" || return 1
+	local prj_strn=$(grep -w "$prj_name" "$patch_db" | cut -d ';' -f1)
+	test -n "$prj_strn" || return 1
+	
+	# cast the patch data into useful variables
+	prj_prov=$(echo $prj_strn | cut -d\, -f1 | tr -d ' '     )
+	prj_vern=$(echo $prj_strn | cut -d\, -f3 | tr -d ' '     )
+	prj_extn=$(echo $prj_strn | cut -d\, -f4 | tr -d ' '     )
+	prj_srvs=$(echo $prj_strn | cut -d\, -f5 | grep -vw none )
+}
+
+if [ "${force:-}" != "yes" ]; then
+	if get_prj_params_from_db; then
+		fn="${prj_prov}-${prj_name}-${prj_vern}.patch"
+		if [ -s "$patch_dir/$fn" ]; then
+			pkg_url=$(_patch_get_lastpkg ||:)
+			pn=$(echo "$pkg_url" | sed -E "s,\.zip|\.tar\.[gbx]z2*$,.patch,")
+			if [ ! -n "$pn" ]; then
+				echo -e "\nWARNING: cannot check '$prj_name' last version.\n"	
+			elif [ "$(basename "$pn")" = "$fn" ]; then
+				echo -e "\nDONE: last '$prj_name' is already in '$patch_dir'.\n"
+			fi >&2
+			exit 0
+		fi
+	fi
+fi
+
+mkdb_lock && trap "rmdb_lock" EXIT
+
+echo -e "\nINFO: downloading '$prj_name' last version...\n" >&2
+
+if check_patch_download_lastpkg \
+   && get_hdr_params_from_patch \
+   && get_pkg_params_from_patch \
+   && print_pkg_params_string   \
+| tee -a "$patch_db" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2; then
+	db=$(cat "$patch_db" | sort | uniq)
+	echo "$db" > "$patch_db"
+	echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
+else
+	echo -e "\nERROR: failed to elaborate '$prj_name' patch.\n" >&2
+fi
