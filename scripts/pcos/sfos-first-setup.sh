@@ -1,8 +1,7 @@
 #!/bin/bash
 ################################################################################
 #
-# Copyright (C) 2023-2015 Roberto A. Foglietta
-#     Contact: roberto.foglietta@gmail.com
+# Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,6 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
+# release: 0.0.1
 
 sfos_hostname=redfishos
 setup_file=/tmp/initial.setup
