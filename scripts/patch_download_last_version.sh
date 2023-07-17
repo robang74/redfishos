@@ -21,17 +21,44 @@
 
 set -ue -o pipefail
 
+arg="${1:-}"
 export force=no
-if [ "x${1:-}" = "x--force" ]; then
+export force_opt=""
+if [ "x$arg" = "x--force" ]; then
+	arg="${2:-}"
+	force_opt="$arg"
 	force=yes
 	shift
+elif [ "x$arg" = "x-h" -o "xarg" = "x--help" ]; then
+	echo -e "\nUSAGE: $(basename $0) [--force] [project_name]\n" >&2;
+	exit 1
 fi
 
-export prj_name="${1:-}"
-if [ ! -n  "$prj_name" \
-       -o "x$prj_name" = "x-h" \
-       -o "x$prj_name" = "x--help" ]; then
-	echo -e "\nUSAGE: $(basename $0) [--force] project_name\n" >&2
+export prj_name="$arg"
+export patch_list="/etc/patches.list"
+export patch_list="./patches.list" # RAF: just for test
+if [ -n  "$prj_name" ]; then
+	:
+elif [ -s "$patch_list" ]; then
+	ret=0
+	entn=$(cat "$patch_list" | wc -l)
+	echo -e "\nINFO: loop on the patch list '${patch_list}', entries: ${entn}."
+	if [ $entn -gt 1 ]; then
+		for prj_name in $(cat "$patch_list"); do
+			$0 ${force_opt} ${prj_name} || ret=$?
+			entn=$(( entn - 1 ))
+			if [ $entn -gt 0 ]; then
+				echo "press ENTER to continue"
+				read enter
+			fi
+		done
+		exit $ret
+	else
+		prj_name=$(cat "$patch_list")
+	fi
+else
+	echo -e "\nWARNING: the patch list '$patch_list' does not exist." >&2
+	echo -e "\nUSAGE: $(basename $0) [--force] project_name\n" >&2;
 	exit 1
 fi
 
@@ -263,8 +290,10 @@ if check_patch_download_lastpkg \
    && get_pkg_params_from_patch \
    && print_pkg_params_string   \
 | tee -a "$patch_db" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2; then
-	echo "$(cat $patch_db | sort | uniq)" > "$patch_db" && \
-		echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
+	echo "$prj_name" >> "$patch_list"
+	echo "$(cat $patch_list | sort | uniq)" > "$patch_list" && \
+		echo "$(cat $patch_db | sort | uniq)" > "$patch_db" && \
+			echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
 else
 	false &&:
 fi
