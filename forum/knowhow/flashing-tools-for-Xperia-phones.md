@@ -1,8 +1,10 @@
-# Sony Xperia flashing guide
+## Sony Xperia flashing guide
 
 Some pratical knowledge for integrating the Jolla's official procedure.
 
-## Flashing tools
+---
+
+### Flashing tools
 
 These are the flashtools that has been reported to work for flashing the Sony Xperia smartphones serie, with windows:
 
