@@ -50,10 +50,24 @@ export prj_vern=""
 export prj_extn=""
 export prj_srvs=""
 
-# TEST DEFINITIONS
+# TEST DEFINITIONS #############################################################
+
 patch_dir="./patches.d"
 patch_db="./patches.db"
 prj_name="dnsmasq-connman-integration"
+
+# LOCK FUNCTIONS ###############################################################
+#
+# RAF: just if flock is missing and moreover this prints customised messages
+#
+
+export lck_source="patch_dblock_functions.env"
+lck_source="$(dirname $0)/$lck_source"
+source "$lck_source" &&:
+if [ $? -ne 0 ]; then
+	echo -e "\nERROR: failed to source 'patch_dblock_functions.env'.\n" >&2
+	exit 1
+fi
 
 # INTERNAL FUNCTIONS ###########################################################
 
@@ -173,7 +187,7 @@ get_prj_params_from_db() {
 # RAF: just if flock is missing and moreover this prints customised messages
 #
 
-export lockfile="${patch_db}.lck"
+export lockfile="${1:-${patch_db}.lck}"
 
 rmdb_lock() {
 	rm -f "$(readlink -f $lockfile)" "$lockfile"
