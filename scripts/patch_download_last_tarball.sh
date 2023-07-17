@@ -21,11 +21,26 @@
 
 set -ue -o pipefail
 
+export force=no
+if [ "x${1:-}" = "x--force" ]; then
+	force=yes
+	shift
+fi
+
+export prj_name="${1:-}"
+if [ ! -n  "$prj_name" \
+       -o "x$prj_name" = "x-h" \
+       -o "x$prj_name" = "x--help" ]; then
+	echo -e "\nUSAGE: $(basename $0) [--force] project_name\n" >&2
+	exit 1
+fi
+
+# GLOBAL VARIABLES #############################################################
+
 export owc_url="https://coderus.openrepos.net/"
 
 export prj_url="${owc_url}/pm2/project/"
 export prj_path="/media/documents/"
-export prj_name="${1:-}"
 
 export pkg_url=""
 export pkg_prov=""
@@ -51,10 +66,10 @@ export prj_extn=""
 export prj_srvs=""
 
 # TEST DEFINITIONS #############################################################
-
+#
+# prj_name="dnsmasq-connman-integration"
 patch_dir="./patches.d"
 patch_db="./patches.db"
-prj_name="dnsmasq-connman-integration"
 
 # LOCK FUNCTIONS ###############################################################
 #
