@@ -45,6 +45,11 @@ export hdr_srvs=""
 export hdr_prov=""
 export hdr_targ=""
 
+export prj_prov=""
+export prj_vern=""
+export prj_extn=""
+export prj_srvs=""
+
 # TEST DEFINITIONS
 patch_dir="./patches.d"
 patch_db="./patches.db"
@@ -150,7 +155,23 @@ print_pkg_params_string() {
 	echo "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};"
 }
 
+get_prj_params_from_db() {
+	prj_name=${1:-$prj_name}
+	test -n "$prj_name" -a -s "$patch_db" || return 1
+	local prj_strn=$(grep -w "$prj_name" "$patch_db" | cut -d ';' -f1)
+	test -n "$prj_strn" || return 1
+	
+	# cast the patch data into useful variables
+	prj_prov=$(echo $prj_strn | cut -d\, -f1 | tr -d ' '     )
+	prj_vern=$(echo $prj_strn | cut -d\, -f3 | tr -d ' '     )
+	prj_extn=$(echo $prj_strn | cut -d\, -f4 | tr -d ' '     )
+	prj_srvs=$(echo $prj_strn | cut -d\, -f5 | grep -vw none )
+}
+
 # LOCK FUNCTIONS ###############################################################
+#
+# RAF: just if flock is missing and moreover this prints customised messages
+#
 
 export lockfile="${patch_db}.lck"
 
@@ -172,39 +193,21 @@ mkdb_lock() {
 				echo "\nWARNING: multiple attempts to lock database.\n"
 				return 0
 			fi >&2
-			cmdline=$(cat "/proc/$pid/cmdline" | tr '\0' ' ')
+			cmdline=$(cat "/proc/$pid/cmdline" 2>/dev/null | tr '\0' ' ' ||:)
 			if [ -n "$pid" -a -n "$cmdline" ]; then
 				printf "\nERROR: patches database is locked by pid: %d." $pid
 				echo -e "\n"
-				exit 1
+				return 1
 			fi >&2
 			rmdb_lock
 		fi
 	done
 	echo "\nERROR: cannot lock the patches database, abort.\n"
-	exit 1
+	return 1
 }
 
 # SCRIPT MAIN ##################################################################
 # set -x
-
-export prj_prov=""
-export prj_vern=""
-export prj_extn=""
-export prj_srvs=""
-
-get_prj_params_from_db() {
-	prj_name=${1:-$prj_name}
-	test -n "$prj_name" -a -s "$patch_db" || return 1
-	local prj_strn=$(grep -w "$prj_name" "$patch_db" | cut -d ';' -f1)
-	test -n "$prj_strn" || return 1
-	
-	# cast the patch data into useful variables
-	prj_prov=$(echo $prj_strn | cut -d\, -f1 | tr -d ' '     )
-	prj_vern=$(echo $prj_strn | cut -d\, -f3 | tr -d ' '     )
-	prj_extn=$(echo $prj_strn | cut -d\, -f4 | tr -d ' '     )
-	prj_srvs=$(echo $prj_strn | cut -d\, -f5 | grep -vw none )
-}
 
 if [ "${force:-}" != "yes" ]; then
 	if get_prj_params_from_db; then
@@ -222,7 +225,7 @@ if [ "${force:-}" != "yes" ]; then
 	fi
 fi
 
-mkdb_lock && trap "rmdb_lock" EXIT
+mkdb_lock || exit $?
 
 echo -e "\nINFO: downloading '$prj_name' last version...\n" >&2
 
@@ -231,9 +234,13 @@ if check_patch_download_lastpkg \
    && get_pkg_params_from_patch \
    && print_pkg_params_string   \
 | tee -a "$patch_db" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2; then
-	db=$(cat "$patch_db" | sort | uniq)
-	echo "$db" > "$patch_db"
-	echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
+	echo "$(cat $patch_db | sort | uniq)" > "$patch_db" && \
+		echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
 else
-	echo -e "\nERROR: failed to elaborate '$prj_name' patch.\n" >&2
+	false &&:
 fi
+if [ $? -ne 0 ]; then
+	echo -e "ERROR: failed to elaborate '$prj_name' patch.\n" >&2
+fi
+
+rmdb_lock ||:
