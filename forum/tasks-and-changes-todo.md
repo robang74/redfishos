@@ -1,3 +1,5 @@
+## TASKS AND CHANGES TODO
+
 This list of suggested changes is for those Sailors hackers or Jolla employees that wish to improve `SFOS`. 
 
 Please, take a look of that list and feel free to indicate the 3 that are the **most** important for you or `SFOS` and the 3 which are the **least** important. To the 3+3 indications add for each one a **brief** explanation about why, just to support your preference.
