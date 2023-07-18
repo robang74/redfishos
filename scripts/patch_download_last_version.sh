@@ -41,10 +41,11 @@ if [ -n  "$prj_name" ]; then
 	:
 elif [ -s "$patch_list" ]; then
 	ret=0
-	entn=$(cat "$patch_list" | wc -l)
+	list=$(sort "$patch_list" | uniq)
+	entn=$(echo "$list" | wc -l)
 	echo -e "\nINFO: loop on the patch list '${patch_list}', entries: ${entn}."
 	if [ $entn -gt 1 ]; then
-		for prj_name in $(cat "$patch_list"); do
+		for prj_name in $list; do
 			$0 ${force_opt} ${prj_name} || ret=$?
 			entn=$(( entn - 1 ))
 			if [ $entn -gt 0 ]; then
@@ -54,7 +55,7 @@ elif [ -s "$patch_list" ]; then
 		done
 		exit $ret
 	else
-		prj_name=$(cat "$patch_list")
+		prj_name=$list
 	fi
 else
 	echo -e "\nWARNING: the patch list '$patch_list' does not exist." >&2
@@ -156,7 +157,8 @@ _patch_download_lastpkg() {
 
 _get_hdr_strn_field() {
 	test -n "${1:-}" || return 1
-	echo "$hdr_strn" | sed -ne "s/# *$1: *\(.*\)/\\1/p"
+	echo "$hdr_strn" | sed -ne "s/#[[:blank:]]*$1[[:blank:]]*: *\(.*\)/\\1/p" \
+		| tail -n1 | tr -s [:blank:] ' ' | tr -d '[,;]' | grep .
 }
 
 # SCRIPT FUNCTION ##############################################################
@@ -206,9 +208,10 @@ get_pkg_params_from_patch() {
 }
 
 print_pkg_params_string() {
-	echo "${hdr_prov}, ${hdr_name}, ${hdr_vern}, ${pkg_extn}, ${hdr_srvs};" |\
-	grep "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};" ||\
-	echo "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};"
+	echo  "${hdr_prov}, ${hdr_name}, ${hdr_vern}, ${pkg_extn}, ${hdr_srvs};" \
+| grep -q "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};" \
+||	echo -e "WARNING: header and package fields do not match.\n" >&2
+	echo  "${pkg_prov}, ${pkg_name}, ${pkg_vern}, ${pkg_extn}, ${hdr_srvs};"
 }
 
 get_prj_params_from_db() {
@@ -272,11 +275,12 @@ if [ "${force:-}" != "yes" ]; then
 			pkg_url=$(_patch_get_lastpkg ||:)
 			pn=$(echo "$pkg_url" | sed -E "s,\.zip|\.tar\.[gbx]z2*$,.patch,")
 			if [ ! -n "$pn" ]; then
-				echo -e "\nWARNING: cannot check '$prj_name' last version.\n"	
+				echo -e "\nWARNING: cannot check '$prj_name' last version.\n"
+				exit 0
 			elif [ "$(basename "$pn")" = "$fn" ]; then
 				echo -e "\nDONE: last '$prj_name' is already in '$patch_dir'.\n"
+				exit 0
 			fi >&2
-			exit 0
 		fi
 	fi
 fi
@@ -289,11 +293,14 @@ if check_patch_download_lastpkg \
    && get_hdr_params_from_patch \
    && get_pkg_params_from_patch \
    && print_pkg_params_string   \
-| tee -a "$patch_db" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2; then
-	echo "$prj_name" >> "$patch_list"
-	echo "$(cat $patch_list | sort | uniq)" > "$patch_list" && \
-		echo "$(cat $patch_db | sort | uniq)" > "$patch_db" && \
-			echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
+| tee "${patch_db}.new" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2
+then
+	echo "$prj_name" >> "$patch_list"                           \
+	&& echo "$(cat $patch_list | sort | uniq)" > "$patch_list"  \
+	&&( grep -ve "^${pkg_prov}, ${pkg_name}," "$patch_db";      \
+		cat "${patch_db}.new" ) | sort | uniq > "$patch_db"     \
+	&& echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
+	rm -f "${patch_db}.new"
 else
 	false &&:
 fi

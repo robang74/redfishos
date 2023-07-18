@@ -1,10 +1,10 @@
 #!/bin/bash ## this line for a patch which header is a shell script ############
-#
-# (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
-#           released under MIT (tlo.mit.edu) license terms
-#
-# This is a system patch header example for SailFish OS system patch manager
-#
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+## This is a system patch header example for SailFish OS system patch manager
+##
 #\header #######################################################################
 #
 # type: system
@@ -16,6 +16,12 @@
 #	name: 		dnsmasq-connman-integration	# a comment
 #	provider: 	robang74					# another comment
 #	version: 	0.1.1						# yes another one
+#
+## a repetition, a variant and an unrecognised fields just for test ############
+#
+# name      : dnsmasq-connman-integration-not-fit # this should raise a warning
+# services	: dnsmasq, connman;
+# string	: "hello world"
 #
 #/header #######################################################################
 #
