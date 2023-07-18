@@ -10,7 +10,7 @@ Please, take a look of that list and feel free to indicate the 3 that are the **
 
 * improve and fix the hybris-recovery.img shortcomings ([here](./forum/recovery-image-refactoring.md))
 
-* take care of the short-comings listed into this post ([here](https://forum.sailfishos.org/t/release-notes-struven-ketju-4-5-0-19/15078/25)). 
+* take care of the short-comings listed into this post ([here](./forum/todo/first-impact-with-sailfish-os.md)). 
  
 * an easy way to deploy of the `A-GPS` config for X10 II and III ([here](https://forum.sailfishos.org/t/quick-start-guide-v1-4-2/15857/6)) moreover about Settings:System -> Location:Location -> device only mode, it should disable the `A-GPS` functioning also at least for the part which communicates / requests data from remote sources. IMHO, the `A-GPS` inevitably does that, thus disabling it completely it is the only safe way of fulfilling the *device only* user choice/will.
 
