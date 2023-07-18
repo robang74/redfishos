@@ -31,13 +31,13 @@ in the files headers, in the ChangeLogs, in the documents authoship or referal s
 
 ### About SFOS refactoring
 
-Refactoring the SFOS is the main aim of this project and therefore it deserves a deddicated page (here), in brief:
+Refactoring the SFOS is the main aim of this project and therefore it deserves a [deddicated page](forum/todo/sailfish-refactoring-beginning.md), in brief:
 
-1. recovery boot mode always available on-demand at users request or automatically when the system is badly briked
-2. a system patch manager that can un/apply persistent patches for system services configuration by command line
-3. a early-boot backup / restore script suite with the related after-flashing system configuration shell script
+1. recovery boot mode always available on-demand at users request or automatically when the system is badly briked;
+2. a system patch manager that can un/apply persistent patches for system services configuration by command line;
+3. a early-boot backup / restore script suite with the related after-flashing system configuration shell script.
 
-Without these facilities in place there is no any reasonable way to operate in a traceable and efficient way at OS level.
+Without these facilities fully working, there is no any reasonable chance to operate in a traceable and efficient way at OS level. Everything else will follow and added here depending also on the supporters and contributors agendas.
 
 ---
 
