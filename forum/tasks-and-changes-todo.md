@@ -12,51 +12,51 @@ Please, take a look of that list and feel free to indicate the 3 that are the **
 
 * take care of the short-comings listed into this post ([here](todo/first-impact-with-sailfish-os.md)). 
  
-* an easy way to deploy of the `A-GPS` config for X10 II and III ([here](https://forum.sailfishos.org/t/quick-start-guide-v1-4-2/15857/6)) moreover about Settings:System -> Location:Location -> device only mode, it should disable the `A-GPS` functioning also at least for the part which communicates / requests data from remote sources. IMHO, the `A-GPS` inevitably does that, thus disabling it completely it is the only safe way of fulfilling the *device only* user choice/will.
+* an easy way to deploy of the `A-GPS` config for X10 II and III ([>here](https://forum.sailfishos.org/t/quick-start-guide-v1-4-2/15857/6)) moreover about Settings:System -> Location:Location -> device only mode, it should disable the `A-GPS` functioning also at least for the part which communicates / requests data from remote sources. IMHO, the `A-GPS` inevitably does that, thus disabling it completely it is the only safe way of fulfilling the *device only* user choice/will.
 
 * energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](knowhow/battery-recharge-and-power-saving.md)) also for 80% the 75% hysteresis threshold is suggested. Probabibly the 95%-90% and 80%-75% would address the needs of those have a fully functional battery and those have not.
 
-* implementing power saving templates to better dealing with this aspect ([here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)), ([here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1)).
+* implementing power saving templates to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)), ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([>here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1)).
 
-* device lock adding 5/10/30/60 seconds, also ([here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/3)). Much probably adding just 1 minute to the list because it seems be the finest granularity. ([here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/6)).
+* device lock adding 5/10/30/60 seconds, also ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/3)). Much probably adding just 1 minute to the list because it seems be the finest granularity. ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/6)).
 
-* fingerprint reader and bluetooth awakening or a fingerprint restart icon/link in lockscreen ([here](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878/4)) but probably the best approach is to `start sailfish-fpd` service just in those few cases - just 2 - it is needed and bring down soon after it did its work. ([here](https://forum.sailfishos.org/t/patches-by-ichthyosaurus/15387/48))
+* fingerprint reader and bluetooth awakening or a fingerprint restart icon/link in lockscreen ([>here](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878/4)) but probably the best approach is to `start sailfish-fpd` service just in those few cases - just 2 - it is needed and bring down soon after it did its work. ([>here](https://forum.sailfishos.org/t/patches-by-ichthyosaurus/15387/48))
 
-* add an option for disabling the `Android Support` autostart and kept it sleeping/ready to start. ([here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1))
+* add an option for disabling the `Android Support` autostart and kept it sleeping/ready to start. ([>here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1))
 
-* add an option in the native browser to let it keeping alive a background tab that is doing some tasks like playing music. ([here](https://forum.sailfishos.org/t/an-option-to-keep-alive-a-background-tab-in-native-browser/15884/1)).
+* add an option in the native browser to let it keeping alive a background tab that is doing some tasks like playing music. ([>here](https://forum.sailfishos.org/t/an-option-to-keep-alive-a-background-tab-in-native-browser/15884/1)).
 
-* this solution [urls encoding](https://forum.sailfishos.org/t/4-4-0-72-browser-url-copy-does-not-encode-uri-string/13152/11) + sanitisation should be applied also to shared links in particular with native browser that fails to open those `URL`s that did not just converted.
+* this solution about urls encoding [>here](https://forum.sailfishos.org/t/4-4-0-72-browser-url-copy-does-not-encode-uri-string/13152/11) + sanitisation should be applied also to shared links in particular with native browser that fails to open those `URL`s that did not just converted.
 
-* transition to the "*user situational approach*" in setting the smartphone beahviour modes. ([here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/2))
+* transition to the "*user situational approach*" in setting the smartphone beahviour modes. ([>here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/2))
 
-* in the `Patch Manager` patch list page a (de)activation "*tap to undo*" grace time needs to be added. ([here](https://forum.sailfishos.org/t/patch-manager-de-activation-tap-to-undo/15986/1))
+* in the `Patch Manager` patch list page a (de)activation "*tap to undo*" grace time needs to be added. ([>here](https://forum.sailfishos.org/t/patch-manager-de-activation-tap-to-undo/15986/1))
 
-* add a permanent tethering setting because restarting the network WiFi tethering fails to raise up but WLAN, instead. ([here](https://forum.sailfishos.org/t/restarting-the-network-wifi-tethering-fails-to-raise-up-but-wlan-instead/15946/1))
+* add a permanent tethering setting because restarting the network WiFi tethering fails to raise up but WLAN, instead. ([>here](https://forum.sailfishos.org/t/restarting-the-network-wifi-tethering-fails-to-raise-up-but-wlan-instead/15946/1))
 
-* fixing the `bash` regression, a request to include it as standard again. ([here](https://forum.sailfishos.org/t/4-0-1-45-bash-regression-request-to-include-it-as-standard-again/4659/18))
+* fixing the `bash` regression, a request to include it as standard again. ([>here](https://forum.sailfishos.org/t/4-0-1-45-bash-regression-request-to-include-it-as-standard-again/4659/18))
 
-* add a toggle button to inhibits SSHd for every interface but USB tethering. ([here](https://forum.sailfishos.org/t/a-toggle-button-to-inhibits-sshd-for-every-interface-but-usb-tethering/15996/1))
+* add a toggle button to inhibits SSHd for every interface but USB tethering. ([>here](https://forum.sailfishos.org/t/a-toggle-button-to-inhibits-sshd-for-every-interface-but-usb-tethering/15996/1))
 
-* add a timeout to disable WiFi tethering when unused for a certain time. ([here](https://forum.sailfishos.org/t/a-toggle-button-to-inhibits-sshd-for-every-interface-but-usb-tethering/15996/1))
+* add a timeout to disable WiFi tethering when unused for a certain time. ([>here](https://forum.sailfishos.org/t/a-toggle-button-to-inhibits-sshd-for-every-interface-but-usb-tethering/15996/1))
 
-* add a QRcode creation to access the WiFi network in Setting -> WiFi Sharing page. Unless the PIN / password or the finger print to show the password will unblur also the QRcode ([here](https://forum.sailfishos.org/t/wifi-sharing-in-settings-does-not-display-a-qrcode/16079/1)).
+* add a QRcode creation to access the WiFi network in Setting -> WiFi Sharing page. Unless the PIN / password or the finger print to show the password will unblur also the QRcode ([>here](https://forum.sailfishos.org/t/wifi-sharing-in-settings-does-not-display-a-qrcode/16079/1)).
 
-* a `cron` task scheduled `@reboot`  is needed to fix some files in users/root home have too relaxed permissions set. ([here](https://forum.sailfishos.org/t/some-files-in-users-root-home-have-too-relaxed-permissions-set/16004/1))
+* a `cron` task scheduled `@reboot`  is needed to fix some files in users/root home have too relaxed permissions set. ([>here](https://forum.sailfishos.org/t/some-files-in-users-root-home-have-too-relaxed-permissions-set/16004/1))
 
-* develop a regular expressions pre-parser/sanitiser to deal with `iptables` rules for `connman` ([here](https://forum.sailfishos.org/t/the-00-devmode-firewall-conf-does-not-apply/15990/4))
+* develop a regular expressions pre-parser/sanitiser to deal with `iptables` rules for `connman` ([>here](https://forum.sailfishos.org/t/the-00-devmode-firewall-conf-does-not-apply/15990/4))
 
-* do not let `lxc@multi-user.service` fails for no reason ([here](https://forum.sailfishos.org/t/quick-start-guide-v1-5-5-3/15857/39))
+* do not let `lxc@multi-user.service` fails for no reason ([>here](https://forum.sailfishos.org/t/quick-start-guide-v1-5-5-3/15857/39))
 
-* bring `Patch Manager` + `Web Catalog` to the next level and change the *crime novel* into a *love story* fo Sailors ([here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/5)), ([here](https://forum.sailfishos.org/t/patch-manager-warning-label-to-add/15950/1)), ([here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/16)), ([here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/21)), ([here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/26)) and ([here](https://forum.sailfishos.org/t/is-there-a-future-for-sailfishos/15463/112)).
+* bring `Patch Manager` + `Web Catalog` to the next level and change the *crime novel* into a *love story* fo Sailors ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/5)), ([>here](https://forum.sailfishos.org/t/patch-manager-warning-label-to-add/15950/1)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/16)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/21)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/26)) and ([>here](https://forum.sailfishos.org/t/is-there-a-future-for-sailfishos/15463/112)).
 
-* filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured ([here](https://forum.sailfishos.org/t/the-coreutils-cp-and-gnu-tar-version-are-too-old-to-support-filesystem-overlay-correctly/16027/1))
+* filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured ([>here](https://forum.sailfishos.org/t/the-coreutils-cp-and-gnu-tar-version-are-too-old-to-support-filesystem-overlay-correctly/16027/1))
 
-* try to optimise the native browser `about:config`, some suggestions ([here](https://forum.sailfishos.org/t/my-wishes-of-the-next-release-just-fixup-e-g-the-oom-killer-situations/15541/17))
+* try to optimise the native browser `about:config`, some suggestions ([>here](https://forum.sailfishos.org/t/my-wishes-of-the-next-release-just-fixup-e-g-the-oom-killer-situations/15541/17))
 
-* Considering the **USER BACKUP** section of [this guide](https://forum.sailfishos.org/t/quick-start-guide-v1-5-8-1/15857/1), the Settings:System → System:Backup can be put in condition to work also using SSH connection. Below the “Add cloud account” can be added a button for “Use the SSH connection” with brief instructions. Then, also the restore procedure can be added.
+* Considering the **USER BACKUP** section of [this guide](quick-start-guide.md), the Settings:System → System:Backup can be put in condition to work also using SSH connection. Below the “Add cloud account” can be added a button for “Use the SSH connection” with brief instructions. Then, also the restore procedure can be added.
 
-* Evaluate a better and more general approach to backup and restore ([here](https://forum.sailfishos.org/t/the-home-users-backup-my-backup-app-suggestions-for-improvements/16161/1))
+* Evaluate a better and more general approach to backup and restore ([>here](https://forum.sailfishos.org/t/the-home-users-backup-my-backup-app-suggestions-for-improvements/16161/1))
 
 ---
 
