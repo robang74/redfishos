@@ -90,6 +90,8 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [FAQ for SFOS porting guide](https://github.com/robang74/hadk-faq) - A collection of knowledge about HADK guide.
 
+* [SFOS community forum know how](./forum/README.md) - A collection of yet un-organised posts and documents. 
+
 ---
 
 ### List of components available on Github
