@@ -6,15 +6,15 @@ Please, take a look of that list and feel free to indicate the 3 that are the **
 
 **LIST OF TASKS TO DO**
 
-* provide a not truncated LVM userdata filesystem image ([here](./forum/todo/truncated-LVM-volume-issue.md))
+* provide a not truncated LVM userdata filesystem image ([here](todo/truncated-LVM-volume-issue.md))
 
-* improve and fix the hybris-recovery.img shortcomings ([here](./forum/recovery-image-refactoring.md))
+* improve and fix the hybris-recovery.img shortcomings ([here](recovery-image-refactoring.md))
 
-* take care of the short-comings listed into this post ([here](./forum/todo/first-impact-with-sailfish-os.md)). 
+* take care of the short-comings listed into this post ([here](todo/first-impact-with-sailfish-os.md)). 
  
 * an easy way to deploy of the `A-GPS` config for X10 II and III ([here](https://forum.sailfishos.org/t/quick-start-guide-v1-4-2/15857/6)) moreover about Settings:System -> Location:Location -> device only mode, it should disable the `A-GPS` functioning also at least for the part which communicates / requests data from remote sources. IMHO, the `A-GPS` inevitably does that, thus disabling it completely it is the only safe way of fulfilling the *device only* user choice/will.
 
-* energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/8)) also for 80% the 75% hysteresis threshold is suggested.
+* energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](knowhow/battery-recharge-and-power-saving.md)) also for 80% the 75% hysteresis threshold is suggested. Probabibly the 95%-90% and 80%-75% would address the needs of those have a fully functional battery and those have not.
 
 * implementing power saving templates to better dealing with this aspect ([here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)), ([here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1)).
 
