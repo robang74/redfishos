@@ -19,9 +19,12 @@
 ################################################################################
 # release: 0.0.1
 
-sfos_hostname=redfishos
-setup_file=/tmp/initial.setup
+bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
 
+spcmd=""
+set_key_login="no"
+sfos_hostname="redfishos"
+setup_file="/tmp/initial.setup"
 rpm_list="
 rpm pigz xz bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
 mce-tools harbour-file-browser harbour-todolist sailfish-filemanager tcpdump
@@ -29,9 +32,6 @@ sailfish-filemanager-l10n-all-translations harbour-qrclip patch
 "
 
 # ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
-
-source /usr/bin/sfos-ssh-connect.env
-echo; afish_getip
 
 rm -f $setup_file
 if [ -e $setup_file ]; then
@@ -41,14 +41,32 @@ if [ -e $setup_file ]; then
 	exit 1
 fi
 
-if false; then
-	# timeout 2 afish exit
+source /usr/bin/sfos-ssh-connect.env
+echo; afish getip
+
+if [ "x${1:-}" = "x--key-login" ]; then
+	set_key_login="yes"
+else
+	bsfish "echo 'root password-less access: OK'" 2>/dev/null \
+		|| set_key_login="yes"
+fi
+
+if [ "$set_key_login" = "yes" ]; then
 	if [ ! -s ~/.ssh/id_rsa.pub ]; then
 		ssh-keygen -t rsa -b 4096 -C "$(whoami)@sfos.local"
 	fi
-	ssh-copy-id -fi ~/.ssh/id_rsa.pub defaultuser@$sfos_ipaddr
-	ssh defaultuser@$sfos_ipaddr devel-su install -Dpo root -g root -m 600 \
-		-t '~root/.ssh/ ~defaultuser/.ssh/auth*keys'
+	if which sshpass >/dev/null; then
+		IFS= read -s -p 'Using sshpass, SFOS password: ' passwd; echo
+		spcmd="sshpass -p '$passwd'"
+		passwd=""
+	fi
+	target="defaultuser@$sfos_ipaddr"
+	$spcmd ssh-copy-id -fi ~/.ssh/id_rsa.pub $target
+	$spcmd ssh $target devel-su install -Dpo root -g root \
+		-m 600 -t '~root/.ssh/ ~defaultuser/.ssh/auth*keys'
+	spcmd=""
+	sfish "echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config;" \
+	      "echo 'root password-less access: OK'"
 fi
 
 echo "
