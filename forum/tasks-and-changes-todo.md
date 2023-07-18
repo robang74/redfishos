@@ -6,9 +6,9 @@ Please, take a look of that list and feel free to indicate the 3 that are the **
 
 **LIST OF TASKS TO DO**
 
-* provide a not truncated LVM userdata filesystem image ([here](https://forum.sailfishos.org/t/the-coreutils-cp-and-gnu-tar-version-are-too-old-to-support-filesystem-overlay-correctly/16027/1))
+* provide a not truncated LVM userdata filesystem image ([here](./forum/todo/truncated-LVM-volume-issue.md))
 
-* improve and fix the hybris-recovery.img shortcomings ([here](https://forum.sailfishos.org/t/hybris-recovery-img-shortcoming/16112?u=robang74))
+* improve and fix the hybris-recovery.img shortcomings ([here](./forum/recovery-image-refactoring.md))
 
 * take care of the short-comings listed into this post ([here](https://forum.sailfishos.org/t/release-notes-struven-ketju-4-5-0-19/15078/25)). 
  
