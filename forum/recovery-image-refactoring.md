@@ -1,11 +1,23 @@
+## Recovery image refactoring
+
+The goal is to have a recovery boot mode always available on-demand at users request or automatically when the system is badly briked:
+
+* when the user leave the USB cable connected at boot time could be a way
+* when the UI cannot rise up, a file-flag is set after a watchdog expired
+
+Make working the recovery image because it is the starting point for everyone that seriously wants debugging / fixing their OS and for everyone that wish to experiment with the system but having a quick recovery option. For this reason the recovery boot image should be the standard and only one.
+
+#### BUG REPORT:
+
+```
 REPRODUCIBILITY: 100%
 OS VERSION: 4.5.0.19
 HARDWARE: Xperia 10 II
 UI LANGUAGE: English
 REGRESSION: no, AFAIK
+```
 
-DESCRIPTION:
-============
+####  DESCRIPTION:
 
 ![recover-main-page|588x267, 75%](upload://19U42USC2z3b9s5QtOyAwJxrBHW.png)
 
@@ -18,36 +30,29 @@ on recovery boot image:
 - the recovery image is not supposed to stay in recovery mode forever but reboot the standard SFOS after a timeout without receiving the first telnet connection;
 - even better if the recovery image would NOT boot in recovery mode unless a hardware key is pressed at boot time (volume down key?) or even better unless the phone is connected to an USB cable during the reboot (this makes even more sense).
 
-PRECONDITIONS:
-==============
+####  PRECONDITIONS:
 
 Have flashed into `boot_a` and `boot_b` the `hybris-recovery.img` image.
 
-STEPS TO REPRODUCE:
-===================
+### STEPS TO REPRODUCE:
 
 1) satisfy the preconditions above 
 2) reboot your smartphone
 3) enjoy the recovery mode
 
-
-EXPECTED RESULT:
-================
+####  EXPECTED RESULT:
 
 Many but few delivered ;-)
 
-ACTUAL RESULT:
-==============
+#### ACTUAL RESULT:
 
 That image is near to be useless and BTW available only after flashing the boot partitions with `fastboot`
 
-MODIFICATIONS:
-==============
+#### MODIFICATIONS:
 
 none
 
-ADDITIONAL INFORMATION:
-=======================
+#### ADDITIONAL INFORMATION:
 
 I cannot read this:
 
@@ -228,5 +233,51 @@ I have uploaded into the git repository also the script that prints the banner a
 * https://github.com/robang74/yamui/blob/master/banner/print_banner.env
 
 This script has been modified since the last tested version and it might fail to run or to run properly. It is just a proof-of-concept by now.
+
+---
+
+**UPDATE #7**
+
+The commits I did on my `yamui` fork compile and the results can be downloaded from here:
+
+* [yamui fork](https://github.com/robang74/yamui/)
+
+I did not tested yet. If you do, you will do at your own risk.
+
+---
+
+**UPDATE #8** 
+
+The recovery image, also in 4.5.0.21, have the following shortcomings:
+
+1. the `/bin/bash` is missing but can be replaced in this way:
+
+> ```
+> echo '/sbin/busybox-static ash "$@"' >/bin/bash
+> chmod a+x /bin/bash
+> ```
+
+2. the `/usr/bin/fsadm` is missing and it is needed by `lvm` resize tools. Moreover, using the one on the `/rootfs` which is a shell script, it fails with `date`
+
+3. the `date` is an applet from busybox-static:
+
+> ```
+> sfos # busybox-static  date --help 2>&1 | head -n1
+> BusyBox v1.34.1 (2022-09-21 00:00:00 UTC) multi-call binary.
+> sfos # busybox-static date -u -d"Jan 01 00:00:01 1970" +%s
+> date: invalid date 'Jan 01 00:00:01 1970'
+> ```
+> 
+> but busybox date can deal with such date format, in fact:
+> 
+> 
+> ```
+> pcos # busybox date --help 2>&1 | head -n1
+> BusyBox v1.30.1 (Ubuntu 1:1.30.1-7ubuntu3) multi-call binary.
+> pcos # busybox date -u -d"Jan 01 00:00:01 1970" +%s
+> 1
+> ```
+> 
+> Therefore, it is depend on the options activated into `busybox` applets config
 
 
