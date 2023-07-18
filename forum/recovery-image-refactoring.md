@@ -17,7 +17,7 @@ UI LANGUAGE: English
 REGRESSION: no, AFAIK
 ```
 
-####  DESCRIPTION:
+#### DESCRIPTION:
 
 ![recover-main-page|588x267, 75%](upload://19U42USC2z3b9s5QtOyAwJxrBHW.png)
 
@@ -30,11 +30,11 @@ on recovery boot image:
 - the recovery image is not supposed to stay in recovery mode forever but reboot the standard SFOS after a timeout without receiving the first telnet connection;
 - even better if the recovery image would NOT boot in recovery mode unless a hardware key is pressed at boot time (volume down key?) or even better unless the phone is connected to an USB cable during the reboot (this makes even more sense).
 
-####  PRECONDITIONS:
+#### PRECONDITIONS:
 
 Have flashed into `boot_a` and `boot_b` the `hybris-recovery.img` image.
 
-### STEPS TO REPRODUCE:
+#### STEPS TO REPRODUCE:
 
 1) satisfy the preconditions above 
 2) reboot your smartphone
