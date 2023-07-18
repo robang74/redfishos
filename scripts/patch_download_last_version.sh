@@ -157,7 +157,8 @@ _patch_download_lastpkg() {
 
 _get_hdr_strn_field() {
 	test -n "${1:-}" || return 1
-	echo "$hdr_strn" | sed -ne "s/#[[:blank:]]*$1[[:blank:]]*: *\(.*\)/\\1/p" \
+	echo "$hdr_strn" \
+		| sed -ne "s/#[[:blank:]]*$1[[:blank:]]*:[[:blank:]]*\(.*\)/\\1/p" \
 		| tail -n1 | tr -s [:blank:] ' ' | tr -d '[,;]' | grep .
 }
 
@@ -295,10 +296,10 @@ if check_patch_download_lastpkg \
    && print_pkg_params_string   \
 | tee "${patch_db}.new" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2
 then
-	echo "$prj_name" >> "$patch_list"                           \
-	&& echo "$(cat $patch_list | sort | uniq)" > "$patch_list"  \
-	&&( grep -ve "^${pkg_prov}, ${pkg_name}," "$patch_db";      \
-		cat "${patch_db}.new" ) | sort | uniq > "$patch_db"     \
+	echo "$prj_name" >> "$patch_list"                                \
+	&& echo "$(cat $patch_list | sort | uniq)" > "$patch_list"       \
+	&&( grep -ve "^${pkg_prov}, ${pkg_name}," "$patch_db";           \
+		cat "${patch_db}.new" ) | sort | uniq | grep . > "$patch_db" \
 	&& echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
 	rm -f "${patch_db}.new"
 else
