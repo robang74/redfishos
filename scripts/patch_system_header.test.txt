@@ -13,15 +13,15 @@
 #
 ## optional fields using tabs instead of spaces just for test ##################
 #
-#	name: 		dnsmasq-connman-integration	# a comment
-#	provider: 	robang74					# another comment
-#	version: 	0.1.1						# yes another one
+#	name:    dnsmasq-connman-integration	# a comment
+#	provider:robang74					    # another comment
+#	version: 0.1.1						    # yes another one
 #
 ## a repetition, a variant and an unrecognised fields just for test ############
 #
 # name      : dnsmasq-connman-integration-not-fit # this should raise a warning
 # services	: dnsmasq, connman;
-# string	: "hello world"
+# string    : "hello world"
 #
 #/header #######################################################################
 #

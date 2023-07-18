@@ -1,0 +1,27 @@
+#!/bin/bash ## this line for a patch which header is a shell script ############
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+## This is a system patch header example for SailFish OS system patch manager
+##
+#\header #######################################################################
+#
+# type: system
+# target: sfos
+# services: dnsmasq connman
+#
+## optional fields but without these it will raise a warning  ##################
+#
+# name    : dnsmasq-connman-integration     # a comment
+# provider: robang74					    # another comment
+# version : 0.1.1						    # yes another one
+#
+## a repetition to show a different syntax #####################################
+#
+# service : dnsmasq, connman;
+#
+#/header #######################################################################
+#
+## put the shell script body between this line and the --- end of header mark ##
+---
