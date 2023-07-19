@@ -1,4 +1,4 @@
-## SFOS REFACTORING BEGINNING
+## SailFish OS refactoring begins
 
 [quote="Seven.of.nine, post:95, topic:12676"]
 A boot manager on the phone would be really great, that asks the user to boot the phone into normal mode or into rescue mode on powering up the phone, like a linux computer has it.
