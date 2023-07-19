@@ -2,6 +2,10 @@
 
 Patch Manager is the tool that allows SFOS users to apply patches usually to customize the UI and its behaviour. These patches are applied with a volatile policy respect the reboot. However, this tool has no a specific limitation for being able to operate on the root filesystem and un/apply permanent patches. Obviously, this task should be delegate to a scripts suite that should be available also for system maintenance and recovrey. Moreover, in this way the UI will be separated from the underlying business logic even more.
 
+* [Technical Approach of the first implementation](https://github.com/robang74/redfishos/blob/main/forum/knowhow/system-patch-manager-p1.md#technical-approach)
+
+You can jump to the end to see how the first implementation approach begins and then you can read the whole document to be acknoledged by the informative proccess that brings to that choice.
+
 ---
 
 #### DESCRIPTION
