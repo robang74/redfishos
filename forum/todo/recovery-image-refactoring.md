@@ -19,7 +19,7 @@ REGRESSION: no, AFAIK
 
 #### DESCRIPTION:
 
-![recover-main-page|588x267, 75%](upload://19U42USC2z3b9s5QtOyAwJxrBHW.png)
+<img src="recovery-telnet-menu.png" width="588px" height="267px">
 
 on recovery boot image:
 
