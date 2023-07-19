@@ -18,7 +18,7 @@ AFAIK, no because there is no a reasonable way to deal with the display after th
 
 **More in general**
 
-There is no any viable way to debug and fix SFOS until these three facilities will be fully functional in place unless you wish to waste your time as you were an immortal highlander. :face_with_hand_over_mouth:
+There is no any viable way to debug and fix SFOS until these three facilities will be fully functional in place unless you wish to waste your time as you were an immortal highlander.
 
 * **1st** - make working the recovery image because it is the starting point for everyone that seriously wants debugging / fixing their OS and for everyone that wish to experiment with the system but having a quick recovery option. For this reason the recovery boot image should be the standard and only one. Obviously, the recovery boot mode should start ONLY when the users ask for it (*e.g.: USB cable connected at boot time could be a way*) or when the system is bricked badly (*e.g.: the UI cannot rise up, a file-format flag is set after a watchdog expired*).
 
@@ -40,11 +40,11 @@ This means that for OS early-boot hackers the `rsync` is not an immediate option
 
 Which is exactly what I am doing by now:
 
-- A shell scripts suite for `tar`/`gzip` backup/restore has been tested but some more development and tests is needed (cfr. users backup section in the [Quick Start Guide](forum/quick-start-guide.md).
+- A shell scripts suite for `tar`/`gzip` backup/restore has been tested but some more development and tests is needed (cfr. users backup section in the [Quick Start Guide](../quick-start-guide.md).
 
 - A system patch manager by shell script that can un/apply permanent patches on rootfs has been used successfully to recover the system by a faulty patch installation but not released, yet
 
-- A system patch manager last version patch downloader has been implemented and successfully tested but not released, yet. It creates also a list of patch installed on the system a repository of them for future recovery or removal even in emergency off-line cases and can restart system services or daemon on-demand using a [special formatted patch header](https://github.com/robang74/redfishos/edit/main/forum/knowhow/system-patch-manager-p1.md#technical-approach).
+- A system patch manager last version patch downloader has been implemented and successfully tested but not released, yet. It creates also a list of patch installed on the system a repository of them for future recovery or removal even in emergency off-line cases and can restart system services or daemon on-demand using a [special formatted patch header](../knowhow/system-patch-manager-p1.md#technical-approach).
 
 ---
 
