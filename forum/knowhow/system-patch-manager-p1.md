@@ -1,8 +1,6 @@
-I have submited a feature request about Patch Manager:
+## System Patch Manager p.1
 
-* https://github.com/sailfishos-patches/patchmanager/issues/441
-
-I wish to debate this approach here, if you like to partecipate.
+Patch Manager is the tool that allows SFOS users to apply patches usually to customize the UI and its behaviour. These patches are applied with a volatile policy respect the reboot. However, this tool has no a specific limitation for being able to operate on the root filesystem and un/apply permanent patches. Obviously, this task should be delegate to a scripts suite that should be available also for system maintenance and recovrey. Moreover, in this way the UI will be separated from the underlying business logic even more.
 
 ---
 
@@ -62,7 +60,7 @@ Due to its way of working the `Patch Manager` is not the right tool for this kin
 
 * [robang74-dnsmasq-connman-integration-0.0.6.tar.gz](https://coderus.openrepos.net/media/documents/robang74-dnsmasq-connman-integration-0.0.6.tar.gz)
 
-Changelog: 0.0.6 - connman starts after patchmanager and dnsmasq before connman (in my whishes)
+> Changelog: 0.0.6 - connman starts after patchmanager and dnsmasq before connman (in my whishes)
 
 In practice, because this patch will not be applied unless Patch Manager will complete is job, sometimes the connman and dnsmasq services will start before their .service files have been patched and therefore the system will not be able to resolv the domain names. More over, the network restart from SailFish Utilities cannot solve the issue and also rebooting might not solve but usually does.
 
@@ -204,6 +202,8 @@ The #1 and the #3 are almost straightforward cases to deal with. The second is a
 
 ---
 
+**UPDATE #3**
+
 > Settings:System -> Patchmanger:Settings -> Activate enabled Patches when booting
 
 **Why** activating at boot time instead of made them permanent with that option?
@@ -256,13 +256,11 @@ Some tests, just before going to edit the two scripts that apply patches and one
 
 After that, I will probably discover the `SFOS` ill-design choice that constrain the `Patch Manager` to act volatile instead of providing persistence. Or in a lucky scenario, I will simple discover that volatile for `Patch Manager` is not a constrain (or not anymore).
 
-In both cases the result will be a lot of fun. :blush:
-
-**UPDATE**
-
 About the point #2, checking the `/tmp/patchmanager3/patchmanager.log` I found that the check with `patch -Rp0 --dry-run` is exactly what `Patch Manager` does to check that each enabled patch is applied correctly.
 
 ---
+
+**UPDATE #3**
 
 BTW the main question is: **why a community should care** modding the SFOS in such a manner that can support a *system configuration manager* and a *fleet management tool*?
 
@@ -273,8 +271,6 @@ After all, unless people here wish to follow a strict policy about RPMs reposito
 By the `ZFS` has filesystem snapshots for this purposes but it is not the right approach for dealing with a fleet of IoT devices. It is tailored for servers even desktop can leverage it with some important constrains (user data, for example).
 
 Finally: am I going to change the `Patch Manager` in order to make it a *system configuration manager*. I do not think so. Since the beginning, I am thinking about another completely different solution much more flexible. But it would be a shame to not learn form what has been done and learning by doing is the best way. Doing *strange* things under your PoV but they seems strange exactly because they are challenging the current system constrains.
-
-**UPDATE #1**
 
 This is a patch which probably will not work because I saw that `Patch Manager` runs in a jail and reasonably with user-privileges and not root-privileges (**update**: it works, after a reboot also). Despite the privileges, it still a proof-of-concept rather than a definitive solution.
 
@@ -350,12 +346,13 @@ This is a patch which probably will not work because I saw that `Patch Manager` 
 
 </sub>
 
-**UPDATE #2**
+---
+
+**UPDATE #4**
 
 Instead about the current version of `Patch Manager`, I forked it from its github repository. Today with seven patches
 
-* [8 patches on devel branch with an unified view](https://github.com/sailfishos-patches/patchmanager/compare/master...robang74:patchmanager:devel?diff=unified) (slightly tested code)
-* [patched files ready to install in a tarball](https://raw.githubusercontent.com/robang74/patchmanager/devel/tgz/patchmanager-unified-pm_scripts-v0.0.8.tgz) (`devel-su curl $link | tar xvz -C /`) 
+* [patchmanager fork](https://github.com/robang74/patchmanager)
 
 I have unified the `pm_apply` and `pm_unapply` shells script in a single one `pm_patch.env` because most of the code was redundant.
 
@@ -363,8 +360,6 @@ I have unified the `pm_apply` and `pm_unapply` shells script in a single one `pm
 * `pm_unapply` does `source pm_patch.env unapply "$@"`
 
 This would help to maintain such shell script code in the future.
-
----
 
 **Some few of example**
 
@@ -397,8 +392,6 @@ Instead, technologies like C++, d-bus and Qt5 are for the UI level but it would 
 This separation between the UI (user interface) and the BL (business logic) is especially true and useful for a system configuration management tool which **SHOULD** be available in a shell or a terminal. Otherwise, it will be unavailable when the UI is not available and this would be unacceptable which is the reason because PM2 -> PM3 constrained the Patch Manager in such a way that it can apply just volatile changes.
 
 If we put all the information and skills and experience together, everything make sense, and all the PoV fits in the same puzzle. It was not the PM that need to be jailed but it was needed a clear separation between the UI level and the system level. A clear separation about technologies involved, implementation and design (in the reverse order: design -> implementation -> technologies).
-
-I hope this help for the future.
 
 ---
 
@@ -482,12 +475,10 @@ Here below an example of such a header for testing purposes:
 
 </sub>
 
-Just a set of essential information which the vital part is:
+Just a set of essential information which the vital field is:
 
 * `services: dnsmasq connman`
 
 because everything else is for separate the volatile UI from the permanent system patches and to separate the application of those patches between the SFOS and your laptop/PC GNU/Linux system.
 
 After all, the beauty of such approach is that can be used also for every GNU/Linux system and every others system which is reasonably similar and provides a shell compatible scripting environment.
-
-
