@@ -1,18 +1,16 @@
 ## SailFish OS refactoring begins
 
-[quote="Seven.of.nine, post:95, topic:12676"]
-A boot manager on the phone would be really great, that asks the user to boot the phone into normal mode or into rescue mode on powering up the phone, like a linux computer has it.
+> Seven.of.nine
+> A boot manager on the phone would be really great, that asks the user to boot the phone into normal mode or into rescue mode on powering up the phone, like a linux computer has it.
+>
+>Surely this could easily be implemented, because `/boot/hybris-recovery.img` is present on the phone.
+>
+>Worth a feature request? Or possible to be implemented by the community to not demand Jollas limited resources too much?
 
-Surely this could easily be implemented, because `/boot/hybris-recovery.img` is present on the phone.
+AFAIK, the recovery image is not present on the phone but delivered into the package which can be downloaded from the Jolla shop. Unfortunately, it seems almost useless at least on Xperia 10 II.
 
-Worth a feature request? Or possible to be implemented by the community to not demand Jollas limited resources too much?
-[/quote]
-
-AFAIK, the recovery image is not present on the phone but delivered into the package. Unfortunately, it seems almost useless at least on Xperia 10 II.
-
-[quote="Seven.of.nine, post:95, topic:12676"]
-When booting the recovery mode on the phone and using a BT keyboard, then rescue operations could be done without having a computer.
-[/quote]
+> Seven.of.nine
+> When booting the recovery mode on the phone and using a BT keyboard, then rescue operations could be done without having a computer.
 
 AFAIK, no because there is no a reasonable way to deal with the display after the recovery boot, e.g. cfr. `yamui` part in the link above. Even the telnet IP address is shown properly.
 
@@ -42,11 +40,11 @@ This means that for OS early-boot hackers the `rsync` is not an immediate option
 
 Which is exactly what I am doing by now:
 
-- A shell scripts suite for `tar`/`gzip` backup/restore has been tested but some more development and tests is needed (cfr. users backup section in the [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857/1).
+- A shell scripts suite for `tar`/`gzip` backup/restore has been tested but some more development and tests is needed (cfr. users backup section in the [Quick Start Guide](forum/quick-start-guide.md).
 
 - A system patch manager by shell script that can un/apply permanent patches on rootfs has been used successfully to recover the system by a faulty patch installation but not released, yet
 
-- A system patch manager last version patch downloader has been implemented and successfully tested but not released, yet. It creates also a list of patch installed on the system a repository of them for future recovery or removal even in emergency off-line cases and can restart system services or daemon on-demand using a [special formatted patch header](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/34).
+- A system patch manager last version patch downloader has been implemented and successfully tested but not released, yet. It creates also a list of patch installed on the system a repository of them for future recovery or removal even in emergency off-line cases and can restart system services or daemon on-demand using a [special formatted patch header](https://github.com/robang74/redfishos/edit/main/forum/knowhow/system-patch-manager-p1.md#technical-approach).
 
 ---
 
