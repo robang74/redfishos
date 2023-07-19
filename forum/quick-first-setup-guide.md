@@ -1,4 +1,4 @@
-## Quick First Setup Guide v1.0.5
+## Quick First Setup Guide v1.0.7
 
 This is the guide originally written for the SailFish OS community forum reported here in Github .md format.
 
@@ -49,20 +49,35 @@ For everybody:
 
 ---
 
-**BASIC CONFIGURATION**
+**BASIC SETTINGS**
 
-Now the smartphone need a little more effort to be completely configure on the basics:
+Now the smartphone need a little more effort to be completely configure on the basics.
 
- 1. Swipe from the bottom on the home display, choose Settings and its System tab
- 2.  in Settings:System -> Display -> Text size: chose the one comfortable for you
- 3. in Settings:System -> Sounds and feedback raise all the volumes to 100%, fine tuning later
- 4. in Settings:System -> Gestures -> Show hints and tips: OFF, learning later
- 5. swipe from the bottom on the bottom edge and choose Messages app
- 6. swipe from above on the display and select new message
- 7. send a configuration SMS/text request to your network operator: wait for it
- 8. swipe from the bottom on the bottom edge and choose Settings
- 9. in Settings -> Mobile network check the configuration for the SIM #1
-10. select SIM #1 and enable the mobile data connection, it should go in "Connected" state
+ 0. Swipe from the bottom on the home display, choose Settings and its System tab
+
+in Settings:System page:
+
+ 1. Display -> Text size: chose the one comfortable for you
+ 2. Sounds and feedback raise all the volumes to 100%, fine tuning later
+ 3. Gestures -> Show hints and tips: OFF, learning later
+ 4. Battery -> Activation threshold: set Battery 20%
+ 5. Battery -> Charging mode: set Apply threshold, Stop charging: 90%
+ 6. Device Lock -> Show notifications when device is lock: OFF
+
+The battery settings are not strictly required but it supposed that your battery will last longer and with the power saving mode starting at 20% of the battery, the smartphone will last as much as having fully charged the battery.
+
+About showing the notifications when device is lock - ON by default - allows sensible information leaking to everyone who can see at your unattended smartphone display. Like the content of SMS/text messages which sometimes contains an OTP used by some banks or other service providers to confirm a transaction or authorizing a sensitive change by a registered mobile number. A leak that be leveraged for being actively used.
+
+---
+
+**SIM SETTINGS**
+
+ 1. swipe from the bottom on the bottom edge and choose the Messages app
+ 2. in Message, swipe from above on the display and select new message
+ 2. send a configuration SMS/text request to your network operator: wait for it
+ 3. swipe from the bottom on the bottom edge and choose Settings
+ 4. in Settings -> Mobile network check the configuration for the SIM #1
+ 5. select SIM #1 and enable the mobile data connection, it should go in *Connected* state
 
 For those have a dual-SIM smartphone and two SIMs, it is time to configure the SIM #2
 
@@ -71,9 +86,9 @@ For those have a dual-SIM smartphone and two SIMs, it is time to configure the S
 or
 
 * for those the 2nd SIM is in the slot #2 but did not unlock it, unlock and configure it
- 
+
 ---
- 
+
 **TOP MENU**
 
 This part of the configuration is optional but it will be useful for the many:
@@ -81,34 +96,34 @@ This part of the configuration is optional but it will be useful for the many:
 1. in Settings:System -> Top menu: enables the following: Silence, Flashlight, VPN, NFC, Developer tools, Utilities, Take a selfie
 2. in Settings:System -> Top menu -> Show ambiance in Top menu: OFF, it will save a lot of useful space in top menu
 
-Make all other changes you wish. 
+Make all other changes you wish.
 
 About the *VPN*, it should be configured before using it, check the [Quick Start Guide](quick-start-guide.md) for it.
 
-About the *NFC* is usefull only if you are going to use it otherwise disable it in 
+About the *NFC* is usefull only if you are going to use it otherwise disable it in
 
 * Settings:System -> NFC: OFF.
 
 About *Screenshot", the keys combination `volume up + down` is a much faster way to get your display screenshoted.
 
-About *Take a selfie*, it is a straightforward misdefined shortcut to the camera therefore 
+About *Take a selfie*, it is a straightforward misdefined shortcut to the camera therefore
 
-* Settings:System -> Gesture -> Quick access to the Camera: OFF 
+* Settings:System -> Gesture -> Quick access to the Camera: OFF
 
-will simplify the UI without undermining the user experience. 
+will simplify the UI without undermining the user experience.
 
-About "Connect to Internet" is quite useless and disabling it will let you gain a free icon position in the top menu or even save an intere line in some cases. 
+About "Connect to Internet" is quite useless and disabling it will let you gain a free icon position in the top menu or even save an intere line in some cases.
 
 ---
- 
+
 **OPTIONS AVAILABLE**
- 
+
 Now it is time to take some decisions:
 
 * Are you going to enable the **developer mode** activating the SSH connection? No? Why having a GNU/Linux-like smartphone and do not use like that?
 
 * You may want register to the smartphone with a **Jolla account** or not. In the negative case some repositories will be unavailable and it is suggested that you will disable them. This part will be explained below in this mini guide.
- 
+
 * Are you going to use a WiFi connection or do you wish that your smartphone share the mobile data connection with your others devices? In this case, you have to configure the **tethering**.
 
 About the tethering: the one via WiFi is quite immediate to configure by the UI and will be explained later in this guide while the one via USB requires a package to be installed and you will find the related section in the [Quick Start Guide](quick-start-guide.md).
@@ -123,7 +138,7 @@ These steps will let you able to activate the SSH activation, in Settings:System
  2. Developer mode: ON
  3. Remote connection: set a **strong** root password and save it
  4. Remote connection: ON
- 
+
 At this point you have two ways to access to the SSH connection: via USB and via WiFi or Wifi tethering.
 
 * via USB: `ssh defaultuser@192.168.2.15 devel-su /bin/bash`
@@ -148,12 +163,12 @@ To add or create your Jolla account:
  2. add account, choose Jolla
  3. follow the procedure
  4. install the Jolla apps that you like
- 
+
 For those wish not register their smartphone with a Jolla account, some repositories need to be disabled:
 
  1. connect your smartphone to your laptop/PC via USB or via WiFi or WiFi tethering
  2. login via SSH and as root execute:
- 
+
 >  ```
 >  repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 >  for repo in $repo_list; do ssu disablerepo $repo; done
@@ -170,7 +185,7 @@ Follow these instruction to activate it in Settings:System -> Internet sharing:
  1. set the WiFi name (SSID)
  2. change the password with a stronger one
  3. set Internet sharing: ON
- 
+
 In the future you can activate the WiFi hotspot/tethering also from the top-menu.
 
 ---
