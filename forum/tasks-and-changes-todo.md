@@ -10,7 +10,7 @@ Please, take a look of that list and feel free to indicate the 3 that are the **
 
 * provide a not truncated LVM userdata filesystem image ([here](todo/truncated-LVM-volume-issue.md))
 
-* improve and fix the hybris-recovery.img shortcomings ([here](recovery-image-refactoring.md))
+* improve and fix the hybris-recovery.img shortcomings ([here](todo/recovery-image-refactoring.md))
 
 * take care of the short-comings listed into this post ([here](todo/first-impact-with-sailfish-os.md)). 
  

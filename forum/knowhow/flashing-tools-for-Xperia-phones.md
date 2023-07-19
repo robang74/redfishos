@@ -110,5 +110,5 @@ fastboot reboot
 
 Erasing the partitions before flashing is not strict necessesary but considering that spare images skip those block that are not allocated, it is the quickest way to ensure that no any fragment of the previous data remains. However, that erasing process should not considered safe from a forensic point of view - possibly but not necessarly.
 
-Also flashing the secondary OEM partition is optional because flash.sh does not do but doing it ensure us that SailFish OS will run on the correct OEM binaries whatever the partition is going to be selected. In the future, [having a recovery image that can fulfill its duty](../recovery-image-refactoring.md) also having an OEM partition with a backup of the original data will be a great advantage.
+Also flashing the secondary OEM partition is optional because flash.sh does not do but doing it ensure us that SailFish OS will run on the correct OEM binaries whatever the partition is going to be selected. In the future, [having a recovery image that can fulfill its duty](../todo/recovery-image-refactoring.md) also having an OEM partition with a backup of the original data will be a great advantage.
 
