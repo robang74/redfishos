@@ -19,6 +19,8 @@ Reading the description of [this patch](https://coderus.openrepos.net/pm2/projec
 
 Which are the same types that are allowed into any kind of package (rpm, deb, etc.). Obviously, these scripts should be executed with `root` privileges and possibly in a decently set enviroment. Possibly a $PATCH_PATH or $PATCH_DIR (with or without the underscore) could be set in order to refer to folder in which the patch archive is extracted. In this way, more files can be added to be parsed by the scripts or copied into the system.
 
+---
+
 #### ADDITIONAL INFORMATION
 
 This feature can be implemented in two different ways:
@@ -54,10 +56,6 @@ instead of
 
 It is suggested to use /bin/ash as default interpreter which is enough powerful in terms of scripting even if does not implement the full set of bashism. This because the scripts relying on /bin/ash can run on /bin/bash as well but in some system /bin/bash could be optional.
 
----
-
-**UPDATED**
-
 An example of the current limitations of `Patch Manager` which is great for patching the `UI` but completely indadeguate for patching the system.
 
 Due to its way of working the `Patch Manager` is not the right tool for this kind of patches but the `dnsmasq` `RPM` can be fixed with this patch:
@@ -67,8 +65,6 @@ Due to its way of working the `Patch Manager` is not the right tool for this kin
 > Changelog: 0.0.6 - connman starts after patchmanager and dnsmasq before connman (in my whishes)
 
 In practice, because this patch will not be applied unless Patch Manager will complete is job, sometimes the connman and dnsmasq services will start before their .service files have been patched and therefore the system will not be able to resolv the domain names. More over, the network restart from SailFish Utilities cannot solve the issue and also rebooting might not solve but usually does.
-
----
 
 There is an intermediate layer of complexity between a `RPM` which offer a lot of features (full feature) at the cost of having to deal with its specific syntax (which is quite complex because it should deal with all the dependencies of the all the packages in the repository and with the installed ones) and executing shell scripts during a `Patch Manager` installation. `Web Catalog` is not the problem because it has to deal with a compressed archive (e.g. `pippo.tar.gz`) while the `Patch Manager` have just to execute 4 simple operations as far as all four scripts files exist. There is a **HUGE** gap between applying a patch (`diff -pruN`) and preparing a `RPM`, in this **HUGE** gap, `Patch Manager` shell scripting capability has its own place.
 
@@ -182,6 +178,8 @@ This seems promising to install system updates also for those that do not requir
 
 It seems a general solution that requires - by documentation - a reboot but the reboot is managed by the configuration and not automatically enforced. However, due to its specific nature and delicacy, it can be a better option to add a service ordering related to `system-update.target` or even better `system-update-pre.target` in such a way that the patches which might conflicts with package updates will be applied before making them fail, as expected to be, instead of being overwritten.
 
+---
+
 **UPDATE #2**
 
 The `Patch Manager` patches can be applied and unapplied many times during a user session and this is great feature :heart_eyes:. However, changing the way in which the `PM2` works some of them might not fall into this category.
@@ -220,11 +218,7 @@ This is the reason because this design choices should be documented, they aging 
 
 What this has to do with roles? Unless someone plays the product and project manager role in the community those PoVs are missing and in fact - AFAIK - the part of the documentation which refers to this design choice is missing.
 
----
-
-We evaluate a change betwee "*activate at boot time*" and "*keep persistent*".
-
-We can do a confrontation:
+We can evaluate a change betwee "*activate at boot time*" and "*keep persistent*" and doing a confrontation:
 
 * persistence is easier because we "*patch & forget*"
 * forgetting is not a good practice therefore checking
@@ -236,8 +230,6 @@ We can do a confrontation:
 * yes -> done
 
 Here we are, we can have a `Persistent Patch Manager` with a little of changes. Now, it is your time to play roles or simply express yourself. What good can provide persistence and what problems can cause?
-
----
 
 About the better solution: 
 
@@ -411,15 +403,17 @@ Adding a full scripting capability is a little more complex task than including 
 
 This is true also for RPM packages - mitigated by the fact that usually packages maintainers have a system test facility that allows them to validate the RPM packages for a wide variety of scenarios and different system configurations - plus - mitigated by the fact that RPM system is a well established way of installing / removing software which is in production since 1997.
 
----
-
 **Why do not use RPM to patch the system?**
 
-Because the RPM is a system to install software not to apply patches and do traceable system configuration changes. For sure some tools for this aim, exist out of there. Yes, they are named configuration management system. Usually they are tailored for a specific system or highly configurable for a class of system (eg. GNU/Linux distributions). The odd is that in SFOS end-users are used to use Patch Manager from the UI and a kind of integration with it would be easier to introduce them into this new dimension.
+The documentation of Patch Manager claims that a shell scripting capability to support the system patches management is considered too complex for the WebCatalog and by the community forum that feature would be considered a regression from v3 to v2, therefore the solution is to use the RPM sriptlets for such a task.
+
+> <img src="patchmanager-Olf0-RPM-comment.png" width="800px" height="295px">
+>
+> Source: [github comment by Olf0](https://github.com/robang74/redfishos/assets/903069/fddcfa31-ff0e-4a1b-913c-92aeea434bf7) who cites the README.md from the Patch Manager project.
+
+Unfortunately, the RPM is a system to install software not to apply patches and do traceable system configuration changes. For sure some tools for this aim, exist out of there. Yes, they are named configuration management system. Usually they are tailored for a specific system or highly configurable for a class of system (eg. GNU/Linux distributions). The odd is that in SFOS end-users are used to use Patch Manager from the UI and a kind of integration with it would be easier to introduce them into this new dimension.
 
 Moreover, there are many ways to track unexpected system changes, also. In particular `inotify` approach but can be a little tricky to use on a living system even if it will be probably a long term general solution or alternatively a filesystem that can provide a standard reliable changes log or snapshots by design.
-
----
 
 **Apply patches to the system can brick it**
 
@@ -431,7 +425,7 @@ Backup before brick your root filesystem.
 
 ---
 
-#### Technical approach
+#### TECHNICAL APPROACH
 
 Therefore developing shell scripts that can be integrated with a slightly modified version of the current `Patch Manager` is the main way and storing the system patches into `Web Catalog` is also a good option to go, naturally.
 
@@ -483,6 +477,6 @@ Just a set of essential information which the vital field is:
 
 * `services: dnsmasq connman`
 
-because everything else is for separate the volatile UI from the permanent system patches and to separate the application of those patches between the SFOS and your laptop/PC GNU/Linux system.
+which lists the system services that should be reloaded and restarted as conseguence of un/apply the configuration patch. It is a vital information because everything else is for separate the volatile UI from the permanent system patches and to separate the application of those patches between the SFOS and your laptop/PC GNU/Linux system.
 
 After all, the beauty of such approach is that can be used also for every GNU/Linux system and every others system which is reasonably similar and provides a shell compatible scripting environment.
