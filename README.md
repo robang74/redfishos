@@ -31,7 +31,7 @@ in the files headers, in the ChangeLogs, in the documents authoship or referal s
 
 ### About SFOS refactoring
 
-Refactoring the SFOS is the main aim of this project and therefore it deserves a [dedicated page](forum/todo/sailfish-refactoring-beginning.md), in brief:
+Refactoring the SFOS is the main aim of this project and therefore it deserves a [dedicated page](forum/todo/sailfishos-refactoring-begins.md), in brief:
 
 1. a recovery boot mode always available on-demand at users request or automatically when the system is badly briked;
 2. a system patch manager that can un/apply persistent patches on the root filesystem for system services configuration;
