@@ -56,12 +56,13 @@ none
 
 I cannot read this:
 
-![20230706_204156|666x500, 50%](upload://birMQQUcF4Lni3WXrnhYfhOEMSH.jpeg) 
+<img src="recovery-telnet-ipaddress.png" width="605px" height="185px">
 
 but using an [ASCII art generator](https://www.ascii-art-generator.org/) service it would be much easier to read and no particular changes will be required (work smart, not hard).
 
-<small>
+<sub>
 
+  
 ```
                                                                    #     #  #####  ######                                        
  ####   ####  #    # #    # ######  ####  #####    #####  #   #    #     # #     # #     #     ####    ##   #####  #      ###### 
@@ -78,15 +79,16 @@ but using an [ASCII art generator](https://www.ascii-art-generator.org/) service
      #   #      #      #  # # #        #        #   #     # ### ####### #       ### #     # #     # ### #     # #     # 
      #   #      #      #   ## #        #        #    #   #  ###      #  #       ### #     # #     # ### #     # #     # 
      #   ###### ###### #    # ######   #      #####   ###   ###      #  ####### ###  #####   #####  ###  #####   #####  
+
 ```
 
-</small>
+</sub>
 
-This is a rendering readable even in a little format (25%):
+This is a rendering readable even shrinked down to fit here:
 
-![banner-telnet-recovery|690x170, 50%](upload://sUjtdXnzr5vsTfilbjcM2NyLLNK.png)
+<img src="recovery-telnet-rendering.png" width="607px" height="150px">
 
------
+---
 
 About `root`:`recovery` login on `SSH`, it is enough that a system starting script set the password with the `passwd` command or set the right string into `/etc/shadow` and `/etc/shadow-`, just in case.
 
@@ -147,7 +149,7 @@ I have extracted both boot images for the `SFOS` v4.5.019 an check the differenc
 
 Here a screenshot of the boot:
 
-![rafdebug-bootimage|357x500](upload://cvyIwrUBBXX6CRXNP03gTwZW8XF.jpeg)
+<img src="recovery-telnet-phonescreen.jpeg" width="357px" height="500px">
 
 Clearly, you can see the difference between the "ciao ciao" text in 10x18 font on the top and the image presentation. Unfortunately, the image will not change in case someone edit the script and change the default `IP` address. In such a case, s/he should recreate the `PNG` image but the banner script allows it in a very quick way.
 
@@ -159,7 +161,7 @@ Finally, the image lacks of `strace` and I wish to add to it because it will be 
 
 This is image has been created with a 6005 bytes, 121 lines shell not-optimized script.
 
-![ip-10.42.66.66|690x147, 100%](upload://pNSToyEqevU1MG3owbxHUTkxnpX.png)
+<img src="recovery-telnet-rendering.png" width="607px" height="150px">
 
 > ip-10.42.66.66.png: PNG image data, 1120 x 240, 1-bit grayscale, non-interlaced
 
