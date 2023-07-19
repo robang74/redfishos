@@ -278,7 +278,7 @@ Finally: am I going to change the `Patch Manager` in order to make it a *system 
 
 This is a patch which probably will not work because I saw that `Patch Manager` runs in a jail and reasonably with user-privileges and not root-privileges (**update**: it works, after a reboot also). Despite the privileges, it still a proof-of-concept rather than a definitive solution.
 
-<small>
+<sub>
 
 ```
 --- /usr/libexec/pm_unapply
@@ -348,7 +348,7 @@ This is a patch which probably will not work because I saw that `Patch Manager` 
      $PATCH_EXEC -R -p 1 -d "$ROOT_DIR" --dry-run < "$PATCH_PATH" 2>&1 | tee -a "$PM_LOG_FILE"
 ```
 
-</small>
+</sub>
 
 **UPDATE #2**
 
@@ -386,7 +386,6 @@ About a tool to test/validate the patches and to rescue the systems from their a
 
 So, I confirm you that PM working at system level quickly tends to mess-up the system. However, this should be seen as a limitation not a feature. In fact, it has been reported that PM3 was developed with the purpose of to limit its functionality to the UI. I can live with that as long as and as far as, there is an alternative way to do a system configuration management with templates or a set of patches.
 
-
 **Lesson Learned**
 
 If we ask a fish to climb a tree and a monkey to swim, both will show poor performances.
@@ -403,7 +402,7 @@ I hope this help for the future.
 
 ---
 
-**SYSTEM PATCH MANAGER**
+### SYSTEM PATCH MANAGER
 
 You can skip the introductory sections and jump directly to the end where the technical stuff is presented. In case you like that, you my came back here to read the premises.
 
@@ -435,7 +434,7 @@ Backup before brick your root filesystem.
 
 ---
 
-**Technical approach**
+#### Technical approach
 
 Therefore developing shell scripts that can be integrated with a slightly modified version of the current `Patch Manager` is the main way and storing the system patches into `Web Catalog` is also a good option to go, naturally.
 
@@ -447,7 +446,7 @@ This is a testing patch that is going for that way:
 
 Here below an example of such a header for testing purposes:
 
-<small>
+<sub>
 
 ```
 #!/bin/bash ## this line for a patch which header is a shell script ############
@@ -480,7 +479,8 @@ Here below an example of such a header for testing purposes:
 ## put the shell script body between this line and the --- end of header mark ##
 ---
 ```
-</small>
+
+</sub>
 
 Just a set of essential information which the vital part is:
 
