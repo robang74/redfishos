@@ -29,10 +29,10 @@ For the dual SIM smartphones owners: put the SIM you wish use for mobile data on
 For everybody:
 
 0. complete the flash procedure with these two commands:
-> ```
-> 	sudo fastboot flash oem_b SW_binaries_*.img
-> 	sudo fastboot reboot
-> ```
+```
+ sudo fastboot flash oem_b SW_binaries_*.img
+ sudo fastboot reboot
+```
 
  1. choose the language that you like to use for the UI
  2. accept the end-user license
