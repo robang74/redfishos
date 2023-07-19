@@ -1,4 +1,4 @@
-## Quick First Setup Guide v1.0.7
+## Quick First Setup Guide v1.0.8
 
 This is the guide originally written for the SailFish OS community forum reported here in Github .md format.
 
@@ -91,28 +91,30 @@ or
 
 **TOP MENU**
 
-This part of the configuration is optional but it will be useful for the many:
+This part of the configuration is optional but it will be useful for the many.
 
-1. in Settings:System -> Top menu: enables the following: Silence, Flashlight, VPN, NFC, Developer tools, Utilities, Take a selfie
-2. in Settings:System -> Top menu -> Show ambiance in Top menu: OFF, it will save a lot of useful space in top menu
+In Settings:System -> Top menu:
 
-Make all other changes you wish.
+1. disable Show ambiance in Top menu, it will save a lot of useful space in top menu;
+2. enables the following: Silence, Flashlight, VPN, NFC, Developer tools, Utilities, Take a selfie.
+
+Make all other changes you wish. 
 
 About the *VPN*, it should be configured before using it, check the [Quick Start Guide](quick-start-guide.md) for it.
 
-About the *NFC* is usefull only if you are going to use it otherwise disable it in
+About the *NFC* is useful only if you are going to use it otherwise disable it in 
 
 * Settings:System -> NFC: OFF.
 
-About *Screenshot", the keys combination `volume up + down` is a much faster way to get your display screenshoted.
+About *Screenshot*, the keys combination `volume up + down` is a much faster way to get your display screenshot-ed.
 
-About *Take a selfie*, it is a straightforward misdefined shortcut to the camera therefore
+About Take a selfie, it is a straightforward mis-defined shortcut to the camera therefore 
 
-* Settings:System -> Gesture -> Quick access to the Camera: OFF
+* Settings:System -> Gesture -> Quick access to the Camera: OFF 
 
-will simplify the UI without undermining the user experience.
+will simplify the UI without undermining the user experience. 
 
-About "Connect to Internet" is quite useless and disabling it will let you gain a free icon position in the top menu or even save an intere line in some cases.
+About *Connect to Internet* is quite useless and disabling it will let you gain a free icon position in the top menu or even save an intere line in some cases. 
 
 ---
 
