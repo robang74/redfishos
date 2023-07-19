@@ -1,7 +1,7 @@
 # RedFish OS
 
 ```diff
-+ Refactoring SailFish OS 4.5.0.19 while it is running on a Sony Xperia 10 II smartphone.
++ Refactoring SailFish OS 4.5.0.21 while it is running on a Sony Xperia 10 II smartphone.
 ```
 
 > __Note__: support for others smartphone like Sony Xperia 10 III or IV, Gigaset GS5 and its variant in particular the Volla and the Rephone one, could be added as far as concrete support and mainteneirs will be available.
