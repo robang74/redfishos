@@ -8,9 +8,9 @@ Surely this could easily be implemented, because `/boot/hybris-recovery.img` is 
 Worth a feature request? Or possible to be implemented by the community to not demand Jollas limited resources too much?
 [/quote]
 
-AFAIK, the recovery image is not present on the phone but delivered into the package. Unfortunately, it seems almost useless at least on Xperia 10 II
+AFAIK, the recovery image is not present on the phone but delivered into the package. Unfortunately, it seems almost useless at least on Xperia 10 II:
 
-* https://forum.sailfishos.org/t/a-list-of-hybris-recovery-img-shortcomings/16112/1
+* [A list of hybris-recovery.img shortcomings](recovery-image-refactoring.md)
 
 [quote="Seven.of.nine, post:95, topic:12676"]
 When booting the recovery mode on the phone and using a BT keyboard, then rescue operations could be done without having a computer.
