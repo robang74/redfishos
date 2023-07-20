@@ -39,13 +39,13 @@ Guide: Installing SailfishX on Xperias
   - 4.5.3 - [Google Play Store via Aurora Store app](#453-Google-Play-Store-via-Aurora-Store-app)
   - 4.5.4 - [Other Android app sources](#454-Other-Android-app-sources)
 
-- 4.6 - Installing microG
+- 4.6 - [Installing microG](#46-Installing-microG)
 
-- 5 - Further recommendations
-  - 5.1 - Recommended apps from OpenRepos
-  - 5.2 - Guides for utilising an SD card to consider
+- 5 - [Further recommendations](#5-Further-recommendations)
+  - 5.1 - [Recommended apps from OpenRepos](#51-Recommended-apps-from-OpenRepos)
+  - 5.2 - [Guides for utilising an SD card to consider](#52-Guides-for-utilising-an-SD-card-to-consider)
 
-- 6 - Further guidance and sources of information
+- 6 - [Further guidance and sources of information](#6-Further-guidance-and-sources-of-information)
 
 ---
 
