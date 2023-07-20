@@ -12,40 +12,40 @@ This guide aims at setting up an Xperia step by step, extending Jolla's flashing
 
 Guide: Installing SailfishX on Xperias
 
-- 1 Preparation
-  - 1.1 First steps
-  - 1.2 Further preparation (modem initialisation)
+* 1 - [Preparation](#1-preparation)
+  - 1.1 - [First steps](#11-first-steps)
+  - 1.2 - Further preparation (modem initialisation)
 
-- 2 Flashing SailfishOS
+* 2 - Flashing SailfishOS
 
-- 3 Basic configuration of SailfishOS
-  - 3.1 First boot ("initial bring-up")
-  - 3.2 Enabling "developer mode"
-  - 3.3 Increasing the "root" LVM volume size
-    - 3.3.1 Booting a SailfishOS recovery image via fastboot boot
-    - 3.3.2 Shrinking the "home" LVM volume and extending the "root" one
-    - 3.3.2.a  ... on devices / SailfishOS releases without home volume encryption
-    - 3.3.2.b  ... on devices / SailfishOS releases with home volume encryption
+* 3 - Basic configuration of SailfishOS
+  - 3.1 - First boot ("initial bring-up")
+  - 3.2 - Enabling "developer mode"
+  - 3.3 - Increasing the "root" LVM volume size
+    - 3.3.1 - Booting a SailfishOS recovery image via fastboot boot
+    - 3.3.2 - Shrinking the "home" LVM volume and extending the "root" one
+    - 3.3.2.a - ... on devices / SailfishOS releases without home volume encryption
+    - 3.3.2.b - ... on devices / SailfishOS releases with home volume encryption
 
-- 4 Installing software
-  - 4.1 Using the Jolla Store
-  - 4.2 Using OpenRepos (SailfishOS community repositories)
-  - 4.3 Using the SailfishOS:Chum community repository
-  - 4.4 Installing Patchmanager
+* 4 - Installing software
+  - 4.1 - Using the Jolla Store
+  - 4.2 - Using OpenRepos (SailfishOS community repositories)
+  - 4.3 - Using the SailfishOS:Chum community repository
+  - 4.4 - Installing Patchmanager
 
-- 4.5 Installing Android app stores' client apps
-  - 4.5.1 F-Droid
-  - 4.5.2 A proper Android file-manager
-  - 4.5.3 Google Play Store via Aurora Store app
-  - 4.5.4 Other Android app sources
+* 4.5 - Installing Android app stores' client apps
+  - 4.5.1 - F-Droid
+  - 4.5.2 - A proper Android file-manager
+  - 4.5.3 - Google Play Store via Aurora Store app
+  - 4.5.4 - Other Android app sources
 
-- 4.6 Installing microG
+- 4.6 - Installing microG
 
-- 5 Further recommendations
-  - 5.1 Recommended apps from OpenRepos
-  - 5.2 Guides for utilising an SD card to consider
+- 5 - Further recommendations
+  - 5.1 - Recommended apps from OpenRepos
+  - 5.2 - Guides for utilising an SD card to consider
 
-- 6 Further guidance and sources of information
+- 6 - Further guidance and sources of information
 
 ---
 
