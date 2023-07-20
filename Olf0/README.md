@@ -16,7 +16,7 @@ Guide: Installing SailfishX on Xperias
   - 1.1 - [First steps](#11-first-steps)
   - 1.2 - [Further preparation](#12-further-preparation-modem-initialisation) (modem initialisation)
 
-* 2 - [Flashing SailfishOS](#2-Flashing-SailfishOS)
+* 2 - [Flashing Sailfish OS](#2-Flashing-Sailfish-OS)
 
 * 3 - [Basic configuration of SailfishOS](#3-Basic-configuration-of-SailfishOS)
   - 3.1 - [First boot ("initial bring-up")](#31-First-boot-initial-bring-up)
@@ -152,7 +152,7 @@ Up to this point ...
 
 ---
 
-### 2 Flashing SailfishOS
+### 2 Flashing Sailfish OS
 
 Attaching your Xperia to a "USB root hub" (internal to your computer), to which no other device is attached (neither internally or externally):
 
@@ -166,8 +166,9 @@ Attaching your Xperia to a "USB root hub" (internal to your computer), to which 
 
   4. Execute `lsusb` again; for example, an Xperia X on bus 003 then looks like this:
 
-   `Bus 003 Device 015: ID 05c6:0afe Qualcomm, Inc. Xperia X`
-   `Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub`
+     `Bus 003 Device 015: ID 05c6:0afe Qualcomm, Inc. Xperia X`
+
+     `Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub`
 
 * For Windows you should be able to achieve the same by the help of the device manager's tree view.
 
@@ -329,7 +330,7 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 2. Shrink size of "home" file-system to 10 GiB (you might use **30G** on 64&nbsp;GiB devices):
 
-  `resize2fs /dev/mapper/sailfish-home 10G`
+    `resize2fs /dev/mapper/sailfish-home 10G`
 
 3. `e2fsck -f /dev/mapper/sailfish-home`
 
@@ -337,7 +338,7 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 5. Shrink "home" volume by -911 extents (=&nbsp;-3644M) for a 6 GiB, -1423 extents (=&nbsp;-5692M) for a 8 GiB, -399 extents (=&nbsp;-1596M) for a 4 GiB or -1935 extents (=&nbsp;-7740M) for a 10 GiB "root" volume size:
 
-  `lvm lvresize -l -911 sailfish/home`
+    `lvm lvresize -l -911 sailfish/home`
 
 6. `lvm lvresize -l +100%FREE sailfish/root`
 
@@ -363,19 +364,19 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 1. Open the cryptsetup container (using your security code) per
 
-  `cryptsetup luksOpen /dev/mapper/sailfish-home crypt-home`
+    `cryptsetup luksOpen /dev/mapper/sailfish-home crypt-home`
 
 2. `e2fsck -f /dev/mapper/crypt-home`
 
 3. Shrink size of "home" file-system to 10 GiB (you might use **30G** *and* **66000000** (below) on 64&nbsp;GiB devices, respectively **50G** *and* **110000000** (below) on 128&nbsp;GiB devices):
 
-  `resize2fs -f /dev/mapper/crypt-home 10G`
+    `resize2fs -f /dev/mapper/crypt-home 10G`
 
 4. `e2fsck -f /dev/mapper/crypt-home`
 
 5. Shrink size of cryptsetup container to 10,49 GiB (22000000 sectors á 512 Bytes; you might use **66000000** = 31,47 GiB on 64&nbsp;GiB devices, respectively **110000000** = 52,45 GiB on 128&nbsp;GiB devices):
 
-  `cryptsetup resize -b 22000000 /dev/mapper/sailfish-home`
+    `cryptsetup resize -b 22000000 /dev/mapper/sailfish-home`
 
 6. `cryptsetup close crypt-home`
 
@@ -383,7 +384,7 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 8. Shrink "home" volume by -911 extents (=&nbsp;-3644M) for a 6 GiB, -1423 extents (=&nbsp;-5692M) for a 8 GiB, -399 extents (=&nbsp;-1596M) for a 4 GiB or -1935 extents (=&nbsp;-7740M) for a 10 GiB "root" volume size:
    
-  `lvm lvresize -l -1423 sailfish/home`
+    `lvm lvresize -l -1423 sailfish/home`
 
 9. `lvm lvresize -l +100%FREE sailfish/root`
 
@@ -529,9 +530,9 @@ Optional; for Android apps which need Google services.  Not supported on the Xpe
 
 Requires to have "Android support" and an [F-Droid client app](#451-f-droid) installed.
 
-For SailfishOS ≥ 4.5.0 utilise [this wiki page at FSO](https://forum.sailfishos.org/t/installing-microg-on-sailfish-os/14375).
+- For SailfishOS ≥ 4.5.0 utilise [this wiki page at FSO](https://forum.sailfishos.org/t/installing-microg-on-sailfish-os/14375).
 
-For SailfishOS 3.1.0 to 4.4.0, follow the [original microG installation guide by SailfishOS community member "Dr. Yak"](https://together.jolla.com/question/209300/how-to-microg-in-sfos-31/?answer=209744#post-id-209744), which is easier than it looks at first sight.  When issues occur, do search at the [SailfishOS forum for "microG"](https://forum.sailfishos.org/search?q=microG).
+- For SailfishOS 3.1.0 to 4.4.0, follow the [original microG installation guide by SailfishOS community member "Dr. Yak"](https://together.jolla.com/question/209300/how-to-microg-in-sfos-31/?answer=209744#post-id-209744), which is easier than it looks at first sight.  When issues occur, do search at the [SailfishOS forum for "microG"](https://forum.sailfishos.org/search?q=microG).
 
 Do **not** install original Google services (except for [Google's "Text-to-Speech (TTS)" engine](https://play.google.com/store/apps/details?id=com.google.android.tts), for which [ivonaTTS is an alternative](https://forum.sailfishos.org/t/xa2-and-ivonatts-no-voices-found/7270/6) although much larger, more intrusive, but with even better speech quality) or [OpenGApps](https://opengapps.org/): Then you might better use a regular Android device instead with far less effort.
 
@@ -584,8 +585,4 @@ For issues with a device using a paid license, you may open a [Zendesk support r
 
 Have fun with SailfishOS on your Xperia!
  
-P.S.: The [original repository for this guide](https://gitlab.com/Olf0/sailfishX) is here at Gitlab.com and it is also [rendered better here](https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias) (e.g., its formatting, especially enumerations across paragraphs) than [at TJC](https://together.jolla.com/question/222126/guide-installing-sailfish-x-on-xperias/) (except for the uncommon TOC markup and how the line spacings in this footer and TOC are rendered without some trickery).
-
-Furthermore, the version at TJC became outdated, because TJC was set to "read only" at the end of 2020, thus that version there cannot be updated anymore.
-
-Hence the canonical URL for this guide is https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias
+P.S.: The [original repository for this guide](https://gitlab.com/Olf0/sailfishX) is here at Gitlab.com and it is also [rendered better here](https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias) (e.g., its formatting, especially enumerations across paragraphs) than [at TJC](https://together.jolla.com/question/222126/guide-installing-sailfish-x-on-xperias/) (except for the uncommon TOC markup and how the line spacings in this footer and TOC are rendered without some trickery). Furthermore, the version at TJC became outdated, because TJC was set to "read only" at the end of 2020, thus that version there cannot be updated anymore. Hence the canonical URL for this guide is https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias
