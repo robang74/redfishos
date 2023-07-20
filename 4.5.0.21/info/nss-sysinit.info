@@ -1,0 +1,20 @@
+Name        : nss-sysinit
+Version     : 3.73.1+git2
+Release     : 1.7.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:48 CEST
+Group       : Unspecified
+Size        : 12006
+License     : MPLv2.0
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:27:51 CET, Key ID 5b1e398947394f23
+Source RPM  : nss-3.73.1+git2-1.7.4.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 16:15:22 CET
+Build Host  : phost25
+Vendor      : meego
+URL         : http://www.mozilla.org/projects/security/pki/nss/
+Summary     : System NSS Initialization
+Description :
+Default Operating System module that manages applications loading
+NSS globally on the system. This module loads the system defined
+PKCS #11 modules for NSS and chains with other NSS modules to load
+any system or user configured modules.

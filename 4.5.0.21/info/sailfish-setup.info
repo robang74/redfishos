@@ -1,0 +1,18 @@
+Name        : sailfish-setup
+Version     : 0.3.4
+Release     : 1.6.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:55 CEST
+Group       : Unspecified
+Size        : 3301
+License     : Public Domain
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:47:52 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-setup-0.3.4-1.6.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:20:47 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://github.com/sailfishos/sailfish-setup
+Summary     : Sailfish Setup
+Description :
+This package is responsible for creating Sailfish OS specific users
+and groups on which other packages may depend on.

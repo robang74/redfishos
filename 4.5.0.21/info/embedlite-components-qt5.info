@@ -1,0 +1,17 @@
+Name        : embedlite-components-qt5
+Version     : 1.24.34
+Release     : 1.25.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:00 CEST
+Group       : Unspecified
+Size        : 549372
+License     : MPLv2.0
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:10:15 CET, Key ID 5b1e398947394f23
+Source RPM  : embedlite-components-qt5-1.24.34-1.25.1.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:23:32 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/embedlite-components
+Summary     : EmbedLite components Qt5
+Description :
+EmbedLite Components required for embeded browser UI

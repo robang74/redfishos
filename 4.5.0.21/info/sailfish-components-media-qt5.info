@@ -1,0 +1,17 @@
+Name        : sailfish-components-media-qt5
+Version     : 0.9.15
+Release     : 1.8.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:18 CEST
+Group       : Unspecified
+Size        : 87107
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 13 Feb 2023 20:36:18 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-components-media-qt5-0.9.15-1.8.2.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 20:35:58 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-sailfish-components-media
+Summary     : Sailfish Media UI Internal Components
+Description :
+Sailfish Media UI Internal Components

@@ -1,0 +1,22 @@
+Name        : libnice
+Version     : 0.1.17+git5
+Release     : 1.5.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:44 CEST
+Group       : Unspecified
+Size        : 475199
+License     : LGPLv2 and MPLv1.1
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:32:31 CET, Key ID 5b1e398947394f23
+Source RPM  : libnice-0.1.17+git5-1.5.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 11:44:08 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://libnice.freedesktop.org/
+Summary     : GLib ICE implementation
+Description :
+libnice is an implementation of the IETF draft Interactive Connectivity
+Establishment standard (ICE). ICE is useful for applications that want to
+establish peer-to-peer UDP data streams. It automates the process of traversing
+NATs and provides security against some attacks. Existing standards that use
+ICE include the Session Initiation Protocol (SIP) and Jingle, XMPP extension
+for audio/video calls.

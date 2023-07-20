@@ -1,0 +1,18 @@
+Name        : nss-softokn-freebl
+Version     : 3.73.1+git2
+Release     : 1.7.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:37 CEST
+Group       : Unspecified
+Size        : 602366
+License     : MPLv2.0
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:27:49 CET, Key ID 5b1e398947394f23
+Source RPM  : nss-3.73.1+git2-1.7.4.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 16:15:22 CET
+Build Host  : phost25
+Vendor      : meego
+URL         : http://www.mozilla.org/projects/security/pki/nss/
+Summary     : Freebl library for the Network Security Services
+Description :
+FreeBL Cryptographic Module, a base library providing hash functions,
+big number calculations, and cryptographic algorithms.

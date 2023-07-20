@@ -1,0 +1,18 @@
+Name        : wireless-regdb
+Version     : 2020.04.29+git5
+Release     : 1.6.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:49 CEST
+Group       : Unspecified
+Size        : 11621
+License     : ISC
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:49:29 CET, Key ID 5b1e398947394f23
+Source RPM  : wireless-regdb-2020.04.29+git5-1.6.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:22:43 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://github.com/sailfishos/wireless-regdb
+Summary     : 802.11 wireless networking regulatory database
+Description :
+This package contains the wireless regulatory database used by all
+cfg80211 based Linux wireless drivers.

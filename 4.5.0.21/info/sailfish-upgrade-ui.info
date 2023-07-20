@@ -1,0 +1,17 @@
+Name        : sailfish-upgrade-ui
+Version     : 0.1.16
+Release     : 1.2.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 179697
+License     : Proprietary
+Signature   : RSA/SHA256, Tue 17 Jan 2023 13:52:43 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-upgrade-ui-0.1.16-1.2.2.jolla.src.rpm
+Build Date  : Tue 17 Jan 2023 13:50:31 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-sailfish-upgrade-ui/
+Summary     : Sailfish OS upgrade UI
+Description :
+Sailfish OS upgrade UI.

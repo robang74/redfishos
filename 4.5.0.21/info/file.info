@@ -1,0 +1,23 @@
+Name        : file
+Version     : 5.41+git1
+Release     : 1.6.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 24977
+License     : BSD
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:13:02 CET, Key ID 5b1e398947394f23
+Source RPM  : file-5.41+git1-1.6.4.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 07:24:37 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : http://www.darwinsys.com/file/
+Summary     : A utility for determining file types
+Description :
+The file command is used to identify a particular file according to the
+type of data contained by the file.  File can identify many different
+file types, including ELF binaries, system libraries, RPM packages, and
+different graphics formats.
+
+You should install the file package, since the file command is such a
+useful utility.

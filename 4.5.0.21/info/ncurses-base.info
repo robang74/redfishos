@@ -1,0 +1,18 @@
+Name        : ncurses-base
+Version     : 6.3+git1
+Release     : 1.7.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:49 CEST
+Group       : Unspecified
+Size        : 335086
+License     : MIT
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:28:23 CET, Key ID 5b1e398947394f23
+Source RPM  : ncurses-6.3+git1-1.7.3.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 13:36:13 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : http://invisible-island.net/ncurses/ncurses.html
+Summary     : Descriptions of common terminals
+Description :
+This package contains descriptions of common terminals. Other terminal
+descriptions are included in the ncurses-term package.

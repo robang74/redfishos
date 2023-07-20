@@ -1,0 +1,17 @@
+Name        : libofonobinderpluginext
+Version     : 1.1.11
+Release     : 1.5.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:17 CEST
+Group       : Unspecified
+Size        : 23199
+License     : GPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:17:34 CET, Key ID 5b1e398947394f23
+Source RPM  : ofono-binder-plugin-1.1.11-1.5.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:16:39 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/mer-hybris/ofono-binder-plugin
+Summary     : Extension framework for ofono-binder-plugin
+Description :
+Defines interfaces for ofono binder plugin extensions

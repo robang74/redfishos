@@ -1,0 +1,18 @@
+Name        : sound-theme-freedesktop
+Version     : 0.8+git1
+Release     : 1.7.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:38 CEST
+Group       : Unspecified
+Size        : 473888
+License     : GPLv2+ and LGPLv2+ and CC-BY-SA and CC-BY
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:59:49 CET, Key ID 5b1e398947394f23
+Source RPM  : sound-theme-freedesktop-0.8+git1-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:59:21 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : https://github.com/sailfishos/sound-theme-freedesktop
+Summary     : Sound theme from freedesktop.org
+Description :
+The default freedesktop.org sound theme following the XDG theming
+specification.  (http://0pointer.de/public/sound-theme-spec.html).

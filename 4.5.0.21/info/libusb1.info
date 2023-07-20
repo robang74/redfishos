@@ -1,0 +1,18 @@
+Name        : libusb1
+Version     : 1.0.24+git3
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:42 CEST
+Group       : Unspecified
+Size        : 140215
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:50:15 CET, Key ID 5b1e398947394f23
+Source RPM  : libusb1-1.0.24+git3-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:49:11 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://github.com/sailfishos/libusb1
+Summary     : A library which allows userspace access to USB devices
+Description :
+This package provides a way for applications to access USB devices. Note that
+this library is not compatible with the original libusb-0.1 series.

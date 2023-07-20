@@ -1,0 +1,16 @@
+Name        : ngfd-settings-sailfish
+Version     : 0.11.10
+Release     : 1.8.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:17 CEST
+Group       : Unspecified
+Size        : 29251
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:49:47 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-common-configurations-0.11.10-1.8.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:49:30 CET
+Build Host  : phost27
+Vendor      : meego
+Summary     : NGFD configuration for Sailfish
+Description :
+NGFD configuration for Sailfish

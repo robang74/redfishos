@@ -1,0 +1,18 @@
+Name        : dbus-glib
+Version     : 0.100.2
+Release     : 1.5.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:39 CEST
+Group       : System/Libraries
+Size        : 332069
+License     : AFL or GPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:58:56 CET, Key ID 5b1e398947394f23
+Source RPM  : dbus-glib-0.100.2-1.5.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:58:18 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : http://www.freedesktop.org/software/dbus/
+Summary     : GLib bindings for D-Bus
+Description :
+D-Bus add-on library to integrate the standard D-Bus library with
+the GLib thread abstraction and main loop.

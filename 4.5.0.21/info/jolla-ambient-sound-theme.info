@@ -1,0 +1,17 @@
+Name        : jolla-ambient-sound-theme
+Version     : 0.1.0
+Release     : 1.2.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:04 CEST
+Group       : System/GUI/Other
+Size        : 1568155
+License     : Proprietary
+Signature   : RSA/SHA256, Wed 21 Dec 2022 15:06:55 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-ambient-sound-theme-0.1.0-1.2.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 12:41:18 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/theme-jolla-ambient-sound-theme
+Summary     : Jolla Ambient sound theme
+Description :
+Jolla sound theme for non-visual UI feedback.

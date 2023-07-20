@@ -1,0 +1,17 @@
+Name        : libdbus-qeventloop-qt5
+Version     : 1.32.0
+Release     : 1.9.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:41 CEST
+Group       : Unspecified
+Size        : 27368
+License     : LGPLv2
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:30:47 CET, Key ID 5b1e398947394f23
+Source RPM  : libresourceqt-qt5-1.32.0-1.9.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 12:41:21 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/libresourceqt
+Summary     : Library that runs the low level D-Bus inside QEventloop
+Description :
+This library enables Qt applications to run the D-Bus low-level api in the Qt Eventloop.

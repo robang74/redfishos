@@ -1,0 +1,17 @@
+Name        : patterns-sailfish-core
+Version     : 1.1.27.1
+Release     : 1.13.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:33 CEST
+Group       : Unspecified
+Size        : 0
+License     : Proprietary
+Signature   : RSA/SHA256, Thu 26 Jan 2023 15:43:53 CET, Key ID 5b1e398947394f23
+Source RPM  : patterns-sailfish-1.1.27.1-1.13.1.jolla.src.rpm
+Build Date  : Thu 26 Jan 2023 15:43:43 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : http://sailfishos.org/
+Summary     : Sailfish Core
+Description :
+Meta-package for core packages required on Sailfish devices.

@@ -1,0 +1,19 @@
+Name        : libgpg-error
+Version     : 1.42+git2
+Release     : 1.7.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:39 CEST
+Group       : Unspecified
+Size        : 735647
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:15:34 CET, Key ID 5b1e398947394f23
+Source RPM  : libgpg-error-1.42+git2-1.7.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:20:45 CET
+Build Host  : phost18
+Vendor      : meego
+URL         : https://github.com/sailfishos/libgpg-error
+Summary     : Library for error values used by GnuPG components
+Description :
+This is a library that defines common error values for all GnuPG
+components.  Among these are GPG, GPGSM, GPGME, GPG-Agent, libgcrypt,
+pinentry, SmartCard Daemon and possibly more in the future.

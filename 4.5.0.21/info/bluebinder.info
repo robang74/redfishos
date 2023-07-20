@@ -1,0 +1,19 @@
+Name        : bluebinder
+Version     : 1.0.18
+Release     : 1.4.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:33 CEST
+Group       : Unspecified
+Size        : 25810
+License     : GPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:16:35 CET, Key ID 5b1e398947394f23
+Source RPM  : bluebinder-1.0.18-1.4.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:16:24 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://github.com/mer-hybris/bluebinder
+Summary     : a simple proxy for using android binder based bluetooth through vhci.
+Description :
+bluebinder is a simple proxy for using android binder based bluetooth through vhci.
+The API which this depends on was introduced in Android 8 and should not disappear soon.
+The kernel API this depends on can be enabled with CONFIG_BT_HCIVHCI.

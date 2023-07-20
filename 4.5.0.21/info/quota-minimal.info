@@ -1,0 +1,18 @@
+Name        : quota-minimal
+Version     : 4.05+git2
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 182824
+License     : BSD and GPLv2 and GPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:54:11 CET, Key ID 5b1e398947394f23
+Source RPM  : quota-4.05+git2-1.6.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:53:08 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/sailfishos/quota
+Summary     : Minimal set of quota tools
+Description :
+Allows to create and update quota files and enable quota on filesystem. See
+quota for a full set of quota tools.

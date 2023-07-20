@@ -1,0 +1,17 @@
+Name        : nfcd-mce-plugin
+Version     : 1.0.2
+Release     : 1.5.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:11 CEST
+Group       : Unspecified
+Size        : 16280
+License     : BSD
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:04:44 CET, Key ID 5b1e398947394f23
+Source RPM  : nfcd-mce-plugin-1.0.2-1.5.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:04:34 CET
+Build Host  : phost25
+Vendor      : meego
+URL         : https://github.com/mer-hybris/nfcd-mce-plugin
+Summary     : nfcd plugin for mce-based device state tracking
+Description :
+nfcd plugin for mce-based device state tracking.

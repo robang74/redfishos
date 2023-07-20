@@ -1,0 +1,23 @@
+Name        : libtool-ltdl
+Version     : 2.4.6
+Release     : 1.4.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 66026
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:21:34 CET, Key ID 5b1e398947394f23
+Source RPM  : libtool-2.4.6-1.4.4.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 13:36:21 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : http://www.gnu.org/software/libtool/
+Summary     : Runtime libraries for GNU Libtool Dynamic Module Loader
+Description :
+The libtool-ltdl package contains the GNU Libtool Dynamic Module Loader, a
+library that provides a consistent, portable interface which simplifies the
+process of using dynamic modules.
+
+These runtime libraries are needed by programs that link directly to the
+system-installed ltdl libraries; they are not needed by software built using
+the rest of the GNU Autotools (including GNU Autoconf and GNU Automake).

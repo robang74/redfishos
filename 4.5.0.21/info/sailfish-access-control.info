@@ -1,0 +1,21 @@
+Name        : sailfish-access-control
+Version     : 0.0.7
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:39 CEST
+Group       : Unspecified
+Size        : 10312
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:58:47 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-access-control-0.0.7-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:58:33 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/sailfish-access-control
+Summary     : Sailfish Access Control library
+Description :
+Sailfish Access Control library is a thin wrapper on top
+of pwd.h and grp.h of glibc.
+
+This library should be used to check whether a user
+belongs to a group or not.

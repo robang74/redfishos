@@ -1,0 +1,17 @@
+Name        : PackageKit-zypp
+Version     : 1.2.5+git2
+Release     : 1.5.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:03 CEST
+Group       : Unspecified
+Size        : 336301
+License     : GPLv2+ and LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 16:57:47 CET, Key ID 5b1e398947394f23
+Source RPM  : PackageKit-1.2.5+git2-1.5.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 11:44:30 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://www.freedesktop.org/software/PackageKit/
+Summary     : PackageKit zypp backend
+Description :
+A backend for PackageKit to enable zypp functionality.

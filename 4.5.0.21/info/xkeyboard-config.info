@@ -1,0 +1,17 @@
+Name        : xkeyboard-config
+Version     : 2.34+git1
+Release     : 1.7.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 6049075
+License     : MIT
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:00:09 CET, Key ID 5b1e398947394f23
+Source RPM  : xkeyboard-config-2.34+git1-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:59:25 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : http://www.freedesktop.org/wiki/Software/XKeyboardConfig
+Summary     : Alternative xkb data files
+Description :
+Alternative xkb data files.

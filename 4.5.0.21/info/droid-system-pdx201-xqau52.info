@@ -1,0 +1,17 @@
+Name        : droid-system-pdx201-xqau52
+Version     : 0.1.9
+Release     : 1.5.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 28913
+License     : ASL 2.0 and BSD and NCSA and zlib
+Signature   : RSA/SHA256, Wed 21 Dec 2022 15:05:38 CET, Key ID 5b1e398947394f23
+Source RPM  : droid-system-pdx201-xqau52-0.1.9-1.5.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:03:49 CET
+Build Host  : phost6
+Vendor      : meego
+URL         : https://github.com/mer-hybris/droid-system-sony-template
+Summary     : Built certain sources trees such as /system for Droid HAL adaptations
+Description :
+Built certain sources trees such as /system for Droid HAL adaptations

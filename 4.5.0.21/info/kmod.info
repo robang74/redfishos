@@ -1,0 +1,18 @@
+Name        : kmod
+Version     : 29+git2
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:38 CEST
+Group       : Unspecified
+Size        : 171996
+License     : GPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:41:58 CET, Key ID 5b1e398947394f23
+Source RPM  : kmod-29+git2-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:41:30 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/sailfishos/kmod
+Summary     : Linux kernel module handling
+Description :
+kmod is a set of tools to handle common tasks with Linux kernel modules like
+insert, remove, list, check properties, resolve dependencies and aliases.

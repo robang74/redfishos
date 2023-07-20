@@ -1,0 +1,22 @@
+Name        : gstreamer1.0-plugins-base
+Version     : 1.20.4+git1
+Release     : 1.8.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:48 CEST
+Group       : Unspecified
+Size        : 5826211
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:05:55 CET, Key ID 5b1e398947394f23
+Source RPM  : gstreamer1.0-plugins-base-1.20.4+git1-1.8.2.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 17:08:11 CET
+Build Host  : phost18
+Vendor      : meego
+URL         : http://gstreamer.freedesktop.org/
+Summary     : GStreamer streaming media framework base plug-ins
+Description :
+GStreamer is a streaming media framework, based on graphs of filters which
+operate on media data. Applications using this library can do anything
+from real-time sound processing to playing videos, and just about anything
+else media-related.  Its plugin-based architecture means that new data
+types or processing capabilities can be added simply by installing new
+plug-ins.

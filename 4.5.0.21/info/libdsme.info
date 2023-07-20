@@ -1,0 +1,18 @@
+Name        : libdsme
+Version     : 0.66.8
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:39 CEST
+Group       : System/System Control
+Size        : 54227
+License     : LGPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:58:20 CET, Key ID 5b1e398947394f23
+Source RPM  : libdsme-0.66.8-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:58:06 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/libdsme
+Summary     : DSME dsmesock dynamic library
+Description :
+This package contains dynamic libraries for programs that communicate with the
+Device State Management Entity.

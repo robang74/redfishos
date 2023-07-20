@@ -1,0 +1,17 @@
+Name        : connectionagent-qt5-declarative
+Version     : 0.11.42
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:32 CEST
+Group       : Unspecified
+Size        : 91948
+License     : LGPLv2
+Signature   : RSA/SHA256, Mon 09 Jan 2023 16:56:10 CET, Key ID 5b1e398947394f23
+Source RPM  : connectionagent-qt5-0.11.42-1.6.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 16:55:05 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/connectionagent
+Summary     : Declarative plugin for connection agent.
+Description :
+This package contains the declarative plugin for connection agent.

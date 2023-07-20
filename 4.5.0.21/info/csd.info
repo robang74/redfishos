@@ -1,0 +1,16 @@
+Name        : csd
+Version     : 0.16.39
+Release     : 1.9.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:55 CEST
+Group       : Unspecified
+Size        : 3270534
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 09 Jan 2023 16:59:06 CET, Key ID 5b1e398947394f23
+Source RPM  : csd-0.16.39-1.9.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 16:58:00 CET
+Build Host  : phost23
+Vendor      : meego
+Summary     : SailfishOS CSD tool
+Description :
+Short description of my SailfishOS Application

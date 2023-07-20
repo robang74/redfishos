@@ -1,0 +1,24 @@
+Name        : popt
+Version     : 1.18+git1
+Release     : 1.4.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:41 CEST
+Group       : Unspecified
+Size        : 49533
+License     : MIT
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:20:48 CET, Key ID 5b1e398947394f23
+Source RPM  : popt-1.18+git1-1.4.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 06:28:00 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/rpm-software-management/popt/
+Summary     : C library for parsing command line parameters
+Description :
+Popt is a C library for parsing command line parameters. Popt was
+heavily influenced by the getopt() and getopt_long() functions, but
+it improves on them by allowing more powerful argument expansion.
+Popt can parse arbitrary argv[] style arrays and automatically set
+variables based on command line arguments. Popt allows command line
+arguments to be aliased via configuration files and includes utility
+functions for parsing arbitrary strings into argv[] arrays using
+shell-like rules.

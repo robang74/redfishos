@@ -1,0 +1,24 @@
+Name        : db4
+Version     : 4.8.30
+Release     : 1.6.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 1428911
+License     : BSD
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:08:06 CET, Key ID 5b1e398947394f23
+Source RPM  : db4-4.8.30-1.6.4.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 13:36:50 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://github.com/sailfishos/db4
+Summary     : The Berkeley DB database library (version 4) for C
+Description :
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+provides embedded database support for both traditional and
+client/server applications. The Berkeley DB includes B+tree, Extended
+Linear Hashing, Fixed and Variable-length record access methods,
+transactions, locking, logging, shared memory caching, and database
+recovery. The Berkeley DB supports C, C++, Java, and Perl APIs. It is
+used by many applications, including Python and Perl, so this should
+be installed on all systems.

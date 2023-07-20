@@ -1,0 +1,17 @@
+Name        : yaml-cpp
+Version     : 0.6.3+git1
+Release     : 1.5.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:39 CEST
+Group       : Unspecified
+Size        : 432553
+License     : MIT
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:41:58 CET, Key ID 5b1e398947394f23
+Source RPM  : yaml-cpp-0.6.3+git1-1.5.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 11:19:02 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : https://github.com/jbeder/yaml-cpp
+Summary     : A YAML parser and emitter for C++
+Description :
+yaml-cpp is a YAML parser and emitter in C++ written around the YAML 1.2 spec.

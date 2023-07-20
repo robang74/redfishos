@@ -1,0 +1,16 @@
+Name        : droid-config-xqau52-sailfish
+Version     : 0.1.33
+Release     : 1.7.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:33 CEST
+Group       : Unspecified
+Size        : 412
+License     : GPLv2
+Signature   : RSA/SHA256, Thu 19 Jan 2023 15:25:50 CET, Key ID 5b1e398947394f23
+Source RPM  : droid-config-xqau52-0.1.33-1.7.1.jolla.src.rpm
+Build Date  : Thu 19 Jan 2023 15:25:11 CET
+Build Host  : phost8
+Vendor      : sony
+Summary     : Per device configuration for sailfish for droid-hal device: xqau52
+Description :
+Configure sailfish eg naturally landscape devices like mako

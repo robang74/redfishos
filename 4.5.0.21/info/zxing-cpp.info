@@ -1,0 +1,17 @@
+Name        : zxing-cpp
+Version     : 1.4.0+git1
+Release     : 1.7.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:39 CEST
+Group       : Unspecified
+Size        : 1496991
+License     : ASL 2.0
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:49:53 CET, Key ID 5b1e398947394f23
+Source RPM  : zxing-cpp-1.4.0+git1-1.7.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 11:19:17 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/sailfishos/zxing
+Summary     : ZXing port to C++
+Description :
+ZXing-C++ ("zebra crossing") is an open-source, multi-format 1D/2D barcode image processing library implemented in C++.

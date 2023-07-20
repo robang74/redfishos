@@ -1,0 +1,17 @@
+Name        : sailfish-components-timezone-qt5
+Version     : 0.2.3
+Release     : 1.5.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:32 CEST
+Group       : System/Libraries
+Size        : 210709
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 23 Jan 2023 17:07:10 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-components-timezone-qt5-0.2.3-1.5.1.jolla.src.rpm
+Build Date  : Mon 23 Jan 2023 17:06:35 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-sailfish-timezone
+Summary     : Sailfish timezone UI components
+Description :
+Sailfish timezone UI components

@@ -1,0 +1,19 @@
+Name        : libexif
+Version     : 0.6.22+git2
+Release     : 1.4.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:42 CEST
+Group       : Unspecified
+Size        : 2455376
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:32:38 CET, Key ID 5b1e398947394f23
+Source RPM  : libexif-0.6.22+git2-1.4.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:20:49 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://libexif.github.io/
+Summary     : Library for extracting extra information from image files
+Description :
+Most digital cameras produce EXIF files, which are JPEG files with
+extra tags that contain information about the image. The EXIF library
+allows you to parse an EXIF file and read the data from those tags.

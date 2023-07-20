@@ -1,0 +1,18 @@
+Name        : bzip2-libs
+Version     : 1.0.8+git2
+Release     : 1.6.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:38 CEST
+Group       : Unspecified
+Size        : 72887
+License     : BSD
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:03:37 CET, Key ID 5b1e398947394f23
+Source RPM  : bzip2-1.0.8+git2-1.6.4.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 13:36:30 CET
+Build Host  : phost18
+Vendor      : meego
+URL         : https://github.com/sailfishos/bzip2
+Summary     : Libraries for applications using bzip2
+Description :
+
+Libraries for applications using the bzip2 compression format.

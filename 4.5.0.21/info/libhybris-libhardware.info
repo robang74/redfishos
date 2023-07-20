@@ -1,0 +1,17 @@
+Name        : libhybris-libhardware
+Version     : 0.0.5.48
+Release     : 1.5.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:39 CEST
+Group       : Unspecified
+Size        : 6108
+License     : ASL 2.0 and BSD and ISC and LGPLv2 and MIT
+Signature   : RSA/SHA256, Wed 25 Jan 2023 20:59:50 CET, Key ID 5b1e398947394f23
+Source RPM  : libhybris-0.0.5.48-1.5.1.jolla.src.rpm
+Build Date  : Wed 25 Jan 2023 20:56:38 CET
+Build Host  : phost6
+Vendor      : meego
+URL         : https://github.com/mer-hybris/libhybris
+Summary     : libhardware for libhybris
+Description :
+libhardware for libhybris.

@@ -1,0 +1,22 @@
+Name        : expat
+Version     : 2.4.3+git1
+Release     : 1.6.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:38 CEST
+Group       : Unspecified
+Size        : 235457
+License     : MIT
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:09:58 CET, Key ID 5b1e398947394f23
+Source RPM  : expat-2.4.3+git1-1.6.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 06:24:42 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://libexpat.github.io/
+Summary     : An XML parser library
+Description :
+This is expat, the C library for parsing XML, written by James Clark. Expat
+is a stream oriented XML parser. This means that you register handlers with
+the parser prior to starting the parse. These handlers are called when the
+parser discovers the associated structures in the document being parsed. A
+start tag is an example of the kind of structures for which you may
+register handlers.

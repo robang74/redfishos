@@ -1,0 +1,17 @@
+Name        : jolla-actdead-charging
+Version     : 0.13.12
+Release     : 1.2.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:32 CEST
+Group       : Unspecified
+Size        : 41353
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 09 Jan 2023 17:01:45 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-actdead-charging-0.13.12-1.2.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 17:01:25 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-jolla-actdead-charging
+Summary     : Jolla actdead charging animation
+Description :
+Jolla actdead charging animation

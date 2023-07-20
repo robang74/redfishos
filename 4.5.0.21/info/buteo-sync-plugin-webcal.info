@@ -1,0 +1,17 @@
+Name        : buteo-sync-plugin-webcal
+Version     : 0.1.11
+Release     : 1.9.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:26 CEST
+Group       : Unspecified
+Size        : 84122
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 09 Jan 2023 17:08:38 CET, Key ID 5b1e398947394f23
+Source RPM  : buteo-sync-plugin-webcal-0.1.11-1.9.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 17:08:13 CET
+Build Host  : phost25
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/buteo-sync-plugin-webcal
+Summary     : Syncs online calendar resource in ICS format
+Description :
+A Buteo plugin which syncs a ICS resource online

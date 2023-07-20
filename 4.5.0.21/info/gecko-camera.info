@@ -1,0 +1,17 @@
+Name        : gecko-camera
+Version     : 0.1.7
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 210933
+License     : LGPLv2+
+Signature   : RSA/SHA256, Fri 07 Jul 2023 14:49:14 CEST, Key ID 5b1e398947394f23
+Source RPM  : gecko-camera-0.1.7-1.6.1.jolla.src.rpm
+Build Date  : Fri 07 Jul 2023 14:48:30 CEST
+Build Host  : phost25
+Vendor      : meego
+URL         : https://github.com/sailfishos/gecko-camera
+Summary     : A plugin-based library for Gecko to simplify video capture
+Description :
+A plugin-based library for Gecko to simplify video capture.

@@ -1,0 +1,19 @@
+Name        : openssl-libs
+Version     : 1.1.1s+git1
+Release     : 1.11.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:44 CEST
+Group       : Unspecified
+Size        : 3367797
+License     : OpenSSL
+Signature   : RSA/SHA256, Mon 13 Feb 2023 17:32:03 CET, Key ID 5b1e398947394f23
+Source RPM  : openssl-1.1.1s+git1-1.11.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 17:27:29 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : http://www.openssl.org/
+Summary     : A general purpose cryptography library with TLS implementation
+Description :
+OpenSSL is a toolkit for supporting cryptography. The openssl-libs
+package contains the libraries that are used by various applications which
+support cryptographic algorithms and protocols.
