@@ -17,5 +17,5 @@ This is the content of this folder
 * [How-to-install-Sailfish-X-on-Xperia-10-II-on-Linux-by-Jolla.pdf](How-to-install-Sailfish-X-on-Xperia-10-II-on-Linux-by-Jolla.pdf) (C) Jolla
 * [How-to-install-Sailfish-X-on-Xperia-10-III-on-Linux-by-Jolla.pdf](How-to-install-Sailfish-X-on-Xperia-10-III-on-Linux-by-Jolla.pdf) (C) Jolla
 
-* [icons/template](iconsi/template/README.md) CC BY 3.0
-* [icons/library](iconsi/library/README.md) CC-BY 3.0
+* [icons/template](icons/template/) CC BY 3.0
+* [icons/library](icons/library/) CC-BY 3.0
