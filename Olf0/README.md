@@ -230,22 +230,29 @@ Side note: If you want to become familiar with the LVM (precisely: Linux LVM2) i
 
 #### 3.3.1 Booting a SailfishOS recovery image via `fastboot boot`
 
-This is a brief, generic description of Jolla's detailed [guide of booting a SailfishOS recovery image (respectively for the Xperia II and III awkwardly flashing it, using it and then re-flashing the boot image](https://docs.sailfishos.org/Support/Help_Articles/Recovery_Mode/), until an ["embedded recovery" is deployed for the Xperia II and III](https://github.com/mer-hybris/hybris-initrd/pull/27#issuecomment-913248435)); but as the Xperia 10 II and III should have a 4000 MB root volume size after flashing (check with `lvm lvdisplay`), there is much less reason to perform section 3.3 with it and you **must** recalculate the values used in this section for it (please document them in an issue here, if you do so).<br />
-You also may apply section 3.3 to older devices (which all have an "embedded recovery"): [Jolla C / Intex Aquafish](https://jolla.zendesk.com/hc/en-us/articles/115000663928) and [Jolla Tablet](https://jolla.zendesk.com/hc/en-us/articles/208406917).  Note that the [Jolla 1 phone](https://jolla.zendesk.com/hc/en-us/articles/204709607) (which also has an "embedded recovery") does not use LVM by default, hence section 3.3 is not applicable to it (unless you have flashed [an LVM-image to it](https://talk.maemo.org/showthread.php?p=1549980#post1549980)).  Section 3.3 is also applicable to (most / all?) community ports of SailfishOS, but please check thoroughly that things really look the same as described.
-1. Locate the file **hybris-recovery.img** in the unpacked SailfishX directory on your host computer.
-2. Power down your Xperia and connect its USB cable to your host computer (but not the Xperia, yet).  Bring your Xperia into fastboot mode by pressing the "Volume up" button when plugging in your Xperia to USB.  Release the button when its LED has become blue.<br />
- For devices reflashed with a community port of SailfishOS: Mind that the way to enter fastboot mode differs between brands of Android devices.
-2. Execute `fastboot boot hybris-recovery.img` on your host computer.  You may need to execute the *fastboot* command as root, e.g., by prepending a `sudo`.
-3. Wait until booting the recovery image finished: It displays a message in a very tiny font at the top of your Xperia's screen.
-3. Execute `telnet 10.42.66.66` on your host computer.<br />
- If you run into "telnet connection timed out" or "no route to host" errors, [this might be helpful](https://forum.sailfishos.org/t/resizing-root-directory-telnet-connection-problems/7067/3) (mind that these commands may also have to be executed as root).
+This is a brief, generic description of Jolla's detailed [guide of booting a SailfishOS recovery image (respectively for the Xperia II and III awkwardly flashing it, using it and then re-flashing the boot image](https://docs.sailfishos.org/Support/Help_Articles/Recovery_Mode/), until an ["embedded recovery" is deployed for the Xperia II and III](https://github.com/mer-hybris/hybris-initrd/pull/27#issuecomment-913248435)); but as the Xperia 10 II and III should have a 4000 MB root volume size after flashing (check with `lvm lvdisplay`), there is much less reason to perform section 3.3 with it and you **must** recalculate the values used in this section for it (please document them in an issue here, if you do so).
 
-Notes: 
-- Use a downloaded recovery image, which preferably matches the installed SailfishOS release, or is newer.<br />
- Hence, if you have upgraded the SailfishOS installation on the device via OTA update (*Settings -> SailfishOS updates*, `sfos-upgrade` etc.) and want to use a recovery image, download the recent installation image, unpack it and boot this recovery image.<br />
+You also may apply section 3.3 to older devices (which all have an "embedded recovery"): [Jolla C / Intex Aquafish](https://jolla.zendesk.com/hc/en-us/articles/115000663928) and [Jolla Tablet](https://jolla.zendesk.com/hc/en-us/articles/208406917).  Note that the [Jolla 1 phone](https://jolla.zendesk.com/hc/en-us/articles/204709607) (which also has an "embedded recovery") does not use LVM by default, hence section 3.3 is not applicable to it (unless you have flashed [an LVM-image to it](https://talk.maemo.org/showthread.php?p=1549980#post1549980)).  Section 3.3 is also applicable to (most / all?) community ports of SailfishOS, but please check thoroughly that things really look the same as described.
+
+1. Locate the file **hybris-recovery.img** in the unpacked SailfishX directory on your host computer.
+   
+2. Power down your Xperia and connect its USB cable to your host computer (but not the Xperia, yet).  Bring your Xperia into fastboot mode by pressing the "Volume up" button when plugging in your Xperia to USB.  Release the button when its LED has become blue. For devices reflashed with a community port of SailfishOS: Mind that the way to enter fastboot mode differs between brands of Android devices.
+
+3. Execute `fastboot boot hybris-recovery.img` on your host computer.  You may need to execute the *fastboot* command as root, e.g., by prepending a `sudo`.
+
+4. Wait until booting the recovery image finished: It displays a message in a very tiny font at the top of your Xperia's screen.
+
+5. Execute `telnet 10.42.66.66` on your host computer. If you run into "telnet connection timed out" or "no route to host" errors, [this might be helpful](https://forum.sailfishos.org/t/resizing-root-directory-telnet-connection-problems/7067/3) (mind that these commands may also have to be executed as root).
+
+Notes:
+
+- Use a downloaded recovery image, which preferably matches the installed SailfishOS release, or is newer.
+
+ Hence, if you have upgraded the SailfishOS installation on the device via OTA update (*Settings -> SailfishOS updates*, `sfos-upgrade` etc.) and want to use a recovery image, download the recent installation image, unpack it and boot this recovery image.
+
  Never use a significantly older recovery image than the installed SailfishOS release, because LVM commands, filesystem utilities and `cryptsetup` might be outdated!
-- Do not flash an Xperia's recovery partition with it (which is technically possible and basically working), as this recovery image will be outdated and not matching anymore after a SailfishOS update on your Xperia.<br />
- Furthermore you lose Sony's original Android recovery as a fallback by overwriting it with a SailfishOS recovery.
+
+- Do not flash an Xperia's recovery partition with it (which is technically possible and basically working), as this recovery image will be outdated and not matching anymore after a SailfishOS update on your Xperia. Furthermore you lose Sony's original Android recovery as a fallback by overwriting it with a SailfishOS recovery.
 
 ---
 
@@ -254,10 +261,15 @@ Notes:
 Do not be afraid of loosing a little space on your "home" volume, your user data (music, pictures / photos, offline maps, videos etc.) can be seamlessly outsourced to an SD card.
 
 - For devices with 32 GiB internal FLASH memory (resulting in an original "home" volume size of approximately 20 GiB) aim at a "root" LVM size of 4 GiB for regular use respectively 6 GiB if you plan to install a lot of native software (Android APKs are installed on the "home" volume).
+
 - For devices with 64 or 128 GiB of internal FLASH memory you might add additional 2 GiB to these values, because the "home" volume size is at least 37 GiB (even after resizing).
+
 - If you really plan to install gcc and compile software on the device (which is technically feasible, but you should rather use the SailfishOS SDK on an x86 computer for that), add another 2 GiB or just aim at 10 GiB (the maximum for this scheme, see next point).
-- As 10 GiB "root" LVM volume size is very spacious, more does not seem to make any sense.  Thus the values chosen below only work for increasing the "root" volume size to at most 10 GiB (on both, 32 GiB and 64 GiB devices).
+
+- As 10 GiB "root" LVM volume size is very spacious, more does not seem to make any sense. Thus the values chosen below only work for increasing the "root" volume size to at most 10 GiB (on both, 32 GiB and 64 GiB devices).
+
 - For 64 or 128 GiB devices, the values of **10G** and **22000000** (below) should be tripled to **30G** and **66000000** in order to reduce unnecessary shrinking and expanding later on.  Solely on 128 GiB devices, multiplying the original values by 5 shall also work, i.e. using **50G** and **110000000**.
+
 - When executing the steps of either section 3.3.2 (**a** or **b**), you may encounter the output (e.g., of a **lvm lvresize** command):
 
     `/dev/mmcblk0rpmb: read failed after 0 of 4096 at X: Input/output error`
@@ -278,21 +290,35 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 (All Xperia X and XA2 with SailfishOS 3.2.1 or lower installed, plus those Xperia X and XA2 originally flashed with SailfishOS 3.2.1 or lower which were upgraded to SailfishOS 3.3.0 or higher via OTA update (*Settings -> SailfishOS updates*) but [the device encryption was not activated](https://docs.sailfishos.org/Support/Help_Articles/Encryption_of_User_Data/#activation-from-settings))
 
-8. `e2fsck -f /dev/mapper/sailfish-home`
-6. Shrink size of "home" file-system to 10 GiB (you might use **30G** on 64&nbsp;GiB devices):<br />
+1. `e2fsck -f /dev/mapper/sailfish-home`
+
+2. Shrink size of "home" file-system to 10 GiB (you might use **30G** on 64&nbsp;GiB devices):
+
   `resize2fs /dev/mapper/sailfish-home 10G`
-6. `e2fsck -f /dev/mapper/sailfish-home`
-6. `lvm lvchange -a n sailfish/home`
-6. Shrink "home" volume by -911 extents (=&nbsp;-3644M) for a 6 GiB, -1423 extents (=&nbsp;-5692M) for a 8 GiB, -399 extents (=&nbsp;-1596M) for a 4 GiB or -1935 extents (=&nbsp;-7740M) for a 10 GiB "root" volume size:<br />
+
+3. `e2fsck -f /dev/mapper/sailfish-home`
+
+4. `lvm lvchange -a n sailfish/home`
+
+5. Shrink "home" volume by -911 extents (=&nbsp;-3644M) for a 6 GiB, -1423 extents (=&nbsp;-5692M) for a 8 GiB, -399 extents (=&nbsp;-1596M) for a 4 GiB or -1935 extents (=&nbsp;-7740M) for a 10 GiB "root" volume size:
+
   `lvm lvresize -l -911 sailfish/home`
+
 6. `lvm lvresize -l +100%FREE sailfish/root`
-6. `lvm lvchange -a y sailfish/home`
-6. `resize2fs /dev/mapper/sailfish-home`
-6. `e2fsck -f /dev/mapper/sailfish-home`
-6. `resize2fs /dev/mapper/sailfish-root`
-6. `e2fsck -f /dev/mapper/sailfish-root`
-6. Hit **Ctrl-D** (or type `exit`).
-6. Select **2** for Reboot.
+
+7. `lvm lvchange -a y sailfish/home`
+
+8. `resize2fs /dev/mapper/sailfish-home`
+
+9. `e2fsck -f /dev/mapper/sailfish-home`
+
+10. `resize2fs /dev/mapper/sailfish-root`
+
+11. `e2fsck -f /dev/mapper/sailfish-root`
+
+12. Hit **Ctrl-D** (or type `exit`).
+
+13. Select **2** for Reboot.
 
 ---
 
@@ -300,36 +326,60 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 ([All Xperias newly flashed with SailfishOS 3.3.0 or higher, Xperia 10 series since SailfishOS 3.2.0, plus Xperia X and XA2 originally flashed with SailfishOS 3.2.1 or lower on which the device encryption was activated after being upgraded to SailfishOS 3.3.0 or higher](https://docs.sailfishos.org/Support/Help_Articles/Encryption_of_User_Data/#it-is-automatic-when-flashing))
 
-8. Open the cryptsetup container (using your security code) per<br />
+1. Open the cryptsetup container (using your security code) per
+
   `cryptsetup luksOpen /dev/mapper/sailfish-home crypt-home`
+
 2. `e2fsck -f /dev/mapper/crypt-home`
-2. Shrink size of "home" file-system to 10 GiB (you might use **30G** *and* **66000000** (below) on 64&nbsp;GiB devices, respectively **50G** *and* **110000000** (below) on 128&nbsp;GiB devices):<br />
+
+3. Shrink size of "home" file-system to 10 GiB (you might use **30G** *and* **66000000** (below) on 64&nbsp;GiB devices, respectively **50G** *and* **110000000** (below) on 128&nbsp;GiB devices):
+
   `resize2fs -f /dev/mapper/crypt-home 10G`
-2. `e2fsck -f /dev/mapper/crypt-home`
-2. Shrink size of cryptsetup container to 10,49 GiB (22000000 sectors á 512 Bytes; you might use **66000000** = 31,47 GiB on 64&nbsp;GiB devices, respectively **110000000** = 52,45 GiB on 128&nbsp;GiB devices):<br />
+
+4. `e2fsck -f /dev/mapper/crypt-home`
+
+5. Shrink size of cryptsetup container to 10,49 GiB (22000000 sectors á 512 Bytes; you might use **66000000** = 31,47 GiB on 64&nbsp;GiB devices, respectively **110000000** = 52,45 GiB on 128&nbsp;GiB devices):
+
   `cryptsetup resize -b 22000000 /dev/mapper/sailfish-home`
-2. `cryptsetup close crypt-home`
-2. `lvm lvchange -a n sailfish/home`
-2. Shrink "home" volume by -911 extents (=&nbsp;-3644M) for a 6 GiB, -1423 extents (=&nbsp;-5692M) for a 8 GiB, -399 extents (=&nbsp;-1596M) for a 4 GiB or -1935 extents (=&nbsp;-7740M) for a 10 GiB "root" volume size:<br />
+
+6. `cryptsetup close crypt-home`
+
+7. `lvm lvchange -a n sailfish/home`
+
+8. Shrink "home" volume by -911 extents (=&nbsp;-3644M) for a 6 GiB, -1423 extents (=&nbsp;-5692M) for a 8 GiB, -399 extents (=&nbsp;-1596M) for a 4 GiB or -1935 extents (=&nbsp;-7740M) for a 10 GiB "root" volume size:
+   
   `lvm lvresize -l -1423 sailfish/home`
-2. `lvm lvresize -l +100%FREE sailfish/root`
-2. `lvm lvchange -a y sailfish/home`
-2. `cryptsetup luksOpen /dev/mapper/sailfish-home crypt-home`
-2. `cryptsetup resize /dev/mapper/sailfish-home`
-2. `resize2fs -f /dev/mapper/crypt-home`
-2. `e2fsck -f /dev/mapper/crypt-home`
-2. `cryptsetup close crypt-home`
-2. `resize2fs /dev/mapper/sailfish-root`
-6. `e2fsck -f /dev/mapper/sailfish-root`
-6. Hit **Ctrl-D** (or type `exit`).
-6. Select **2** for Reboot.
+
+9. `lvm lvresize -l +100%FREE sailfish/root`
+
+10. `lvm lvchange -a y sailfish/home`
+
+11. `cryptsetup luksOpen /dev/mapper/sailfish-home crypt-home`
+
+12. `cryptsetup resize /dev/mapper/sailfish-home`
+
+13. `resize2fs -f /dev/mapper/crypt-home`
+
+14. `e2fsck -f /dev/mapper/crypt-home`
+
+15. `cryptsetup close crypt-home`
+
+16. `resize2fs /dev/mapper/sailfish-root`
+
+17. `e2fsck -f /dev/mapper/sailfish-root`
+
+18. Hit **Ctrl-D** (or type `exit`).
+
+19. Select **2** for Reboot.
 
 ---
 
 ### 4 Installing software
 
 - Always check when the latest version of an app was released, regardless which app store you are using: If it is from before 2017 it likely does not run well.
+
 - Also always read an app's description in any of the store client apps thoroughly before installing it.
+
 - Additionally read the recent comments of an app in the Jolla Store client app respectively Storeman (for apps at OpenRepos).
 
 ---
@@ -338,7 +388,8 @@ Do not be afraid of loosing a little space on your "home" volume, your user data
 
 Open the Jolla Store app and install the "File Browser" (by ichthyosaurus, originally by Kari) to check if the Jolla Store is working fine (you will need a file browser sooner or later, anyway).
 
-Advice for users of the Android runtime environment ("Android App Support"):<br />
+Advice for users of the Android runtime environment ("Android App Support"):
+
 Do **not** install any Android apps from the Jolla Store (those with their icons labeled with a small, overlaid Android, plus the line "Android app" atop their description), not even the app stores' client apps offered there (F-Droid, Aptoide "Store", Yandex etc.), otherwise you may later run into troubles when updating these apps.  Background: Theoretically you may solely install Android apps from the Jolla Store (and never use any other Android store app, including the ones offered in the Jolla Store; only then updating APK cannot become an issue), which is not practically feasible due to the minimal and awkward selection of Android apps in the Jolla Store.
 
 ---
@@ -348,8 +399,11 @@ Do **not** install any Android apps from the Jolla Store (those with their icons
 Optional, although strongly recommended.
 
 1. Download the RPM of the current Storeman-Installer release from OpenRepos with the SailfishOS Browser: https://openrepos.net/content/olf/storeman-installer
+
 2. Enable *Settings -> Untrusted software -> Allow untrusted software*.
+
 3. Start the File Browser app and go to *Downloads*.  Tap on the downloaded Storeman-Installer RPM and wait a while (Storeman Installer 2; with Storeman-Installer 1 select *Install* in the top pulley).
+
 4. Disable *Settings -> Untrusted software -> Allow untrusted software* again.
 
 Alternatively you might install the downloaded RPM file at the CLI via `devel-su pkcon install-local <full-filename.rpm>`.
@@ -369,10 +423,14 @@ Use Storeman to install the [SailfishOS:Chum GUI Installer](https://openrepos.ne
 Optional, although recommended.
 
 1. Install [Patchmanager ≥ 3.2](https://openrepos.net/content/patchmanager/patchmanager) on SailfishOS ≥ 4, preferably  from SailfishOS:Chum (respectively [Patchmanager 3.0](https://openrepos.net/content/patchmanager/patchmanager-legacy) from OpenRepos on SailfishOS < 4).
+
 2. Reboot your Xperia.
-3. Browse Patchmanager's web-catalog in *Settings -> Patchmanager -> (top pulley) Web catalog* and install a Patch which sounds interesting for you and which is compatible with the installed SailfishOS release.<br />
-Go back to Patchmanager's main page and apply this Patch there.<br />
-Select *Restart preloaded services* in the top pulley and see what it does.
+
+3. Browse Patchmanager's web-catalog in *Settings -> Patchmanager -> (top pulley) Web catalog* and install a Patch which sounds interesting for you and which is compatible with the installed SailfishOS release.
+
+4. Go back to Patchmanager's main page and apply this Patch there.
+
+5. Select *Restart preloaded services* in the top pulley and see what it does.
 
 ---
 
@@ -381,7 +439,9 @@ Select *Restart preloaded services* in the top pulley and see what it does.
 This requires the Android runtime environment ("Android App Support" / AlienDalvik) being installed and running, which is only available for paid SailfishX licenses.
 
 - Note that installing APKs on SailfishOS does not require "Untrusted sources" enabled, because the Android runtime environment with all its installed APKs is separated from the SailfishOS installation proper and its native apps.
-- Also note that APKs (Android apps) must be built for the ARMv7-A architecture (32 bit), because SailfishOS currently still solely uses 32 bit user space binaries.<br />
+
+- Also note that APKs (Android apps) must be built for the ARMv7-A architecture (32 bit), because SailfishOS currently still solely uses 32 bit user space binaries.
+
 Only SailfishOS (≥ 4.1.0) on an Xperia 10 II or III (out of the officially supported models) offers the ability to install and execute native apps (RPMs) and APKs (Android apps) for ARMv8-A ("aarch64", 64 bit).
 
 ---
@@ -390,18 +450,21 @@ Only SailfishOS (≥ 4.1.0) on an Xperia 10 II or III (out of the officially sup
 
 Optional, although strongly recommended, because F-Droid is the primary source of inherently privacy-friendly and FLOSS-only Android applications.
 
-1. Download the recent F-Droid app in the SailfishOS Browser:<br />
-  https://f-droid.org/<br />
-  Alternatively, if you dislike the UI of the modern F-Droid app (since v0.104 / v1.0) or use an original Xperia X (because much more recent releases still run on Android 4.4), you might install the [F-Droid Classic app](https://f-droid.org/en/packages/eu.bubu1.fdroidclassic/) (which implements the classic F-Droid app UI atop a recent F-Droid client codebase), but it is less frequently updated than the regular [F-Droid app](https://f-droid.org/en/packages/org.fdroid.fdroid/).  Another alternative F-Droid client for modern devices (requires Android ≥&nbsp;6) is ["Neo Store"](https://f-droid.org/en/packages/com.machiav3lli.fdroid/).  BTW, [G-Droid](https://f-droid.org/en/packages/org.gdroid.gdroid/) is very basic, but it is the only modern and maintained F-Droid client which still works on a Jolla 1, because it only requires Android ≥&nbsp;4.
-2. Start the File Browser app and go to *Downloads*.<br />
+1. Download the recent F-Droid app in the SailfishOS Browser: https://f-droid.org/
+
+  Alternatively, if you dislike the UI of the modern F-Droid app (since v0.104 / v1.0) or use an original Xperia X (because much more recent releases still run on Android 4.4), you might install the [F-Droid Classic app](https://f-droid.org/en/packages/eu.bubu1.fdroidclassic/) (which implements the classic F-Droid app UI atop a recent F-Droid client codebase), but it is less frequently updated than the regular [F-Droid app](https://f-droid.org/en/packages/org.fdroid.fdroid/). Another alternative F-Droid client for modern devices (requires Android ≥&nbsp;6) is ["Neo Store"](https://f-droid.org/en/packages/com.machiav3lli.fdroid/).  BTW, [G-Droid](https://f-droid.org/en/packages/org.gdroid.gdroid/) is very basic, but it is the only modern and maintained F-Droid client which still works on a Jolla 1, because it only requires Android ≥&nbsp;4.
+
+2. Start the File Browser app and go to *Downloads*.
+
   Tap on the downloaded F-Droid client APK and select *Install* in the top pulley.
 
 ---
 
 #### 4.5.2 A proper Android file-manager
 
-As the "AlienDalvik" Android runtime environment does not provide any preinstalled apps, one needs a proper file-manager for Android to serve Android file intents:<br />
-Start an F-Droid client app (if it is its first start ever on this device, wait a couple of minutes for it to synchronise its repositories) and install the [OI File Manager](https://f-droid.org/en/packages/org.openintents.filemanager/).
+As the "AlienDalvik" Android runtime environment does not provide any preinstalled apps, one needs a proper file-manager for Android to serve Android file intents:
+
+  Start an F-Droid client app (if it is its first start ever on this device, wait a couple of minutes for it to synchronise its repositories) and install the [OI File Manager](https://f-droid.org/en/packages/org.openintents.filemanager/).
 
 ---
 
@@ -413,20 +476,26 @@ For accessing the Google Play Store, install the [Aurora Store](https://f-droid.
 
 #### 4.5.4 Other Android app sources
 
-Other Android apps stores or manually downloading and installing APKs is not recommended due the negative security implications: Downloading and installing apps from somewhere (specifically "someone"), plus (when doing this manually) never being informed about their updates.<br />
-If you really want to pursue this, use the app [APKMirror](https://f-droid.org/en/packages/taco.apkmirror/) and / or (but not on an Xperia X) [Apkpurer](https://f-droid.org/en/packages/gh.cloneconf.apkpurer/) from F-Droid to access the two best maintained (and probably least insecure) alternative sources for Android apps: [APKMirror](https://www.apkmirror.com/) and [APKPure](https://apkpure.com/)  *Edit(2023):* [Uptodown.com](https://en.uptodown.com/developer/uptodown-com) *may* be another viable alternative (unchecked and untested), but its client app is not offered at F-Droid (apps being offered at F-Droid provide a lot of positive security implications).<br />
-For updating apps from alternative sources (searching and installing is also possible, but inconvenient) you can use the app [ApkTrack](https://f-droid.org/en/packages/fr.kwiatkowski.ApkTrack/) from F-Droid and / or manually install the [latest release](https://github.com/rumboalla/apkupdater/releases/latest) of the app [APKUpdater](https://github.com/rumboalla/apkupdater#apkupdater--) from GitHub.  *Edit:* Both seem to be unmaintained as of 2023.<br />
-Do **not** use Aptoide, neither its client app (even though promoted by Jolla and an old version of the Aptoide app is available in the Jolla Store as "Store" app) or its web site: Aptoide offers a lot of malware (e.g., common apps with added malicious code, fake apps etc.), because anyone can upload anything there and Aptoide is not curated.  Furthermore Aptoide regularly has security breaches, e.g. a leak of their complete user database including passwords (the first time in plain text, the second time unsalted) at least twice!  Additionally the Aptoide app(s) has become a data collection tool.  Hence one **shall not use Aptoide** at all.  All software at Aptoide is available elsewhere, because it only hosts APKs uploaded by users!<br />
+Other Android apps stores or manually downloading and installing APKs is not recommended due the negative security implications: Downloading and installing apps from somewhere (specifically "someone"), plus (when doing this manually) never being informed about their updates.
+
+If you really want to pursue this, use the app [APKMirror](https://f-droid.org/en/packages/taco.apkmirror/) and / or (but not on an Xperia X) [Apkpurer](https://f-droid.org/en/packages/gh.cloneconf.apkpurer/) from F-Droid to access the two best maintained (and probably least insecure) alternative sources for Android apps: [APKMirror](https://www.apkmirror.com/) and [APKPure](https://apkpure.com/)  *Edit(2023):* [Uptodown.com](https://en.uptodown.com/developer/uptodown-com) *may* be another viable alternative (unchecked and untested), but its client app is not offered at F-Droid (apps being offered at F-Droid provide a lot of positive security implications).
+
+For updating apps from alternative sources (searching and installing is also possible, but inconvenient) you can use the app [ApkTrack](https://f-droid.org/en/packages/fr.kwiatkowski.ApkTrack/) from F-Droid and / or manually install the [latest release](https://github.com/rumboalla/apkupdater/releases/latest) of the app [APKUpdater](https://github.com/rumboalla/apkupdater#apkupdater--) from GitHub.  *Edit:* Both seem to be unmaintained as of 2023.
+
+Do **not** use Aptoide, neither its client app (even though promoted by Jolla and an old version of the Aptoide app is available in the Jolla Store as "Store" app) or its web site: Aptoide offers a lot of malware (e.g., common apps with added malicious code, fake apps etc.), because anyone can upload anything there and Aptoide is not curated.  Furthermore Aptoide regularly has security breaches, e.g. a leak of their complete user database including passwords (the first time in plain text, the second time unsalted) at least twice!  Additionally the Aptoide app(s) has become a data collection tool.  Hence one **shall not use Aptoide** at all.  All software at Aptoide is available elsewhere, because it only hosts APKs uploaded by users!
+
 BTW, by installing the original Google Play Store app, the Amazon Store app etc. you transform your SailfishOS device into a data collecting machine: Then you may use a regular Android device instead with far less effort.
 
 ---
 
 #### 4.6 Installing microG
 
-Optional; for Android apps which need Google services.  Not supported on the Xperia X, but by all later models (XA2 series, Xperia 10 series, Xperia 10 II and Xperia 10 III) since SailfishOS 3.1.<br />
+Optional; for Android apps which need Google services.  Not supported on the Xperia X, but by all later models (XA2 series, Xperia 10 series, Xperia 10 II and Xperia 10 III) since SailfishOS 3.1.
+
 Requires to have "Android support" and an [F-Droid client app](#451-f-droid) installed.
 
 For SailfishOS ≥ 4.5.0 utilise [this wiki page at FSO](https://forum.sailfishos.org/t/installing-microg-on-sailfish-os/14375).
+
 For SailfishOS 3.1.0 to 4.4.0, follow the [original microG installation guide by SailfishOS community member "Dr. Yak"](https://together.jolla.com/question/209300/how-to-microg-in-sfos-31/?answer=209744#post-id-209744), which is easier than it looks at first sight.  When issues occur, do search at the [SailfishOS forum for "microG"](https://forum.sailfishos.org/search?q=microG).
 
 Do **not** install original Google services (except for [Google's "Text-to-Speech (TTS)" engine](https://play.google.com/store/apps/details?id=com.google.android.tts), for which [ivonaTTS is an alternative](https://forum.sailfishos.org/t/xa2-and-ivonatts-no-voices-found/7270/6) although much larger, more intrusive, but with even better speech quality) or [OpenGApps](https://opengapps.org/): Then you might better use a regular Android device instead with far less effort.
@@ -439,9 +508,12 @@ Do **not** install original Google services (except for [Google's "Text-to-Speec
 
 #### 5.1 Recommended apps from OpenRepos
 
-- [MeeCast for SailfishOS](https://openrepos.net/content/vasvlad/meecast-sailfishos) with [Meecast Daemon](https://openrepos.net/content/vasvlad/meecast-daemon) and [Meecast Event View](https://openrepos.net/content/vasvlad/meecast-event-view).<br />
+- [MeeCast for SailfishOS](https://openrepos.net/content/vasvlad/meecast-sailfishos) with [Meecast Daemon](https://openrepos.net/content/vasvlad/meecast-daemon) and [Meecast Event View](https://openrepos.net/content/vasvlad/meecast-event-view).
+
  When choosing Weather.com as a (high quality) weather data provider it supersedes the proprietary Jolla Weather app (by Foreca) in every aspect.
+
 - [Pure Maps](https://openrepos.net/content/rinigus/pure-maps) with [PicoTTS](https://openrepos.net/content/rinigus/picotts) and [OSM Scout Server](https://openrepos.net/content/rinigus/osm-scout-server) provide a "state of the art" navigation app utilising offline or online map and routing services.  *Note that since 2022 newer versions of these three components are solely published at SailfishOS:Chum and in a feature-reduced version at the Jolla Store.* 
+
 - [Aliendalvik Control](https://openrepos.net/content/coderus/aliendalvik-control) ~~is~~ was extremely useful for users of the Android runtime environment ("Android App Support"). *Unmaintained since mid-2021, hence not working on SailfishOS 4 as of September 2022.*
 
 ---
@@ -449,6 +521,7 @@ Do **not** install original Google services (except for [Google's "Text-to-Speec
 #### 5.2 Guides for utilising an SD card to consider
 
 - [Creating partitions on SD-card, optionally encrypted](https://gitlab.com/Olf0/guide-creating-partitions-on-sd-card-optionally-encrypted)
+
 - [Externalising android_storage and other directories / files to SD-card](https://gitlab.com/Olf0/guide-externalising-android_storage-and-other-directories-files-to-sd-card)
 
 ---
@@ -458,18 +531,26 @@ Do **not** install original Google services (except for [Google's "Text-to-Speec
 For further information always search first at
 
 - The [SailfishOS Forum (FSO)](https://forum.sailfishos.org/), Jolla's current community platform (since 2020-07-09)
-- [Together@Jolla.Com (TJC)](https://together.jolla.com/questions/), Jolla's old community platform<br />
+
+- [Together@Jolla.Com (TJC)](https://together.jolla.com/questions/), Jolla's old community platform
  Mind that the Askbot release running TJC has a [couple of flaws](https://together.jolla.com/question/168694/update-askbot-running-tjc-to-a-more-recent-version/).  E.g., Askbot's search function returns many seemingly unrelated *results*, though the search *suggestions* (i.e., in its JavaScript-based drop-down list) are quite spot on although usually sorted from old (at the top) to new (at the bottom)!
+
 - [Jolla's Zendesk instance](https://jolla.zendesk.com/)
+
 - Community documentation: e.g., https://github.com/sailfishos-community/awesome-sailfishos
+
 - [Talk@Maemo.Org (TMO)](https://talk.maemo.org/)
+
 - The "[SailfishOS cheat sheet](https://sailfishos.org/wiki/Sailfish_OS_Cheat_Sheet)"
+
 - [Developer documentation (link list)](https://together.jolla.com/question/7008/looking-for-sailfishnemomer-system-documentation-i-am-lost/?answer=222262#post-id-222262)
 
 For issues with a device using a paid license, you may open a [Zendesk support request](https://jolla.zendesk.com/) **after** having exhausted searching aforementioned sources of information and including everything relevant you found and have tried.
 
 Have fun with SailfishOS on your Xperia!
  
-P.S.: The [original repository for this guide](https://gitlab.com/Olf0/sailfishX) is here at Gitlab.com and it is also [rendered better here](https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias) (e.g., its formatting, especially enumerations across paragraphs) than [at TJC](https://together.jolla.com/question/222126/guide-installing-sailfish-x-on-xperias/) (except for the uncommon TOC markup and how the line spacings in this footer and TOC are rendered without some trickery).<br />
-Furthermore, the version at TJC became outdated, because TJC was set to "read only" at the end of 2020, thus that version there cannot be updated anymore.<br />
+P.S.: The [original repository for this guide](https://gitlab.com/Olf0/sailfishX) is here at Gitlab.com and it is also [rendered better here](https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias) (e.g., its formatting, especially enumerations across paragraphs) than [at TJC](https://together.jolla.com/question/222126/guide-installing-sailfish-x-on-xperias/) (except for the uncommon TOC markup and how the line spacings in this footer and TOC are rendered without some trickery).
+
+Furthermore, the version at TJC became outdated, because TJC was set to "read only" at the end of 2020, thus that version there cannot be updated anymore.
+
 Hence the canonical URL for this guide is https://gitlab.com/Olf0/sailfishX#guide-installing-sailfishx-on-xperias
