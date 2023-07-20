@@ -49,10 +49,10 @@ Without these facilities fully working, there is no any reasonable chance to ope
 
 Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded for free (gratis) from the Jolla Shop:  
 
-* [Jolla SailFish OS download shop](https://shop.jolla.com/)
-* [Jolla how to flash SFOS with Linux](https://jolla.com/how-to-install-sailfish-x-on-xperia-10-ii-on-linux/)
-* [Jolla SailFish OS website](https://sailfishos.org/)
-* [Jolla offial documentation](https://docs.sailfishos.org/)
+* [Jolla SailFish OS shop](https://shop.jolla.com/) for downloading the image
+* [Jolla how to flash SFOS with Linux](https://jolla.com/how-to-install-sailfish-x-on-xperia-10-ii-on-linux/) or its [backup](./Jolla)
+* [SailFish OS official documentation](https://docs.sailfishos.org/) or its [mirror](https://github.com/robang74/docs.sailfishos.org)
+* [SailFish OS official website](https://sailfishos.org/)
 
 The paid licensed version adds the support for Android integrating the proprietary [Alien Dalvik](https://en.wikipedia.org/wiki/Dalvik_Turbo_virtual_machine) middle-ware framework plus some others features. The zero-budget version is supported by its related community:
 
