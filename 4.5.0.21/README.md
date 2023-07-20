@@ -20,7 +20,15 @@ A possible solution is to create the reference file as `/etc/.reference/.file` w
 
 ### File tree checksum
 
-Another approach is to have a reference {files, links, folders} tree and for every file its checksum. The `md5sum` utility produces a forensic waek checksum but good enough for an integrity filesystem check which do not consider malicious MD5 collisions into the picture. 
+Another approach is to have a reference {files, links, folders} tree and for every file its checksum. The `md5sum` utility produces a forensic waek checksum but good enough for an integrity filesystem check which do not consider malicious MD5 collisions into the picture.
+
+The obvious shortcoming about this approach is that: we are aware about what we know, we are aware about what we do not know but we do not know what we are not aware about. In other words, without a tracking system for every future changes we cannot apply the same strategy again: create a trustworty checksums list but just update it better if we do in an incremental way.
+
+For example, we can add more information to the list of checksum like a alphabetically sorted list of {files, links, folders} which will help us to check for the differences. Plus a list of packages installed with and without their version. The version is important because the updates will changes the rootfilesystem while the list of package name is useful to re-install an updated system.
+
+Also this information is subject to change in the time and it should keep updated as much as possible. This is the challenge about this approach but by itself it has not any intrinsic shortcomings like `find` with `-newer`.
+
+### Hashing performances
 
 Usually the `md5sum` is about 2x faster than `sha1sum` on 32-bit devices and 33% faster on 64-bit devices in creating the checksum even if we are much more interested in verifying the checksum which is almost the same because the checksum is re-created and then compared. However, specific implementations of md5sum can greatly vary in their performance and can be slower or faster depending also on the use of the `libcrypto.so` which gives the fastest implementation. In SFOS, both `md5sum` and `sha1sum` are those from the busybox which does not recall the `libcrypto.so` among its dependencies.
 
@@ -38,7 +46,4 @@ real	0m 11.72s
 user	0m 5.42s
 sys	0m 4.28s
 ```
-The results clearly indicated that `md5sum` is 1.55x faster than `sh1sum` in our default case. 
-
-
-
+The results clearly indicated that `md5sum` is 1.55x faster than `sh1sum` in our default case.
