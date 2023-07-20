@@ -27,11 +27,11 @@ Guide: Installing SailfishX on Xperias
     - 3.3.2.a - [... on devices / SailfishOS releases without home volume encryption](#332a---on-devices--sailfishos-releases-without-home-volume-encryption)
     - 3.3.2.b - [... on devices / SailfishOS releases with home volume encryption](#332b---on-devices--SailfishOS-releases-with-home-volume-encryption)
 
-* 4 - Installing software
-  - 4.1 - Using the Jolla Store
-  - 4.2 - Using OpenRepos (SailfishOS community repositories)
-  - 4.3 - Using the SailfishOS:Chum community repository
-  - 4.4 - Installing Patchmanager
+* 4 - [Installing software](#4-Installing-software)
+  - 4.1 - [Using the Jolla Store](#41-Using-the-Jolla-Store)
+  - 4.2 - [Using OpenRepos (SailfishOS community repositories)](#42-Using-OpenRepos--SailfishOS-community-repositories-)
+  - 4.3 - [Using the SailfishOS:Chum community repository](#43-Using-the-SailfishOS-Chum-community-repository)
+  - 4.4 - [Installing Patchmanager](#44-Installing-Patchmanager)
 
 * 4.5 - Installing Android app stores' client apps
   - 4.5.1 - F-Droid
