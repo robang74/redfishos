@@ -1,0 +1,11 @@
+e42c975e43280d524bac58a9ed395ea2  /usr/lib64/qt5/qml/Sailfish/Bluetooth/BluetoothDeviceColumnView.qml
+bbe7c336d82cbe01393af054c67e64f2  /usr/lib64/qt5/qml/Sailfish/Bluetooth/BluetoothDevicePicker.qml
+0fc4cd8529e194871dade6360e7d1c27  /usr/lib64/qt5/qml/Sailfish/Bluetooth/BluetoothDevicePickerDialog.qml
+829c6c859a9fcfefc6ca1ab7d402e6af  /usr/lib64/qt5/qml/Sailfish/Bluetooth/BluetoothDeviceTypeComboBox.qml
+97efa1742311a641ce45b33d4a01b2c3  /usr/lib64/qt5/qml/Sailfish/Bluetooth/BluetoothViewPlaceholder.qml
+c9636d60a9378141b39fa5964508e29c  /usr/lib64/qt5/qml/Sailfish/Bluetooth/PairedDeviceSettings.qml
+0314b6c8dfc6701527794942dc468b85  /usr/lib64/qt5/qml/Sailfish/Bluetooth/TrustBluetoothDeviceSwitch.qml
+cdccc548d839bdaf883c25eb808925c7  /usr/lib64/qt5/qml/Sailfish/Bluetooth/libsailfishbluetoothplugin.so
+795f59d4c5bc847bbc3d6057f222111e  /usr/lib64/qt5/qml/Sailfish/Bluetooth/plugins.qmltypes
+da7fa29504e4899fc609115ecd160802  /usr/lib64/qt5/qml/Sailfish/Bluetooth/qmldir
+3d5992f1a68933c272fc885208ab991e  /usr/share/translations/sailfish_components_bluetooth_qt5_eng_en.qm

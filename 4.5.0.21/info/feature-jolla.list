@@ -1,0 +1,2 @@
+/etc/zypp/systemCheck.d/feature-jolla.check
+/usr/share/ssu/features.d/customer-jolla.ini

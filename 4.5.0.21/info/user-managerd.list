@@ -1,0 +1,15 @@
+/etc/dbus-1/system.d/org.sailfishos.usermanager.conf
+/usr/bin/user-managerd
+/usr/lib/systemd/system/autologin@105000.service.wants/guest_disable_suw.service
+/usr/lib/systemd/system/autologin@105000.service.wants/home-sailfish_guest.mount
+/usr/lib/systemd/system/dbus-org.sailfishos.usermanager.service
+/usr/lib/systemd/system/guest_disable_suw.service
+/usr/lib/systemd/system/home-sailfish_guest.mount
+/usr/lib/systemd/system/user@105000.service.wants/home-sailfish_guest.mount
+/usr/sbin/userdel_local.sh
+/usr/share/dbus-1/system-services/org.sailfishos.usermanager.service
+/usr/share/licenses/user-managerd-0.8.7
+/usr/share/licenses/user-managerd-0.8.7/LICENSE
+/usr/share/user-managerd/create.d
+/usr/share/user-managerd/pre-switch.d
+/usr/share/user-managerd/remove.d

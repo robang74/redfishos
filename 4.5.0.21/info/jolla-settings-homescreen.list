@@ -1,0 +1,11 @@
+/usr/share/jolla-settings/entries/events.json
+/usr/share/jolla-settings/entries/gestures.json
+/usr/share/jolla-settings/entries/lockscreen.json
+/usr/share/jolla-settings/pages/events
+/usr/share/jolla-settings/pages/events/events.qml
+/usr/share/jolla-settings/pages/gestures
+/usr/share/jolla-settings/pages/gestures/gestures.qml
+/usr/share/jolla-settings/pages/lockscreen
+/usr/share/jolla-settings/pages/lockscreen/ApplicationSelectionPage.qml
+/usr/share/jolla-settings/pages/lockscreen/ShortcutItem.qml
+/usr/share/jolla-settings/pages/lockscreen/lockscreen.qml

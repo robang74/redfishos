@@ -1,0 +1,9 @@
+/etc/dbus-1/system.d/ofono.conf
+/etc/ofono
+/etc/ofono/push_forwarder.d
+/usr/lib/systemd/system/network.target.wants/ofono.service
+/usr/lib/systemd/system/ofono.service
+/usr/sbin/ofonod
+/usr/share/licenses/ofono-1.29+git6
+/usr/share/licenses/ofono-1.29+git6/COPYING
+/var/lib/ofono

@@ -1,0 +1,9 @@
+/usr/lib64/libEGL.so.1
+/usr/lib64/libEGL.so.1.0.0
+/usr/lib64/libhybris-eglplatformcommon.so.1
+/usr/lib64/libhybris-eglplatformcommon.so.1.0.0
+/usr/lib64/libhybris-hwcomposerwindow.so.1
+/usr/lib64/libhybris-hwcomposerwindow.so.1.0.0
+/usr/lib64/libhybris/eglplatform_fbdev.so
+/usr/lib64/libhybris/eglplatform_hwcomposer.so
+/usr/lib64/libhybris/eglplatform_null.so

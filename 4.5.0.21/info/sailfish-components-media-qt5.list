@@ -1,0 +1,10 @@
+/usr/lib64/qt5/qml/Sailfish/Media/MediaListItem.qml
+/usr/lib64/qt5/qml/Sailfish/Media/MediaPlayerControlsPanel.qml
+/usr/lib64/qt5/qml/Sailfish/Media/MediaPlayerPanelBackground.qml
+/usr/lib64/qt5/qml/Sailfish/Media/MprisControls.qml
+/usr/lib64/qt5/qml/Sailfish/Media/MprisManagerControls.qml
+/usr/lib64/qt5/qml/Sailfish/Media/MprisPlayerControls.qml
+/usr/lib64/qt5/qml/Sailfish/Media/libsailfishmediaplugin.so
+/usr/lib64/qt5/qml/Sailfish/Media/plugins.qmltypes
+/usr/lib64/qt5/qml/Sailfish/Media/qmldir
+/usr/share/translations/sailfish_components_media_eng_en.qm

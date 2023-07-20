@@ -1,0 +1,10 @@
+/usr/lib/systemd/user/booster-qt5-signal.service
+/usr/lib/systemd/user/booster-qt5.service
+/usr/lib/systemd/user/booster-qt5@.service
+/usr/lib/systemd/user/user-session.target.wants/booster-qt5.service
+/usr/lib64/libmdeclarativecache5.so.0
+/usr/lib64/libmdeclarativecache5.so.0.0
+/usr/lib64/libmdeclarativecache5.so.0.0.0
+/usr/libexec/mapplauncherd/booster-qt5
+/usr/share/licenses/mapplauncherd-qt5-1.1.22
+/usr/share/licenses/mapplauncherd-qt5-1.1.22/LICENSE.LGPL21

@@ -1,0 +1,5 @@
+f2b7d141cfca6d3354c97e53760fc705  /usr/bin/jolla-settings-system-flashlight
+cc54a884cb6ebde15d67255f03861f8d  /usr/lib/oneshot.d/update-flashlight-settings-path
+54c9b667ed10f5b90c7fc98a5a74d7d9  /usr/share/dbus-1/services/com.jolla.settings.system.flashlight.service
+56f0a6431faaf61c668ea8b4aaeccb48  /usr/share/jolla-settings/entries/flashlight.json
+fcc58f16eee760ecf8cb4d039b4748be  /usr/share/jolla-settings/pages/flashlight/EnableSwitch.qml

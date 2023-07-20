@@ -1,0 +1,6 @@
+22de3bc18a095acd6e5a8d1b2e12dadb  /usr/share/accounts/providers/memotoo.provider
+aa8e52b0173fd3272290bd08098740a3  /usr/share/accounts/services/memotoo-caldav.service
+53aabdfa60837e8d1d6a0db8ed1bcf58  /usr/share/accounts/services/memotoo-carddav.service
+4e6f5cd80ae77d747784c4cb6ab9c505  /usr/share/accounts/ui/memotoo-settings.qml
+cd52f03b94cc0a385eb97fe6231b3b4a  /usr/share/accounts/ui/memotoo-update.qml
+5b475cd2220a7bb6bb60feeb89748a42  /usr/share/accounts/ui/memotoo.qml

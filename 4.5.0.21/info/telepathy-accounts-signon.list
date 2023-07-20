@@ -1,0 +1,8 @@
+/usr/lib64/mission-control-plugins.0/mcp-account-manager-uoa.so
+/usr/libexec/telepathy-sasl-signon
+/usr/share/dbus-1/services/org.freedesktop.Telepathy.Client.SaslSignonAuth.service
+/usr/share/licenses/telepathy-accounts-signon-0.1.28
+/usr/share/licenses/telepathy-accounts-signon-0.1.28/COPYING
+/usr/share/licenses/telepathy-accounts-signon-0.1.28/COPYING.LGPL
+/usr/share/mapplauncherd/privileges.d/telepathy-accounts-signon.privileges
+/usr/share/telepathy/clients/SaslSignonAuth.client

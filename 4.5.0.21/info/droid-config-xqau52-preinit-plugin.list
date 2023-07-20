@@ -1,0 +1,3 @@
+/usr/lib/startup/preinit/get_bootstate
+/usr/lib/startup/preinit/is_erase_needed
+/usr/lib/startup/preinit/is_total_erase_supported

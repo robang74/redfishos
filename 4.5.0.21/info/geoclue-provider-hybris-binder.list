@@ -1,0 +1,12 @@
+/etc/dbus-1
+/etc/dbus-1/system.d
+/etc/dbus-1/system.d/com.jollamobile.gps.conf
+/usr/lib/systemd/user/dbus-org.freedesktop.Geoclue.Providers.Hybris.service
+/usr/lib/systemd/user/geoclue-providers-hybris.service
+/usr/libexec/geoclue-hybris
+/usr/share/dbus-1
+/usr/share/dbus-1/services
+/usr/share/dbus-1/services/org.freedesktop.Geoclue.Providers.Hybris.service
+/usr/share/geoclue-providers/geoclue-hybris.provider
+/usr/share/licenses/geoclue-provider-hybris-binder-0.2.35
+/usr/share/licenses/geoclue-provider-hybris-binder-0.2.35/COPYING

@@ -1,0 +1,10 @@
+55835d60650ef0e023681113afb177a5  /usr/lib64/telepathy/gabble-0/lib/libgabble-plugins-0.18.4.so
+55835d60650ef0e023681113afb177a5  /usr/lib64/telepathy/gabble-0/lib/libgabble-plugins.so
+41b6bb1ea519b405c478870c227f8c80  /usr/lib64/telepathy/gabble-0/lib/libwocky-telepathy-gabble-0.18.4.so
+41b6bb1ea519b405c478870c227f8c80  /usr/lib64/telepathy/gabble-0/lib/libwocky.so
+71ffdcf679b258bec7513b802f0945f2  /usr/lib64/telepathy/gabble-0/plugins/libconsole.so
+1fd78e20a9b7df2aeb71cda4c6d90917  /usr/lib64/telepathy/gabble-0/plugins/libgateways.so
+8defc226e510940125fffc7b6350d036  /usr/libexec/telepathy-gabble
+5f5c7d3b7408e32c3c4891f168008be9  /usr/share/dbus-1/services/org.freedesktop.Telepathy.ConnectionManager.gabble.service
+bb7a27a6c848263d77d197664ff5fffb  /usr/share/licenses/telepathy-gabble-0.18.4+git6/COPYING
+840a60f49fc6267e25b3367efe513b2c  /usr/share/telepathy/managers/gabble.manager

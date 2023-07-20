@@ -1,0 +1,5 @@
+/bin/bash
+/bin/sh
+/etc/profile.d/set_ps1.sh
+/usr/bin/bash
+/usr/bin/sh

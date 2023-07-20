@@ -1,0 +1,11 @@
+c004397d6e4546aa3cdf226dd6a65420  /usr/bin/mc-tool
+e8fa8c8df9c722484ae64f3fed66770b  /usr/bin/mc-wait-for-name
+8c0ee85ad7ff3717510713a0c4112f0c  /usr/lib/systemd/user/mission-control-5.service
+8c0ee85ad7ff3717510713a0c4112f0c  /usr/lib/systemd/user/user-session.target.wants/mission-control-5.service
+cb2a1a7eaffc0623503ecb4a232ca521  /usr/lib64/libmission-control-plugins.so.0
+cb2a1a7eaffc0623503ecb4a232ca521  /usr/lib64/libmission-control-plugins.so.0.5.1
+87cfb83e26436087a08b90bab3573066  /usr/libexec/mission-control-5
+74ebaa910d8379bcc24bbc9916c6341d  /usr/share/dbus-1/services/org.freedesktop.Telepathy.AccountManager.service
+2f757ad90324a309ad951891808d5e7b  /usr/share/dbus-1/services/org.freedesktop.Telepathy.MissionControl5.service
+d8045f3b8f929c1cb29a1e3fd737b499  /usr/share/licenses/telepathy-mission-control-5.16.6+git7/COPYING
+d6127f292cd2f04f2fbfb8d325b234a7  /usr/share/mapplauncherd/privileges.d/telepathy-mission-control.privileges

@@ -1,0 +1,7 @@
+e1f42a59b7ca18989628342b24f16852  /usr/bin/jolla-signon-ui
+2da76e55d616f8cbe74c90c5a3b502d6  /usr/lib/systemd/user/jolla-signon-ui.service
+2da76e55d616f8cbe74c90c5a3b502d6  /usr/lib/systemd/user/user-session.target.wants/jolla-signon-ui.service
+aea980460d5a08b7ce259f0f29260833  /usr/share/dbus-1/services/com.nokia.singlesignonui.service
+caa037e0975ee5862b72644673e7590c  /usr/share/licenses/jolla-signon-ui-0.2.13/LICENSE.BSD
+621fe9ff2bd41498ee16bedbe1b5e913  /usr/share/mapplauncherd/privileges.d/jolla-signon-ui.privileges
+772fff3cb6eef75164b4b5043256e9ea  /usr/share/translations/jolla-signon-ui_eng_en.qm

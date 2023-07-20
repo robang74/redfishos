@@ -1,0 +1,13 @@
+03fce5731ace268807396c62298539cc  /etc/dbus-1/system.d/lipstick.conf
+93f460298d0b12386123841609131511  /usr/lib64/liblipstick-qt5.so.0
+93f460298d0b12386123841609131511  /usr/lib64/liblipstick-qt5.so.0.36
+93f460298d0b12386123841609131511  /usr/lib64/liblipstick-qt5.so.0.36.24
+ded17f635c965e899d55b95100d63f46  /usr/lib64/qt5/qml/org/nemomobile/lipstick/liblipstickplugin.so
+ecf7de2ee83018187c6837bfd5062c70  /usr/lib64/qt5/qml/org/nemomobile/lipstick/qmldir
+fbc093901857fcd118f065f900982c24  /usr/share/licenses/lipstick-qt5-0.36.24/LICENSE.LGPL
+ac31ab91106c8a117be4a4fc3ed80b28  /usr/share/lipstick/androidnotificationpriorities
+b45b56657927bd322a8180c5a51cd4d0  /usr/share/lipstick/notificationcategories/im.received.conf
+099f7cf37b8a30bf1dc150a8d1bfd354  /usr/share/lipstick/notificationcategories/x-nemo.battery.conf
+bd3a4fb8c28c431c9178ebd7575c1f8a  /usr/share/lipstick/simplecompositor/simplecompositor.qml
+f456b8c878ce425df51ed33e02745110  /usr/share/mapplauncherd/privileges.d/lipstick-qt5.privileges
+e8adc9d6baee55e99944847138e8d214  /usr/share/translations/lipstick_eng_en.qm

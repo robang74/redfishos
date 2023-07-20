@@ -1,0 +1,12 @@
+/etc/buteo/profiles/client/dropbox-backup.xml
+/etc/buteo/profiles/client/dropbox-backupquery.xml
+/etc/buteo/profiles/client/dropbox-backuprestore.xml
+/etc/buteo/profiles/client/dropbox-images.xml
+/etc/buteo/profiles/sync/dropbox.Backup.xml
+/etc/buteo/profiles/sync/dropbox.BackupQuery.xml
+/etc/buteo/profiles/sync/dropbox.BackupRestore.xml
+/etc/buteo/profiles/sync/dropbox.Images.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libdropbox-backup-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libdropbox-backupquery-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libdropbox-backuprestore-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libdropbox-images-client.so

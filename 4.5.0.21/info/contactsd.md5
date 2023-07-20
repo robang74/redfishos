@@ -1,0 +1,16 @@
+707490c5c294e4954b9f8ee4875813da  /usr/bin/contactsd
+d646ac58a6f12aa4b5483790ca1e0ae5  /usr/lib/systemd/user/contactsd.service
+d646ac58a6f12aa4b5483790ca1e0ae5  /usr/lib/systemd/user/post-user-session.target.wants/contactsd.service
+ebf1b7a73cd30498d74ddbf68969cde6  /usr/lib64/contactsd-1.0/plugins/libbirthdayplugin.so
+0071be270e02b2dd3e36a614070a2480  /usr/lib64/contactsd-1.0/plugins/libcalendarplugin.so
+9079b6428f311f2c7916e0c3a55e29a6  /usr/lib64/contactsd-1.0/plugins/libexporterplugin.so
+9e159d1d0505c4f407fb8cb697494cdc  /usr/lib64/contactsd-1.0/plugins/libsimplugin.so
+5fc0a9490f5d2b1c3de2565e5cc2df50  /usr/lib64/contactsd-1.0/plugins/libtelepathyplugin.so
+ad9ec270a01d7ea1f9d544a3fc5d9cba  /usr/lib64/libcontactsd.so.1
+ad9ec270a01d7ea1f9d544a3fc5d9cba  /usr/lib64/libcontactsd.so.1.4
+ad9ec270a01d7ea1f9d544a3fc5d9cba  /usr/lib64/libcontactsd.so.1.4.13
+411080a56ff917a5a1aa08c98acae354  /usr/share/licenses/contactsd-1.4.13/LGPL_EXCEPTION.txt
+fbc093901857fcd118f065f900982c24  /usr/share/licenses/contactsd-1.4.13/LICENSE.LGPL
+3f8db8f7c94370e2fc63db9341c40370  /usr/share/mapplauncherd/privileges.d/contactsd.privileges
+cd0b49ff636a16febb17629ab51b1eab  /usr/share/translations/contactsd.qm
+cd0b49ff636a16febb17629ab51b1eab  /usr/share/translations/contactsd_eng_en.qm

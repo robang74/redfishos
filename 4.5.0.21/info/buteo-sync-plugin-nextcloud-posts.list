@@ -1,0 +1,3 @@
+/etc/buteo/profiles/client/nextcloud-posts.xml
+/etc/buteo/profiles/sync/nextcloud.Posts.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-posts-client.so

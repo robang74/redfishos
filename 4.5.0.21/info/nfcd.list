@@ -1,0 +1,9 @@
+/etc/dbus-1/system.d/org.neard.conf
+/etc/dbus-1/system.d/org.sailfishos.nfc.daemon.conf
+/etc/dbus-1/system.d/org.sailfishos.nfc.settings.conf
+/usr/lib/systemd/system/network.target.wants/nfcd.service
+/usr/lib/systemd/system/nfcd.service
+/usr/sbin/nfcd
+/usr/share/licenses/nfcd-1.1.14
+/usr/share/licenses/nfcd-1.1.14/LICENSE
+/var/lib/nfcd

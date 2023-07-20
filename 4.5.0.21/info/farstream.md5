@@ -1,0 +1,14 @@
+4780e052f393483f809d912913e91f78  /usr/lib64/farstream-0.2/libmulticast-transmitter.so
+86218ae5bbf88011dcc3769f168f20b1  /usr/lib64/farstream-0.2/libnice-transmitter.so
+fb37be54853db9f57c65748a587e815c  /usr/lib64/farstream-0.2/librawudp-transmitter.so
+7e52bedb22627fa649c6dd0cb1d4febc  /usr/lib64/farstream-0.2/libshm-transmitter.so
+1ed03bc3bdff7baa470907aa5470a951  /usr/lib64/gstreamer-1.0/libfsrawconference.so
+e6f2b488e4fd2f2599bfbb773255bc8f  /usr/lib64/gstreamer-1.0/libfsrtpconference.so
+d8c20a686a185d10666e4daba246a51f  /usr/lib64/gstreamer-1.0/libfsrtpxdata.so
+6438f08536f7dfedd83f83cb9693849d  /usr/lib64/gstreamer-1.0/libfsvideoanyrate.so
+5d2c220d462d9d3a0f74e2796cd68d68  /usr/lib64/libfarstream-0.2.so.5
+5d2c220d462d9d3a0f74e2796cd68d68  /usr/lib64/libfarstream-0.2.so.5.1.1
+4bd04cf2d9fc22b4fd1746def7d77b18  /usr/share/farstream/0.2/fsrawconference/default-element-properties
+365b3e7899e0836e8b9e4e6dc9f293a3  /usr/share/farstream/0.2/fsrtpconference/default-codec-preferences
+8a39a0dac4fef0dabf05b22f499116d2  /usr/share/farstream/0.2/fsrtpconference/default-element-properties
+fbc093901857fcd118f065f900982c24  /usr/share/licenses/farstream-0.2.9+git1/COPYING

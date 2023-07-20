@@ -1,0 +1,6 @@
+e5e9929ae3431c9ed76def512115132a  /usr/lib64/qt5/qml/Nemo/Configuration/libnemoconfiguration.so
+554d53b30663ee67a3ef4ff907e8d7df  /usr/lib64/qt5/qml/Nemo/Configuration/plugins.qmltypes
+e213eaa41817b2db6b2d55f56463c83c  /usr/lib64/qt5/qml/Nemo/Configuration/qmldir
+e5e9929ae3431c9ed76def512115132a  /usr/lib64/qt5/qml/org/nemomobile/configuration/libnemoconfiguration.so
+d04232916bc36ad23e81f5e10b6d2ed3  /usr/lib64/qt5/qml/org/nemomobile/configuration/qmldir
+caa037e0975ee5862b72644673e7590c  /usr/share/licenses/nemo-qml-plugin-configuration-qt5-0.2.6/LICENSE.BSD

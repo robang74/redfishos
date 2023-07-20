@@ -1,0 +1,6 @@
+7abb5ffc00d344037a1dc8ff2921688b  /usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/NextcloudFeed.qml
+27d4815ab262ff5bea9fef5413ab9e00  /usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/NextcloudFeedItem.qml
+19b8f68510b6e35823b6d1a16ccb317d  /usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/libjollaeventsviewnextcloudplugin.so
+c95a5f56c3e17b6a42df2ba1f5d3590e  /usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/qmldir
+6932c0c7005e666c8e386cbfbf0b9171  /usr/share/lipstick/eventfeed/nextcloud-delegate.qml
+e107614ec3f0426e52d15f5d023a6e8e  /usr/share/translations/eventsview-nextcloud_eng_en.qm

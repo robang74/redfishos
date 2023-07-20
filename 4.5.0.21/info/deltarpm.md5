@@ -1,0 +1,5 @@
+13293267201e156cb8f29df96ee60e01  /usr/bin/applydeltarpm
+59c7ce2b9f3f054ecb61959b808ea867  /usr/bin/combinedeltarpm
+cbcc4d9836e52efb682110d3edcfc4ea  /usr/bin/makedeltarpm
+fc3d932a415611364dc69898292a7305  /usr/bin/rpmdumpheader
+574af071cf0d60a71cb781844bbe2d76  /usr/share/licenses/deltarpm-3.6.3+git1/LICENSE.BSD

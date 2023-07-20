@@ -1,0 +1,5 @@
+6ee4eca0fa7d17fe20ed281262b703d6  /usr/bin/sailjaild
+94ab325dc6eb1552408d04c142e0f0f0  /usr/lib/systemd/system/multi-user.target.wants/sailjaild.service
+94ab325dc6eb1552408d04c142e0f0f0  /usr/lib/systemd/system/sailjaild.service
+90228d8cfa991cc6cf02be39b22cf73c  /usr/share/dbus-1/system.d/sailjaild.conf
+5373835f6c082e9d709e6e51a596adb5  /usr/share/licenses/sailjail-daemon-1.1.23/COPYING

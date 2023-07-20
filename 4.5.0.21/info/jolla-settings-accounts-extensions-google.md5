@@ -1,0 +1,10 @@
+5ecf9d2fb221bc32d0726e25125655fd  /usr/share/accounts/providers/google.provider
+c540d7bb26c1fa49903d915bfda2898d  /usr/share/accounts/services/google-calendars.service
+315953bffa1789fc90783d80ea0f7a56  /usr/share/accounts/services/google-contacts.service
+05d9a75b163280e73aadc4ba3778b7e1  /usr/share/accounts/services/google-gmail.service
+87cb96873943948691cbe406adea0e76  /usr/share/accounts/services/google-sync.service
+e8c83af61684aad3b7fe59b70c601909  /usr/share/accounts/services/picasa.service
+4da9aadfe996882220975e8eeb53796c  /usr/share/accounts/ui/GoogleSettingsDisplay.qml
+2bebe79077369872c0053a2ec017a313  /usr/share/accounts/ui/google-settings.qml
+4acbc754fb1297760314bb30021d8f49  /usr/share/accounts/ui/google-update.qml
+7a749f830a82a734ed6d66590592ff05  /usr/share/accounts/ui/google.qml

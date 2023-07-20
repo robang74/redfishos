@@ -1,0 +1,9 @@
+b2e61013d3bef160324490b1e7a5303a  /usr/share/accounts/providers/onedrive.provider
+4707371175354d6985806368d6b23076  /usr/share/accounts/services/onedrive-backup.service
+1c66cec92fc35feef808b49b973b16ec  /usr/share/accounts/services/onedrive-images.service
+e2a0f5a7afa76b601308872a9d11d218  /usr/share/accounts/services/onedrive-sharing.service
+fbf236cb0ff7c28dd74f4704b2164714  /usr/share/accounts/services/onedrive-sync.service
+765e07ada1bae8636b55daf34e11ce56  /usr/share/accounts/ui/OneDriveSettingsDisplay.qml
+4d134b16f885352be2d4249559b49adf  /usr/share/accounts/ui/onedrive-settings.qml
+4ef8693a70a428c6decdc6229d1505ad  /usr/share/accounts/ui/onedrive-update.qml
+558d049b17fe7239053868aaecf7259f  /usr/share/accounts/ui/onedrive.qml

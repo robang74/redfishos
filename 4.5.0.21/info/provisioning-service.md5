@@ -1,0 +1,6 @@
+a988ca686665ac35683dd1be7f457d70  /etc/dbus-1/system.d/provisioning.conf
+f3128a526648293d420b6428fed3f23c  /etc/ofono/push_forwarder.d/ofono-provisioning.conf
+a0a63e8659f5e2b196861f0fab294d7f  /usr/lib/systemd/system/dbus-org.nemomobile.provisioning.service
+f148ed3dfd312b164e3bb7756ba6a153  /usr/libexec/provisioning-service
+947ba0233569be76a53a4a6e0b2d6bf0  /usr/share/dbus-1/system-services/org.nemomobile.provisioning.service
+eb723b61539feef013de476e68b5c50a  /usr/share/licenses/provisioning-service-0.1.8/COPYING

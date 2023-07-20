@@ -1,0 +1,9 @@
+/etc/openvpn
+/usr/lib64/openvpn
+/usr/lib64/openvpn/plugins
+/usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so
+/usr/lib64/openvpn/plugins/openvpn-plugin-down-root.so
+/usr/sbin/openvpn
+/usr/share/licenses/openvpn-2.5.5+git1
+/usr/share/licenses/openvpn-2.5.5+git1/COPYING
+/usr/share/licenses/openvpn-2.5.5+git1/COPYRIGHT.GPL

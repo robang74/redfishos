@@ -1,0 +1,15 @@
+12b4ba8419d8519eeb4abbbd51cb0346  /etc/dbus-1/system.d/org.nemo.ssu.conf
+844d35e07178c53b944ad3beb6ba48ca  /usr/bin/ssu
+fdf428a39a61b8e4556967e023363c6a  /usr/bin/ssud
+9aff4c0cb7cf63914ec2d47765a26663  /usr/lib/oneshot.d/ssu-update-repos
+5ee30c34295b107eea1b09218a2d48c3  /usr/lib/systemd/system/dbus-org.nemo.ssu.service
+8818dcd62ad6ca97aec5776e89b445ae  /usr/lib64/libssu.so.1
+8818dcd62ad6ca97aec5776e89b445ae  /usr/lib64/libssu.so.1.0
+8818dcd62ad6ca97aec5776e89b445ae  /usr/lib64/libssu.so.1.0.24
+1fece06bfe27e6d945b36ce48f8e4cec  /usr/lib64/ssu/libsandboxhook.so
+b4765c04deb7043365a108c3ae84e0af  /usr/libexec/zypp/plugins/urlresolver/ssu
+833b02134963d930a3eb1c51ae95bb10  /usr/share/dbus-1/system-services/org.nemo.ssu.service
+af9b3be74ea6f3461d7e5fe9c57e7239  /usr/share/licenses/ssu-1.0.24/COPYING
+f50b85de08141ecb338e943bafdbaebf  /usr/share/licenses/ssu-1.0.24/COPYING.BSD
+b234ee4d69f5fce4486a80fdaf4a4263  /usr/share/licenses/ssu-1.0.24/COPYING.GPL
+2d5025d4aa3495befef8f17206a5b0a1  /usr/share/licenses/ssu-1.0.24/COPYING.LGPL

@@ -1,0 +1,4 @@
+/usr/lib64/ofono/plugins
+/usr/lib64/ofono/plugins/sonymodemswitcher.so
+/usr/share/sony-modem-switcher
+/usr/share/sony-modem-switcher/service_provider_sim_configs.xml

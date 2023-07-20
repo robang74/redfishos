@@ -1,0 +1,12 @@
+/usr/lib/systemd/user/actdead-session.target
+/usr/lib/systemd/user/actdead-session.target.wants
+/usr/lib/systemd/user/booster-session.target
+/usr/lib/systemd/user/booster-session.target.wants
+/usr/lib/systemd/user/post-actdead-session.target
+/usr/lib/systemd/user/post-actdead-session.target.wants
+/usr/lib/systemd/user/post-user-session.target
+/usr/lib/systemd/user/post-user-session.target.wants
+/usr/lib/systemd/user/pre-user-session.target
+/usr/lib/systemd/user/pre-user-session.target.wants
+/usr/lib/systemd/user/user-session.target
+/usr/lib/systemd/user/user-session.target.wants

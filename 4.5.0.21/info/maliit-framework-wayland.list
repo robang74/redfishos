@@ -1,0 +1,11 @@
+/etc/profile.d/maliit-server.sh
+/usr/bin/maliit-server
+/usr/lib/systemd/user/maliit-server.service
+/usr/lib/systemd/user/user-session.target.wants/maliit-server.service
+/usr/lib64/libmaliit-plugins.so.2
+/usr/lib64/libmaliit-plugins.so.2.2.1
+/usr/lib64/maliit
+/usr/share/dbus-1/services/org.maliit.server.service
+/usr/share/licenses/maliit-framework-wayland-2.2.1+git2
+/usr/share/licenses/maliit-framework-wayland-2.2.1+git2/LICENSE.LGPL
+/usr/share/maliit

@@ -1,0 +1,5 @@
+/system/build.prop
+/system/etc/prop.default
+/vendor/build.prop
+/vendor/etc/vintf/manifest.xml
+/vendor/odm/etc/build.prop

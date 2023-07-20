@@ -1,0 +1,8 @@
+72fe3209d54dff708499c68f8adf3031  /usr/lib64/modprobe.d/dist-blacklist.conf
+2d95aaaa5af0f7ff3c707342d5934103  /usr/share/hwdata/iab.txt
+06f88c6ecf7cda186ac4e5c1fee854e9  /usr/share/hwdata/oui.txt
+a6b7f7b8294f461b66ad2473eaf28b59  /usr/share/hwdata/pci.ids
+1b593b9079eac36b75de821f2a9107c1  /usr/share/hwdata/pnp.ids
+6b9a6666113bb1b19dbf31d72d8c680a  /usr/share/hwdata/usb.ids
+b234ee4d69f5fce4486a80fdaf4a4263  /usr/share/licenses/hwdata-0.335/COPYING
+1556547711e8246992b999edd9445a57  /usr/share/licenses/hwdata-0.335/LICENSE

@@ -1,0 +1,8 @@
+/etc/dbus-1/session.d/connectionagent.conf
+/usr/bin/connectionagent
+/usr/lib/systemd/user/connectionagent.service
+/usr/lib/systemd/user/user-session.target.wants/connectionagent.service
+/usr/share/dbus-1/services/com.jolla.Connectiond.service
+/usr/share/licenses/connectionagent-qt5-0.11.42
+/usr/share/licenses/connectionagent-qt5-0.11.42/COPYING
+/usr/share/mapplauncherd/privileges.d/connectionagent

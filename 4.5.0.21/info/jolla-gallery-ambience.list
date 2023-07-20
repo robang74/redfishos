@@ -1,0 +1,16 @@
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/AmbienceAction.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/AmbienceActions.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/AmbienceList.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/AmbienceSettingsDialog.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/AmbienceSettingsPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/AmbienceSettingsView.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/ColorSlider.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/ListButton.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/ToneAction.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/VolumeAction.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/Wallpaper.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/libjollagalleryambienceplugin.so
+/usr/lib64/qt5/qml/com/jolla/gallery/ambience/qmldir
+/usr/share/jolla-settings/entries/jolla-gallery-ambience.json
+/usr/share/jolla-settings/pages/jolla-gallery-ambience/ambience.qml
+/usr/share/translations/gallery-ambience_eng_en.qm

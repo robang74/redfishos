@@ -1,0 +1,6 @@
+3320f58eff2bc202b6415d6185c51801  /usr/lib64/qt5/qml/Amber/QrFilter/libqrfilter.so
+d1f1011b870effa222da7073b8d0b278  /usr/lib64/qt5/qml/Amber/QrFilter/plugins.qmltypes
+ae89844f48c9fb5447134cabfe15aa99  /usr/lib64/qt5/qml/Amber/QrFilter/qmldir
+ccd657789af4512743870ca244d86355  /usr/libexec/zxing-daemon
+d92775655c1798eae5c7bd4fae6b4be2  /usr/share/dbus-1/services/org.amberapi.zxing.service
+650e893673eb59696f3d4ee64f6d2357  /usr/share/licenses/qr-filter-qml-plugin-1.0.5/LICENSE

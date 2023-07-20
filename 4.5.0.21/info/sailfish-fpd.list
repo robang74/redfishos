@@ -1,0 +1,10 @@
+/etc/dbus-1/system.d
+/etc/dbus-1/system.d/org.sailfishos.fingerprint1.conf
+/etc/sailfish-fpd
+/usr/bin/sailfish-fpd
+/usr/lib/systemd/system/multi-user.target.wants/sailfish-fpd.service
+/usr/lib/systemd/system/sailfish-fpd.service
+/usr/share/licenses/sailfish-fpd-1.5.0
+/usr/share/licenses/sailfish-fpd-1.5.0/COPYING
+/usr/share/user-managerd/remove.d/fingerprint.sh
+/var/lib/sailfish-fpd

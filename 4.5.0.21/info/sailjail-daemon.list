@@ -1,0 +1,9 @@
+/etc/sailjail
+/etc/sailjail/applications
+/etc/sailjail/config
+/usr/bin/sailjaild
+/usr/lib/systemd/system/multi-user.target.wants/sailjaild.service
+/usr/lib/systemd/system/sailjaild.service
+/usr/share/dbus-1/system.d/sailjaild.conf
+/usr/share/licenses/sailjail-daemon-1.1.23
+/usr/share/licenses/sailjail-daemon-1.1.23/COPYING

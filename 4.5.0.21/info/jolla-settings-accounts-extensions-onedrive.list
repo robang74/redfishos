@@ -1,0 +1,9 @@
+/usr/share/accounts/providers/onedrive.provider
+/usr/share/accounts/services/onedrive-backup.service
+/usr/share/accounts/services/onedrive-images.service
+/usr/share/accounts/services/onedrive-sharing.service
+/usr/share/accounts/services/onedrive-sync.service
+/usr/share/accounts/ui/OneDriveSettingsDisplay.qml
+/usr/share/accounts/ui/onedrive-settings.qml
+/usr/share/accounts/ui/onedrive-update.qml
+/usr/share/accounts/ui/onedrive.qml

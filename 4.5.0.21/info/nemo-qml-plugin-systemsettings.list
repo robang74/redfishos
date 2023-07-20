@@ -1,0 +1,14 @@
+/etc/location
+/etc/location/location.conf
+/usr/lib64/libsystemsettings.so.0
+/usr/lib64/libsystemsettings.so.0.10
+/usr/lib64/libsystemsettings.so.0.10.2
+/usr/lib64/qt5/qml/org/nemomobile/systemsettings/libnemosystemsettings.so
+/usr/lib64/qt5/qml/org/nemomobile/systemsettings/plugins.qmltypes
+/usr/lib64/qt5/qml/org/nemomobile/systemsettings/qmldir
+/usr/libexec/setlocale
+/usr/share/licenses/nemo-qml-plugin-systemsettings-0.10.2
+/usr/share/licenses/nemo-qml-plugin-systemsettings-0.10.2/LICENSE.BSD
+/usr/share/translations/qml_plugin_systemsettings_eng_en.qm
+/var/lib/location
+/var/lib/location/location.conf

@@ -1,0 +1,5 @@
+cc8ed1cc8173bb30b98474540fd192d4  /usr/libexec/geoclue-mlsdb
+9ff4ef13b87c7b5d1c30a5deefc80113  /usr/share/dbus-1/services/org.freedesktop.Geoclue.Providers.Mlsdb.service
+50eb9a237e986f3db39e721da5c55550  /usr/share/geoclue-providers/geoclue-mlsdb.provider
+4fbd65380cdd255951079008b364516c  /usr/share/licenses/geoclue-provider-mlsdb-0.1.7/COPYING
+b1cf00a8ae4ddc1c4d50878c0fc514c7  /usr/share/mapplauncherd/privileges.d/geoclue-provider-mlsdb.privileges

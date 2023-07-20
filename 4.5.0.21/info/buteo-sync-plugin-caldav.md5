@@ -1,0 +1,5 @@
+4d9e27f3827565cd76a0ea4253009197  /etc/buteo/profiles/client/caldav.xml
+beec5b395edb123e18e1c1501eed542e  /etc/buteo/profiles/sync/caldav-sync.xml
+6e0cb03ed584696b8affaff7fc330580  /usr/lib64/buteo-plugins-qt5/oopp/libcaldav-client.so
+bc55ef00029965213a835a5772a9211a  /usr/lib64/mkcalplugins/libcaldavinvitationplugin.so
+70ccd3c2a93e52b0dfbadfcbeb24f1ae  /usr/share/licenses/buteo-sync-plugin-caldav-0.2.11/LICENSE

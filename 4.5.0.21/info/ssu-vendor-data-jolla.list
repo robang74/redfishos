@@ -1,0 +1,7 @@
+/etc/pki/rpm-gpg
+/etc/pki/rpm-gpg/gpg-pubkey-2f7da79c-5f7b0fd1.asc
+/etc/pki/rpm-gpg/gpg-pubkey-76db038c-5f914913.asc
+/etc/ssu/ssu.ini
+/usr/lib/oneshot.d/ssu-vendor-data-jolla-rpm-import-keys
+/usr/share/ssu/repos.d/10-jolla.ini
+/usr/share/ssu/ssu-defaults.ini

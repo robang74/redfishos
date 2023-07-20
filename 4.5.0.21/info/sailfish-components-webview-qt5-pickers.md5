@@ -1,0 +1,17 @@
+55239a6e88c3703e8218c9bf754b5d30  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/ContentPicker.qml
+54945fad612ee559ae97184ca22a2165  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/DownloadPicker.qml
+dad6b1bc20b8c417a8475c12da39c23c  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/ImagePicker.qml
+ea250145df3c2c2d795dd9db6476469f  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/MultiContentPicker.qml
+ffee2dea620b71b7d62d961ff0b7e6fa  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/MultiImagePicker.qml
+7f47415819e50da4fa7f5539489a7028  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/MultiMusicPicker.qml
+12b9c03848e0928970d9ea8fa566dfb3  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/MultiSelectDialog.qml
+d06508007eb39e4bee83d6adde3316e8  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/MultiVideoPicker.qml
+a2ae4e0c29d86605ffaf2ef6b8f21725  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/MusicPicker.qml
+6dc977a9f00e7def45ce56f362d37451  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/PickerCreator.qml
+ec47d52fb07656f5b28f8bd032b1cee6  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/PickerOpener.qml
+9482479a4870c22027c5f7ec248d5066  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/SingleSelectPage.qml
+05cc1ee9f023946e605d69cc32d86b6f  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/VideoPicker.qml
+d6cc915bc560c81e6d09fa3dccb08297  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/libsailfishwebviewpickersplugin.so
+5a9552917c262fa3a075f0cc64204369  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/plugins.qmltypes
+41e9fcb8f4bb3582c23886ac07224b68  /usr/lib64/qt5/qml/Sailfish/WebView/Pickers/qmldir
+72ad6694b793b78f0e02f2b921b4a0ec  /usr/share/translations/sailfish_components_webview_pickers_qt5_eng_en.qm

@@ -1,0 +1,5 @@
+/usr/lib64/qt5/qml/org/kde/bluezqt
+/usr/lib64/qt5/qml/org/kde/bluezqt/DevicesModel.qml
+/usr/lib64/qt5/qml/org/kde/bluezqt/libbluezqtextensionplugin.so
+/usr/lib64/qt5/qml/org/kde/bluezqt/plugins.qmltypes
+/usr/lib64/qt5/qml/org/kde/bluezqt/qmldir

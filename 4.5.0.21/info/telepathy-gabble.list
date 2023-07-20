@@ -1,0 +1,14 @@
+/usr/lib64/telepathy/gabble-0
+/usr/lib64/telepathy/gabble-0/lib
+/usr/lib64/telepathy/gabble-0/lib/libgabble-plugins-0.18.4.so
+/usr/lib64/telepathy/gabble-0/lib/libgabble-plugins.so
+/usr/lib64/telepathy/gabble-0/lib/libwocky-telepathy-gabble-0.18.4.so
+/usr/lib64/telepathy/gabble-0/lib/libwocky.so
+/usr/lib64/telepathy/gabble-0/plugins
+/usr/lib64/telepathy/gabble-0/plugins/libconsole.so
+/usr/lib64/telepathy/gabble-0/plugins/libgateways.so
+/usr/libexec/telepathy-gabble
+/usr/share/dbus-1/services/org.freedesktop.Telepathy.ConnectionManager.gabble.service
+/usr/share/licenses/telepathy-gabble-0.18.4+git6
+/usr/share/licenses/telepathy-gabble-0.18.4+git6/COPYING
+/usr/share/telepathy/managers/gabble.manager

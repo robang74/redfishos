@@ -1,0 +1,16 @@
+3b2f612805d62d7ab4004b8152feefa1  /usr/share/accounts/providers/onlinesync.provider
+b324402feb0f9b1487de01b229432272  /usr/share/accounts/services/onlinesync-caldav.service
+c2f1eff94666e726c317bfa761a51e38  /usr/share/accounts/services/onlinesync-carddav.service
+2c993b7085ddf42d7305addb68959024  /usr/share/accounts/ui/OnlineCalendarDisplay.qml
+0aee3a2f4b70e1963608443164150138  /usr/share/accounts/ui/OnlineCalendarUpdatePage.qml
+5ba2af96f7be85e573d29252aa5f3bf5  /usr/share/accounts/ui/OnlineSyncAccountAdvancedSettings.qml
+219c90864f0e6adeaf008e61b315c2b4  /usr/share/accounts/ui/OnlineSyncAccountAdvancedSettingsDialog.qml
+1d81456db776f53c6fd841c79e09bd41  /usr/share/accounts/ui/OnlineSyncAccountCreationAgent.qml
+61a8725d603b666e48a51b2770dae066  /usr/share/accounts/ui/OnlineSyncAccountCreationDialog.qml
+ba04d1103ba635dd77de1ff13eb9f4d1  /usr/share/accounts/ui/OnlineSyncAccountCreator.qml
+301d07e809b1d11c6dbbfe3d639bf83b  /usr/share/accounts/ui/OnlineSyncAccountCredentialsUpdater.qml
+0cb4a1b09a49366d701e3ded21a98c6d  /usr/share/accounts/ui/OnlineSyncAccountSettingsAgent.qml
+52b6098ecaf9ecfc25e7a2766ee1b589  /usr/share/accounts/ui/OnlineSyncAccountSettingsDisplay.qml
+594fdbeaf4e26fa12b027b34bc8b6992  /usr/share/accounts/ui/onlinesync-settings.qml
+cd52f03b94cc0a385eb97fe6231b3b4a  /usr/share/accounts/ui/onlinesync-update.qml
+72e652bff15dec9dc21cc7d18ede6f75  /usr/share/accounts/ui/onlinesync.qml

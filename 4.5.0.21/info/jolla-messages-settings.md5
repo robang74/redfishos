@@ -1,0 +1,5 @@
+514c5291f553f639db67d0260414d406  /usr/lib64/qt5/qml/com/jolla/messages/settings/translations/libmessagessettingsplugin.so
+54819c00b6224930085d8ea846fe43ec  /usr/lib64/qt5/qml/com/jolla/messages/settings/translations/qmldir
+116d4f1a146429c0311adfc87f6c643b  /usr/share/jolla-settings/entries/jolla-messages.json
+1459e9979005fabf32240dd4b2e17648  /usr/share/jolla-settings/pages/jolla-messages/SimCardMessagingSettings.qml
+2ddc815028ed0b0c7e17188425882a1d  /usr/share/jolla-settings/pages/jolla-messages/messages.qml

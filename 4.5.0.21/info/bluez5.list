@@ -1,0 +1,11 @@
+/etc/dbus-1/system.d/bluetooth.conf
+/usr/bin/mpris-proxy
+/usr/lib/systemd/system/bluetooth.service
+/usr/lib/systemd/system/dbus-org.bluez.service
+/usr/lib/systemd/system/network.target.wants/bluetooth.service
+/usr/lib/systemd/user/mpris-proxy.service
+/usr/lib/systemd/user/post-user-session.target.wants/mpris-proxy.service
+/usr/lib64/bluetooth/plugins/sixaxis.so
+/usr/libexec/bluetooth/bluetoothd
+/usr/share/dbus-1/system-services/org.bluez.service
+/var/lib/bluetooth

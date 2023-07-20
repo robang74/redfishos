@@ -1,0 +1,11 @@
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimErrorState.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimIndicator.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimManager.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimPicker.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimPickerMenuItem.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimSelector.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/SimSelectorBase.qml
+/usr/lib64/qt5/qml/Sailfish/Telephony/libsailfishtelephonyplugin.so
+/usr/lib64/qt5/qml/Sailfish/Telephony/plugins.qmltypes
+/usr/lib64/qt5/qml/Sailfish/Telephony/qmldir
+/usr/share/translations/sailfish_components_telephony_eng_en.qm

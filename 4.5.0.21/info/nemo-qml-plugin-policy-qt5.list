@@ -1,0 +1,9 @@
+/usr/lib64/qt5/qml/Nemo/Policy
+/usr/lib64/qt5/qml/Nemo/Policy/libnemopolicy.so
+/usr/lib64/qt5/qml/Nemo/Policy/plugins.qmltypes
+/usr/lib64/qt5/qml/Nemo/Policy/qmldir
+/usr/lib64/qt5/qml/org/nemomobile/policy
+/usr/lib64/qt5/qml/org/nemomobile/policy/libnemopolicy.so
+/usr/lib64/qt5/qml/org/nemomobile/policy/qmldir
+/usr/share/licenses/nemo-qml-plugin-policy-qt5-0.1.4
+/usr/share/licenses/nemo-qml-plugin-policy-qt5-0.1.4/LICENSE.BSD

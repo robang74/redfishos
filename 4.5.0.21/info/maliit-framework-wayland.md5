@@ -1,0 +1,8 @@
+aad220624f5479b3ca4774b098c17096  /etc/profile.d/maliit-server.sh
+4530fbea438234aa85cbe52e80d189f3  /usr/bin/maliit-server
+da80bed4a55c68077c66a31c7c7a5267  /usr/lib/systemd/user/maliit-server.service
+da80bed4a55c68077c66a31c7c7a5267  /usr/lib/systemd/user/user-session.target.wants/maliit-server.service
+c973018207816ec857aa918505f7b949  /usr/lib64/libmaliit-plugins.so.2
+c973018207816ec857aa918505f7b949  /usr/lib64/libmaliit-plugins.so.2.2.1
+68c569d173a862f472343a7a0356d3c3  /usr/share/dbus-1/services/org.maliit.server.service
+5c917f6ce94ceb8d8d5e16e2fca5b9ad  /usr/share/licenses/maliit-framework-wayland-2.2.1+git2/LICENSE.LGPL

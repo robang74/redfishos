@@ -1,0 +1,5 @@
+/etc/fsstorage.d/main-storage-conf.xml
+/etc/fsstorage.d/sd-storage-conf.xml
+/usr/share/mtp/blacklist-home.conf
+/usr/share/mtp/device.ico
+/usr/share/mtp/deviceinfo.xml

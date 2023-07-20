@@ -1,0 +1,13 @@
+c0b7467049d5efe1dbf19e93ee1b468b  /etc/dbus-1/session.d/ohm-session-agent.conf
+0ea3f63dcd1eeeeb09446dc5ad7b3896  /etc/ohm/plugins.d/auth.ini
+58c1b580ece8e9e75b09e8aa4eec814b  /etc/ohm/plugins.d/resource.ini
+b53ec2d907fb7a74ffa2abdd7a6321ac  /usr/bin/ohm-session-agent
+ea7244aa3222da956d89f8564b760650  /usr/lib/systemd/user/ohm-session-agent.service
+ea7244aa3222da956d89f8564b760650  /usr/lib/systemd/user/pre-user-session.target.wants/ohm-session-agent.service
+8d03149b3b00a8b0b775cd2f224676ef  /usr/lib64/ohm/libohm_auth.so
+1a5baa77cf918a850252f1c925335bcd  /usr/lib64/ohm/libohm_auth_test.so
+17012aa116e88ddc162e56d5fc48d4c5  /usr/lib64/ohm/libohm_delay.so
+bb31e756c015434c84b494eef4e6eb76  /usr/lib64/ohm/libohm_fsif.so
+61644958d11e9e2919486243c9017bec  /usr/lib64/ohm/libohm_resource.so
+22741c1b740f552476655c85e224cbf0  /usr/share/dbus-1/services/org.freedesktop.ohm_session_agent.service
+4fbd65380cdd255951079008b364516c  /usr/share/licenses/ohm-plugins-misc-1.10.0/COPYING

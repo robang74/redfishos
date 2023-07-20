@@ -1,0 +1,11 @@
+677b57e76a9336a4772a693f0b169b7e  /usr/lib64/qt5/qml/Sailfish/Telephony/SimErrorState.qml
+6de3475b74f11e5445f3af248a8b0c41  /usr/lib64/qt5/qml/Sailfish/Telephony/SimIndicator.qml
+9f397a95c4e83a897438d5c3f4ab82da  /usr/lib64/qt5/qml/Sailfish/Telephony/SimManager.qml
+fa5d997e78c5a8ad4c027d3c8053b2e0  /usr/lib64/qt5/qml/Sailfish/Telephony/SimPicker.qml
+fef85a8fc4a9666060b7c4ce40644663  /usr/lib64/qt5/qml/Sailfish/Telephony/SimPickerMenuItem.qml
+17641e2e99eaa0c42ec31b005756c7d1  /usr/lib64/qt5/qml/Sailfish/Telephony/SimSelector.qml
+c3018d71e90b0b1b01541b3caedeee10  /usr/lib64/qt5/qml/Sailfish/Telephony/SimSelectorBase.qml
+d804456d264978a2afa99a4c8f7e9bbb  /usr/lib64/qt5/qml/Sailfish/Telephony/libsailfishtelephonyplugin.so
+f9589ef60a37cc74421e2fc3daba7388  /usr/lib64/qt5/qml/Sailfish/Telephony/plugins.qmltypes
+d39c886cce4a28f4bba5554942141c20  /usr/lib64/qt5/qml/Sailfish/Telephony/qmldir
+e520524db7c30bdd6dbf90ff97f5f4ae  /usr/share/translations/sailfish_components_telephony_eng_en.qm

@@ -1,0 +1,8 @@
+/usr/lib/systemd/user/telepathy-ring.service
+/usr/lib64/mission-control-plugins.0/mcp-account-manager-ring.so
+/usr/libexec/telepathy-ring
+/usr/share/dbus-1/services/org.freedesktop.Telepathy.ConnectionManager.ring.service
+/usr/share/licenses/telepathy-ring-2.5.13
+/usr/share/licenses/telepathy-ring-2.5.13/COPYING
+/usr/share/mapplauncherd/privileges.d/telepathy-ring.privileges
+/usr/share/telepathy/managers/ring.manager

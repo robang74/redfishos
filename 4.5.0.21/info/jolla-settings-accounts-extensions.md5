@@ -1,0 +1,11 @@
+07434e3be49d538774ccc7f509edd505  /usr/share/accounts/service_types/IM.service-type
+7a47e84d192997eca13ca4e862fd6e21  /usr/share/accounts/service_types/caldav.service-type
+67b14292dbf98e0ce960bc2f46c9f2c9  /usr/share/accounts/service_types/carddav.service-type
+33d66718f7a1576d6bb2b92387503375  /usr/share/accounts/service_types/developermode.service-type
+5776a97a4ca07182a37039e73a3157d4  /usr/share/accounts/service_types/e-mail.service-type
+b1c422a1074e831f55b3c79f790fa08c  /usr/share/accounts/service_types/microblogging.service-type
+55de6fa131f7b1d38ff991980332076a  /usr/share/accounts/service_types/posts.service-type
+40ce9d48054e067e5c51d8f92bd20a49  /usr/share/accounts/service_types/sharing.service-type
+4ebda6e1ff07309160a53b073d73540b  /usr/share/accounts/service_types/storage.service-type
+6c579970fe5cce31121bbf0ec42a4351  /usr/share/accounts/service_types/store.service-type
+2b795ddd7feb1abefcc7007ca3a3a077  /usr/share/accounts/service_types/sync.service-type

@@ -1,0 +1,10 @@
+/etc/dbus-1/system.d/pacrunner.conf
+/usr/bin/proxy
+/usr/lib/systemd/system/dbus-org.pacrunner.service
+/usr/lib64/libproxy.so.1
+/usr/lib64/libproxy.so.1.0.0
+/usr/sbin/pacrunner
+/usr/share/dbus-1/system-services/org.pacrunner.service
+/usr/share/licenses/pacrunner-0.18+git2
+/usr/share/licenses/pacrunner-0.18+git2/COPYING
+/usr/share/licenses/pacrunner-0.18+git2/COPYING.LIB
