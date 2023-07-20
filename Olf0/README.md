@@ -24,8 +24,8 @@ Guide: Installing SailfishX on Xperias
   - 3.3 - [Increasing the "root" LVM volume size](#33-Increasing-the-root-LVM-volume-size)
     - 3.3.1 - [Booting a SailfishOS recovery image via fastboot boot](#331-Booting-a-SailfishOS-recovery-image-via-fastboot-boot)
     - 3.3.2 - [Shrinking the "home" LVM volume and extending the "root" one](#332-Shrinking-the-home-LVM-volume-and-extending-the-root-one)
-    - 3.3.2.a - ... on devices / SailfishOS releases without home volume encryption
-    - 3.3.2.b - ... on devices / SailfishOS releases with home volume encryption
+    - 3.3.2.a - [... on devices / SailfishOS releases without home volume encryption](#332a---on-devices--sailfishos-releases-without-home-volume-encryption)
+    - 3.3.2.b - [... on devices / SailfishOS releases with home volume encryption](#332b---on-devices--SailfishOS-releases-with-home-volume-encryption)
 
 * 4 - Installing software
   - 4.1 - Using the Jolla Store
