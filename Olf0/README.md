@@ -14,16 +14,16 @@ Guide: Installing SailfishX on Xperias
 
 * 1 - [Preparation](#1-preparation)
   - 1.1 - [First steps](#11-first-steps)
-  - 1.2 - Further preparation (modem initialisation)
+  - 1.2 - [Further preparation](#12-further-preparation-modem-initialisation) (modem initialisation)
 
-* 2 - Flashing SailfishOS
+* 2 - [Flashing SailfishOS](#2-Flashing-SailfishOS)
 
-* 3 - Basic configuration of SailfishOS
-  - 3.1 - First boot ("initial bring-up")
-  - 3.2 - Enabling "developer mode"
-  - 3.3 - Increasing the "root" LVM volume size
-    - 3.3.1 - Booting a SailfishOS recovery image via fastboot boot
-    - 3.3.2 - Shrinking the "home" LVM volume and extending the "root" one
+* 3 - [Basic configuration of SailfishOS](#3-Basic-configuration-of-SailfishOS)
+  - 3.1 - [First boot ("initial bring-up")](#31-First-boot-initial-bring-up)
+  - 3.2 - [Enabling "developer mode"](#32-Enabling-developer-mode)
+  - 3.3 - [Increasing the "root" LVM volume size](#33-Increasing-the-root-LVM-volume-size)
+    - 3.3.1 - [Booting a SailfishOS recovery image via fastboot boot](#331-Booting-a-SailfishOS-recovery-image-via-fastboot-boot)
+    - 3.3.2 - [Shrinking the "home" LVM volume and extending the "root" one](#332-Shrinking-the-home-LVM-volume-and-extending-the-root-one)
     - 3.3.2.a - ... on devices / SailfishOS releases without home volume encryption
     - 3.3.2.b - ... on devices / SailfishOS releases with home volume encryption
 
@@ -118,7 +118,6 @@ Also switch on *Settings -> Lock screen & security -> Privacy: Location -> Use l
     Or alternatively (but tediously) transfer a privacy protecting network speed test app (e.g., download the latest APK of [*Speedtest* from F-Droid](https://f-droid.org/en/packages/com.dosse.speedtest/) on your PC) via Bluetooth, install it (needs "untrusted sources" enabled) and use that.<br />
     When done, switch mobile data (plus Bluetooth and "untrusted sources") off again.
 
-<br />
 Up to this point ...
 
 - your Xperia did not have a chance to transmit privacy relevant (e.g., device specific or personal) data to a third party, except for modem specific and SIM card data to your mobile network provider (which is unavoidable when using a SIM card).
