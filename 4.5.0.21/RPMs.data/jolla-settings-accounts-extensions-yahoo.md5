@@ -1,0 +1,6 @@
+0872c70993e207e83e30534977f5aa13  /usr/share/accounts/providers/yahoo.provider
+5102ef6bea5d6a54a3bbcca1c5583a30  /usr/share/accounts/services/yahoo-caldav.service
+fcb5b9decf5660e1e2c6cff07c74e0c4  /usr/share/accounts/services/yahoo-carddav.service
+990a3cb2c3635050f86550c383481a9b  /usr/share/accounts/ui/yahoo-settings.qml
+cd52f03b94cc0a385eb97fe6231b3b4a  /usr/share/accounts/ui/yahoo-update.qml
+f56e70a7ed59aa6b40111ea6f3a2cdda  /usr/share/accounts/ui/yahoo.qml

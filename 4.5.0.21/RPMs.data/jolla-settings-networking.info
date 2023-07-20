@@ -1,0 +1,16 @@
+Name        : jolla-settings-networking
+Version     : 1.0.20
+Release     : 1.10.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:37 CEST
+Group       : Unspecified
+Size        : 86367
+License     : Proprietary
+Signature   : RSA/SHA256, Thu 19 Jan 2023 15:36:44 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-settings-networking-1.0.20-1.10.1.jolla.src.rpm
+Build Date  : Thu 19 Jan 2023 15:35:53 CET
+Build Host  : phost23
+Vendor      : meego
+Summary     : Settings plugin for networking
+Description :
+Networking settings plugin for the Settings application.

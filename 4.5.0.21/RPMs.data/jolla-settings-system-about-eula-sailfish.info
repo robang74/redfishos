@@ -1,0 +1,16 @@
+Name        : jolla-settings-system-about-eula-sailfish
+Version     : 1.2.5.4
+Release     : 1.16.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:37 CEST
+Group       : Unspecified
+Size        : 247018
+License     : Proprietary
+Signature   : RSA/SHA256, Tue 14 Mar 2023 16:17:46 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-settings-system-1.2.5.4-1.16.1.jolla.src.rpm
+Build Date  : Tue 14 Mar 2023 16:17:10 CET
+Build Host  : phost27
+Vendor      : meego
+Summary     : About page text for Sailfish EULA
+Description :
+About page text for Sailfish EULA.

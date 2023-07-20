@@ -1,0 +1,9 @@
+4dd0d8b9977dc16b88948ab78cb24c7f  /usr/lib/systemd/user/booster-qt5-signal.service
+5f41a496c2cef45625153532fcc4970c  /usr/lib/systemd/user/booster-qt5.service
+d3e9b8df6dabca1d337c62e71f9aae1e  /usr/lib/systemd/user/booster-qt5@.service
+5f41a496c2cef45625153532fcc4970c  /usr/lib/systemd/user/user-session.target.wants/booster-qt5.service
+dc0921abf5616c32238b1a56f4e2505f  /usr/lib64/libmdeclarativecache5.so.0
+dc0921abf5616c32238b1a56f4e2505f  /usr/lib64/libmdeclarativecache5.so.0.0
+dc0921abf5616c32238b1a56f4e2505f  /usr/lib64/libmdeclarativecache5.so.0.0.0
+fc0e59f35c3170069c51b6e9b4cd3348  /usr/libexec/mapplauncherd/booster-qt5
+4fbd65380cdd255951079008b364516c  /usr/share/licenses/mapplauncherd-qt5-1.1.22/LICENSE.LGPL21

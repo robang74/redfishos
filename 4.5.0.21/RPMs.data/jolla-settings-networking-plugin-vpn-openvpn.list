@@ -1,0 +1,9 @@
+/usr/share/applications/ovpn-import.desktop
+/usr/share/jolla-settings/x-openvpn.xml
+/usr/share/sailfish-vpn/openvpn
+/usr/share/sailfish-vpn/openvpn/advanced.qml
+/usr/share/sailfish-vpn/openvpn/details.qml
+/usr/share/sailfish-vpn/openvpn/edit.qml
+/usr/share/sailfish-vpn/openvpn/import.qml
+/usr/share/sailfish-vpn/openvpn/importdialog.qml
+/usr/share/sailfish-vpn/openvpn/listitem.qml

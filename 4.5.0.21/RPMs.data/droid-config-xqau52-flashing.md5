@@ -1,0 +1,4 @@
+ec770d118207f559229b98b7045c571a  /usr/sbin/flash-partition
+0f56f4893e8742ad697155c5015d28d4  /var/lib/flash-partition/device-info
+f880b31d8e21dd6cbba686371b5272a4  /var/lib/platform-updates/flash-bootimg.sh
+69c306171a8e7eb147af4d92a34aae5f  /var/lib/platform-updates/flash-dtbo.sh

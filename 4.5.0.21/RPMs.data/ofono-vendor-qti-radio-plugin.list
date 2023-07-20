@@ -1,0 +1,4 @@
+/etc/ofono/binder.d
+/etc/ofono/binder.d/vendor-qti.conf
+/usr/lib64/ofono/plugins
+/usr/lib64/ofono/plugins/vendorqtiradioplugin.so

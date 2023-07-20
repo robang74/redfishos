@@ -1,0 +1,12 @@
+/usr/lib64/device-mapper
+/usr/lib64/device-mapper/libdevmapper-event-lvm2mirror.so
+/usr/lib64/device-mapper/libdevmapper-event-lvm2raid.so
+/usr/lib64/device-mapper/libdevmapper-event-lvm2snapshot.so
+/usr/lib64/device-mapper/libdevmapper-event-lvm2thin.so
+/usr/lib64/libdevmapper-event-lvm2.so.2.02
+/usr/lib64/libdevmapper-event-lvm2mirror.so
+/usr/lib64/libdevmapper-event-lvm2raid.so
+/usr/lib64/libdevmapper-event-lvm2snapshot.so
+/usr/lib64/libdevmapper-event-lvm2thin.so
+/usr/lib64/liblvm2app.so.2.2
+/usr/lib64/liblvm2cmd.so.2.02

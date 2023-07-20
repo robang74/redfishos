@@ -1,0 +1,7 @@
+cdc703f9d27f0d980271a9e95d0f18b2  /etc/libaudit.conf
+f6882df3fadc6fc20e8e7eea7200c69d  /usr/lib64/libaudit.so.1
+f6882df3fadc6fc20e8e7eea7200c69d  /usr/lib64/libaudit.so.1.0.0
+b0f2bb8b24f0140a08b47e6400febb7c  /usr/lib64/libauparse.so.0
+b0f2bb8b24f0140a08b47e6400febb7c  /usr/lib64/libauparse.so.0.0.0
+4fbd65380cdd255951079008b364516c  /usr/share/licenses/audit-libs-2.8.4+git8/lgpl-2.1.txt
+d9ac9343ad52d9e73b4828561c0423c9  /usr/share/man/man5/libaudit.conf.5.gz

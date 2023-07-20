@@ -1,0 +1,18 @@
+Name        : openconnect
+Version     : 8.10+git3
+Release     : 1.6.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:46 CEST
+Group       : Unspecified
+Size        : 2728215
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 19:00:41 CET, Key ID 5b1e398947394f23
+Source RPM  : openconnect-8.10+git3-1.6.2.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 18:59:42 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/openconnect/
+Summary     : Open client for Cisco AnyConnect VPN
+Description :
+This package provides a client for Cisco's "AnyConnect" VPN, which uses
+HTTPS and DTLS protocols.

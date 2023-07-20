@@ -1,0 +1,13 @@
+/usr/bin/mc-tool
+/usr/bin/mc-wait-for-name
+/usr/lib/systemd/user/mission-control-5.service
+/usr/lib/systemd/user/user-session.target.wants/mission-control-5.service
+/usr/lib64/libmission-control-plugins.so.0
+/usr/lib64/libmission-control-plugins.so.0.5.1
+/usr/lib64/mission-control-plugins.0
+/usr/libexec/mission-control-5
+/usr/share/dbus-1/services/org.freedesktop.Telepathy.AccountManager.service
+/usr/share/dbus-1/services/org.freedesktop.Telepathy.MissionControl5.service
+/usr/share/licenses/telepathy-mission-control-5.16.6+git7
+/usr/share/licenses/telepathy-mission-control-5.16.6+git7/COPYING
+/usr/share/mapplauncherd/privileges.d/telepathy-mission-control.privileges

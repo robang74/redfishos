@@ -1,0 +1,9 @@
+/etc/buteo/profiles/client/nextcloud-backup.xml
+/etc/buteo/profiles/client/nextcloud-backupquery.xml
+/etc/buteo/profiles/client/nextcloud-backuprestore.xml
+/etc/buteo/profiles/sync/nextcloud.Backup.xml
+/etc/buteo/profiles/sync/nextcloud.BackupQuery.xml
+/etc/buteo/profiles/sync/nextcloud.BackupRestore.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-backup-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-backupquery-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-backuprestore-client.so

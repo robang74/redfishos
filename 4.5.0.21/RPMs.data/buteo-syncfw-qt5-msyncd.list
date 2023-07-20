@@ -1,0 +1,9 @@
+/etc/syncwidget
+/etc/syncwidget/com.meego.msyncd
+/usr/bin/msyncd
+/usr/lib/systemd/user/msyncd.service
+/usr/lib/systemd/user/user-session.target.wants/msyncd.service
+/usr/lib64/buteo-plugins-qt5
+/usr/lib64/buteo-plugins-qt5/oopp
+/usr/share/glib-2.0/schemas/com.meego.msyncd.gschema.xml
+/usr/share/mapplauncherd/privileges.d/buteo-syncfw-qt5.privileges

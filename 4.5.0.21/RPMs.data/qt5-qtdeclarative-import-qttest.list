@@ -1,0 +1,7 @@
+/usr/lib64/qt5/qml/QtTest
+/usr/lib64/qt5/qml/QtTest/SignalSpy.qml
+/usr/lib64/qt5/qml/QtTest/TestCase.qml
+/usr/lib64/qt5/qml/QtTest/libqmltestplugin.so
+/usr/lib64/qt5/qml/QtTest/plugins.qmltypes
+/usr/lib64/qt5/qml/QtTest/qmldir
+/usr/lib64/qt5/qml/QtTest/testlogger.js

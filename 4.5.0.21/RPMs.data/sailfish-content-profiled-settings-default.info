@@ -1,0 +1,16 @@
+Name        : sailfish-content-profiled-settings-default
+Version     : 0.16.1
+Release     : 1.2.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:18 CEST
+Group       : Unspecified
+Size        : 3020
+License     : Proprietary
+Signature   : RSA/SHA256, Thu 19 Jan 2023 15:37:07 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-content-tones-default-0.16.1-1.2.1.jolla.src.rpm
+Build Date  : Thu 19 Jan 2023 15:36:38 CET
+Build Host  : phost19
+Vendor      : meego
+Summary     : Profiled configuration for Sailfish
+Description :
+Profiled configuration for Sailfish.

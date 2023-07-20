@@ -1,0 +1,21 @@
+Name        : lzo
+Version     : 2.10
+Release     : 1.6.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:40 CEST
+Group       : Unspecified
+Size        : 139108
+License     : GPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:24:32 CET, Key ID 5b1e398947394f23
+Source RPM  : lzo-2.10-1.6.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:21:22 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : http://www.oberhumer.com/opensource/lzo/
+Summary     : Data compression library with very fast (de)compression
+Description :
+LZO is a portable lossless data compression library written in ANSI C.
+It offers pretty fast compression and very fast decompression.
+Decompression requires no memory. In addition there are slower
+compression levels achieving a quite competitive compression ratio
+while still decompressing at this very high speed.

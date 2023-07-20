@@ -1,0 +1,6 @@
+/usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/NextcloudFeed.qml
+/usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/NextcloudFeedItem.qml
+/usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/libjollaeventsviewnextcloudplugin.so
+/usr/lib64/qt5/qml/com/jolla/eventsview/nextcloud/qmldir
+/usr/share/lipstick/eventfeed/nextcloud-delegate.qml
+/usr/share/translations/eventsview-nextcloud_eng_en.qm

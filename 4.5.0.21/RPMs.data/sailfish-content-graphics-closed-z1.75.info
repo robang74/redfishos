@@ -1,0 +1,17 @@
+Name        : sailfish-content-graphics-closed-z1.75
+Version     : 0.6.4
+Release     : 1.2.3.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:51:40 CEST
+Group       : System/GUI/Other
+Size        : 753887
+License     : Proprietary
+Signature   : RSA/SHA256, Wed 21 Dec 2022 15:03:54 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-content-graphics-closed-0.6.4-1.2.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 12:43:41 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/theme-ambient-icons-closed
+Summary     : Icons for applications with zoom factor 1.75
+Description :
+Icons for applications with zoom factor 1.75.

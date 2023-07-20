@@ -1,0 +1,17 @@
+Name        : jolla-camera-settings
+Version     : 1.2.24
+Release     : 1.10.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:57 CEST
+Group       : Unspecified
+Size        : 8172
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 09 Jan 2023 16:57:41 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-camera-1.2.24-1.10.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 16:57:04 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-jolla-camera
+Summary     : Setting page for jolla-camera
+Description :
+Setting page for jolla-camera.

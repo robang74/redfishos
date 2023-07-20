@@ -1,0 +1,23 @@
+Name        : libsigc++20
+Version     : 2.10.4+git1
+Release     : 1.5.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:39 CEST
+Group       : Unspecified
+Size        : 53488
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:26:02 CET, Key ID 5b1e398947394f23
+Source RPM  : libsigc++20-2.10.4+git1-1.5.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 10:46:23 CET
+Build Host  : phost18
+Vendor      : meego
+URL         : https://github.com/libsigcplusplus/libsigcplusplus
+Summary     : Typesafe signal framework for C++
+Description :
+libsigc++ implements a typesafe callback system for standard C++. It
+allows you to define signals and to connect those signals to any
+callback function, either global or a member function, regardless of
+whether it is static or virtual.
+
+libsigc++ is used by gtkmm to wrap the GTK+ signal system. It does not
+depend on GTK+ or gtkmm.

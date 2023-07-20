@@ -1,0 +1,8 @@
+3f9b8bd35b939b9bc063248b407c81b0  /usr/lib/systemd/user/buteo-mtp.service
+40aa0f6e292bff3afb9ad0c7f3210837  /usr/lib64/libmeegomtp.so.1
+40aa0f6e292bff3afb9ad0c7f3210837  /usr/lib64/libmeegomtp.so.1.0
+40aa0f6e292bff3afb9ad0c7f3210837  /usr/lib64/libmeegomtp.so.1.0.0
+edded394cda062be83296eb189832b7b  /usr/lib64/mtp/libfsstorage.so
+bee6875c5b8a84d94676a3742699e090  /usr/libexec/mtp_service
+cb8aedd3bced19bd8026d96a8b6876d7  /usr/share/licenses/buteo-mtp-qt5-0.9.7/COPYING
+e8d29108503c32ed85a9a71d4dba99c6  /usr/share/mapplauncherd/privileges.d/buteo-mtp-qt5.privileges

@@ -1,0 +1,6 @@
+/lib/udev/rules.d/85-regulatory.rules
+/sbin/crda
+/sbin/regdbdump
+/usr/lib64/libreg.so
+/usr/share/licenses/crda-4.14+git5
+/usr/share/licenses/crda-4.14+git5/LICENSE

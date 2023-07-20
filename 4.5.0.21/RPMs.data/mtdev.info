@@ -1,0 +1,24 @@
+Name        : mtdev
+Version     : 1.1.6+git1
+Release     : 1.6.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:39 CEST
+Group       : Unspecified
+Size        : 23890
+License     : MIT
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:36:06 CET, Key ID 5b1e398947394f23
+Source RPM  : mtdev-1.1.6+git1-1.6.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:22:11 CET
+Build Host  : phost25
+Vendor      : meego
+URL         : http://bitmath.org/code/mtdev/
+Summary     : A library to transform all kernel MT events to protocol B (slotted)
+Description :
+mtdev - The mtdev is a stand-alone library which transforms all variants of
+kernel MT events to the slotted type B protocol. The events put into mtdev
+may be from any MT device, specifically type A without contact tracking,
+type A with contact tracking, or type B with contact tracking. See the
+kernel documentation for further details. The bulk of the mtdev code has
+been out there since 2008, as part of the Multitouch X Driver. With this
+package, finger tracking and seamless MT protocol handling is available
+under a free license.

@@ -1,0 +1,17 @@
+Name        : buteo-sync-plugins-social-onedrive
+Version     : 0.4.18
+Release     : 1.15.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:25 CEST
+Group       : Unspecified
+Size        : 976510
+License     : LGPLv2
+Signature   : RSA/SHA256, Mon 09 Jan 2023 17:14:08 CET, Key ID 5b1e398947394f23
+Source RPM  : buteo-sync-plugins-social-0.4.18-1.15.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 17:10:12 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/buteo-sync-plugins-social
+Summary     : Provides synchronisation with OneDrive
+Description :
+Provides synchronisation with OneDrive.

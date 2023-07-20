@@ -1,0 +1,17 @@
+Name        : gstreamer1.0-droid
+Version     : 0.20221003.0
+Release     : 1.5.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:48 CEST
+Group       : Unspecified
+Size        : 354786
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:17:24 CET, Key ID 5b1e398947394f23
+Source RPM  : gstreamer1.0-droid-0.20221003.0-1.5.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:16:38 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://github.com/sailfishos/gst-droid
+Summary     : GStreamer droid plug-in contains elements using the Android HAL
+Description :
+GStreamer droid plug-in contains elements using the Android HAL

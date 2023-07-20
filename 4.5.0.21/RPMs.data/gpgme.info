@@ -1,0 +1,20 @@
+Name        : gpgme
+Version     : 1.2.0+git8
+Release     : 1.8.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:46 CEST
+Group       : Unspecified
+Size        : 485172
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:55:49 CET, Key ID 5b1e398947394f23
+Source RPM  : gpgme-1.2.0+git8-1.8.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:54:46 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/sailfishos/gpgme
+Summary     : GnuPG Made Easy - high level crypto API
+Description :
+GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG
+easier for applications.  It provides a high-level crypto API for
+encryption, decryption, signing, signature verification and key
+management.

@@ -1,0 +1,24 @@
+Name        : libjpeg-turbo
+Version     : 2.1.4+git1
+Release     : 1.7.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:38 CEST
+Group       : Unspecified
+Size        : 855135
+License     : IJG
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:17:25 CET, Key ID 5b1e398947394f23
+Source RPM  : libjpeg-turbo-2.1.4+git1-1.7.3.jolla.src.rpm
+Build Date  : Sat 17 Dec 2022 15:30:52 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://libjpeg-turbo.org/
+Summary     : A library for manipulating JPEG image format files
+Description :
+The libjpeg package contains a library of functions for manipulating
+JPEG images, as well as simple client programs for accessing the
+libjpeg functions.  Libjpeg client programs include cjpeg, djpeg,
+jpegtran, rdjpgcom and wrjpgcom.  Cjpeg compresses an image file into
+JPEG format.  Djpeg decompresses a JPEG file into a regular image
+file.  Jpegtran can perform various useful transformations on JPEG
+files.  Rdjpgcom displays any text comments included in a JPEG file.
+Wrjpgcom inserts text comments into a JPEG file.

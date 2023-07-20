@@ -1,0 +1,5 @@
+/etc/buteo/profiles/client/carddav.xml
+/etc/buteo/profiles/sync/carddav.Contacts.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libcarddav-client.so
+/usr/share/licenses/buteo-sync-plugin-carddav-0.1.8
+/usr/share/licenses/buteo-sync-plugin-carddav-0.1.8/LICENSE

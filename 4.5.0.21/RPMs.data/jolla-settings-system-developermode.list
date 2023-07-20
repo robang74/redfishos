@@ -1,0 +1,8 @@
+/usr/share/jolla-settings/entries/developermode.json
+/usr/share/jolla-settings/pages/developermode
+/usr/share/jolla-settings/pages/developermode/AccountManager.qml
+/usr/share/jolla-settings/pages/developermode/DeveloperAccountPrompt.qml
+/usr/share/jolla-settings/pages/developermode/DisclaimerDialog.qml
+/usr/share/jolla-settings/pages/developermode/DummyDeveloperModeSettings.qml
+/usr/share/jolla-settings/pages/developermode/RegisterSSUDialog.qml
+/usr/share/jolla-settings/pages/developermode/developermode.qml

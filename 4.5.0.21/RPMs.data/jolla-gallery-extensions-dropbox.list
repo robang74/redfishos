@@ -1,0 +1,8 @@
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox/DropboxAlbumsPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox/DropboxFullscreenPhotoPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox/DropboxGalleryIcon.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox/DropboxUsersPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox/libjollagallerydropboxplugin.so
+/usr/lib64/qt5/qml/com/jolla/gallery/dropbox/qmldir
+/usr/share/jolla-gallery/mediasources/DropboxCacheMediaSource.qml

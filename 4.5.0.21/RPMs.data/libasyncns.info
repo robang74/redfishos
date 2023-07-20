@@ -1,0 +1,19 @@
+Name        : libasyncns
+Version     : 0.8
+Release     : 1.5.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:48 CEST
+Group       : System/Libraries
+Size        : 49267
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:12:04 CET, Key ID 5b1e398947394f23
+Source RPM  : libasyncns-0.8-1.5.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:20:46 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : http://0pointer.de/lennart/projects/libasyncns
+Summary     : Asynchronous Name Service Library
+Description :
+libasyncns is a C library for Linux/Unix for executing name service queries asynchronously.
+It is an asynchronous wrapper around getaddrinfo(3), getnameinfo(3), res_query(3) and
+res_search(3) from libc and libresolv.

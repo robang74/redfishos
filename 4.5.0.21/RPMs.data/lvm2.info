@@ -1,0 +1,22 @@
+Name        : lvm2
+Version     : 2.02.177+git6
+Release     : 1.8.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:49 CEST
+Group       : Unspecified
+Size        : 2229362
+License     : GPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:50:30 CET, Key ID 5b1e398947394f23
+Source RPM  : lvm2-2.02.177+git6-1.8.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:48:43 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://github.com/sailfishos/lvm2
+Summary     : Userland logical volume management tools
+Description :
+LVM2 includes all of the support for handling read/write operations on
+physical volumes (hard disks, RAID-Systems, magneto optical, etc.,
+multiple devices (MD), see mdadd(8) or even loop devices, see
+losetup(8)), creating volume groups (kind of virtual disks) from one
+or more physical volumes and creating one or more logical volumes
+(kind of logical partitions) in volume groups.

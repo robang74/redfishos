@@ -1,0 +1,15 @@
+/etc/buteo/profiles/client/vk-calendars.xml
+/etc/buteo/profiles/client/vk-contacts.xml
+/etc/buteo/profiles/client/vk-images.xml
+/etc/buteo/profiles/client/vk-notifications.xml
+/etc/buteo/profiles/client/vk-posts.xml
+/etc/buteo/profiles/sync/vk.Calendars.xml
+/etc/buteo/profiles/sync/vk.Contacts.xml
+/etc/buteo/profiles/sync/vk.Images.xml
+/etc/buteo/profiles/sync/vk.Notifications.xml
+/etc/buteo/profiles/sync/vk.Posts.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libvk-calendars-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libvk-contacts-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libvk-images-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libvk-notifications-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libvk-posts-client.so

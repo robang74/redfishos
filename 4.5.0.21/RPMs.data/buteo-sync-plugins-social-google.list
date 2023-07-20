@@ -1,0 +1,9 @@
+/etc/buteo/profiles/client/google-calendars.xml
+/etc/buteo/profiles/client/google-contacts.xml
+/etc/buteo/profiles/client/google-signon.xml
+/etc/buteo/profiles/sync/google.Calendars.xml
+/etc/buteo/profiles/sync/google.Contacts.xml
+/etc/buteo/profiles/sync/google.Signon.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libgoogle-calendars-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libgoogle-contacts-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libgoogle-signon-client.so

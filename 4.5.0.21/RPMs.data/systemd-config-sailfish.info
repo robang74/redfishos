@@ -1,0 +1,16 @@
+Name        : systemd-config-sailfish
+Version     : 0.11.10
+Release     : 1.8.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:49 CEST
+Group       : Unspecified
+Size        : 5432
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:49:47 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-common-configurations-0.11.10-1.8.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:49:30 CET
+Build Host  : phost27
+Vendor      : meego
+Summary     : Sailfish configuration for systemd
+Description :
+This package provides sailfish configuration for systemd

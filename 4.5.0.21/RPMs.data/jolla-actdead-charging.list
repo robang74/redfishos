@@ -1,0 +1,7 @@
+/usr/bin/jolla-actdead-charging
+/usr/lib/systemd/user/actdead-session.target.wants/jolla-actdead-charging.service
+/usr/lib/systemd/user/jolla-actdead-charging.service
+/usr/share/jolla-actdead-charging/BatteryStatus.qml
+/usr/share/jolla-actdead-charging/ChargerTestItem.qml
+/usr/share/jolla-actdead-charging/main.qml
+/var/lib/environment/actdead/jolla-actdead-charging-environment.conf

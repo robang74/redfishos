@@ -1,0 +1,6 @@
+/usr/bin/applydeltarpm
+/usr/bin/combinedeltarpm
+/usr/bin/makedeltarpm
+/usr/bin/rpmdumpheader
+/usr/share/licenses/deltarpm-3.6.3+git1
+/usr/share/licenses/deltarpm-3.6.3+git1/LICENSE.BSD

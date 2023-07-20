@@ -1,0 +1,17 @@
+Name        : sailfish-device-encryption-service
+Version     : 0.11.0
+Release     : 1.5.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:04 CEST
+Group       : Unspecified
+Size        : 54873
+License     : Proprietary
+Signature   : RSA/SHA256, Tue 17 Jan 2023 13:53:13 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-device-encryption-0.11.0-1.5.2.jolla.src.rpm
+Build Date  : Tue 17 Jan 2023 13:50:38 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-sailfish-device-encryption
+Summary     : Sailfish Encryption Service
+Description :
+Encrypts home partition on request.

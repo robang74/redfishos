@@ -1,0 +1,12 @@
+dbab76ef01ea06e439fc52ba7bfd9fb2  /etc/dbus-1/system.d/usb_moded.conf
+6741a25d57d6585b6b337da17d2e9c0f  /etc/modprobe.d/g_ether.conf
+c7273976739eeeca938328576a4a0425  /etc/modprobe.d/usb_moded.conf
+0f28c560a55a8d6a19ba66dbd8155420  /etc/tmpfiles.d/usb-moded.conf
+e01e0777537c5c15f01ef27560283d8d  /etc/usb-moded/10-usb-moded-defaults.ini
+a15db15340e978f38d5f5ff9c58ea2ff  /usr/lib/systemd/system/basic.target.wants/usb-moded.service
+a15db15340e978f38d5f5ff9c58ea2ff  /usr/lib/systemd/system/usb-moded.service
+2a55ac7c538d82380c4c8ab59ca62017  /usr/sbin/usb_moded
+71d4e7838023226fccfe22bfffde5043  /usr/sbin/usb_moded_util
+5f30f0716dfdd0d91eb439ebec522ec2  /usr/share/licenses/usb-moded-0.86.0+mer62/LICENSE
+2027173022eb60bec3a7048ddd218aa9  /usr/share/user-managerd/remove.d/usb_mode_user_clear.sh
+5816543c2df55aae038915eef14f95d6  /var/lib/usb-moded/usb-moded.ini

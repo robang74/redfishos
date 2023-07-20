@@ -1,0 +1,16 @@
+/usr/lib64/libhybrissensorfw-qt5.so
+/usr/lib64/libhybrissensorfw-qt5.so.1
+/usr/lib64/libhybrissensorfw-qt5.so.1.0
+/usr/lib64/libhybrissensorfw-qt5.so.1.0.0
+/usr/lib64/sensord-qt5/libhybrisaccelerometeradaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisalsadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisgeorotationadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisgyroscopeadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrismagnetometeradaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisorientationadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrispressureadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisproximityadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisrotationadaptor-qt5.so
+/usr/lib64/sensord-qt5/libhybrisstepcounteradaptor-qt5.so
+/usr/share/licenses/hybris-libsensorfw-qt5-binder-0.14.4
+/usr/share/licenses/hybris-libsensorfw-qt5-binder-0.14.4/COPYING

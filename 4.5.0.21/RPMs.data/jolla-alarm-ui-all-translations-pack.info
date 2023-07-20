@@ -1,0 +1,17 @@
+Name        : jolla-alarm-ui-all-translations-pack
+Version     : 0.8.1
+Release     : 1.4.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:15 CEST
+Group       : System/Libraries
+Size        : 127912
+License     : Proprietary
+Signature   : RSA/SHA256, Tue 24 Jan 2023 10:41:49 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-alarm-ui-all-translations-0.8.1-1.4.2.jolla.src.rpm
+Build Date  : Tue 24 Jan 2023 10:34:14 CET
+Build Host  : phost18
+Vendor      : meego
+URL         : http://www.jolla.com
+Summary     : Collection of all jolla-alarm-ui translations
+Description :
+Collection of all jolla-alarm-ui translations in one binary rpm for speed of installation and update

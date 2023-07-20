@@ -1,0 +1,17 @@
+Name        : libwspcodec
+Version     : 2.2.6
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:16 CEST
+Group       : Unspecified
+Size        : 41344
+License     : GPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:00:38 CET, Key ID 5b1e398947394f23
+Source RPM  : libwspcodec-2.2.6-1.6.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:00:23 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://github.com/sailfishos/libwspcodec
+Summary     : WSP encoder and decoder library
+Description :
+Provides utilities to encode and decode WSP PDUs.

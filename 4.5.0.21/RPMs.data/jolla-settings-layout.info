@@ -1,0 +1,17 @@
+Name        : jolla-settings-layout
+Version     : 1.1.21
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:35 CEST
+Group       : Unspecified
+Size        : 560
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 09 Jan 2023 17:06:17 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-settings-1.1.21-1.6.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 17:05:19 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-jolla-settings
+Summary     : Jolla's Settings layout
+Description :
+Settings layout used as Jolla's default.

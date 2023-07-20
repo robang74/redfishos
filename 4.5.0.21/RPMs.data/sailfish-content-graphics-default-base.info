@@ -1,0 +1,17 @@
+Name        : sailfish-content-graphics-default-base
+Version     : 1.3.7
+Release     : 1.7.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:12 CEST
+Group       : Unspecified
+Size        : 1038743
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 13 Feb 2023 20:41:11 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-content-graphics-default-1.3.7-1.7.2.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 20:35:45 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/theme-jolla-ambient
+Summary     : Common base files for the default Sailfish theme scale factors
+Description :
+Common base files for the default Sailfish theme scale factors.

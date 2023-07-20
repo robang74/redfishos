@@ -1,0 +1,15 @@
+/etc/buteo/profiles/client/onedrive-backup.xml
+/etc/buteo/profiles/client/onedrive-backupquery.xml
+/etc/buteo/profiles/client/onedrive-backuprestore.xml
+/etc/buteo/profiles/client/onedrive-images.xml
+/etc/buteo/profiles/client/onedrive-signon.xml
+/etc/buteo/profiles/sync/onedrive.Backup.xml
+/etc/buteo/profiles/sync/onedrive.BackupQuery.xml
+/etc/buteo/profiles/sync/onedrive.BackupRestore.xml
+/etc/buteo/profiles/sync/onedrive.Images.xml
+/etc/buteo/profiles/sync/onedrive.Signon.xml
+/usr/lib64/buteo-plugins-qt5/oopp/libonedrive-backup-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libonedrive-backupquery-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libonedrive-backuprestore-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libonedrive-images-client.so
+/usr/lib64/buteo-plugins-qt5/oopp/libonedrive-signon-client.so

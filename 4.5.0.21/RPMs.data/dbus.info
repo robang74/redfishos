@@ -1,0 +1,19 @@
+Name        : dbus
+Version     : 1.14.4+git1
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:57 CEST
+Group       : Unspecified
+Size        : 472760
+License     : GPLv2+ or AFL
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:52:01 CET, Key ID 5b1e398947394f23
+Source RPM  : dbus-1.14.4+git1-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:51:02 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : http://www.freedesktop.org/software/dbus/
+Summary     : D-Bus message bus
+Description :
+D-Bus is a system for sending messages between applications. It is used both
+for the systemwide message bus service, and as a per-user-login-session
+messaging facility.

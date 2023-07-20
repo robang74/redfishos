@@ -1,0 +1,11 @@
+/etc/sysconfig/wpa_supplicant
+/etc/wpa_supplicant
+/etc/wpa_supplicant/wpa_supplicant.conf
+/usr/lib/systemd/system/wpa_supplicant.service
+/usr/sbin/wpa_cli
+/usr/sbin/wpa_passphrase
+/usr/sbin/wpa_supplicant
+/usr/share/dbus-1/system-services/fi.w1.wpa_supplicant1.service
+/usr/share/dbus-1/system.d/wpa_supplicant.conf
+/usr/share/licenses/wpa_supplicant-2.10+git1
+/usr/share/licenses/wpa_supplicant-2.10+git1/COPYING

@@ -1,0 +1,17 @@
+Name        : sailfish-utilities-all-translations-pack
+Version     : 0.8.1
+Release     : 1.4.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:57 CEST
+Group       : System/Libraries
+Size        : 176101
+License     : Proprietary
+Signature   : RSA/SHA256, Tue 24 Jan 2023 10:50:47 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-utilities-all-translations-0.8.1-1.4.2.jolla.src.rpm
+Build Date  : Tue 24 Jan 2023 10:42:48 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : http://www.jolla.com
+Summary     : Collection of all sailfish-utilities translations
+Description :
+Collection of all sailfish-utilities translations in one binary rpm for speed of installation and update

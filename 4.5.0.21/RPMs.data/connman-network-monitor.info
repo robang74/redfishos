@@ -1,0 +1,17 @@
+Name        : connman-network-monitor
+Version     : 0.0.0+git2
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:33 CEST
+Group       : Unspecified
+Size        : 18912
+License     : LGPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:01:43 CET, Key ID 5b1e398947394f23
+Source RPM  : connman-network-monitor-0.0.0+git2-1.6.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:01:17 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : https://github.com/sailfishos/connman-network-monitor
+Summary     : Connman plugin for GNetworkMonitor
+Description :
+Connman plugin for GNetworkMonitor.

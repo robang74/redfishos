@@ -1,0 +1,4 @@
+cdc012b1d891a3797b12f5dea5b84d83  /usr/lib/systemd/user/booster-browser@.service
+75d1d26383e9516eda10b0974c5f2c2f  /usr/libexec/mapplauncherd/booster-browser
+b4b110a8e2e13031871e9739e4984ddc  /usr/share/booster-browser/preload.qml
+243b725d71bb5df4a1e5920b344b86ad  /usr/share/licenses/mapplauncherd-booster-browser-0.2.0/COPYING.LESSER

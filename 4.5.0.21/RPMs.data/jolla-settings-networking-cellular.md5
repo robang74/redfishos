@@ -1,0 +1,13 @@
+37200c805a6442d5e9c556aa145cab1a  /usr/share/jolla-settings/entries/mobile.json
+c20c482f4cdacf5bfe365444b605b244  /usr/share/jolla-settings/entries/pin.json
+3b96634de76baa2cfd479d114b839c46  /usr/share/jolla-settings/pages/mobile/EditMobileNetworkPage.qml
+4eeb2442843391eca043f7a96be3f3d9  /usr/share/jolla-settings/pages/mobile/EnableSwitch.qml
+883ea1001c7203471bdcb4b12583a453  /usr/share/jolla-settings/pages/mobile/ImsStatus.qml
+858b5b70107e028c31d75fab8b6a6031  /usr/share/jolla-settings/pages/mobile/MobileDataSwitch.qml
+fc3df9883207db1b27c948be4d5a99a2  /usr/share/jolla-settings/pages/mobile/NetworkItemDelegate.qml
+f4403ab73a31a5e7dcd36fc5557b0796  /usr/share/jolla-settings/pages/mobile/SelectNetworkPage.qml
+540f1b1faf49fbb778c5c50c7e1c146e  /usr/share/jolla-settings/pages/mobile/SimMobileNetworkSettings.qml
+5467d2a0ce6acb93d9c989bb0655856d  /usr/share/jolla-settings/pages/mobile/mainpage.qml
+7582b200d151423893008456c7b96f46  /usr/share/jolla-settings/pages/pin/ModemPin.qml
+5a5e99f76f3ad87b1b7c89197d240bd4  /usr/share/jolla-settings/pages/pin/PinInputPage.qml
+0728072b4b4153bf912d503f03bf6900  /usr/share/jolla-settings/pages/pin/pin.qml

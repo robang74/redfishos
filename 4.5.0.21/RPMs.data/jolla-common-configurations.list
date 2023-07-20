@@ -1,0 +1,16 @@
+/etc/hostname
+/etc/sailjail-homescreen/allow.d/sailfish-allowlist.conf
+/etc/sailjail/config/50-enable-sandboxing.conf
+/etc/sailjail/config/50-sailfish-allowlist.conf
+/etc/zypp/systemCheck.d/jolla-core.check
+/usr/bin/jolla-usersetup
+/usr/lib/oneshot.d/hostname-setup
+/usr/lib/oneshot.d/remove-fimage-from-fstab
+/usr/lib/oneshot.d/remove-swap-from-fstab
+/usr/lib/systemd/system/home.mount.wants/quota@home.service
+/usr/lib/systemd/system/sys-brtfs-setup.service
+/usr/lib/systemd/system/sysinit.target.wants/sys-brtfs-setup.service
+/usr/lib/systemd/user/jolla-usersetup.service
+/usr/lib/systemd/user/pre-user-session.target.wants/jolla-usersetup.service
+/usr/libexec/sys-brtfs-setup
+/usr/share/dbus-1/system.d/dbus-sailfish-busconfig.conf

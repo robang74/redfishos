@@ -1,0 +1,8 @@
+aeac79afd96497ad6fbed9520bfd5f10  /usr/bin/wayland-scanner
+9cb419fa46945866a49eee7fd6e2eec1  /usr/lib64/libwayland-client.so.0
+9cb419fa46945866a49eee7fd6e2eec1  /usr/lib64/libwayland-client.so.0.3.0
+ec198111c28d1223a2f7b53992c42e49  /usr/lib64/libwayland-cursor.so.0
+ec198111c28d1223a2f7b53992c42e49  /usr/lib64/libwayland-cursor.so.0.0.0
+ededa9bf39caf1726b636e0a98506f6d  /usr/lib64/libwayland-server.so.0
+ededa9bf39caf1726b636e0a98506f6d  /usr/lib64/libwayland-server.so.0.1.0
+b31d8f53b6aaf2b4985d7dd7810a70d1  /usr/share/licenses/wayland-1.19.0+git1/COPYING

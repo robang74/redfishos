@@ -1,0 +1,10 @@
+/usr/bin/thumbnaild
+/usr/bin/thumbnaild-pdf
+/usr/bin/thumbnaild-video
+/usr/lib/systemd/user/dbus-org.nemomobile.thumbnaild.service
+/usr/share/dbus-1/interfaces/org.nemomobile.Thumbnailer.xml
+/usr/share/dbus-1/services/org.nemomobile.Thumbnailer.service
+/usr/share/licenses/thumbnaild-0.1.2
+/usr/share/licenses/thumbnaild-0.1.2/LICENSE.BSD
+/usr/share/licenses/thumbnaild-0.1.2/LICENSE.GPL2
+/usr/share/mapplauncherd/privileges.d/thumbnaild.privileges

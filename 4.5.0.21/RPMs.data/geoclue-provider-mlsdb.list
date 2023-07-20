@@ -1,0 +1,7 @@
+/usr/libexec/geoclue-mlsdb
+/usr/share/dbus-1/services/org.freedesktop.Geoclue.Providers.Mlsdb.service
+/usr/share/geoclue-provider-mlsdb
+/usr/share/geoclue-providers/geoclue-mlsdb.provider
+/usr/share/licenses/geoclue-provider-mlsdb-0.1.7
+/usr/share/licenses/geoclue-provider-mlsdb-0.1.7/COPYING
+/usr/share/mapplauncherd/privileges.d/geoclue-provider-mlsdb.privileges

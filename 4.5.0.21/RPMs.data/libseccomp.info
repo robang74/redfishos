@@ -1,0 +1,22 @@
+Name        : libseccomp
+Version     : 2.5.2+git1
+Release     : 1.5.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:45 CEST
+Group       : Unspecified
+Size        : 141463
+License     : LGPLv2
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:31:00 CET, Key ID 5b1e398947394f23
+Source RPM  : libseccomp-2.5.2+git1-1.5.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 10:43:38 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://github.com/seccomp/libseccomp.git
+Summary     : An Enhanced Seccomp (mode 2) Helper Library
+Description :
+The libseccomp library provides and easy to use, platform
+independent, interface to the Linux Kernel's syscall filtering
+mechanism: seccomp. The libseccomp API is designed to abstract away
+the underlying BPF based syscall filter language and present a more
+conventional function-call based filtering interface that should be
+familiar to, and easily adopted by application developers.

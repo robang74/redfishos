@@ -1,0 +1,11 @@
+97d4bfbca7ef1a927ba2bf07a7bd6a55  /etc/dbus-1/system.d/org.sailfishos.usermanager.conf
+bbc5ede245db7f0d27ccdb1f2bad4396  /usr/bin/user-managerd
+2bfe3dd972e2f4cea42218052d30232e  /usr/lib/systemd/system/autologin@105000.service.wants/guest_disable_suw.service
+5227a103ae1b2e1e854b53718262f446  /usr/lib/systemd/system/autologin@105000.service.wants/home-sailfish_guest.mount
+f6b5fd93166480881eabd383f1d726cb  /usr/lib/systemd/system/dbus-org.sailfishos.usermanager.service
+2bfe3dd972e2f4cea42218052d30232e  /usr/lib/systemd/system/guest_disable_suw.service
+5227a103ae1b2e1e854b53718262f446  /usr/lib/systemd/system/home-sailfish_guest.mount
+5227a103ae1b2e1e854b53718262f446  /usr/lib/systemd/system/user@105000.service.wants/home-sailfish_guest.mount
+6ade3eb79bb05bf39ed5e97012d186ad  /usr/sbin/userdel_local.sh
+3a735585963fb207efde74f390d093d5  /usr/share/dbus-1/system-services/org.sailfishos.usermanager.service
+e070f9b50e538327c22c3ecbabf44c04  /usr/share/licenses/user-managerd-0.8.7/LICENSE

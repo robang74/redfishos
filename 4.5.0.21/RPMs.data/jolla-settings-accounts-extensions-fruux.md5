@@ -1,0 +1,6 @@
+d9f5be23d579a45de82c730f5292a22e  /usr/share/accounts/providers/fruux.provider
+30c8b7929a4f9ca6b7c1159f05467bb4  /usr/share/accounts/services/fruux-caldav.service
+ef3c5b2f33fa99027a35019cefc186c0  /usr/share/accounts/services/fruux-carddav.service
+e09c2cc15bfe056d7c24074ed3ce5060  /usr/share/accounts/ui/fruux-settings.qml
+cd52f03b94cc0a385eb97fe6231b3b4a  /usr/share/accounts/ui/fruux-update.qml
+884926c159915c00f975cb8f702412fe  /usr/share/accounts/ui/fruux.qml

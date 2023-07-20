@@ -1,0 +1,17 @@
+Name        : lipstick-jolla-home-qt5
+Version     : 1.25.13.7
+Release     : 1.17.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:37 CEST
+Group       : Unspecified
+Size        : 2141700
+License     : Proprietary
+Signature   : RSA/SHA256, Fri 07 Jul 2023 15:10:27 CEST, Key ID 5b1e398947394f23
+Source RPM  : lipstick-jolla-home-qt5-1.25.13.7-1.17.1.jolla.src.rpm
+Build Date  : Fri 07 Jul 2023 15:07:58 CEST
+Build Host  : phost26
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/lipstick-jolla-home
+Summary     : Jolla homescreen for lipstick
+Description :
+A homescreen for Jolla Mobile

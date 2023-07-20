@@ -1,0 +1,2 @@
+/etc/ohm/plugins.d/rule_engine.ini
+/usr/lib64/ohm/libohm_rule_engine.so

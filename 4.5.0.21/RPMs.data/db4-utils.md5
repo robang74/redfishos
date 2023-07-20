@@ -1,0 +1,12 @@
+193bf349f715f3428af3ac045d26e698  /usr/bin/db_archive
+283e51363744515f3e53aefe064313a5  /usr/bin/db_checkpoint
+a1dd81baaa8237d8eb655c47e4c68abc  /usr/bin/db_deadlock
+79a225a4319f9ea7c9d1c8f9d013df32  /usr/bin/db_dump
+893ff34599565dc527c0df5eb51f170a  /usr/bin/db_hotbackup
+6149604ec8ef2e5e85fe00f81e4c5c7f  /usr/bin/db_load
+3b4bdad614a606864f6456f1418777b7  /usr/bin/db_printlog
+440cadd5e4db27fb68fdb84d6afb5bb9  /usr/bin/db_recover
+9fdf7e60b9dd509ba87a1103f2e447ea  /usr/bin/db_sql
+994dda1d434dcf26440a5aa957dc44e3  /usr/bin/db_stat
+df424b977432068fa05345a358ab4a0e  /usr/bin/db_upgrade
+c0b111a6aa4fa9288a38254ecc6efedc  /usr/bin/db_verify

@@ -1,0 +1,29 @@
+Name        : swi-prolog
+Version     : 7.6.4+git3
+Release     : 1.7.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 184469
+License     : BSD
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:38:05 CET, Key ID 5b1e398947394f23
+Source RPM  : swi-prolog-7.6.4+git3-1.7.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 16:02:16 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://github.com/sailfishos/swi-prolog
+Summary     : Prolog Interpreter
+Description :
+ISO/Edinburgh-style Prolog compiler.  Compliant with Part 1 of the ISO standard
+for Prolog.  Covers all traditional Edinburgh Prolog features and shares many
+features with Quintus and SICStus Prolog, including a compatible module system.
+Very fast compiler, garbage collection (also on atoms), fast and powerful C/C++
+interface, autoloading, GNU-readline interface.
+
+SWI-Prolog has been designed and implemented such that it can easily be
+modified for experiments with logic programming and the relation
+between logic programming and other programming paradigms (such as the
+object oriented XPCE environment).  SWI-Prolog has a rich set of
+built-in predicates and reasonable performance, which makes it possible
+to develop substantial applications in it.  The current version offers
+a module system, garbage collection and an interface to the C language.

@@ -1,0 +1,10 @@
+78a9cd4146f9822d28ee59cad41f8e3a  /usr/bin/fileoperationsd
+9ae4aac932e12f6bf1a23575e63d3bc1  /usr/lib64/libfilemanager.so.0
+9ae4aac932e12f6bf1a23575e63d3bc1  /usr/lib64/libfilemanager.so.0.1
+9ae4aac932e12f6bf1a23575e63d3bc1  /usr/lib64/libfilemanager.so.0.1.40
+30bc529937d5c549a4cf2bf2a4eae435  /usr/lib64/qt5/qml/Nemo/FileManager/libnemofilemanager.so
+255f71757a7b8f4aa0b5f1709314d358  /usr/lib64/qt5/qml/Nemo/FileManager/plugins.qmltypes
+917ca016fdb67e1ff8186164cfeec93b  /usr/lib64/qt5/qml/Nemo/FileManager/qmldir
+a7d2d7f7f538680cdfd098b612fdd951  /usr/share/dbus-1/interfaces/org.nemomobile.FileOperations.xml
+6fc66a14b8028457af340a526de704f6  /usr/share/dbus-1/services/org.nemomobile.FileOperations.service
+caa037e0975ee5862b72644673e7590c  /usr/share/licenses/nemo-qml-plugin-filemanager-0.1.40/LICENSE.BSD

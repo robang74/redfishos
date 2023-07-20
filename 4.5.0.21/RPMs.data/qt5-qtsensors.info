@@ -1,0 +1,21 @@
+Name        : qt5-qtsensors
+Version     : 5.6.3+git3
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:41 CEST
+Group       : Unspecified
+Size        : 361372
+License     : (LGPLv2 or LGPLv3) with exception or GPLv3 or Qt Commercial
+Signature   : RSA/SHA256, Fri 07 Jul 2023 14:59:53 CEST, Key ID 5b1e398947394f23
+Source RPM  : qt5-qtsensors-5.6.3+git3-1.6.1.jolla.src.rpm
+Build Date  : Fri 07 Jul 2023 14:58:10 CEST
+Build Host  : phost24
+Vendor      : meego
+URL         : https://github.com/qt/qtsensors
+Summary     : Qt Sensors module
+Description :
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt sensors module

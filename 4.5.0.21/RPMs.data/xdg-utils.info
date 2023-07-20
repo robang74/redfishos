@@ -1,0 +1,32 @@
+Name        : xdg-utils
+Version     : 1.1.3+git1
+Release     : 1.8.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:51:40 CEST
+Group       : Unspecified
+Size        : 271231
+License     : MIT
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:40:34 CET, Key ID 5b1e398947394f23
+Source RPM  : xdg-utils-1.1.3+git1-1.8.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:20:45 CET
+Build Host  : phost19
+Vendor      : meego
+URL         : http://portland.freedesktop.org/
+Summary     : Desktop integration utilities from freedesktop.org
+Description :
+xdg-utils contains utilities for integrating applications with the
+desktop environment, regardless of which desktop environment is used.
+They are part of freedesktop.org's Portland project.
+
+The following utilities are included:
+ * xdg-desktop-menu - Install desktop menu items
+ * xdg-desktop-icon - Install icons on the user's desktop
+ * xdg-icon-resource - Install icon resources
+ * xdg-mime - Gather MIME information about a file
+ * xdg-open - Open a URL in the user's preferred application that
+              handles the respective URL or file type
+ * xdg-email - Open the user's preferred email client, potentially with
+               subject and other info filled in
+ * xdg-screensaver - Enable, disable, or suspend the screensaver
+ * xdg-settings - get various settings (default web browser) from
+                  the desktop environment

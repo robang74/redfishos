@@ -1,0 +1,10 @@
+/etc/ssh/ssh_config
+/usr/bin/scp
+/usr/bin/sftp
+/usr/bin/ssh
+/usr/bin/ssh-add
+/usr/bin/ssh-agent
+/usr/bin/ssh-copy-id
+/usr/bin/ssh-keyscan
+/usr/libexec/openssh/ssh-pkcs11-helper
+/usr/libexec/openssh/ssh-sk-helper

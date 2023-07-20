@@ -1,0 +1,7 @@
+/etc/bash_completion.d/dbus-bash-completion.sh
+/usr/bin/dbus-binding-tool
+/usr/lib64/libdbus-glib-1.so.2
+/usr/lib64/libdbus-glib-1.so.2.2.2
+/usr/libexec/dbus-bash-completion-helper
+/usr/share/licenses/dbus-glib-0.100.2
+/usr/share/licenses/dbus-glib-0.100.2/COPYING

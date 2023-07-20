@@ -1,0 +1,17 @@
+Name        : provisioning-service
+Version     : 0.1.8
+Release     : 1.8.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:32 CEST
+Group       : Unspecified
+Size        : 68564
+License     : GPLv2
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:02:26 CET, Key ID 5b1e398947394f23
+Source RPM  : provisioning-service-0.1.8-1.8.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:02:07 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://github.com/sailfishos/provisioning-service
+Summary     : OTA provisioning service
+Description :
+A service for handling over-the-air (OTA) provisioning messages

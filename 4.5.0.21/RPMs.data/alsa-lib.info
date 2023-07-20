@@ -1,0 +1,22 @@
+Name        : alsa-lib
+Version     : 1.2.8+git1
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:35 CEST
+Group       : Unspecified
+Size        : 1410673
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 16:57:58 CET, Key ID 5b1e398947394f23
+Source RPM  : alsa-lib-1.2.8+git1-1.6.1.jolla.src.rpm
+Build Date  : Fri 25 Nov 2022 22:40:19 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : http://www.alsa-project.org/
+Summary     : The Advanced Linux Sound Architecture (ALSA) library
+Description :
+The Advanced Linux Sound Architecture (ALSA) provides audio and MIDI
+functionality to the Linux operating system.
+
+This package includes the ALSA runtime libraries to simplify application
+programming and provide higher level functionality as well as support for
+the older OSS API, providing binary compatibility for most OSS programs.

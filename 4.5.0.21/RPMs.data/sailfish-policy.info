@@ -1,0 +1,17 @@
+Name        : sailfish-policy
+Version     : 0.4.17
+Release     : 1.7.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:34 CEST
+Group       : Unspecified
+Size        : 136631
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 13 Feb 2023 20:36:39 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-policy-0.4.17-1.7.2.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 20:36:08 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/base-sailfish-policy
+Summary     : Sailfish MDM Policy library
+Description :
+Sailfish Policy library

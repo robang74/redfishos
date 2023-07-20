@@ -1,0 +1,7 @@
+9578dbabf7785040ecbb02a5e05192dd  /etc/connman/firewall.d/00-devmode-firewall.conf
+bf5f91ce48048e010f376b2b03323b28  /etc/dconf/db/vendor.d/developer-mode-enabled.txt
+eb675cc1726a7be7f99ccad3b7acd860  /etc/pam.d/devel-su
+7ff1cf60f1133cfa59a62e9e538cdbc9  /etc/usb-moded/dyn-modes/developer_mode-android.ini
+654375addf853d4fe4699b655b446c9d  /etc/usb-moded/run/udhcpd-developer-mode.ini
+047893b389df3b340a7b56e50f6f47c4  /usr/bin/devel-su
+080de525b5cbd966b68732dee89ab009  /usr/bin/rnd-dist-upgrade

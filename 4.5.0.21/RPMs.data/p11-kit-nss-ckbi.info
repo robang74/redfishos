@@ -1,0 +1,18 @@
+Name        : p11-kit-nss-ckbi
+Version     : 0.23.22+git1
+Release     : 1.6.4.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:40 CEST
+Group       : Unspecified
+Size        : 23
+License     : BSD
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:36:03 CET, Key ID 5b1e398947394f23
+Source RPM  : p11-kit-0.23.22+git1-1.6.4.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 07:22:59 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : http://p11-glue.freedesktop.org/p11-kit.html
+Summary     : Replacement CA library for NSS
+Description :
+This package replaces the nss-ckbi library with a compatible version that loads
+CA certificates from the p11-kit trust module.

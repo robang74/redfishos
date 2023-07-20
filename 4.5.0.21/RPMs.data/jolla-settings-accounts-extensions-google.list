@@ -1,0 +1,10 @@
+/usr/share/accounts/providers/google.provider
+/usr/share/accounts/services/google-calendars.service
+/usr/share/accounts/services/google-contacts.service
+/usr/share/accounts/services/google-gmail.service
+/usr/share/accounts/services/google-sync.service
+/usr/share/accounts/services/picasa.service
+/usr/share/accounts/ui/GoogleSettingsDisplay.qml
+/usr/share/accounts/ui/google-settings.qml
+/usr/share/accounts/ui/google-update.qml
+/usr/share/accounts/ui/google.qml

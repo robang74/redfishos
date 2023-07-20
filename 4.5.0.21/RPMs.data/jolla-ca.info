@@ -1,0 +1,16 @@
+Name        : jolla-ca
+Version     : 0.11
+Release     : 1.3.2.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:15 CEST
+Group       : System/Base
+Size        : 30412
+License     : Proprietary
+Signature   : RSA/SHA256, Wed 21 Dec 2022 15:28:21 CET, Key ID 5b1e398947394f23
+Source RPM  : jolla-ca-0.11-1.3.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:22:21 CET
+Build Host  : phost27
+Vendor      : meego
+Summary     : Jolla CA certificate
+Description :
+Jolla CA certificate.

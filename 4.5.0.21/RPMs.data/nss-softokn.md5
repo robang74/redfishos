@@ -1,0 +1,9 @@
+508fd9ccc3fe5c75e86c8bf03226b7e6  /usr/lib64/libnssdbm3.chk
+ea84851be62d40e32aa87932e8f495d8  /usr/lib64/libnssdbm3.so
+5c6c926994de996c362937f709797481  /usr/lib64/libsoftokn3.chk
+b0f63c9665e8f8739b9bd01ffbe166bf  /usr/lib64/libsoftokn3.so
+83b3ef2e5b1386bda97b6def20b43df6  /usr/lib64/nss/unsupported-tools/bltest
+640189069ddf072d14f24a607b8e8f6e  /usr/lib64/nss/unsupported-tools/ecperf
+eadbad114972dbfa1b00cc249dca8ceb  /usr/lib64/nss/unsupported-tools/fbectest
+2ca4891eabdccefac8c78c6eaa5cdc45  /usr/lib64/nss/unsupported-tools/fipstest
+0beb50a89b7c1957ea440ade39e32a39  /usr/lib64/nss/unsupported-tools/shlibsign

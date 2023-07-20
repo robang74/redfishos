@@ -1,0 +1,8 @@
+/usr/lib64/libgeoclue.so.0
+/usr/lib64/libgeoclue.so.0.0.0
+/usr/libexec/geoclue-master
+/usr/share/GConf/gsettings/geoclue
+/usr/share/dbus-1/services/org.freedesktop.Geoclue.Master.service
+/usr/share/glib-2.0/schemas/org.freedesktop.Geoclue.gschema.xml
+/usr/share/licenses/geoclue-0.12.99.8+git2
+/usr/share/licenses/geoclue-0.12.99.8+git2/COPYING

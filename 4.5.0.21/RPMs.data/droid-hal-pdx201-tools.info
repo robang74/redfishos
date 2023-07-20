@@ -1,0 +1,19 @@
+Name        : droid-hal-pdx201-tools
+Version     : 0.0.31
+Release     : 1.11.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:36 CEST
+Group       : Unspecified
+Size        : 78686
+License     : ASL 2.0
+Signature   : RSA/SHA256, Fri 07 Jul 2023 16:07:37 CEST, Key ID 5b1e398947394f23
+Source RPM  : droid-hal-pdx201-0.0.31-1.11.1.jolla.src.rpm
+Build Date  : Fri 07 Jul 2023 15:06:04 CEST
+Build Host  : phost8
+Vendor      : sony
+Summary     : Some tools from android specific for pdx201
+Description :
+This package contains some tools that some hardware adaptations need for
+handling the android style content. This package is intended to be such
+that it can be installed on the device and is not meant to be used in host/sdk
+environment.

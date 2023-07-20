@@ -1,0 +1,16 @@
+/etc/dbus-1/system.d/connman-vpn-dbus.conf
+/etc/dbus-1/system.d/connman.conf
+/usr/lib/systemd/system/connman-vpn.service
+/usr/lib/systemd/system/connman.service
+/usr/lib/systemd/system/connman.service.d
+/usr/lib/systemd/system/connman.service.d/01-require-home-mount-to-be-present.conf
+/usr/lib/systemd/system/multi-user.target.wants/connman-vpn.service
+/usr/lib/systemd/system/multi-user.target.wants/connman.service
+/usr/lib/tmpfiles.d/connman_resolvconf.conf
+/usr/lib64/connman
+/usr/lib64/connman/plugins-vpn
+/usr/sbin/connman-vpnd
+/usr/sbin/connmand
+/usr/share/dbus-1/system-services/net.connman.vpn.service
+/usr/share/licenses/connman-1.32+git194
+/usr/share/licenses/connman-1.32+git194/COPYING

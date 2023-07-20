@@ -1,0 +1,5 @@
+/usr/bin/trust
+/usr/lib64/pkcs11
+/usr/lib64/pkcs11/p11-kit-trust.so
+/usr/libexec/p11-kit/trust-extract-compat
+/usr/share/p11-kit/modules/p11-kit-trust.module

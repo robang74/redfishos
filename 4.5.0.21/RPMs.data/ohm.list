@@ -1,0 +1,11 @@
+/etc/dbus-1/system.d/ohm.conf
+/etc/ohm
+/etc/ohm/plugins.d
+/usr/lib/systemd/system/basic.target.wants/ohmd.service
+/usr/lib/systemd/system/dbus-org.freedesktop.ohm.service
+/usr/lib/systemd/system/ohmd.service
+/usr/sbin/ohmd
+/usr/share/dbus-1/system-services/org.freedesktop.ohm.service
+/usr/share/licenses/ohm-1.3.1
+/usr/share/licenses/ohm-1.3.1/COPYING
+/var/lib/ohm

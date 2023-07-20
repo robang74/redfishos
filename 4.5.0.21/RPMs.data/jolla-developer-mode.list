@@ -1,0 +1,7 @@
+/etc/connman/firewall.d/00-devmode-firewall.conf
+/etc/dconf/db/vendor.d/developer-mode-enabled.txt
+/etc/pam.d/devel-su
+/etc/usb-moded/dyn-modes/developer_mode-android.ini
+/etc/usb-moded/run/udhcpd-developer-mode.ini
+/usr/bin/devel-su
+/usr/bin/rnd-dist-upgrade

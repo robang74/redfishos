@@ -1,0 +1,7 @@
+c821258a58d082477d489a9d01a64001  /etc/buteo/profiles/client/sociald.xml
+38f33b165429ac1853980ffc4bf86695  /etc/buteo/profiles/sync/sociald.All.xml
+570502fbc2403db883d10cffa3996238  /usr/lib64/buteo-plugins-qt5/oopp/libsociald-client.so
+3ed5425bb328fca1f31ead8fa4fd1332  /usr/lib64/libsyncpluginscommon.so.1
+3ed5425bb328fca1f31ead8fa4fd1332  /usr/lib64/libsyncpluginscommon.so.1.0
+3ed5425bb328fca1f31ead8fa4fd1332  /usr/lib64/libsyncpluginscommon.so.1.0.0
+93ae0a8ec7ecf7709c725bd232bbafc6  /usr/share/licenses/buteo-sync-plugins-social-0.4.18/COPYING

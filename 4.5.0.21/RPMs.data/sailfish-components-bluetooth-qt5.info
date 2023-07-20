@@ -1,0 +1,17 @@
+Name        : sailfish-components-bluetooth-qt5
+Version     : 0.2.23.2
+Release     : 1.8.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:37 CEST
+Group       : Unspecified
+Size        : 255143
+License     : Proprietary
+Signature   : RSA/SHA256, Wed 15 Feb 2023 16:03:30 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-components-bluetooth-qt5-0.2.23.2-1.8.1.jolla.src.rpm
+Build Date  : Wed 15 Feb 2023 16:03:14 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://bitbucket.org/jolla/ui-sailfish-components-bluetooth
+Summary     : Bluetooth UI components
+Description :
+Sailfish Bluetooth UI components

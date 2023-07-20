@@ -1,0 +1,6 @@
+3fc91501b1fe7af02ed3f7320dc3bb1f  /usr/libexec/droid-hybris/system/bin/minimediaservice
+cfd3984221d07f7795d4377041042c64  /usr/libexec/droid-hybris/system/bin/minisfservice
+7e63e4200ab61fa3119ca1ce5c7732e7  /usr/libexec/droid-hybris/system/etc/init/minimediaservice.rc
+662369088a96a770475fbc3f2482ba0a  /usr/libexec/droid-hybris/system/etc/init/minisfservice.rc
+29fdbf44320a8a5deede1cfda5f15436  /usr/libexec/droid-hybris/system/lib64/libdroidmedia.so
+3ee37f144d1b015a2a5ae80fe78be3f2  /usr/libexec/droid-hybris/system/lib64/libminisf.so

@@ -1,0 +1,5 @@
+/usr/share/jolla-settings/entries/nfc.json
+/usr/share/jolla-settings/pages/nfc
+/usr/share/jolla-settings/pages/nfc/NfcConfig.qml
+/usr/share/jolla-settings/pages/nfc/NfcSwitch.qml
+/usr/share/jolla-settings/pages/nfc/nfc.qml

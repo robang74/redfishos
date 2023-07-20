@@ -1,0 +1,16 @@
+Name        : libjollasignontrampolineservice-qt5
+Version     : 0.4.19
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:37 CEST
+Group       : Unspecified
+Size        : 89626
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 09 Jan 2023 17:02:04 CET, Key ID 5b1e398947394f23
+Source RPM  : libjollasignonuiservice-qt5-0.4.19-1.6.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 17:01:01 CET
+Build Host  : phost28
+Vendor      : meego
+Summary     : Package containing the Jolla signon trampoline service implementation library
+Description :
+Package containing the Jolla signon trampoline service implementation library.

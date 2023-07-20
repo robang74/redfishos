@@ -1,0 +1,7 @@
+/etc/profiled
+/usr/bin/profiled
+/usr/lib/systemd/user/profiled.service
+/usr/lib64/libprofile.so.0
+/usr/share/dbus-1/services/com.nokia.profiled.service
+/usr/share/licenses/profiled-1.0.13
+/usr/share/licenses/profiled-1.0.13/LICENSE

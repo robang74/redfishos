@@ -1,0 +1,16 @@
+Name        : feature-alien
+Version     : 0.4.2
+Release     : 1.2.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:57 CEST
+Group       : System/Libraries
+Size        : 746
+License     : Proprietary
+Signature   : RSA/SHA256, Wed 21 Dec 2022 14:47:57 CET, Key ID 5b1e398947394f23
+Source RPM  : feature-alien-0.4.2-1.2.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:21:11 CET
+Build Host  : phost6
+Vendor      : meego
+Summary     : Feature for supporting alien
+Description :
+Feature for supporting alien.

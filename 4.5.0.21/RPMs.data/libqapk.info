@@ -1,0 +1,18 @@
+Name        : libqapk
+Version     : 0.5.1
+Release     : 1.2.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:37 CEST
+Group       : Unspecified
+Size        : 224566
+License     : ASL 2.0
+Signature   : RSA/SHA256, Wed 21 Dec 2022 16:00:08 CET, Key ID 5b1e398947394f23
+Source RPM  : libqapk-0.5.1-1.2.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 12:42:49 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : http://bitbucket.org/jolla/base-qapk
+Summary     : Library for inspecting Android application package files (APK)
+Description :
+This library can parse the binary format of APK resource tables and XML files.
+It can be used to extract metadata from Android apps.

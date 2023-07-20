@@ -1,0 +1,17 @@
+Name        : bluez5
+Version     : 5.65+git1
+Release     : 1.9.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:29 CEST
+Group       : Unspecified
+Size        : 1340544
+License     : GPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:03:18 CET, Key ID 5b1e398947394f23
+Source RPM  : bluez5-5.65+git1-1.9.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:01:12 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : http://www.bluez.org/
+Summary     : Bluetooth daemon
+Description :
+Bluetooth daemon.

@@ -1,0 +1,15 @@
+489b49f1a261756820f6db79aee97e55  /usr/bin/sailfish-share-update-cache
+aa955b0a8e02c6268177c82f03bb2b03  /usr/lib64/nemo-transferengine/plugins/sharing/libappsharemethodplugin.so
+82c23ca9901ff9a2e1e2893dac70f183  /usr/lib64/qt5/qml/Sailfish/Share/libsailfishshareplugin.so
+ef4f6b233b2d28e036d9cb968c424270  /usr/lib64/qt5/qml/Sailfish/Share/plugins.qmltypes
+0aa51c9e2b634a8af80e6b55e8f131af  /usr/lib64/qt5/qml/Sailfish/Share/qmldir
+d92e6da2c2d3ecdfeb2c4749330d31c1  /usr/libexec/sailfish-share
+24580af4702808296883e556b3b2d0d4  /usr/share/applications/sailfish-share.desktop
+e89f5274de31625eb56b7da448d05357  /usr/share/dbus-1/services/org.sailfishos.share.service
+703999bc6671971059e560f71ec0f3cc  /usr/share/mapplauncherd/privileges.d/sailfish-share.privileges
+e4f4a86e130d44a50254415ca950a7e7  /usr/share/sailfish-share/ShareMethodItem.qml
+33dc2807512346b2e75f672b1b8172c7  /usr/share/sailfish-share/ShareSystemDialog.qml
+2ed0a57e1d8fdd9646fe7f97eb6fc5c6  /usr/share/sailfish-share/main.qml
+83df4fcbb00e99e8ea20e14290aee979  /usr/share/sailfish-share/plugin/AppShareMethodPlugin.qml
+0aad538a6d6e3cdcd3530f23dcc53471  /usr/share/translations/sailfishshare_eng_en.qm
+4e5d1a5ca243382b20a1d64a3c6cb5f1  /var/lib/sailfish-share/desktopfiles.list

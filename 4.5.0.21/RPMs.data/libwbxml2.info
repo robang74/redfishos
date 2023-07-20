@@ -1,0 +1,20 @@
+Name        : libwbxml2
+Version     : 0.11.6+git2
+Release     : 1.6.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:38 CEST
+Group       : Unspecified
+Size        : 264507
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:26:38 CET, Key ID 5b1e398947394f23
+Source RPM  : libwbxml2-0.11.6+git2-1.6.2.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 11:19:02 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://github.com/sailfishos/libwbxml2
+Summary     : Library to parse, encode and handle WBXML documents
+Description :
+The WBXML Library (aka libwbxml) contains a library to Parse, Encode
+and Handle WBXML documents. The WBXML format is a binary
+representation of XML, defined by the Wap Forum, and used to reduce
+bandwidth in mobile communications.

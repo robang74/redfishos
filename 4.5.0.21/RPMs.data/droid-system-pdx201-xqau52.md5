@@ -1,0 +1,5 @@
+864f535b9a2ff198ee11dcadcccc0fcf  /system/build.prop
+dc458cb63342d12e41d3b65829a81ad9  /system/etc/prop.default
+42a7c6796852cc9f87b4e7f5f9124fa5  /vendor/build.prop
+a65586c116c509f2e14cb47bd54b9cc3  /vendor/etc/vintf/manifest.xml
+c24e7d806a66511d9d58b2f1dd785cbe  /vendor/odm/etc/build.prop

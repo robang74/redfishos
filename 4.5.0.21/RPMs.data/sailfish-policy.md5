@@ -1,0 +1,9 @@
+ca30b9b5e35099f4eaa2265f97bbcbb0  /usr/lib/systemd/system/multi-user.target.wants/policies-setup.service
+ca30b9b5e35099f4eaa2265f97bbcbb0  /usr/lib/systemd/system/policies-setup.service
+57f792684a28ef8b50ca8b7d59e0c5c2  /usr/lib64/libsailfishpolicy.so.0
+57f792684a28ef8b50ca8b7d59e0c5c2  /usr/lib64/libsailfishpolicy.so.0.4
+57f792684a28ef8b50ca8b7d59e0c5c2  /usr/lib64/libsailfishpolicy.so.0.4.17
+69f920c2277954a231e594dc7f78a311  /usr/lib64/qt5/qml/Sailfish/Policy/libsailfishpolicyplugin.so
+423a6778821dab86d5871c9f96b57a39  /usr/lib64/qt5/qml/Sailfish/Policy/plugins.qmltypes
+5c4772873725002d5073f1b9951e250b  /usr/lib64/qt5/qml/Sailfish/Policy/qmldir
+f01a2bb958adb0a61b949b1ebd60b726  /usr/libexec/policy-updater

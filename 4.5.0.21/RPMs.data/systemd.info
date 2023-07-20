@@ -1,0 +1,24 @@
+Name        : systemd
+Version     : 238+git18
+Release     : 1.13.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:50 CEST
+Group       : Unspecified
+Size        : 13945814
+License     : LGPLv2+ and MIT and GPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:40:53 CET, Key ID 5b1e398947394f23
+Source RPM  : systemd-238+git18-1.13.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 11:35:02 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://github.com/sailfishos/systemd
+Summary     : A System and Service Manager
+Description :
+systemd is a system and service manager for Linux, compatible with
+SysV and LSB init scripts. systemd provides aggressive parallelization
+capabilities, uses socket and D-Bus activation for starting services,
+offers on-demand starting of daemons, keeps track of processes using
+Linux cgroups, supports snapshotting and restoring of the system
+state, maintains mount and automount points and implements an
+elaborate transactional dependency-based service control logic. It can
+work as a drop-in replacement for sysvinit.

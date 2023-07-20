@@ -1,0 +1,8 @@
+1f0fa77954fb9e78670bc307216e5fa7  /usr/bin/yamuisplash
+5f1b4ce2589c49a21afe5a35b7effea3  /usr/lib/systemd/system/graphical.target.wants/yamuisplash.service
+24968893bdd24101c3c6c98e23c7d9e1  /usr/lib/systemd/system/sailfish-unlock-agent.service.d/01-yamuisplash.conf
+5f1b4ce2589c49a21afe5a35b7effea3  /usr/lib/systemd/system/system-update-pre.target.wants/yamuisplash.service
+24968893bdd24101c3c6c98e23c7d9e1  /usr/lib/systemd/system/systemd-user-sessions.service.d/01-yamuisplash.conf
+5f1b4ce2589c49a21afe5a35b7effea3  /usr/lib/systemd/system/yamuisplash.service
+3b83ef96387f14655fc854ddc3c6bd57  /usr/share/licenses/yamuisplash-1.0.2/LICENSE-2.0.txt
+4a14ecc85f722394e321b0d88ef91309  /usr/share/yamuisplash/sailfish_logo_rgb.png

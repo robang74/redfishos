@@ -1,0 +1,8 @@
+/usr/bin/jolla-signon-ui
+/usr/lib/systemd/user/jolla-signon-ui.service
+/usr/lib/systemd/user/user-session.target.wants/jolla-signon-ui.service
+/usr/share/dbus-1/services/com.nokia.singlesignonui.service
+/usr/share/licenses/jolla-signon-ui-0.2.13
+/usr/share/licenses/jolla-signon-ui-0.2.13/LICENSE.BSD
+/usr/share/mapplauncherd/privileges.d/jolla-signon-ui.privileges
+/usr/share/translations/jolla-signon-ui_eng_en.qm

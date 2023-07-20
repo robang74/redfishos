@@ -1,0 +1,6 @@
+1d5baf8803b8714b2e273360b6cd8b54  /usr/share/jolla-settings/entries/vpn.json
+283fe7e2e34c3a7da06ac9d2ecd3a4cb  /usr/share/jolla-settings/pages/vpn/EnableSwitch.qml
+694fa31117d48a23e99e9938e1c9bd67  /usr/share/jolla-settings/pages/vpn/NewConnectionDialog.qml
+f66102e4ba35da98299f0529eaa7f184  /usr/share/jolla-settings/pages/vpn/TextNoSwitch.qml
+83bf8e470f8e2f7483b464da15c7ca66  /usr/share/jolla-settings/pages/vpn/VpnItem.qml
+36b14eddcb1191a1303a19da9524a3ec  /usr/share/jolla-settings/pages/vpn/mainpage.qml

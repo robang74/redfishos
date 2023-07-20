@@ -1,0 +1,24 @@
+Name        : libiptcdata
+Version     : 1.0.5+git1
+Release     : 1.4.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:47 CEST
+Group       : Unspecified
+Size        : 144038
+License     : LGPLv2
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:15:22 CET, Key ID 5b1e398947394f23
+Source RPM  : libiptcdata-1.0.5+git1-1.4.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 09:22:17 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : https://github.com/ianw/libiptcdata
+Summary     : IPTC tag library
+Description :
+libiptcdata is a library, written in C, for manipulating the International
+Press Telecommunications Council (IPTC) metadata stored within multimedia
+files such as images. This metadata can include captions and keywords,
+often used by popular photo management applications. The library provides
+routines for parsing, viewing, modifying, and saving this metadata.
+The library is licensed under the GNU Library General Public License
+(GNU LGPL). The libiptcdata package also includes a command-line utility,
+iptc, for editing IPTC data in JPEG files, as well as Python bindings.

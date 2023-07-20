@@ -1,0 +1,17 @@
+/etc/pki/tls
+/etc/pki/tls/certs
+/etc/pki/tls/ct_log_list.cnf
+/etc/pki/tls/misc
+/etc/pki/tls/openssl.cnf
+/etc/pki/tls/private
+/usr/lib64/libcrypto.so.1.1
+/usr/lib64/libcrypto.so.1.1.1s+git1
+/usr/lib64/libssl.so.1.1
+/usr/lib64/libssl.so.1.1.1s+git1
+/usr/lib64/openssl
+/usr/lib64/openssl/engines-1.1
+/usr/lib64/openssl/engines-1.1/afalg.so
+/usr/lib64/openssl/engines-1.1/capi.so
+/usr/lib64/openssl/engines-1.1/padlock.so
+/usr/share/licenses/openssl-libs-1.1.1s+git1
+/usr/share/licenses/openssl-libs-1.1.1s+git1/LICENSE

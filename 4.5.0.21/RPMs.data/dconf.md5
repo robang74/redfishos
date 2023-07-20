@@ -1,0 +1,13 @@
+8a6495b34f7efbf52333f2e60ffe7dae  /etc/dconf/db/nemo
+ef32de5cca1f653d4723f1748bb93731  /etc/dconf/db/vendor
+6ec7de07519539eb488195d491ec7cf8  /etc/dconf/db/vendor-variant
+b995d0ab3fe60dffae9fec81425a9111  /etc/dconf/profile/user
+20ac7f926cff5b0682dc145fe32c5937  /usr/bin/dconf
+6445b04e1d98c6fa14e07ce64dd6a83c  /usr/lib/oneshot.d/dconf-update
+2239bb9a30101146e9729874fb97b07f  /usr/lib/systemd/user/dconf.service
+3ed5a3f8a6c61aa7859d87f02e32446c  /usr/lib64/gio/modules/libdconfsettings.so
+ce5037cc64e5916d6e7b6d3cd1c2e4ac  /usr/lib64/libdconf.so.1
+ce5037cc64e5916d6e7b6d3cd1c2e4ac  /usr/lib64/libdconf.so.1.0.0
+3a18c302e498711f730a3a2f1a438905  /usr/libexec/dconf-service
+61647ff51d2f6e8501b15bf6774096fd  /usr/share/dbus-1/services/ca.desrt.dconf.service
+2d5025d4aa3495befef8f17206a5b0a1  /usr/share/licenses/dconf-0.40.0+git4/COPYING

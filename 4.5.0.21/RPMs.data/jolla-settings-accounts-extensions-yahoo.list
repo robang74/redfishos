@@ -1,0 +1,6 @@
+/usr/share/accounts/providers/yahoo.provider
+/usr/share/accounts/services/yahoo-caldav.service
+/usr/share/accounts/services/yahoo-carddav.service
+/usr/share/accounts/ui/yahoo-settings.qml
+/usr/share/accounts/ui/yahoo-update.qml
+/usr/share/accounts/ui/yahoo.qml

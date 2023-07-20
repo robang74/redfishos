@@ -1,0 +1,19 @@
+Name        : mce
+Version     : 1.114.1
+Release     : 1.13.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:18 CEST
+Group       : System/System Control
+Size        : 1235743
+License     : LGPLv2
+Signature   : RSA/SHA256, Tue 17 Jan 2023 13:17:56 CET, Key ID 5b1e398947394f23
+Source RPM  : mce-1.114.1-1.13.1.jolla.src.rpm
+Build Date  : Tue 17 Jan 2023 13:00:27 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/mce
+Summary     : Mode Control Entity for Nokia mobile computers
+Description :
+This package contains the Mode Control Entity which provides
+mode management features.  This is a daemon that is the backend
+for many features on Nokia's mobile computers.

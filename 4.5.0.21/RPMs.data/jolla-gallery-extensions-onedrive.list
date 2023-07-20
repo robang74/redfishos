@@ -1,0 +1,8 @@
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive/OneDriveAlbumsPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive/OneDriveFullscreenPhotoPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive/OneDriveGalleryIcon.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive/OneDriveUsersPage.qml
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive/libjollagalleryonedriveplugin.so
+/usr/lib64/qt5/qml/com/jolla/gallery/onedrive/qmldir
+/usr/share/jolla-gallery/mediasources/OneDriveCacheMediaSource.qml

@@ -1,0 +1,17 @@
+Name        : qr-filter-qml-plugin
+Version     : 1.0.5
+Release     : 1.6.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:13 CEST
+Group       : Unspecified
+Size        : 88282
+License     : ASL 2.0
+Signature   : RSA/SHA256, Thu 19 Jan 2023 15:24:54 CET, Key ID 5b1e398947394f23
+Source RPM  : qr-filter-qml-plugin-1.0.5-1.6.1.jolla.src.rpm
+Build Date  : Thu 19 Jan 2023 15:24:38 CET
+Build Host  : phost26
+Vendor      : meego
+URL         : https://github.com/sailfishos/qr-filter-qml-plugin
+Summary     : QR code qml wrappper based on ZXing
+Description :
+QML zxing wrapper with filter for QR-code reading from video stream.

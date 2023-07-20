@@ -1,0 +1,9 @@
+9a504540b2a9138c7fdceed52ca387cb  /usr/bin/thumbnaild
+58c4d5a6255276e11023c32cd018ac2d  /usr/bin/thumbnaild-pdf
+b3387c278b0f12a0f3c8fa26b5338a80  /usr/bin/thumbnaild-video
+b88ddd231ef5efa5bdff76d0b3b11218  /usr/lib/systemd/user/dbus-org.nemomobile.thumbnaild.service
+8dc036e284cd5869704b7c3172b633f1  /usr/share/dbus-1/interfaces/org.nemomobile.Thumbnailer.xml
+a1729e377cd00fb2445101ad69dc6d29  /usr/share/dbus-1/services/org.nemomobile.Thumbnailer.service
+caa037e0975ee5862b72644673e7590c  /usr/share/licenses/thumbnaild-0.1.2/LICENSE.BSD
+b234ee4d69f5fce4486a80fdaf4a4263  /usr/share/licenses/thumbnaild-0.1.2/LICENSE.GPL2
+bd0e7cda45219a1885b0e098441c5d05  /usr/share/mapplauncherd/privileges.d/thumbnaild.privileges

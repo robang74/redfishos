@@ -1,0 +1,7 @@
+/usr/lib64/qt5/qml/Connman
+/usr/lib64/qt5/qml/Connman/libConnmanQtDeclarative.so
+/usr/lib64/qt5/qml/Connman/plugins.qmltypes
+/usr/lib64/qt5/qml/Connman/qmldir
+/usr/lib64/qt5/qml/MeeGo/Connman
+/usr/lib64/qt5/qml/MeeGo/Connman/libConnmanQtDeclarative.so
+/usr/lib64/qt5/qml/MeeGo/Connman/qmldir

@@ -1,0 +1,7 @@
+/usr/libexec/sailfish-installationhandler
+/usr/share/applications/sailfish-installationhandler.desktop
+/usr/share/dbus-1/services/org.sailfishos.installationhandler.service
+/usr/share/mapplauncherd/privileges.d/sailfish-installationhandler.privileges
+/usr/share/sailfish-installationhandler
+/usr/share/sailfish-installationhandler/SideloadDialog.qml
+/usr/share/translations/sailfish-installationhandler_eng_en.qm

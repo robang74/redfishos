@@ -1,0 +1,7 @@
+b9210f2ed84a24ee4855bbbda76214a2  /usr/lib64/libgeoclue.so.0
+b9210f2ed84a24ee4855bbbda76214a2  /usr/lib64/libgeoclue.so.0.0.0
+26707a170a57dd32f9cd8c98c7827107  /usr/libexec/geoclue-master
+7aa4b88c5a74a3e91483f54161471d61  /usr/share/GConf/gsettings/geoclue
+14df02165d9865c358b96fb58d5570c9  /usr/share/dbus-1/services/org.freedesktop.Geoclue.Master.service
+ad7eac5a153c2d3691939fe253726d80  /usr/share/glib-2.0/schemas/org.freedesktop.Geoclue.gschema.xml
+149a9c1e8e40b7453ce8c62ed489f481  /usr/share/licenses/geoclue-0.12.99.8+git2/COPYING

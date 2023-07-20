@@ -1,0 +1,17 @@
+Name        : systemd-user-session-targets
+Version     : 0.0.2
+Release     : 1.7.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:55 CEST
+Group       : Unspecified
+Size        : 1298
+License     : BSD
+Signature   : RSA/SHA256, Mon 13 Feb 2023 13:48:50 CET, Key ID 5b1e398947394f23
+Source RPM  : systemd-user-session-targets-0.0.2-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 13:48:42 CET
+Build Host  : phost28
+Vendor      : meego
+URL         : https://github.com/sailfishos/systemd-user-session-targets
+Summary     : Basic targets for systemd user session
+Description :
+Targets for systemd user session

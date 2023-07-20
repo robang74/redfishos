@@ -1,0 +1,16 @@
+Name        : sailfish-content-ambiences-default-favorites
+Version     : 1.0.12
+Release     : 1.3.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:53:40 CEST
+Group       : Unspecified
+Size        : 13986584
+License     : Proprietary
+Signature   : RSA/SHA256, Mon 09 Jan 2023 17:05:03 CET, Key ID 5b1e398947394f23
+Source RPM  : sailfish-content-ambiences-default-favorites-1.0.12-1.3.1.jolla.src.rpm
+Build Date  : Mon 09 Jan 2023 17:04:32 CET
+Build Host  : phost26
+Vendor      : meego
+Summary     : Preloaded favorite ambience content
+Description :
+Preloaded favorite ambience content

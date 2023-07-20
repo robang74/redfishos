@@ -1,0 +1,16 @@
+Name        : patterns-sailfish-device-adaptation-pdx201
+Version     : 0.1.33
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:55 CEST
+Group       : Unspecified
+Size        : 0
+License     : GPLv2
+Signature   : RSA/SHA256, Thu 19 Jan 2023 15:25:07 CET, Key ID 5b1e398947394f23
+Source RPM  : droid-config-xqau51-0.1.33-1.7.1.jolla.src.rpm
+Build Date  : Thu 19 Jan 2023 15:24:45 CET
+Build Host  : phost17
+Vendor      : sony
+Summary     : Jolla HW Adaptation pdx201
+Description :
+Pattern with packages for pdx201 HW Adaptation

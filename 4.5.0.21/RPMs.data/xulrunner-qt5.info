@@ -1,0 +1,17 @@
+Name        : xulrunner-qt5
+Version     : 78.15.1+git33.2
+Release     : 1.21.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:59 CEST
+Group       : Applications/Internet
+Size        : 133201216
+License     : MPLv2.0
+Signature   : RSA/SHA256, Mon 10 Jul 2023 12:43:35 CEST, Key ID 5b1e398947394f23
+Source RPM  : xulrunner-qt5-78.15.1+git33.2-1.21.1.jolla.src.rpm
+Build Date  : Mon 10 Jul 2023 10:43:17 CEST
+Build Host  : phost25
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/gecko-dev
+Summary     : XUL runner
+Description :
+Mozilla XUL runner

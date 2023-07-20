@@ -1,0 +1,17 @@
+Name        : libdbusaccess
+Version     : 1.0.18
+Release     : 1.7.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:39 CEST
+Group       : Unspecified
+Size        : 41237
+License     : BSD
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:00:32 CET, Key ID 5b1e398947394f23
+Source RPM  : libdbusaccess-1.0.18-1.7.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:00:03 CET
+Build Host  : phost25
+Vendor      : meego
+URL         : https://github.com/sailfishos/libdbusaccess/
+Summary     : Access control over D-Bus
+Description :
+Provides library for controlling access over D-Bus

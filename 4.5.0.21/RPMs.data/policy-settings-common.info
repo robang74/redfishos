@@ -1,0 +1,16 @@
+Name        : policy-settings-common
+Version     : 0.13.0
+Release     : 1.9.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:39 CEST
+Group       : Unspecified
+Size        : 557081
+License     : GPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 14:04:27 CET, Key ID 5b1e398947394f23
+Source RPM  : policy-settings-common-0.13.0-1.9.1.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 14:04:08 CET
+Build Host  : phost23
+Vendor      : meego
+Summary     : Common policy settings
+Description :
+Common policy settings.

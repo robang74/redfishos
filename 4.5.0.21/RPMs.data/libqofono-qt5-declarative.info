@@ -1,0 +1,17 @@
+Name        : libqofono-qt5-declarative
+Version     : 0.115.1
+Release     : 1.8.1.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:52:45 CEST
+Group       : Unspecified
+Size        : 339362
+License     : LGPLv2
+Signature   : RSA/SHA256, Wed 25 Jan 2023 21:09:28 CET, Key ID 5b1e398947394f23
+Source RPM  : libqofono-qt5-0.115.1-1.8.1.jolla.src.rpm
+Build Date  : Wed 25 Jan 2023 21:05:41 CET
+Build Host  : phost23
+Vendor      : meego
+URL         : https://github.com/sailfishos/libqofono
+Summary     : Declarative plugin for libqofono
+Description :
+This package contains declarative plugin for libofono.

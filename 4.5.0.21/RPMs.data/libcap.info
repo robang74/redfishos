@@ -1,0 +1,18 @@
+Name        : libcap
+Version     : 2.25+git2
+Release     : 1.6.3.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:51:38 CEST
+Group       : Unspecified
+Size        : 95638
+License     : LGPLv2+
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:16:54 CET, Key ID 5b1e398947394f23
+Source RPM  : libcap-2.25+git2-1.6.3.jolla.src.rpm
+Build Date  : Sun 06 Nov 2022 06:28:38 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://github.com/sailfishos/libcap
+Summary     : Library for getting and setting POSIX.1e capabilities
+Description :
+libcap is a library for getting and setting POSIX.1e (formerly POSIX 6)
+draft 15 capabilities.

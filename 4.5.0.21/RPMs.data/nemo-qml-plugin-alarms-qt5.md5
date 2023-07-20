@@ -1,0 +1,6 @@
+02e9956631f0831c308f1a583c8efdaf  /usr/lib64/qt5/qml/Nemo/Alarms/libnemoalarms.so
+7c8b87785dbb136321d064e980f1bf53  /usr/lib64/qt5/qml/Nemo/Alarms/plugins.qmltypes
+ae76642ed412a7ba4d77ecee0511dc5d  /usr/lib64/qt5/qml/Nemo/Alarms/qmldir
+02e9956631f0831c308f1a583c8efdaf  /usr/lib64/qt5/qml/org/nemomobile/alarms/libnemoalarms.so
+8e2f0b48c26666955279f9494957f272  /usr/lib64/qt5/qml/org/nemomobile/alarms/qmldir
+caa037e0975ee5862b72644673e7590c  /usr/share/licenses/nemo-qml-plugin-alarms-qt5-0.3.11/LICENSE.BSD

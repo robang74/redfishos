@@ -1,0 +1,18 @@
+Name        : tzdata-timed
+Version     : 2021a+git3
+Release     : 1.6.1.jolla
+Architecture: noarch
+Install Date: Tue 11 Jul 2023 11:52:49 CEST
+Group       : Unspecified
+Size        : 36719
+License     : Public Domain
+Signature   : RSA/SHA256, Wed 21 Dec 2022 17:36:51 CET, Key ID 5b1e398947394f23
+Source RPM  : tzdata-timed-2021a+git3-1.6.1.jolla.src.rpm
+Build Date  : Fri 25 Nov 2022 22:40:25 CET
+Build Host  : phost24
+Vendor      : meego
+URL         : https://github.com/sailfishos/tzdata-timed
+Summary     : Data files for the time daemon, timed
+Description :
+Timed daemon datafiles that combine information about time zones,
+and mobile country codes.

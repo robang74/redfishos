@@ -1,0 +1,8 @@
+/usr/lib/systemd/system/jolla-actdead-charging.service
+/usr/lib/systemd/system/sailfish-unlock-agent.path
+/usr/lib/systemd/system/sailfish-unlock-agent.service
+/usr/lib/systemd/system/sysinit.target.wants/sailfish-unlock-agent.path
+/usr/lib/systemd/system/systemd-cryptsetup@.service.d
+/usr/lib/systemd/system/systemd-cryptsetup@.service.d/50-actdead.conf
+/usr/lib/systemd/system/systemd-cryptsetup@.service.d/50-factorytest.conf
+/usr/libexec/sailfish-unlock-ui

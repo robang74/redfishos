@@ -1,0 +1,17 @@
+Name        : telepathy-ring
+Version     : 2.5.13
+Release     : 1.7.2.jolla
+Architecture: aarch64
+Install Date: Tue 11 Jul 2023 11:53:33 CEST
+Group       : Unspecified
+Size        : 337790
+License     : LGPLv2+
+Signature   : RSA/SHA256, Mon 13 Feb 2023 20:36:23 CET, Key ID 5b1e398947394f23
+Source RPM  : telepathy-ring-2.5.13-1.7.2.jolla.src.rpm
+Build Date  : Mon 13 Feb 2023 20:35:30 CET
+Build Host  : phost27
+Vendor      : meego
+URL         : https://git.sailfishos.org/mer-core/telepathy-ring/
+Summary     : GSM connection manager for the Telepathy framework
+Description :
+GSM connection manager for the Telepathy framework.
