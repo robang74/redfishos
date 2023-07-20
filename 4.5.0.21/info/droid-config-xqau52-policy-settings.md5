@@ -1,6 +1,0 @@
-a965c4130e2d293ace34673e3c667d09  /etc/dbus-1/system.d/ohm-policy.conf
-418c51d5b061ef5ff5fee0bf9b224fe1  /etc/ohm/dbus_signal_conf.ini
-9fdf4938830e5374e468cb6da27593dd  /etc/ohm/modules.ini
-35f7f0c56170df0b45bbb92410d068a5  /etc/ohm/ohmd.ini
-0af3dbcc228759b965fe2989256f2493  /etc/ohm/plugins.d/accessories.ini
-659e441a6913c7099bab9f049290371c  /etc/ohm/plugins.d/dbus_signal.ini

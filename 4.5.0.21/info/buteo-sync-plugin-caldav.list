@@ -1,6 +1,0 @@
-/etc/buteo/profiles/client/caldav.xml
-/etc/buteo/profiles/sync/caldav-sync.xml
-/usr/lib64/buteo-plugins-qt5/oopp/libcaldav-client.so
-/usr/lib64/mkcalplugins/libcaldavinvitationplugin.so
-/usr/share/licenses/buteo-sync-plugin-caldav-0.2.11
-/usr/share/licenses/buteo-sync-plugin-caldav-0.2.11/LICENSE

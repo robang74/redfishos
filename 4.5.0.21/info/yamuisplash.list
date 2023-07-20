@@ -1,9 +1,0 @@
-/usr/bin/yamuisplash
-/usr/lib/systemd/system/graphical.target.wants/yamuisplash.service
-/usr/lib/systemd/system/sailfish-unlock-agent.service.d/01-yamuisplash.conf
-/usr/lib/systemd/system/system-update-pre.target.wants/yamuisplash.service
-/usr/lib/systemd/system/systemd-user-sessions.service.d/01-yamuisplash.conf
-/usr/lib/systemd/system/yamuisplash.service
-/usr/share/licenses/yamuisplash-1.0.2
-/usr/share/licenses/yamuisplash-1.0.2/LICENSE-2.0.txt
-/usr/share/yamuisplash/sailfish_logo_rgb.png

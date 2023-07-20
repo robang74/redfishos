@@ -1,6 +1,0 @@
-9d863239a8eba0e9d4976d573cfb243b  /etc/dbus-1/system.d/org.sailfishos.aml.conf
-3f1f4eada936566754777963cac9d216  /usr/lib/systemd/user/aml.service
-ffcf14255f9e949dfdd7673989807398  /usr/lib64/ofono/plugins/amlplugin.so
-f1c4f4e8547773c693a9bb0b5d50865a  /usr/libexec/aml-service
-7f0d2c74a89ef91755f6649e37e73e11  /usr/share/dbus-1/system-services/org.sailfishos.aml.service
-b548a6a2882b203386c1aa4b0a3134b2  /usr/share/mapplauncherd/privileges.d/aml-service.privileges

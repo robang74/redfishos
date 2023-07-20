@@ -1,9 +1,0 @@
-4b43e9051becaebba901cfaf682c9791  /sbin/depmod
-4b43e9051becaebba901cfaf682c9791  /sbin/insmod
-4b43e9051becaebba901cfaf682c9791  /sbin/lsmod
-4b43e9051becaebba901cfaf682c9791  /sbin/modinfo
-4b43e9051becaebba901cfaf682c9791  /sbin/modprobe
-4b43e9051becaebba901cfaf682c9791  /sbin/rmmod
-4b43e9051becaebba901cfaf682c9791  /usr/bin/kmod
-3592da55a19f765ee35dffc6f8fa0215  /usr/share/bash-completion/completions/kmod
-751419260aa954499f7abaabaa882bbe  /usr/share/licenses/kmod-29+git2/COPYING

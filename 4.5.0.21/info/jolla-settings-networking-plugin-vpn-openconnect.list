@@ -1,9 +1,0 @@
-/usr/share/applications/openconnect-import.desktop
-/usr/share/jolla-settings/x-openconnect.xml
-/usr/share/sailfish-vpn/openconnect
-/usr/share/sailfish-vpn/openconnect/advanced.qml
-/usr/share/sailfish-vpn/openconnect/details.qml
-/usr/share/sailfish-vpn/openconnect/edit.qml
-/usr/share/sailfish-vpn/openconnect/import.qml
-/usr/share/sailfish-vpn/openconnect/importdialog.qml
-/usr/share/sailfish-vpn/openconnect/listitem.qml

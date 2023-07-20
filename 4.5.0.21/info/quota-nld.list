@@ -1,5 +1,0 @@
-/usr/lib/systemd/system/multi-user.target.wants/quota_nld.service
-/usr/lib/systemd/system/quota_nld.service
-/usr/sbin/quota_nld
-/usr/share/licenses/quota-nld-4.05+git2
-/usr/share/licenses/quota-nld-4.05+git2/COPYING

@@ -1,9 +1,0 @@
-/usr/lib64/qt5/qml/Nemo/Time
-/usr/lib64/qt5/qml/Nemo/Time/libnemotime.so
-/usr/lib64/qt5/qml/Nemo/Time/plugins.qmltypes
-/usr/lib64/qt5/qml/Nemo/Time/qmldir
-/usr/lib64/qt5/qml/org/nemomobile/time
-/usr/lib64/qt5/qml/org/nemomobile/time/libnemotime.so
-/usr/lib64/qt5/qml/org/nemomobile/time/qmldir
-/usr/share/licenses/nemo-qml-plugin-time-qt5-0.1.5
-/usr/share/licenses/nemo-qml-plugin-time-qt5-0.1.5/LICENSE.BSD

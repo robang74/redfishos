@@ -1,7 +1,0 @@
-/usr/share/jolla-settings/entries/vpn.json
-/usr/share/jolla-settings/pages/vpn
-/usr/share/jolla-settings/pages/vpn/EnableSwitch.qml
-/usr/share/jolla-settings/pages/vpn/NewConnectionDialog.qml
-/usr/share/jolla-settings/pages/vpn/TextNoSwitch.qml
-/usr/share/jolla-settings/pages/vpn/VpnItem.qml
-/usr/share/jolla-settings/pages/vpn/mainpage.qml

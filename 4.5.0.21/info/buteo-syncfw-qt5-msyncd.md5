@@ -1,6 +1,0 @@
-80ebbc57a2899958c07ee836df301387  /etc/syncwidget/com.meego.msyncd
-58176442a6b68e4a58e09ceee1ef5842  /usr/bin/msyncd
-7e8a26e5a2cab8109b5d18e17f8033a2  /usr/lib/systemd/user/msyncd.service
-7e8a26e5a2cab8109b5d18e17f8033a2  /usr/lib/systemd/user/user-session.target.wants/msyncd.service
-006872219686db2c3b67206616e1e948  /usr/share/glib-2.0/schemas/com.meego.msyncd.gschema.xml
-c44f5ab0bd489f527f5a97ef67e94180  /usr/share/mapplauncherd/privileges.d/buteo-syncfw-qt5.privileges

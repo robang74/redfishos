@@ -1,7 +1,0 @@
-fa582cf6ce139139c0f6cf3115260c94  /usr/lib/oneshot.d/move_accounts_db_to_privileged
-f18e747605c88e3fbea07eaebebded22  /usr/lib64/libaccounts-glib.so.1
-243b725d71bb5df4a1e5920b344b86ad  /usr/share/licenses/libaccounts-glib-1.24+git5/COPYING
-746f463e15a7ae018222a5e15074abab  /usr/share/xml/accounts/schema/dtd/accounts-application.dtd
-d19f5835de1638c5a2056c97b39aca5b  /usr/share/xml/accounts/schema/dtd/accounts-provider.dtd
-d904a999b9498d542e3266bb91e65f70  /usr/share/xml/accounts/schema/dtd/accounts-service-type.dtd
-84c15690b842efed990d6c6c2b0c0d96  /usr/share/xml/accounts/schema/dtd/accounts-service.dtd

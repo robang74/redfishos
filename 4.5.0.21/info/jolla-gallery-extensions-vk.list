@@ -1,8 +1,0 @@
-/usr/lib64/qt5/qml/com/jolla/gallery/vk
-/usr/lib64/qt5/qml/com/jolla/gallery/vk/VKAlbumsPage.qml
-/usr/lib64/qt5/qml/com/jolla/gallery/vk/VKFullscreenPhotoPage.qml
-/usr/lib64/qt5/qml/com/jolla/gallery/vk/VKGalleryIcon.qml
-/usr/lib64/qt5/qml/com/jolla/gallery/vk/VKUsersPage.qml
-/usr/lib64/qt5/qml/com/jolla/gallery/vk/libjollagalleryvkplugin.so
-/usr/lib64/qt5/qml/com/jolla/gallery/vk/qmldir
-/usr/share/jolla-gallery/mediasources/VKCacheMediaSource.qml

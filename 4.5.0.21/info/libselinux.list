@@ -1,5 +1,0 @@
-/run/setrans
-/usr/lib/tmpfiles.d/libselinux.conf
-/usr/lib64/libselinux.so.1
-/usr/share/licenses/libselinux-3.1+git3
-/usr/share/licenses/libselinux-3.1+git3/LICENSE

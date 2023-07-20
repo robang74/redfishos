@@ -1,8 +1,0 @@
-/usr/lib64/qt5/qml/com/jolla/contacts/settings
-/usr/lib64/qt5/qml/com/jolla/contacts/settings/libjollacontactssettingsplugin.so
-/usr/lib64/qt5/qml/com/jolla/contacts/settings/qmldir
-/usr/share/jolla-settings/entries/jolla-contacts.json
-/usr/share/jolla-settings/pages/jolla-contacts
-/usr/share/jolla-settings/pages/jolla-contacts/ContactFilePickerPage.qml
-/usr/share/jolla-settings/pages/jolla-contacts/ImportButton.qml
-/usr/share/jolla-settings/pages/jolla-contacts/contactssettings.qml

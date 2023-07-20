@@ -1,8 +1,0 @@
-/etc/libblockdev
-/etc/libblockdev/conf.d
-/etc/libblockdev/conf.d/00-default.cfg
-/usr/lib64/girepository-1.0/BlockDev-2.0.typelib
-/usr/lib64/libblockdev.so.2
-/usr/lib64/libblockdev.so.2.0.0
-/usr/share/licenses/libblockdev-2.26+git1
-/usr/share/licenses/libblockdev-2.26+git1/LICENSE

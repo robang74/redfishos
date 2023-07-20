@@ -1,9 +1,0 @@
-/usr/lib/dracut/dracut.conf.d/50-nss-softokn.conf
-/usr/lib/dracut/modules.d/05nss-softokn
-/usr/lib/dracut/modules.d/05nss-softokn/module-setup.sh
-/usr/lib64/libfreebl3.chk
-/usr/lib64/libfreebl3.so
-/usr/lib64/libfreeblpriv3.chk
-/usr/lib64/libfreeblpriv3.so
-/usr/share/licenses/nss-softokn-freebl-3.73.1+git2
-/usr/share/licenses/nss-softokn-freebl-3.73.1+git2/COPYING

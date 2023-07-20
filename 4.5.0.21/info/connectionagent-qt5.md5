@@ -1,7 +1,0 @@
-dd9295d96974825242412ad88e7c9f97  /etc/dbus-1/session.d/connectionagent.conf
-ff691638239bd7f65060c587b2dee1d2  /usr/bin/connectionagent
-6513b86be1d9c5aaa65f24fa99731c3f  /usr/lib/systemd/user/connectionagent.service
-6513b86be1d9c5aaa65f24fa99731c3f  /usr/lib/systemd/user/user-session.target.wants/connectionagent.service
-99ab8308503c8addebb78d84cbe8acd9  /usr/share/dbus-1/services/com.jolla.Connectiond.service
-2d5025d4aa3495befef8f17206a5b0a1  /usr/share/licenses/connectionagent-qt5-0.11.42/COPYING
-f891fa51fdf0a7401498ca35722c9f31  /usr/share/mapplauncherd/privileges.d/connectionagent

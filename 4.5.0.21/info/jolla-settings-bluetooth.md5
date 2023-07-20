@@ -1,7 +1,0 @@
-731d15a642d0139b33c2122aa093ad54  /usr/lib64/qt5/qml/com/jolla/settings/bluetooth/translations/libtranslationplugin.so
-a4ccfddfce76a7b0313fdba039df9fcd  /usr/lib64/qt5/qml/com/jolla/settings/bluetooth/translations/qmldir
-12f4b37a7d7a0c3bb88df3e0f1da61ac  /usr/share/jolla-settings/entries/bluetooth.json
-a435cbe01778c60fc8d60e404e4c66b4  /usr/share/jolla-settings/pages/bluetooth/BluetoothVisibilityComboBox.qml
-2200e8dce2b84e078393b4ecd9a1f21d  /usr/share/jolla-settings/pages/bluetooth/EnableSwitch.qml
-6da967bf5a8f2ceef01a7e9908c3abc5  /usr/share/jolla-settings/pages/bluetooth/bluetoothSettings.qml
-37e180be33d7378b9235fed01a0a329d  /usr/share/translations/settings-bluetooth_eng_en.qm

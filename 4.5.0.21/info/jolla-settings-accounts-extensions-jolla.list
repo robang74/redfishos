@@ -1,7 +1,0 @@
-/usr/share/accounts/providers/jolla.provider
-/usr/share/accounts/services/jolla-developermode.service
-/usr/share/accounts/services/jolla-store.service
-/usr/share/accounts/ui/JollaAccountWizardFlow.qml
-/usr/share/accounts/ui/jolla-settings.qml
-/usr/share/accounts/ui/jolla-update.qml
-/usr/share/accounts/ui/jolla.qml

@@ -1,8 +1,0 @@
-f393a15422f96cfc22f9067bed47ab8b  /usr/share/accounts/providers/twitter.provider
-d051b0c6e186d0c6b9fcb28fefbe2991  /usr/share/accounts/services/twitter-microblog.service
-9824a0162d068851192cd2b849182faf  /usr/share/accounts/services/twitter-sharing.service
-61a7ca9f798faefad6767976269a4b9d  /usr/share/accounts/services/twitter-sync.service
-2dd60c96332a01246dda200d02497f2e  /usr/share/accounts/ui/TwitterSettingsDisplay.qml
-9351b6505538934796ab69d2a5541a51  /usr/share/accounts/ui/twitter-settings.qml
-f25d541dd5d56a637158e71b8352dfe6  /usr/share/accounts/ui/twitter-update.qml
-d8e63d32aacfbbeabd311d32852ccac5  /usr/share/accounts/ui/twitter.qml

@@ -1,6 +1,0 @@
-9a96d5a2e09f249b16406404620beebe  /etc/dbus-1/system.d/org.sailfishos.fingerprint1.conf
-498026c45a5940ee8d500cdf479ea998  /usr/bin/sailfish-fpd
-16fe3ab453ccf46a5af628f26ff5b146  /usr/lib/systemd/system/multi-user.target.wants/sailfish-fpd.service
-16fe3ab453ccf46a5af628f26ff5b146  /usr/lib/systemd/system/sailfish-fpd.service
-3814ea9dacb913d5a6c8e425b1b49549  /usr/share/licenses/sailfish-fpd-1.5.0/COPYING
-e5815e616153c142e34747ce1e802807  /usr/share/user-managerd/remove.d/fingerprint.sh

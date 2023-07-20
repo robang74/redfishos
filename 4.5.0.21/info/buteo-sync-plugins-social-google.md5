@@ -1,9 +1,0 @@
-77f4efbc2e375c35d9ed8759c69df64f  /etc/buteo/profiles/client/google-calendars.xml
-c3767dd4b1740e11cdfac0b850175d99  /etc/buteo/profiles/client/google-contacts.xml
-cb58e8b5457826651591be94658a6bd0  /etc/buteo/profiles/client/google-signon.xml
-b2f0030352b09ca25e84d7c25de6682f  /etc/buteo/profiles/sync/google.Calendars.xml
-2ce6935e1d0d605ad6ad80561d5ba736  /etc/buteo/profiles/sync/google.Contacts.xml
-0c3267584be982796a5da8a3fe1dd226  /etc/buteo/profiles/sync/google.Signon.xml
-aa51b1b062367ea1f84f4727cea82826  /usr/lib64/buteo-plugins-qt5/oopp/libgoogle-calendars-client.so
-2ddd777a9e5b0aa1e9396007ff34eb46  /usr/lib64/buteo-plugins-qt5/oopp/libgoogle-contacts-client.so
-cb61bc658aef3fda72b849026ba1d6fa  /usr/lib64/buteo-plugins-qt5/oopp/libgoogle-signon-client.so

@@ -1,6 +1,0 @@
-76196b4c131962b68937dc1ca746799f  /etc/pki/rpm-gpg/gpg-pubkey-2f7da79c-5f7b0fd1.asc
-8680ef547519df9636c9f2b66adecd96  /etc/pki/rpm-gpg/gpg-pubkey-76db038c-5f914913.asc
-5c4bc3745956bd1745546c8f1ddbeefa  /etc/ssu/ssu.ini
-57f71237eeda6d414fec3a408b6e7481  /usr/lib/oneshot.d/ssu-vendor-data-jolla-rpm-import-keys
-866eb213989988bbb4c75591b2b35d0a  /usr/share/ssu/repos.d/10-jolla.ini
-9b0bca8c67ba51ece76bc4f7bb941433  /usr/share/ssu/ssu-defaults.ini

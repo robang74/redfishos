@@ -1,7 +1,0 @@
-/usr/lib/systemd/system/multi-user.target.wants/sailfish-devicelock-encsfa-fpd.service
-/usr/lib/systemd/system/nemo-devicelock.service
-/usr/lib/systemd/system/sailfish-devicelock-encsfa-fpd.service
-/usr/lib64/qt5/plugins/devicelock/encpartition
-/usr/lib64/qt5/plugins/devicelock/encsfa-fpd
-/usr/share/lipstick/devicelock
-/usr/share/lipstick/devicelock/devicelock.conf

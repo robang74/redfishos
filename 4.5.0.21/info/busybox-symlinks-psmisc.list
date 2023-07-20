@@ -1,6 +1,0 @@
-/sbin/fuser
-/sbin/pidof
-/usr/bin/fuser
-/usr/bin/killall
-/usr/bin/pidof
-/usr/bin/pstree

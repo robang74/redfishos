@@ -1,6 +1,0 @@
-/usr/lib/systemd/user/booster-silica-media.service
-/usr/lib/systemd/user/booster-silica-media@.service
-/usr/lib/systemd/user/user-session.target.wants/booster-silica-media.service
-/usr/libexec/mapplauncherd/booster-silica-media
-/usr/share/booster-silica-media
-/usr/share/booster-silica-media/preload.qml

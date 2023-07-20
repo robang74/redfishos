@@ -1,7 +1,0 @@
-/usr/lib64/qt5/qml/org/sailfishos/browser/settings
-/usr/lib64/qt5/qml/org/sailfishos/browser/settings/libbrowsersettingsplugin.so
-/usr/lib64/qt5/qml/org/sailfishos/browser/settings/qmldir
-/usr/share/jolla-settings/entries/browser.json
-/usr/share/jolla-settings/pages/browser
-/usr/share/jolla-settings/pages/browser/browser.qml
-/usr/share/translations/settings-sailfish-browser_eng_en.qm

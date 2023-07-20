@@ -1,3 +1,0 @@
-d4f029ca0f39a74bd1a52f8d46cb3d7f  /usr/lib/startup/preinit/get_bootstate
-35bbc4ca2b9fe05dad0ca130cb6d6115  /usr/lib/startup/preinit/is_erase_needed
-10cea248d9b6499081b33c6bea6ca06f  /usr/lib/startup/preinit/is_total_erase_supported

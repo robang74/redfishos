@@ -1,7 +1,0 @@
-fce455738b1412490f6a4e84a36610e7  /usr/lib/systemd/user/booster-silica-qt5.service
-96e90e7f4eee84d3f35b980fc2f8675c  /usr/lib/systemd/user/booster-silica-qt5@.service
-fce455738b1412490f6a4e84a36610e7  /usr/lib/systemd/user/user-session.target.wants/booster-silica-qt5.service
-775f92fc92828d7fe2d143469bb47834  /usr/libexec/mapplauncherd/booster-silica-qt5
-19d73905fe2ad9140b74b94620e69054  /usr/libexec/mapplauncherd/booster-silica-session
-9a3aea23a9b0ce611dd429a763a8111a  /usr/share/booster-silica-qt5/preload.qml
-243b725d71bb5df4a1e5920b344b86ad  /usr/share/licenses/mapplauncherd-booster-silica-qt5-0.5.4/COPYING.LESSER

@@ -1,9 +1,0 @@
-/usr/lib64/libcap.so.2
-/usr/lib64/libcap.so.2.25
-/usr/lib64/security/pam_cap.so
-/usr/sbin/capsh
-/usr/sbin/getcap
-/usr/sbin/getpcaps
-/usr/sbin/setcap
-/usr/share/licenses/libcap-2.25+git2
-/usr/share/licenses/libcap-2.25+git2/License

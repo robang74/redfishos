@@ -1,9 +1,0 @@
-ffb65b30f7e939fcc7b178d353850854  /etc/buteo/profiles/client/nextcloud-backup.xml
-84ab99dc52b916387986b882d1202a27  /etc/buteo/profiles/client/nextcloud-backupquery.xml
-71538424988c77789fbb557a7377fab1  /etc/buteo/profiles/client/nextcloud-backuprestore.xml
-2a96cc1c666c67e03da03810109c99cc  /etc/buteo/profiles/sync/nextcloud.Backup.xml
-e1cd845e041c4b905bb82893323ba62f  /etc/buteo/profiles/sync/nextcloud.BackupQuery.xml
-b0540a7bf5c5e6b9ab919d04d245d955  /etc/buteo/profiles/sync/nextcloud.BackupRestore.xml
-4c0146bdc02b8e9b82144a3b5576d93c  /usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-backup-client.so
-f001c188bed58fab29539f0bcb4171ce  /usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-backupquery-client.so
-b12fe347deb24c01485ce4a0c408a119  /usr/lib64/buteo-plugins-qt5/oopp/libnextcloud-backuprestore-client.so

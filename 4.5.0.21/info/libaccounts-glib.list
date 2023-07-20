@@ -1,9 +1,0 @@
-/usr/lib/oneshot.d/move_accounts_db_to_privileged
-/usr/lib64/libaccounts-glib.so.1
-/usr/share/licenses/libaccounts-glib-1.24+git5
-/usr/share/licenses/libaccounts-glib-1.24+git5/COPYING
-/usr/share/xml/accounts/schema/dtd
-/usr/share/xml/accounts/schema/dtd/accounts-application.dtd
-/usr/share/xml/accounts/schema/dtd/accounts-provider.dtd
-/usr/share/xml/accounts/schema/dtd/accounts-service-type.dtd
-/usr/share/xml/accounts/schema/dtd/accounts-service.dtd

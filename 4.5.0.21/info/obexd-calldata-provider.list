@@ -1,4 +1,0 @@
-/usr/lib/systemd/user/obexd-calldata-provider.service
-/usr/libexec/obexd-calldata-provider
-/usr/share/dbus-1/services/com.jolla.ObexCallData.service
-/usr/share/mapplauncherd/privileges.d/obexd-calldata-provider.privileges

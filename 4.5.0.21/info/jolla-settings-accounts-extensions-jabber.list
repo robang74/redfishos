@@ -1,7 +1,0 @@
-/usr/share/accounts/providers/jabber.provider
-/usr/share/accounts/services/jabber.service
-/usr/share/accounts/ui/JabberCommon.qml
-/usr/share/accounts/ui/JabberSettingsDisplay.qml
-/usr/share/accounts/ui/jabber-settings.qml
-/usr/share/accounts/ui/jabber-update.qml
-/usr/share/accounts/ui/jabber.qml

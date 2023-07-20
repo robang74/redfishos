@@ -1,8 +1,0 @@
-/usr/share/accounts/providers/twitter.provider
-/usr/share/accounts/services/twitter-microblog.service
-/usr/share/accounts/services/twitter-sharing.service
-/usr/share/accounts/services/twitter-sync.service
-/usr/share/accounts/ui/TwitterSettingsDisplay.qml
-/usr/share/accounts/ui/twitter-settings.qml
-/usr/share/accounts/ui/twitter-update.qml
-/usr/share/accounts/ui/twitter.qml

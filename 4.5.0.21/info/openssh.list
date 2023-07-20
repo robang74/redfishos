@@ -1,7 +1,0 @@
-/etc/ssh
-/etc/ssh/moduli
-/usr/bin/ssh-keygen
-/usr/libexec/openssh
-/usr/libexec/openssh/ssh-keysign
-/usr/share/licenses/openssh-8.8p1+git1
-/usr/share/licenses/openssh-8.8p1+git1/LICENCE

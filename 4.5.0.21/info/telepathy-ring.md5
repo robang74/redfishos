@@ -1,7 +1,0 @@
-6045d523a98600db40c6a30deb26fac9  /usr/lib/systemd/user/telepathy-ring.service
-5a3373adb2030554705fde48ade9af83  /usr/lib64/mission-control-plugins.0/mcp-account-manager-ring.so
-64950b448b8b558e3ace832fb75b890c  /usr/libexec/telepathy-ring
-4cf8bdb96ffbd4b9e2e4b5822596a3ff  /usr/share/dbus-1/services/org.freedesktop.Telepathy.ConnectionManager.ring.service
-ac2051dc3dfaf7e583b831491df4e9e1  /usr/share/licenses/telepathy-ring-2.5.13/COPYING
-bcd7644e88626e20fda5dafc74c2e4ea  /usr/share/mapplauncherd/privileges.d/telepathy-ring.privileges
-07ac5789d15f688bf603c2bca25b890c  /usr/share/telepathy/managers/ring.manager

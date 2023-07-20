@@ -1,9 +1,0 @@
-/etc/obexd
-/etc/obexd.conf
-/etc/obexd/noplugins
-/etc/obexd/plugins
-/usr/lib/systemd/user/dbus-org.bluez.obex.service
-/usr/lib/systemd/user/obex.service
-/usr/libexec/bluetooth/obexd
-/usr/libexec/obexd-wrapper
-/usr/share/dbus-1/services/org.bluez.obex.service

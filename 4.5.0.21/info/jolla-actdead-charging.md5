@@ -1,7 +1,0 @@
-befbcfe33709b87be01847149c05c33e  /usr/bin/jolla-actdead-charging
-a06b188e2fb64f112d07123297be45e6  /usr/lib/systemd/user/actdead-session.target.wants/jolla-actdead-charging.service
-a06b188e2fb64f112d07123297be45e6  /usr/lib/systemd/user/jolla-actdead-charging.service
-7358ad0e569648ed9476b3799cf4356d  /usr/share/jolla-actdead-charging/BatteryStatus.qml
-62f5b8a4899850c32e9ba064d980e8ce  /usr/share/jolla-actdead-charging/ChargerTestItem.qml
-658d18f2b89bf094c5e58cca7f153c24  /usr/share/jolla-actdead-charging/main.qml
-f60ee84b84cb8947fb54208b64f86563  /var/lib/environment/actdead/jolla-actdead-charging-environment.conf

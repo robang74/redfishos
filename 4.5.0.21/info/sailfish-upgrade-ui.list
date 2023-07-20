@@ -1,7 +1,0 @@
-/usr/lib/systemd/system/osupdate-logging.service
-/usr/lib/systemd/system/sailfish-upgrade-ui.service
-/usr/lib/systemd/system/system-update-cleanup.service.d
-/usr/lib/systemd/system/system-update-cleanup.service.d/os-update-running.conf
-/usr/lib/systemd/system/system-update-pre.target.wants
-/usr/lib/systemd/system/system-update-pre.target.wants/sailfish-upgrade-ui.service
-/usr/libexec/sailfish-upgrade-ui

@@ -1,5 +1,0 @@
-af92acae1a05908929d9a72d4c0d9ffa  /etc/dbus-1/system.d/ofono.conf
-89c477b3f92358367d07329c138ba219  /usr/lib/systemd/system/network.target.wants/ofono.service
-89c477b3f92358367d07329c138ba219  /usr/lib/systemd/system/ofono.service
-7688716d0bbad84213072ea4c99c23d1  /usr/sbin/ofonod
-eb723b61539feef013de476e68b5c50a  /usr/share/licenses/ofono-1.29+git6/COPYING

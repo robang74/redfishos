@@ -1,6 +1,0 @@
-/etc/dbus-1/system.d/org.sailfishos.aml.conf
-/usr/lib/systemd/user/aml.service
-/usr/lib64/ofono/plugins/amlplugin.so
-/usr/libexec/aml-service
-/usr/share/dbus-1/system-services/org.sailfishos.aml.service
-/usr/share/mapplauncherd/privileges.d/aml-service.privileges

@@ -1,6 +1,0 @@
-e75ec5dbf14fb5de4fd760a594b78256  /etc/bash_completion.d/dbus-bash-completion.sh
-8cdd1ee94002eb254e0f648a88de3719  /usr/bin/dbus-binding-tool
-cbc8752585719bf0caf3dc7f2bed79ec  /usr/lib64/libdbus-glib-1.so.2
-cbc8752585719bf0caf3dc7f2bed79ec  /usr/lib64/libdbus-glib-1.so.2.2.2
-3c50746fa53660d34042e9db21665e96  /usr/libexec/dbus-bash-completion-helper
-cf5b3a2f7083750d504333114e738656  /usr/share/licenses/dbus-glib-0.100.2/COPYING

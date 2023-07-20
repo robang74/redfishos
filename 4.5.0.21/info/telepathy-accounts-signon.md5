@@ -1,7 +1,0 @@
-791cbb30de4ced24238d03cc95545d69  /usr/lib64/mission-control-plugins.0/mcp-account-manager-uoa.so
-6a167b28b621f07a9ac1687079500a83  /usr/libexec/telepathy-sasl-signon
-398a063725dc95c03b8588b61b0a6dd6  /usr/share/dbus-1/services/org.freedesktop.Telepathy.Client.SaslSignonAuth.service
-59530bdf33659b29e73d4adb9f9f6552  /usr/share/licenses/telepathy-accounts-signon-0.1.28/COPYING
-243b725d71bb5df4a1e5920b344b86ad  /usr/share/licenses/telepathy-accounts-signon-0.1.28/COPYING.LGPL
-1964373cb81c7e9869b5929c9e68d163  /usr/share/mapplauncherd/privileges.d/telepathy-accounts-signon.privileges
-a4a155363719a9ff02b434ea406f1af4  /usr/share/telepathy/clients/SaslSignonAuth.client

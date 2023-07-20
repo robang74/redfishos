@@ -1,9 +1,0 @@
-/usr/share/applications/vpnc-import.desktop
-/usr/share/jolla-settings/x-vpnc.xml
-/usr/share/sailfish-vpn/vpnc
-/usr/share/sailfish-vpn/vpnc/advanced.qml
-/usr/share/sailfish-vpn/vpnc/details.qml
-/usr/share/sailfish-vpn/vpnc/edit.qml
-/usr/share/sailfish-vpn/vpnc/import.qml
-/usr/share/sailfish-vpn/vpnc/importdialog.qml
-/usr/share/sailfish-vpn/vpnc/listitem.qml

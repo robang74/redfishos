@@ -1,8 +1,0 @@
-/usr/lib/oneshot.d/reset-deprecated-multisim-dconf
-/usr/lib64/qt5/qml/com/jolla/settings/multisim/DataSimSelector.qml
-/usr/lib64/qt5/qml/com/jolla/settings/multisim/libjollamultisimplugin.so
-/usr/lib64/qt5/qml/com/jolla/settings/multisim/qmldir
-/usr/share/jolla-settings/entries/multisim.json
-/usr/share/jolla-settings/pages/multisim
-/usr/share/jolla-settings/pages/multisim/VoiceSimSelector.qml
-/usr/share/jolla-settings/pages/multisim/multisim.qml

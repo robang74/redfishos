@@ -1,5 +1,0 @@
-0fcb84814472c6d4ff5bfad97d833139  /usr/lib/systemd/user/booster-silica-media.service
-7f0dfc7bbd7f626f0576f81cb345e6c6  /usr/lib/systemd/user/booster-silica-media@.service
-0fcb84814472c6d4ff5bfad97d833139  /usr/lib/systemd/user/user-session.target.wants/booster-silica-media.service
-6986d7caebe512a6b87174ed5d97d995  /usr/libexec/mapplauncherd/booster-silica-media
-c68e4400630815300aba6e1a97b3746e  /usr/share/booster-silica-media/preload.qml

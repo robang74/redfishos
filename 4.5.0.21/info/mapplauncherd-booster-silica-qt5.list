@@ -1,9 +1,0 @@
-/usr/lib/systemd/user/booster-silica-qt5.service
-/usr/lib/systemd/user/booster-silica-qt5@.service
-/usr/lib/systemd/user/user-session.target.wants/booster-silica-qt5.service
-/usr/libexec/mapplauncherd/booster-silica-qt5
-/usr/libexec/mapplauncherd/booster-silica-session
-/usr/share/booster-silica-qt5
-/usr/share/booster-silica-qt5/preload.qml
-/usr/share/licenses/mapplauncherd-booster-silica-qt5-0.5.4
-/usr/share/licenses/mapplauncherd-booster-silica-qt5-0.5.4/COPYING.LESSER

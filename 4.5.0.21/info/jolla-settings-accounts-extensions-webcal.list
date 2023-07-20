@@ -1,6 +1,0 @@
-/usr/share/accounts/providers/webcal.provider
-/usr/share/accounts/services/webcal-sync.service
-/usr/share/accounts/ui/WebCalendarSettings.qml
-/usr/share/accounts/ui/webcal-settings.qml
-/usr/share/accounts/ui/webcal.qml
-/usr/share/applications/webcal-import.desktop

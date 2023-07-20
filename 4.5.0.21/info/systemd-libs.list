@@ -1,6 +1,0 @@
-/usr/lib64/libnss_systemd.so.2
-/usr/lib64/libsystemd.so.0
-/usr/lib64/libsystemd.so.0.22.0
-/usr/lib64/libudev.so.1
-/usr/lib64/libudev.so.1.6.10
-/usr/lib64/security/pam_systemd.so

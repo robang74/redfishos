@@ -1,7 +1,0 @@
-fe5f055492995b423129c6cd4cc0828f  /lib/udev/rules.d/10-dm.rules
-4499280c7a559119e90d2c7d430ffc9a  /lib/udev/rules.d/13-dm-disk.rules
-6908a992cc48bddc221e2348ea1c81ae  /lib/udev/rules.d/95-dm-notify.rules
-a4d0557670e4c99189da616cfc2d4d37  /usr/sbin/dmsetup
-a4d0557670e4c99189da616cfc2d4d37  /usr/sbin/dmstats
-12713b4d9386533feeb07d6e4831765a  /usr/share/licenses/device-mapper-2.02.177+git6/COPYING
-fbc093901857fcd118f065f900982c24  /usr/share/licenses/device-mapper-2.02.177+git6/COPYING.LIB

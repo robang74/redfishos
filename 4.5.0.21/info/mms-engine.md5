@@ -1,8 +1,0 @@
-fda0703aebd34cf529156591f5542c0c  /etc/dbus-1/system.d/org.nemomobile.MmsEngine.conf
-98eb364014d06a4ab4c6eb4f9087caef  /etc/ofono/push_forwarder.d/org.nemomobile.MmsEngine.conf
-b6fa679626e6d4b143b3b81de0986acd  /usr/lib/systemd/user/mms-engine.service
-56c64c0126d3cef9f4ebfad89d5c3fdb  /usr/sbin/mms-engine
-4d58516e72cd5350088395e305163aa8  /usr/share/dbus-1/system-services/org.nemomobile.MmsEngine.service
-dba15810034aba62be4422c2d469ad20  /usr/share/glib-2.0/schemas/org.nemomobile.mms.sim.gschema.xml
-b234ee4d69f5fce4486a80fdaf4a4263  /usr/share/licenses/mms-engine-1.0.81/LICENSE.GPL2
-27663e2dd6d8c3cc17fb4709df339ed7  /usr/share/mapplauncherd/privileges.d/mms-engine.privileges

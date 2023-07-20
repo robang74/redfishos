@@ -1,4 +1,0 @@
-/usr/lib/systemd/user/sailfish-homescreen-services.service
-/usr/lib/systemd/user/user-session.target.wants/sailfish-homescreen-services.service
-/usr/libexec/sailfish-homescreen-services
-/usr/share/translations/sailfish-homescreen-services-daemon_eng_en.qm

@@ -1,9 +1,0 @@
-/usr/share/applications/l2tp-import.desktop
-/usr/share/jolla-settings/x-l2tp.xml
-/usr/share/sailfish-vpn/l2tp
-/usr/share/sailfish-vpn/l2tp/advanced.qml
-/usr/share/sailfish-vpn/l2tp/details.qml
-/usr/share/sailfish-vpn/l2tp/edit.qml
-/usr/share/sailfish-vpn/l2tp/import.qml
-/usr/share/sailfish-vpn/l2tp/importdialog.qml
-/usr/share/sailfish-vpn/l2tp/listitem.qml

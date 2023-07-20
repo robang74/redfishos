@@ -1,4 +1,0 @@
-583ce6c290ee8cea59ae397e12c1a0cf  /etc/zypp/packagekit-zypp-override.conf
-e808d78c3c7411e1b796cdae68c29124  /usr/lib/systemd/system/rpm-db-clean.service
-d4889275b78b1db5969f28ef4fb93a28  /usr/lib64/packagekit-backend/libpk_backend_zypp.so
-f0b40c24fa3f3c85ab881826bbfc8730  /usr/libexec/pk-rpm-db-clean

@@ -1,7 +1,0 @@
-db062f8f4f0904a605a500c187eebdba  /etc/buteo/profiles/client/twitter-notifications.xml
-1f54bd553a58a787e3520d6adcc3d823  /etc/buteo/profiles/client/twitter-posts.xml
-d0ec08dfc5904c33d83bcf493db6e87c  /etc/buteo/profiles/sync/twitter.Notifications.xml
-4d4e324a54abb3de292dd7372a94850f  /etc/buteo/profiles/sync/twitter.Posts.xml
-cd509810bb7ee13382ba036da163578c  /usr/lib64/buteo-plugins-qt5/oopp/libtwitter-notifications-client.so
-961db780fb688e908f81884a87bccaaa  /usr/lib64/buteo-plugins-qt5/oopp/libtwitter-posts-client.so
-af77221a94d553eb085eef054c85f880  /usr/share/translations/lipstick-jolla-home-twitter-notif_eng_en.qm

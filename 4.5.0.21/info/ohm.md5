@@ -1,7 +1,0 @@
-1525d4dcb7f298c6befcd63437c2b897  /etc/dbus-1/system.d/ohm.conf
-e148fca4ef4ac11ba97fa86f921eb606  /usr/lib/systemd/system/basic.target.wants/ohmd.service
-e148fca4ef4ac11ba97fa86f921eb606  /usr/lib/systemd/system/dbus-org.freedesktop.ohm.service
-e148fca4ef4ac11ba97fa86f921eb606  /usr/lib/systemd/system/ohmd.service
-a4d0afc1c13d2851059228a8354c7b84  /usr/sbin/ohmd
-aa03adb2b65ee18977d13137919ac7f3  /usr/share/dbus-1/system-services/org.freedesktop.ohm.service
-045d04e17422d99e338da75b9c749b7c  /usr/share/licenses/ohm-1.3.1/COPYING

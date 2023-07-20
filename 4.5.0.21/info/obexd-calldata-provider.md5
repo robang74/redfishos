@@ -1,4 +1,0 @@
-9bac5e61262cc1deea58fd2e5b5c79a1  /usr/lib/systemd/user/obexd-calldata-provider.service
-7ac84c75342ff463eaae1ce4920fda84  /usr/libexec/obexd-calldata-provider
-451586a3d0fc604563ac73205cca4583  /usr/share/dbus-1/services/com.jolla.ObexCallData.service
-108195887f27657e950cd0bfab88682a  /usr/share/mapplauncherd/privileges.d/obexd-calldata-provider.privileges

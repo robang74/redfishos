@@ -1,4 +1,0 @@
-/usr/sbin/flash-partition
-/var/lib/flash-partition/device-info
-/var/lib/platform-updates/flash-bootimg.sh
-/var/lib/platform-updates/flash-dtbo.sh

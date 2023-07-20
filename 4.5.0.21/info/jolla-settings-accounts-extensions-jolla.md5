@@ -1,7 +1,0 @@
-ba5dea2db12bb255e1fd2877b756dde1  /usr/share/accounts/providers/jolla.provider
-d3e9bccfd371baf1b99ebcd67c781764  /usr/share/accounts/services/jolla-developermode.service
-e2ed6f9dffcbe4e3b3d9a7731bd3d635  /usr/share/accounts/services/jolla-store.service
-895f8fba4611a21c3bfa95bebd71b930  /usr/share/accounts/ui/JollaAccountWizardFlow.qml
-ea5560b8b7b27cc366c564e25200fc5e  /usr/share/accounts/ui/jolla-settings.qml
-8c88ac390a6b10f1b21b27d7b30d86a2  /usr/share/accounts/ui/jolla-update.qml
-4900f4145ba1720440d822f19151982e  /usr/share/accounts/ui/jolla.qml

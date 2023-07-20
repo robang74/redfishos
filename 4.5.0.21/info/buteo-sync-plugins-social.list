@@ -1,8 +1,0 @@
-/etc/buteo/profiles/client/sociald.xml
-/etc/buteo/profiles/sync/sociald.All.xml
-/usr/lib64/buteo-plugins-qt5/oopp/libsociald-client.so
-/usr/lib64/libsyncpluginscommon.so.1
-/usr/lib64/libsyncpluginscommon.so.1.0
-/usr/lib64/libsyncpluginscommon.so.1.0.0
-/usr/share/licenses/buteo-sync-plugins-social-0.4.18
-/usr/share/licenses/buteo-sync-plugins-social-0.4.18/COPYING

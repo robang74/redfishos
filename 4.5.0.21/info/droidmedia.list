@@ -1,6 +1,0 @@
-/usr/libexec/droid-hybris/system/bin/minimediaservice
-/usr/libexec/droid-hybris/system/bin/minisfservice
-/usr/libexec/droid-hybris/system/etc/init/minimediaservice.rc
-/usr/libexec/droid-hybris/system/etc/init/minisfservice.rc
-/usr/libexec/droid-hybris/system/lib64/libdroidmedia.so
-/usr/libexec/droid-hybris/system/lib64/libminisf.so

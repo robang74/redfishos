@@ -1,6 +1,0 @@
-06a19c1447a052f6d77aec27ed000760  /usr/bin/nemo-transfer-engine
-a3da88477c6e92eb78eb8c49c75a57bf  /usr/lib/systemd/user/transferengine.service
-8aefd64c0059dbe191375cb947fa3f0d  /usr/share/dbus-1/services/org.nemo.transferengine.service
-7b736edfd0b709427b5821c16d7948d5  /usr/share/licenses/nemo-transferengine-qt5-2.0.3/license.lgpl
-5ec08c2d305935eebd43750764888e3e  /usr/share/mapplauncherd/privileges.d/nemo-transferengine-qt5.privileges
-803637bf78f406e13aacf61394caed60  /usr/share/translations/nemo-transfer-engine_eng_en.qm

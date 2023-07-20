@@ -1,8 +1,0 @@
-/usr/share/accounts/providers/dropbox.provider
-/usr/share/accounts/services/dropbox-backup.service
-/usr/share/accounts/services/dropbox-images.service
-/usr/share/accounts/services/dropbox-sharing.service
-/usr/share/accounts/ui/DropboxSettingsDisplay.qml
-/usr/share/accounts/ui/dropbox-settings.qml
-/usr/share/accounts/ui/dropbox-update.qml
-/usr/share/accounts/ui/dropbox.qml

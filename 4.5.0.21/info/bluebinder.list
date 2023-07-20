@@ -1,5 +1,0 @@
-/usr/bin/droid/bluebinder_post.sh
-/usr/bin/droid/bluebinder_wait.sh
-/usr/lib/systemd/system/bluebinder.service
-/usr/lib/systemd/system/graphical.target.wants/bluebinder.service
-/usr/sbin/bluebinder

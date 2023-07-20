@@ -1,9 +1,0 @@
-/etc/dbus-1/system.d/org.nemomobile.MmsEngine.conf
-/etc/ofono/push_forwarder.d/org.nemomobile.MmsEngine.conf
-/usr/lib/systemd/user/mms-engine.service
-/usr/sbin/mms-engine
-/usr/share/dbus-1/system-services/org.nemomobile.MmsEngine.service
-/usr/share/glib-2.0/schemas/org.nemomobile.mms.sim.gschema.xml
-/usr/share/licenses/mms-engine-1.0.81
-/usr/share/licenses/mms-engine-1.0.81/LICENSE.GPL2
-/usr/share/mapplauncherd/privileges.d/mms-engine.privileges

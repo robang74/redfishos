@@ -1,4 +1,0 @@
-d4438515f3184990fb18669eef8bb571  /usr/lib/systemd/user/sailfish-homescreen-services.service
-d4438515f3184990fb18669eef8bb571  /usr/lib/systemd/user/user-session.target.wants/sailfish-homescreen-services.service
-eb1dd76bf1458e02e7add7b5907b550a  /usr/libexec/sailfish-homescreen-services
-7c5698c0d2c5f9a59ac5bad092594392  /usr/share/translations/sailfish-homescreen-services-daemon_eng_en.qm

@@ -1,9 +1,0 @@
-/usr/lib64/qt5/qml/Nemo/Configuration
-/usr/lib64/qt5/qml/Nemo/Configuration/libnemoconfiguration.so
-/usr/lib64/qt5/qml/Nemo/Configuration/plugins.qmltypes
-/usr/lib64/qt5/qml/Nemo/Configuration/qmldir
-/usr/lib64/qt5/qml/org/nemomobile/configuration
-/usr/lib64/qt5/qml/org/nemomobile/configuration/libnemoconfiguration.so
-/usr/lib64/qt5/qml/org/nemomobile/configuration/qmldir
-/usr/share/licenses/nemo-qml-plugin-configuration-qt5-0.2.6
-/usr/share/licenses/nemo-qml-plugin-configuration-qt5-0.2.6/LICENSE.BSD

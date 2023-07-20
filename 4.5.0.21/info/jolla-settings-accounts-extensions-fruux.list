@@ -1,6 +1,0 @@
-/usr/share/accounts/providers/fruux.provider
-/usr/share/accounts/services/fruux-caldav.service
-/usr/share/accounts/services/fruux-carddav.service
-/usr/share/accounts/ui/fruux-settings.qml
-/usr/share/accounts/ui/fruux-update.qml
-/usr/share/accounts/ui/fruux.qml

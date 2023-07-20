@@ -1,6 +1,0 @@
-/usr/share/accounts/providers/memotoo.provider
-/usr/share/accounts/services/memotoo-caldav.service
-/usr/share/accounts/services/memotoo-carddav.service
-/usr/share/accounts/ui/memotoo-settings.qml
-/usr/share/accounts/ui/memotoo-update.qml
-/usr/share/accounts/ui/memotoo.qml

@@ -1,7 +1,0 @@
-2239b230f6076f3fb54bac03e7b16ef6  /etc/bluez5/bluetooth/exclude.conf
-47cb420b9ad9e4418cb6da86e38bfca2  /etc/bluez5/bluetooth/input.conf
-9cccd877454d4d792ea6f1c48d3f120a  /etc/bluez5/bluetooth/jolla.conf
-d02c8fe537b9c38ce7cbba7a1b72afd0  /etc/bluez5/bluetooth/main.conf
-0c7497c405b963382ff71789d0730abd  /etc/bluez5/bluetooth/network.conf
-3ab6cf1b5af87dac4e63b59466996a8d  /etc/pulse/xpolicy.conf.d/bluez5.conf
-375e96fc355aca0a17981c430143db76  /etc/pulse/xpolicy.conf.d/bluez5_earpiece.conf

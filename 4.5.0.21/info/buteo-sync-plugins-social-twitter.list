@@ -1,7 +1,0 @@
-/etc/buteo/profiles/client/twitter-notifications.xml
-/etc/buteo/profiles/client/twitter-posts.xml
-/etc/buteo/profiles/sync/twitter.Notifications.xml
-/etc/buteo/profiles/sync/twitter.Posts.xml
-/usr/lib64/buteo-plugins-qt5/oopp/libtwitter-notifications-client.so
-/usr/lib64/buteo-plugins-qt5/oopp/libtwitter-posts-client.so
-/usr/share/translations/lipstick-jolla-home-twitter-notif_eng_en.qm

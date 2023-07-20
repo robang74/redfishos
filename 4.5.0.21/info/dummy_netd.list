@@ -1,3 +1,0 @@
-/usr/lib/systemd/system/dummy_netd.service
-/usr/lib/systemd/system/graphical.target.wants/dummy_netd.service
-/usr/sbin/dummy_netd

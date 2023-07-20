@@ -1,7 +1,0 @@
-bec7bf9075ce94ce0e2491cb12586c2f  /etc/dbus-1/system.d/org.neard.conf
-7987cb8864d6503b12c0cbea4d1a5cf1  /etc/dbus-1/system.d/org.sailfishos.nfc.daemon.conf
-2bbf6a6f1657818d9c601398d6b04de9  /etc/dbus-1/system.d/org.sailfishos.nfc.settings.conf
-ec91283d853c0189c620932bea0b0418  /usr/lib/systemd/system/network.target.wants/nfcd.service
-ec91283d853c0189c620932bea0b0418  /usr/lib/systemd/system/nfcd.service
-dbc953578554c4367f5d28edbc5238ce  /usr/sbin/nfcd
-5b3f54b2e4d9f7704287bad532091824  /usr/share/licenses/nfcd-1.1.14/LICENSE
