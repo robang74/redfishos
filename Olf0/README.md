@@ -76,18 +76,20 @@ Guide: Installing SailfishX on Xperias
 
     [XperiCheck.com](https://xpericheck.com/) can be used to discover which firmware versions exist for a specific Xperia model, but it does not offer firmware files to download.  Because Sony wants firmwares only to be downloaded by their own tools to flash an Xperia, firmware files for flashing them with XperiFirm, Newflasher or Flashtool (see next paragraph) are hard to obtain (but XperiFirm offers to download firmware files from Sony's servers, at least the latest one); if you want to separately download a specific firmware release, you must search the internet and mind that downloads from third party sources may be tainted (i.e., manipulated); for the Xperia 10 III one [might find this one](https://combinedfleet.keybase.pub/Firmware%20backups/XQ-BT52).
 
-    For up- or downgrading your Xperia's firmware offline (from the perspective of the Xperia), use [Sony's Emma tool](https://developer.sony.com/develop/open-devices/get-started/flash-tool/download-flash-tool/) (Windows only!), the equally comfortable and mightier [XperiFirm ≥ v5.6.5](https://forum.xda-developers.com/t/tool-xperifirm-xperia-firmware-downloader-v5-6-5.2834142/) (Windows, Linux, macOS; *do read* the "INSTRUCTIONS & REQUIREMENTS" by clicking on the unhide-button) or the very basic [command-line tool Newflasher](https://forum.xda-developers.com/t/tool-newflasher-xperia-command-line-flasher.3619426/) (Windows, Linux, macOS; *do read* [the instructions](https://github.com/munjeni/newflasher#readme) and [common errors](https://forum.xda-developers.com/t/tool-newflasher-xperia-command-line-flasher.3619426/#post-72610228)), which requires to download the firmware by other means (e.g., XperiFirm).  Mind to download any of these tools solely from its original source (linked to here).  All three supposedly allow to install arbitrary firmware releases for an Xperia phone (but I never used Emma and Newflasher), but [XperiFirm's ability to download arbitrary releases might be gone](https://forum.sailfishos.org/t/sony-xperia-iii-android-12/11029/16?u=olf).  Sony's [Xperia Companion](https://www.sony.com/electronics/support/articles/00236877) (Windows, macOS) might be another way to upgrade your Xperia's firmware offline.  [Flashtool@XperiaFirmware.com](https://xperiafirmware.com/flashtool/) (only supports [newer Xperia models](https://xperiafirmware.com/)) *seems* [to be legit](https://xperiafirmware.com/about/), but its downloads are hosted at Mega.nz and while it is stated that Flashtool versions for Windows, Linux and macOS exist, I only found those for Windows (please inform me, if you know where to obtain the Linux and macOS versions of Flashtool); this site also provides an [info-page WRT the bootloader](https://xperiafirmware.com/bootloader/).  Some experienced that Emma wants the bootloader of an Xperia to be unlocked first (see below) for flashing a new firmware.
+    For up- or downgrading your Xperia's firmware offline (from the perspective of the Xperia), use [Sony's Emma tool](https://developer.sony.com/develop/open-devices/get-started/flash-tool/download-flash-tool/) (Windows only!), the equally comfortable and mightier [XperiFirm ≥ v5.6.5](https://forum.xda-developers.com/t/tool-xperifirm-xperia-firmware-downloader-v5-6-5.2834142/) (Windows, Linux, macOS; *do read* the "INSTRUCTIONS & REQUIREMENTS" by clicking on the unhide-button) or the very basic [command-line tool Newflasher](https://forum.xda-developers.com/t/tool-newflasher-xperia-command-line-flasher.3619426/) (Windows, Linux, macOS; *do read* [the instructions](https://github.com/munjeni/newflasher#readme) and [common errors](https://forum.xda-developers.com/t/tool-newflasher-xperia-command-line-flasher.3619426/#post-72610228)), which requires to download the firmware by other means (e.g., XperiFirm).  Mind to download any of these tools solely from its original source (linked to here). All three supposedly allow to install arbitrary firmware releases for an Xperia phone (but I never used Emma and Newflasher), but [XperiFirm's ability to download arbitrary releases might be gone](https://forum.sailfishos.org/t/sony-xperia-iii-android-12/11029/16?u=olf). Sony's [Xperia Companion](https://www.sony.com/electronics/support/articles/00236877) (Windows, macOS) might be another way to upgrade your Xperia's firmware offline. [Flashtool@XperiaFirmware.com](https://xperiafirmware.com/flashtool/) (only supports [newer Xperia models](https://xperiafirmware.com/)) *seems* [to be legit](https://xperiafirmware.com/about/), but its downloads are hosted at Mega.nz and while it is stated that Flashtool versions for Windows, Linux and macOS exist, I only found those for Windows (please inform me, if you know where to obtain the Linux and macOS versions of Flashtool); this site also provides an [info-page WRT the bootloader](https://xperiafirmware.com/bootloader/).  Some experienced that Emma wants the bootloader of an Xperia to be unlocked first (see below) for flashing a new firmware.
 
-    Alternatively, you can temporarily activate WLAN ("WiFi") on your Xperia and use its "over the air (OTA) update" function, which will [take you step by step through the various firmware releases for your Xperia](https://forum.sailfishos.org/t/sony-xperia-iii-android-12/11029/17?u=olf) (a bit tedious process).  Mind to check the installed firmware release after each update to ensure that you do not go too far!  Some even used [a mix of both methods to install a specific, desired firmware release](https://forum.sailfishos.org/t/sony-xperia-iii-android-12/11029/23?u=olf).  Some experienced that the "OTA update" function wants the bootloader of an Xperia to be locked to work; it can be easily re-locked by executing a `fastboot oem lock` on your host computer.
+    Alternatively, you can temporarily activate WLAN ("WiFi") on your Xperia and use its "over the air (OTA) update" function, which will [take you step by step through the various firmware releases for your Xperia](https://forum.sailfishos.org/t/sony-xperia-iii-android-12/11029/17?u=olf) (a bit tedious process).  Mind to check the installed firmware release after each update to ensure that you do not go too far! Some even used [a mix of both methods to install a specific, desired firmware release](https://forum.sailfishos.org/t/sony-xperia-iii-android-12/11029/23?u=olf).  Some experienced that the "OTA update" function wants the bootloader of an Xperia to be locked to work; it can be easily re-locked by executing a `fastboot oem lock` on your host computer.
 
-    Simple but useful are [the key combinations documented by Sony](https://developer.sony.com/develop/open-devices/get-started/flash-tool/useful-key-combinations/).  If your device refuses to reboot (e.g., after flashing), one can simply issue a `fastboot reboot` command at the host computer, when the device is still attached via USB.
+    Simple but useful are [the key combinations documented by Sony](https://developer.sony.com/develop/open-devices/get-started/flash-tool/useful-key-combinations/). If your device refuses to reboot (e.g., after flashing), one can simply issue a `fastboot reboot` command at the host computer, when the device is still attached via USB.
 
     For troubleshooting USB issues, see [the introductory paragraph of section 2](#2-flashing-sailfishos).
 
-6. Thoroughly browse through the *Settings* subsections and switch off everything with regard to online, location and other potentially privacy relevant functions / services.  Pay attention to not accidentally switch *on* something which may receive or transmit data, as many functions / services are off by default.
+6. Thoroughly browse through the *Settings* subsections and switch off everything with regard to online, location and other potentially privacy relevant functions / services. Pay attention to not accidentally switch *on* something which may receive or transmit data, as many functions / services are off by default.
 
     Note that you have to go online in part 2 of the preparation, thus do this diligently.
+
       - Pay special attention to the settings in the *Google* subsection.
+
       - Note that some settings are "logically inverted", e.g., setting *Settings -> Google -> Ads -> Opt out of Ads Personalisation* to ***on*** actually switches the personalised ads **off**!
 
 7. Check your device hardware with Sony's device test tool via *Settings -> System -> About phone -> Support -> Decline -> Run all tests*:
@@ -100,13 +102,16 @@ Guide: Installing SailfishX on Xperias
 
     Skip it!
 
-8. Go to *Settings -> System -> Date & Time* and switch off both "*Automatic date & time*" and "*Automatic timezone*".  Then set the correct date, time and timezone in order to obtain a GPS fix (in the next step) reasonably quick. Also switch on *Settings -> Lock screen & security -> Privacy: Location -> Use location* on for the next step.
+8. Go to *Settings -> System -> Date & Time* and switch off both "*Automatic date & time*" and "*Automatic timezone*". Then set the correct date, time and timezone in order to obtain a GPS fix (in the next step) reasonably quick. Also switch on *Settings -> Lock screen & security -> Privacy: Location -> Use location* on for the next step.
 
 9. Open the *Service menu* as [described by Sony](https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/how-to-unlock-bootloader/), i.e., by entering `*#*#7378423#*#*` (equals `*#*#SERVICE#*#*`) in the dialler app.
 
     - *Service info -> Configuration -> Rooting status:* must state "*Bootloader unlock allowed: Yes*".
+
     - *Service tests -> GPS* runs much longer and should obtain a GPS fix within approximately 10 minutes.
+
     - You may perform other tests in *Service tests*, but many of them are tedious.
+
     - You may also look at other information in *Service info*, e.g., *SIM lock*.
 
 10. Switch *Settings -> Lock screen & security -> Privacy: Location -> Use location* off again.
@@ -124,8 +129,11 @@ Guide: Installing SailfishX on Xperias
 #### 1.2 Further preparation (modem initialisation)
 
 1. Insert a working SIM card, preferably the one you will be using later.
+
 2. Start your Xperia.
+
 3. Enter the PIN of your SIM card.
+
 4. Let the Xperia rest for at least 10 minutes at a location with at least medium mobile network reception.
 
     - The SIM card might reboot once or twice, resulting in a brief loss of mobile network connectivity; you may have to enter the SIM-PIN again.
@@ -149,23 +157,35 @@ Up to this point ...
 Attaching your Xperia to a "USB root hub" (internal to your computer), to which no other device is attached (neither internally or externally):
 
 * For Linux
+
   1. Execute `lsusb` in a terminal window, without having your Xperia connected.
+
   2. Look for a bus which solely has a **Linux Foundation 2.0 root hub** attached (i.e., nothing else).
+
   3. Connect your Xperia to a USB port, which is attached to this bus.
-  4. Execute `lsusb` again; for example, an Xperia X on bus 003 then looks like this:<br />
-   `Bus 003 Device 015: ID 05c6:0afe Qualcomm, Inc. Xperia X`<br />
+
+  4. Execute `lsusb` again; for example, an Xperia X on bus 003 then looks like this:
+
+   `Bus 003 Device 015: ID 05c6:0afe Qualcomm, Inc. Xperia X`
    `Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub`
+
 * For Windows you should be able to achieve the same by the help of the device manager's tree view.
+
 * Only on Windows you shall install [the latest USB driver for your Xperia model](https://developer.sony.com/develop/drivers/) (see also [Sony's installation guide](https://www.sony.com/electronics/support/articles/SX278901)).
+
 * An alternative way for Windows, Linux and macOS is to use the `fastboot devices` command to list the devices the fastboot program sees. As `fastboot` works on a higher level than `lsusb` or the Windows' device manager, you may just see nothing this way, if something is fundamentally wrong.
 
 Note that:
 
 * If there are no buses without internal USB devices attached (this is the case for many notebooks), you may disable those devices (e.g., cameras, card readers) in the firmware (UEFI- / "BIOS"-) setup and retry then.
+
 * In general, do not put anything (e.g., an external USB hub, adapters) between your Xperia and your computer's USB port, except for a single *USB* ***2*** *cable* (or a *USB 3 cable* plugged into a *USB 2 port*) of at most 2 metres length.  The USB cable which came with your Xperia should work fine, at least at a *USB* ***2*** *port*.
-* Although pure USB **2** ports are preferable, if there are none or these share a USB root hub with other devices, do try a USB port which also supports USB **3** (often colour coded in blue; on Intel machines `lsusb` may also show a "rate adaptor" attached to this bus, which is harmless) using a *USB* ***2*** *data cable:* You should still see your Xperia being attached to a USB **2** root hub.<br />
- If it turns out to be logically attached to a USB **3** root hub then, flashing will likely fail, hence use a different USB port or try to temporarily force all USB 3 ports to USB 2 mode by executing as root user (use `sudo su` on Ubuntu and derivates):<br />
-`for i in $(lspci -nn | fgrep USB | grep -o '[0-9a-f][0-9a-f][0-9a-f][0-9a-f]:[0-9a-f][0-9a-f][0-9a-f][0-9a-f]'); do setpci -H 1 -d $i d0.l=0; done`
+
+* Although pure USB **2** ports are preferable, if there are none or these share a USB root hub with other devices, do try a USB port which also supports USB **3** (often colour coded in blue; on Intel machines `lsusb` may also show a "rate adaptor" attached to this bus, which is harmless) using a *USB* ***2*** *data cable:* You should still see your Xperia being attached to a USB **2** root hub.
+
+ If it turns out to be logically attached to a USB **3** root hub then, flashing will likely fail, hence use a different USB port or try to temporarily force all USB 3 ports to USB 2 mode by executing as root user (use `sudo su` on Ubuntu and derivates):
+
+  `for i in $(lspci -nn | fgrep USB | grep -o '[0-9a-f][0-9a-f][0-9a-f][0-9a-f]:[0-9a-f][0-9a-f][0-9a-f][0-9a-f]'); do setpci -H 1 -d $i d0.l=0; done`
 
  As a last resort measure, if all aforementioned measures fail, you may try putting a USB **2** hub between a USB **3** port and your Xperia.
 
@@ -174,9 +194,11 @@ After having determined a suitable USB port for the subsequent unlocking and fla
 Diligently follow the model specific (and host OS specific) [guide for flashing SailfishX by Jolla](https://jolla.com/sailfishxinstall/), starting with the section "Install the fastboot driver to your computer" (you have already performed actions equivalent to the steps described in Jolla's prior sections).
 
 - An Xperia needs an internet connection for altering the "Developer options" (after enabling them) in *Settings -> System -> Advanced -> Developer options* (per Jolla's section "Enable developer options on your phone"): Deliberately switch WLAN (preferred for privacy) or alternatively mobile data on for this (and off again thereafter).
+
 - Note that the unavoidable steps of altering the "Developer options" and (even more so) of unlocking the bootloader are not fully reversible.
 
-For details and troubleshooting, covering the whole section 2 of this guide, see also Jolla's "[Checklist for issues in installing Sailfish&nbsp;X](https://jolla.zendesk.com/hc/en-us/articles/115003840273-Checklist-for-issues-in-installing-Sailfish-X)".<br />
+For details and troubleshooting, covering the whole section 2 of this guide, see also Jolla's "[Checklist for issues in installing Sailfish&nbsp;X](https://jolla.zendesk.com/hc/en-us/articles/115003840273-Checklist-for-issues-in-installing-Sailfish-X)".
+
 USB power saving may also cause issues, hence you can try switching USB "Autosupend" off [in the BIOS](https://github.com/openstf/stf/issues/677#issuecomment-323617121) or [at the command line](https://forum.sailfishos.org/t/linux-fastboot-error-couldnt-parse-partition-size-0x/4514/14).
 
 ---
@@ -187,22 +209,32 @@ USB power saving may also cause issues, hence you can try switching USB "Autosup
 
 #### 3.1 First boot ("initial bring-up")
 
-1. Select a language, preferably English UK or English US (unfortunately English EU aka English DK is not available).<br />
-  Note that you can add (and remove) arbitrary languages (localisations, dictionaries and keyboard layouts) later (after the initial setup) and SailfishOS knows no "primary" language.
-2. Enter a new security code.
-1. Enable WLAN and log in to a WLAN network.
-2. Select time and date.
-2. Enter your Jolla Store credentials to log in.
-2. Initial selection of Jolla provided apps:
-   - Do **not** select Jolla's *Weather* app (actually by Foreca), because MeeCast is a better, Open Source and privacy conscious alternative, which can be installed later via Storeman.
-   - You may select *Exchange Active Sync (EAS) support* depending on your needs.
-   - Do select **everything else** for installation, even if you think you will not need them: Some other apps depend on them being installed, they do nothing if not used and they are all quite small.
-   - If the XT9 support is not available (free and community versions of SailfishOS), install [Presage](https://openrepos.net/search/node/presage) via Storeman later on.
-2. Do select Android App Support, depending on your preference (only offered here, if you are [entitled for it](#45-installing-android-app-stores-client-apps)).<br />
-  Do **not** select the "Store" app (actually a special Aptoide client version), if it is offered here (since SailfishOS 3.3.0), because of the security issues using Aptoide bears plus the multiple security breaches Aptoide had.  See also [section 4.5.4](#454-other-android-app-sources).
-2. Do **not** set up the fingerprint sensor yet ("Skip"), as it may result in issues doing it now. You can perform this action any time later.
+1. Select a language, preferably English UK or English US (unfortunately English EU aka English DK is not available). Note that you can add (and remove) arbitrary languages (localisations, dictionaries and keyboard layouts) later (after the initial setup) and SailfishOS knows no "primary" language.
 
-All these apps can also be installed or uninstalled (and reinstalled) later via the Jolla Store app, but privacy relevant data cannot be recalled once given away.<br />
+2. Enter a new security code.
+
+3. Enable WLAN and log in to a WLAN network.
+
+4. Select time and date.
+
+5. Enter your Jolla Store credentials to log in.
+
+6. Initial selection of Jolla provided apps:
+
+   - Do **not** select Jolla's *Weather* app (actually by Foreca), because MeeCast is a better, Open Source and privacy conscious alternative, which can be installed later via Storeman.
+
+   - You may select *Exchange Active Sync (EAS) support* depending on your needs.
+
+   - Do select **everything else** for installation, even if you think you will not need them: Some other apps depend on them being installed, they do nothing if not used and they are all quite small.
+
+   - If the XT9 support is not available (free and community versions of SailfishOS), install [Presage](https://openrepos.net/search/node/presage) via Storeman later on.
+
+7. Do select Android App Support, depending on your preference (only offered here, if you are [entitled for it](#45-installing-android-app-stores-client-apps)). Do **not** select the "Store" app (actually a special Aptoide client version), if it is offered here (since SailfishOS 3.3.0), because of the security issues using Aptoide bears plus the multiple security breaches Aptoide had.  See also [section 4.5.4](#454-other-android-app-sources).
+
+8. Do **not** set up the fingerprint sensor yet ("Skip"), as it may result in issues doing it now. You can perform this action any time later.
+
+All these apps can also be installed or uninstalled (and reinstalled) later via the Jolla Store app, but privacy relevant data cannot be recalled once given away.
+
 Note that most of them are proprietary licensed by Jolla.
 
 ---
@@ -212,8 +244,11 @@ Note that most of them are proprietary licensed by Jolla.
 Optional, but absolutely recommended!
 
 1. Switch on *Settings -> Developer tools -> Developer mode*, followed by also switching on *Remote connection* there and setting a root password of your choice.
+
 2. Wait for the Terminal app to become installed and open it.
+
 3. Execute `devel-su` in the Terminal and enter your root password.
+
 4. If becoming root in the Terminal went fine, enter **Ctrl-D** twice or type `exit` twice (or just brutally close the Terminal app).
 
 ---
@@ -464,7 +499,7 @@ Optional, although strongly recommended, because F-Droid is the primary source o
 
 As the "AlienDalvik" Android runtime environment does not provide any preinstalled apps, one needs a proper file-manager for Android to serve Android file intents:
 
-  Start an F-Droid client app (if it is its first start ever on this device, wait a couple of minutes for it to synchronise its repositories) and install the [OI File Manager](https://f-droid.org/en/packages/org.openintents.filemanager/).
+Start an F-Droid client app (if it is its first start ever on this device, wait a couple of minutes for it to synchronise its repositories) and install the [OI File Manager](https://f-droid.org/en/packages/org.openintents.filemanager/).
 
 ---
 
