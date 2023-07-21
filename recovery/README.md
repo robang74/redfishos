@@ -15,7 +15,9 @@ Just the essential utils packaged into a gzip tarball:
 
 to explode directly on the root filesystem:
 
-`tar -k xvzf $PWD/recovery-utils.tar.gz -C /` 
+```
+tar -k xvzf $PWD/recovery-utils.tar.gz -C /
+```
 
 The `-k` avoid to overwrite the original files but it is supposed that they were not in place if you need this tarball.
 
@@ -65,7 +67,9 @@ To create this package it has been used two Centos 8 binary RPMs repositories:
 
 The script that downloads and create this tarball named sysdebug-utils.tar.gz wich its size is near 4Mb. Therefore is not included in this repository. Moreover, due to its nature it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
-`tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /` 
+```
+tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /
+```
 
 The `-k` avoid to overwrite the original files but it is supposed that they were not in place if you need this tarball.
 
