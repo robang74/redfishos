@@ -148,7 +148,7 @@ While the `UnifiedNlp` component [org.microg.nlp](https://f-droid.org/packages/o
 
 Therefore, I will not suggest to install the `microG` components anymore. Jump to the next section or proceed at your own risk.
 
-**~~ deprecated ~~**
+**-= deprecated =-**
 
 This is the `microG` repository for `F-Droid`. The advantage to import the repository into the `F-Droid` app instead of installing from the original website is to receive notification about future updates:
 
@@ -417,7 +417,9 @@ For every beginners in SFOS, who is used to use a GNU/Linux distribution, the fi
 
 About `dnsmasq` integration with `connman`, read this `Patch Manager` patch description ([here](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration))
 
-> <small>**ATTENTION**: despite the `Patch Manager` is not the right tool for this kind of patches but the `dnsmasq` and `connman` `RPM`s should be fixed instead, this patch seems working reliably as long as the systemd services start-up order is not changed far away from the factory default. Rarely, because this patch is not applied unless `Patch Manager` will complete is job, sometimes the `connman` and `dnsmasq` services will start before their `.service` files have been patched and therefore the system will not be able to resolv the domain names. Moreover, the network restart from `SailFish Utilities` cannot solve the issue (unless patched) and also rebooting might not solve it but usually does unless `systemd` is far away the factory configuration.</small>
+> :warning: **ATTENTION**
+>
+> <small>despite the `Patch Manager` is not the right tool for this kind of patches but the `dnsmasq` and `connman` `RPM`s should be fixed instead, this patch seems working reliably as long as the systemd services start-up order is not changed far away from the factory default. Rarely, because this patch is not applied unless `Patch Manager` will complete is job, sometimes the `connman` and `dnsmasq` services will start before their `.service` files have been patched and therefore the system will not be able to resolv the domain names. Moreover, the network restart from `SailFish Utilities` cannot solve the issue (unless patched) and also rebooting might not solve it but usually does unless `systemd` is far away the factory configuration.</small>
 
 ----
 
@@ -449,7 +451,9 @@ nameserver  2a10:50c0::ad2:ff
 
 This is an example of `/etc/resolv.conf` for every host connected with an `IPv4` + `IPv6` network which alternates *AdGuard* and *Quad9* ad-blocking and safe-filtered `DNS`.
 
-**Attention**: usually the `/etc/resolv.conf` is not the right place to insert these values.
+> :warning: **Attention**
+>
+> usually the `/etc/resolv.conf` is not the right place to insert these values.
 
 ---
 
@@ -493,7 +497,7 @@ The MLS data packaged and delivered from Jolla market can be outdated. Therefore
 
 From `F-Droid` market install:
 
-*  [UnifiedNlp (GAPPS), a location provider middleware](https://f-droid.org/packages/org.microg.nlp/)
+* [UnifiedNlp (GAPPS), a location provider middleware](https://f-droid.org/packages/org.microg.nlp/)
 * [MozillaNlpBackend, an UnifiedNlp location provider by Mozilla](https://f-droid.org/packages/org.microg.nlp.backend.ichnaea/)
 * [LocalGsmNlpBackend, a UnifiedNlp location provider for local GSM database](https://f-droid.org/packages/org.fitchfamily.android.gsmlocation/)
 * [Déjà Vu, a local RF based backend for the µg with Mobile/cell and WLAN/WiFi](https://f-droid.org/packages/org.fitchfamily.android.dejavu/)
@@ -523,17 +527,23 @@ You may experience problems in `GPS` fixing indoor. The current solution is to a
 
 *  [x10ii-iii-agps-config-emea](https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea) (check the instruction)
 
-**WARNING #1**: install the patch for being notified about updated but do not use the Patch Manager apply the patch because is not the right tool for this kind of patches. Instead, explode this tarball by root in the root:
+> :warning: **WARNING #1**
+>
+> install the patch for being notified about updated but do not use the Patch Manager apply the patch because is not the right tool for this kind of patches. Instead, explode this tarball by root in the root:
 
--> https://t.ly/ZJMA (or scan the QR-code in the screenshots)
+* https://t.ly/ZJMA (or scan the QR-code in the screenshots)
 
-**WARNING #2**: filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured. Check this bug report [here](https://t.ly/omO0) for more information.
+> :warning: **WARNING #2**
+>
+>  filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured. Check this bug report [here](https://t.ly/omO0) for more information.
 
 This approach can be attempted also for other Xperia devices like `XA2`.
 
 The `A-GPS` configuration here proposed is Google free and it uses the Qualcomm `SUPL` hosts and it offers some others advantages ([here](https://forum.sailfishos.org/t/gps-stopped-working/1181/699)) respect the [suplpatcher](https://gitlab.com/nekrondev/suplpatcher) approach. Moreover it uses `HTTPS` encrypted protocol to data transfer by default.
 
-**Suggestion**: uploading the certificates / key with suplpatcher and keep the size of the new gps.conf identical with the old removing comments and adding spaces or hashes at the end will grant to bypass the overlay filesystem problem with modem/GPS (if it exists) and probably will shrink also the time for the cold start.
+> :info_source: **Suggestion**
+>
+> uploading the certificates / key with suplpatcher and keep the size of the new gps.conf identical with the old removing comments and adding spaces or hashes at the end will grant to bypass the overlay filesystem problem with modem/GPS (if it exists) and probably will shrink also the time for the cold start.
 
 ---
 **THE FOLLOWING PART OF THIS SECTION IS OBSOLETE**
@@ -644,7 +654,9 @@ To limit your mobile data over IPv4 proceed in this way:
 
 In the `Data` and `MMS` access points changed the protocol field from `dual` to `IP`.
 
-><small> **TODO**: include the Linux kernel settings to disable `IPv6` for the whole system leveraging `/usr/lib/sysctl.d` configuration folder. Working in progress: testing.</small>
+> :esclamation: **TODO**
+>
+> <small>include the Linux kernel settings to disable `IPv6` for the whole system leveraging `/usr/lib/sysctl.d` configuration folder. Working in progress: testing.</small>
 
 ----
 
