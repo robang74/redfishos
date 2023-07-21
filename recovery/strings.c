@@ -9,7 +9,7 @@
  *
  ** HOWTO COMPILE ************************************************************** 
  *
- * gcc -Wall -O3 strings.c      -o strings && strip strings
+ * gcc -Wall -O3 strings.c -o strings && strip strings
  *
  ** PERFORMANCES ***************************************************************
  *
@@ -20,7 +20,7 @@
  * time ./strings /usr/bin/busybox >2.txt
  * real 0m1.843s
  * 
- * gcc -Wall -O3 strings.c      -o strings && strip strings
+ * gcc -Wall -O3 strings.c -o strings && strip strings
  * rm -f [12].txt
  * time   strings /usr/bin/busybox >1.txt
  * real 0m0.033s
@@ -31,15 +31,15 @@
  *
  * size ./strings # USE_MALLOC=0 on amd64 no change in execution time
  *  text	   data	    bss	    dec	    hex	filename
- *  2671	    656	     48	   3375	    d2f	./strings
+ *  2904	    664	     48	   3616	    e20	./strings
  *
  * size ./strings # USE_MALLOC=1 on amd64 no change in execution time
  *  text	   data	    bss	    dec	    hex	filename
- *  2719	    664	     48	   3431	    d67	./strings
+ *  2932	    672	     48	   3652	    e44	./strings
  *
  */
  
-#define USE_MALLOC 0
+#define USE_MALLOC 1
 
 #include <stdio.h>
 #if USE_MALLOC
