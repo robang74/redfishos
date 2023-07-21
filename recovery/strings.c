@@ -9,18 +9,18 @@
  *
  ** HOWTO COMPILE ************************************************************** 
  *
- * gcc -Wall -O3 strings.c -o strings && strip strings
+ * gcc -Wall -O3 strings.c      -o strings && strip strings
  *
  ** PERFORMANCES ***************************************************************
  *
- * gcc -O3 strings.orig.c -o strings && strip strings
+ * gcc -Wall -O3 strings.orig.c -o strings && strip strings
  * rm -f [12].txt
  * time   strings /usr/bin/busybox >1.txt
  * real 0m0.035s
  * time ./strings /usr/bin/busybox >2.txt
  * real 0m1.843s
  * 
- * gcc -O3 strings.c      -o strings && strip strings
+ * gcc -Wall -O3 strings.c      -o strings && strip strings
  * rm -f [12].txt
  * time   strings /usr/bin/busybox >1.txt
  * real 0m0.033s
@@ -69,20 +69,28 @@ int main(int argc, char * argv [])
     char buffer[4096], stdout_buffer[4096], file_buffer[4096];
     char *p = buffer;
 #endif
-    int fd, n;
+    int n, fd = -1;
 
-    if(argc < 2 || !argv[1][0])
+    if(argv[1] && !argv[1][0])
     {
-        fprintf(stderr, "Usage: %s file\n", argv[0]);
-        return 1;
-    }
-
-    fd = open(argv[1], O_RDONLY);
-    if(fd < 0) {
-        fprintf(stderr, "Could not open %s\n", argv[1]);
-        return 1;
+		fprintf(stderr, "Usage: %s file\n", argv[0]);
+		return 1;
+    } 
+    //RAF: nice to have '-' but it is not compatible with binutils strings
+    else if(argc < 2 /*|| (argv[1] && argv[1][0] == '-')*/)
+    {
+		fd = fileno(stdin);
     }
     
+    if(fd == -1)
+    {
+		fd = open(argv[1], O_RDONLY);
+		if(fd < 0) {
+			fprintf(stderr, "Could not open %s\n", argv[1]);
+			return 1;
+		}
+    }
+
 #if USE_MALLOC
     buffer = malloc(BUFSIZE*3);
     p = buffer;
