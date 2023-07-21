@@ -1,18 +1,18 @@
 ## About recovery package
 
-Centos 8 binary RPMs repository:
+To create this package it has been used the Centos 8 binary RPMs repository:
 
 * https://vault.centos.org/centos/8/BaseOS/aarch64/os/Packages/
 
 	* binutils-2.30-108.el8_5.1.aarch64.rpm (strings, only)
-    * libattr-2.4.48-3.el8.aarch64.rpm
-    * patch-2.7.6-11.el8.aarch64.rpm
-    * rsync-3.1.3-12.el8.aarch64.rpm
-    * pigz-2.4-4.el8.aarch64.rpm
+	* libattr-2.4.48-3.el8.aarch64.rpm
+	* patch-2.7.6-11.el8.aarch64.rpm
+	* rsync-3.1.3-12.el8.aarch64.rpm
+	* pigz-2.4-4.el8.aarch64.rpm
 
 Just the essential utils packaged into a gzip tarball:
 
-    * [recovery-utils.tar.gz](recovery-utils.tar.gz)
+* [recovery-utils.tar.gz](recovery-utils.tar.gz)
 
 to explode directly on the root filesystem:
 
@@ -30,15 +30,15 @@ to set properly the shell enviroment for using the imported binayries in `/tmp`.
 
 The script that downloads and create this tarball is here:
 
-	* [do_recovery-utils_tgz](do_recovery-utils_tgz)
+* [do_recovery-utils_tgz](do_recovery-utils_tgz)
 	
-The giziped tarball created is about 444Kb and it included in this repository because it relatively small size.
+The package created is about 444Kb and it included in this repository due to its relatively small size.
  
 ---
 
 ## About sysdebug package
 
-Centos 8 binary RPMs repositories:
+To create this package it has been used two Centos 8 binary RPMs repositories:
 
 * https://vault.centos.org/centos/8/BaseOS/aarch64/os/Packages/
 
@@ -62,14 +62,9 @@ Centos 8 binary RPMs repositories:
 	* protobuf-c-1.3.0-6.el8.aarch64.rpm
 	* fstrm-0.6.1-2.el8.aarch64.rpm
 
-The script that downloads and create this tarball is here:
-
-	* [do_recovery-utils_tgz](do_recovery-utils_tgz)
-	
-The giziped tarball that it will create, will be near 4Mb. Therefore has been not added to this repository.
-
-Moreover, due to its nature it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
+The script that downloads and create this tarball named sysdebug-utils.tar.gz wich its size is near 4Mb. Therefore is not included in this repository. Moreover, due to its nature it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
 `tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /` 
 
 The `-k` avoid to overwrite the original files but it is supposed that they were not in place if you need this tarball.
+
