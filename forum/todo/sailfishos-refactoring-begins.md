@@ -1,6 +1,7 @@
 ## SailFish OS refactoring begins
 
-> Seven.of.nine
+> **Seven.of.nine**
+> 
 > A boot manager on the phone would be really great, that asks the user to boot the phone into normal mode or into rescue mode on powering up the phone, like a linux computer has it.
 >
 >Surely this could easily be implemented, because `/boot/hybris-recovery.img` is present on the phone.
@@ -9,7 +10,8 @@
 
 AFAIK, the recovery image is not present on the phone but delivered into the package which can be downloaded from the Jolla shop. Unfortunately, it seems almost useless at least on Xperia 10 II.
 
-> Seven.of.nine
+> **Seven.of.nine**
+> 
 > When booting the recovery mode on the phone and using a BT keyboard, then rescue operations could be done without having a computer.
 
 AFAIK, no because there is no a reasonable way to deal with the display after the recovery boot, e.g. cfr. `yamui` part in the link above. Even the telnet IP address is shown properly.
