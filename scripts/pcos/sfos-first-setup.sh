@@ -26,7 +26,7 @@ set_key_login="no"
 sfos_hostname="redfishos"
 setup_file="/tmp/initial.setup"
 rpm_list="
-rpm pigz xz bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
+pigz xz bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
 mce-tools harbour-file-browser harbour-todolist sailfish-filemanager tcpdump
 sailfish-filemanager-l10n-all-translations harbour-qrclip patch
 "
@@ -73,11 +73,18 @@ echo "
 echo
 echo shell script execution by pcos:$(whoami)
 echo ---------------------------------------
+echo '=> Updating date time from the host'
+echo '\_ current date/time: $(TZ=UTC date +%F-%H-%M-%S) UTC'
+TZ=UTC date -s $(TZ=UTC date +%F-%H-%M-%S)
+echo '\_ updated date/time: $(TZ=UTC date +%F-%H-%M-%S) UTC'
+mkdir -p /etc/.time/
+touch /etc/.time/.refernce
+chmod a-w /etc/.time/.refernce
+echo
 echo '=> Refresh library cache and set the hostname: $sfos_hostname'
 ldconfig
 hostname $sfos_hostname
 hostname >/etc/hostname
-
 echo
 echo '=> Repository selection'
 echo '   \_this operation will take a minute, wait...'
@@ -86,6 +93,7 @@ ssu status | tee /tmp/ssu.status
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 if grep -q 'status: not registered' /tmp/ssu.status; then
 	for i in $repo_list; do ssu disablerepo $i; done
+    rpm_list=''
 else
 	for i in $repo_list; do ssu enablerepo $i; done
 fi
