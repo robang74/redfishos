@@ -144,7 +144,7 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [connman iptables](https://github.com/robang74/sailfish-connman-plugin-iptables) - The connman plugin that provides d-bus API for controlling iptables rules. 
 
-* [Github action for SFOS apps](https://github.com/robang74/github-sfos-apps-build) - Github action for building SailFish OS apps.
+* [Github actions for SFOS apps](https://github.com/robang74/github-sfos-apps-build) - Github actions for building SailFish OS apps.
 
 * [SailFish OS git repositories](https://github.com/sailfishos) - A collection of 907 git repositories about SailFish OS.
 
