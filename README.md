@@ -4,9 +4,11 @@
 + Refactoring SailFish OS 4.5.0.21 while it is running on a Sony Xperia 10 II smartphone.
 ```
 
-> __Note__: support for others smartphone like Sony Xperia 10 III or IV, Gigaset GS5 and its variant in particular the Volla and the Rephone one, could be added as far as concrete support and mainteneirs will be available.
+Support for others smartphone like Sony Xperia 10 III or IV, Gigaset GS5 and its variants in particular the Volla and the Rephone ones, could be added as far as concrete support and mainteneirs will be available.
 
-> __Warning__: this project is **NOT** related to this one: [RedFishOS by Richard Guerci](https://redfish.github.io/redfish-os/).
+> :warning: **Warning**
+> 
+> this project is **NOT** related to this one: [RedFishOS by Richard Guerci](https://redfish.github.io/redfish-os/).
 
 ---
 
@@ -25,7 +27,9 @@ Roberto Foglietta is the document-id real persona name behind on-line `Roberto A
 
 in the files headers, in the ChangeLogs, in the documents authoship or referal sections, at end of websites, etc.
 
-> __Note__: the report of activities and related proof of expences will be submited to those contributed, only. On regular basis monthly, quarterly or yearly depending on the amount of support they trusted to delegate to my management. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
+> :information_source: **Note**
+> 
+> The report of activities and related proof of expences will be submited to those contributed, only. On regular basis monthly, quarterly or yearly depending on the amount of support they trusted to delegate to my management. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
 
 ---
 
@@ -43,6 +47,8 @@ Without these facilities fully working, there is no any reasonable chance to ope
 
 ### About SailFish OS
 
+> :warning: **Warning**
+> 
 > __Warning__: the SailFish OS is **not** *open source* **nor** *software libre* but largerly based on several FOSS projects.
 
 * [SailFish OS on Wikipedia](https://en.wikipedia.org/wiki/Sailfish_OS)
@@ -66,7 +72,9 @@ Few components in SailFish OS are proprietary and the package downloaded from th
 
 Some other proprietary software and vendor firmare cames from Sony Open Device AOSP. Instead, the boot images are compositions of binaries from on open source and software libre projects, only. Therefore the boot images can be freely redistribute as far as those redistribuite them fulfil the FOSS licenses obbligations related to that binaries. 
 
-> __Note__  The alternative to fullfil yourself that obbligations is to link this page which the aim is to collect all those FOSS contributes. However, you have to check by yourself if these list of resources is complete and updated respect the boot image that you wish to distribute.
+> :information_source: **Note**
+>
+> The alternative to fullfil yourself that obbligations is to link this page which the aim is to collect all those FOSS contributes. However, you have to check by yourself if these list of resources is complete and updated respect the boot image that you wish to distribute.
 
 ---
 
@@ -168,6 +176,6 @@ Some pages, documents, software or firmare components can make an exception to t
 
 For further information or requests about licensing and how to obtain your own business-like fork, please write to the project maintainer:
 
-* [Roberto A. Foglietta](roberto.foglietta@gmail.com)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 💙 [Roberto A. Foglietta](roberto.foglietta@gmail.com)
 
-Have fun! <3, R-
+**Have fun!** R-
