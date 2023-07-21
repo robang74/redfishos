@@ -136,7 +136,7 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [mce-tools](https://github.com/robang74/mce) - mcetool command line executable to set some SailFish OS parameter about timeouts and power management.
 
-* [advance camera](https://github.com/robang74/harbour-advanced-camera) - Advanced Camera application for SailFish OS.
+* [Advanced Camera](https://github.com/robang74/harbour-advanced-camera) - Advanced Camera application for SailFish OS.
 
 * [Sony Open Telephony](https://github.com/robang74/SonyOpenTelephony) - A boot-time modem flasher for the appropriate firmware configurations for SIMs subscriptions.
 
