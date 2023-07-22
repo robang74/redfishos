@@ -42,7 +42,7 @@
  /** BENCHMARK SUITE ***********************************************************
  
 stats() {
-    local tmpf=$(mktemp -p . -t time.XXXX) n=${2:-100}
+    local tmpf=$(mktemp -p "${TMPDIR:-/tmp}" -t time.XXXX) n=${2:-100}
     local cmd=${1:-$(which busybox) strings $(which busybox)} 
     for i in $(seq 1 $n); do eval time $cmd; done 2>$tmpf
     {
