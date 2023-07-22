@@ -7,39 +7,55 @@
  * https://stackoverflow.com/questions/51389969/\
  *      implementing-my-own-strings-tool-missing-sequences-gnu-strings-finds
  *
- ** HOWTO COMPILE ************************************************************** 
- *
- * gcc -Wall -O3 strings.c -o strings && strip strings
- *
- ** PERFORMANCES ***************************************************************
- *
- * gcc -Wall -O3 strings.orig.c -o strings && strip strings
- * rm -f [12].txt
- * time   strings /usr/bin/busybox >1.txt
- * real 0m0.035s
- * time ./strings /usr/bin/busybox >2.txt
- * real 0m1.843s
- * 
- * gcc -Wall -O3 strings.c -o strings && strip strings
- * rm -f [12].txt
- * time   strings /usr/bin/busybox >1.txt
- * real 0m0.033s
- * time ./strings /usr/bin/busybox >2.txt
- * real 0m0.012s
- *
- ** FOOTPRINT ****************************************************************** 
- *
- * size ./strings # USE_MALLOC=0 on amd64 no change in execution time
- *  text	   data	    bss	    dec	    hex	filename
- *  2904	    664	     48	   3616	    e20	./strings
- *
- * size ./strings # USE_MALLOC=1 on amd64 no change in execution time
- *  text	   data	    bss	    dec	    hex	filename
- *  2932	    672	     48	   3652	    e44	./strings
- *
- */
+*** HOW TO COMPILE *************************************************************
  
-/** BENCHMARK SUITE ***********************************************************
+ gcc -Wall -O3 strings.c -o strings && strip strings
+ 
+*** HOW TO TEST ****************************************************************
+ 
+ for i in $(ls -1 /usr/bin/); do if test -f $i; then strings $i > out1.txt; 
+     ./strings $i > out2.txt; diff -q out1.txt out2.txt || break; fi; done
+ diff -q out1.txt out2.txt || { echo file: $i; xxdiff out1.txt out2.txt; }
+ 
+*** PERFORMANCES ***************************************************************
+
+ gcc -Wall -O3 strings.orig.c -o strings && strip strings && rm -f [12].txt
+
+ time   strings /usr/bin/busybox >1.txt
+ real 0m0.035s
+ time ./strings /usr/bin/busybox >2.txt
+ real 0m1.843s
+ 
+ gcc -Wall -O3 strings.c -o strings && strip strings && rm -f [12].txt
+
+ time   strings /usr/bin/busybox >1.txt
+ real 0m0.033s
+ time ./strings /usr/bin/busybox >2.txt
+ real 0m0.012s
+
+*** FOOTPRINT ****************************************************************** 
+
+ gcc -Wall -O3 strings.c -o strings && strip strings && size strings
+ 
+ size ./strings # USE_MALLOC=0 on amd64 no change in execution time
+  text	   data	    bss	    dec	    hex	filename
+  2965	    664	     48	   3677	    e5d	./strings
+
+ size ./strings # USE_MALLOC=1 on amd64 no change in execution time
+  text	   data	    bss	    dec	    hex	filename
+  2993	    672	     48	   3713	    e81	./strings
+
+ gcc -Wall -Os strings.c -o strings && strip strings && size strings
+
+ size ./strings # USE_MALLOC=0 on amd64 no change in execution time
+  text	   data	    bss	    dec	    hex	filename
+  2865	    664	     48	   3577	    df9	./strings
+
+ size ./strings # USE_MALLOC=1 on amd64 no change in execution time
+  text	   data	    bss	    dec	    hex	filename
+  2929	    672	     48	   3649	    e41	./strings
+
+*** BENCHMARK SUITE ************************************************************
 
 #!/bin/bash
 
@@ -107,7 +123,7 @@ benchmark() {
 
 benchmark stats.txt
  
-** ****************************************************************************/
+*******************************************************************************/
  
 #define USE_MALLOC 0
 
@@ -119,9 +135,9 @@ benchmark stats.txt
 #include <unistd.h>
 #include <fcntl.h>
 
-#define isPrintable(c) ((c) == 0x09 || ((c) >= 0x20 && (c) <= 0x7e))
+#define isPrintable(c) ((c) == 0x09 || ((c) > 0x1f && (c) < 0x7f))
 
-#define print_text(p,b) if((p)-(b) >= 4) { *p++ = 0; printf("%s\n", (b)); }
+#define print_text(p,b,c) if(p-b >= 4) { *p++ = 0; printf("%s%c",b,c); }
 
 #define BUFSIZE 4096 //RAF: memory page typical size
 
@@ -172,24 +188,28 @@ int main(int argc, char * argv [])
     while(1)
     {
     	char *ch = file_buffer;
+    	
 		n = read(fd, file_buffer, BUFSIZE);
-		if(n <= 0) break;
+		if(n <= 0)
+			break;
 
 		while(n-- > 0)
 		{
-		    if(isPrintable(*ch) && (p - buffer < BUFSIZE - 5))
+			bool pr = isPrintable(*ch);
+			
+		    if(pr && (p-buffer < BUFSIZE-5))
 		    {
 		    	*p++ = *ch;
 		    }
 		    else
 		    {
-			    print_text(p, buffer); // print collected text
+			    print_text(p, buffer, pr ? *ch : '\n'); // print collected text
 		        p = buffer;
 		    }
 		    ch++;
 		}
 	}
-	print_text(p, buffer); // print the rest, if any
+	print_text(p, buffer, '\n'); // print the rest, if any
 
     fflush(stdout);
 #if USE_MALLOC
