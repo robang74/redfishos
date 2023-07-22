@@ -47,7 +47,7 @@ stats() {
     for i in $(seq 1 $n); do eval time $cmd; done 2>$tmpf
     {
     echo
-    echo "$cmd"
+    echo "$cmd ${3:-}"
     sed -ne "s,real\t,min: ,p" $tmpf | sort -n | head -n1
     let avg=$(sed -ne "s,real\t0m0.[0]*\([0-9]*\)s,\\1,p" $tmpf | tr '\n' '+')0
     printf "avg: 0m0.%03ds\n" $(( (50+$avg)/100 ))
@@ -60,19 +60,27 @@ benchmark() {
 	local statf=${1:-2.txt}
     local bbcmd=$(which busybox)
 
-    rm -f $statf
+    rm -f $statf; $bbcmd strings $bbcmd >/dev/null # just to fill the cache
 
     rm -f 1.txt; cmd="$bbcmd strings $bbcmd";
-    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
+    { stats "$cmd" 100 "term";
+      stats "$cmd" 100 "null" >/dev/null;
+      stats "$cmd" 100 "file" >1.txt; } 2>>$statf
 
     rm -f 1.txt; cmd="cat $bbcmd | $bbcmd strings";
-    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
+    { stats "$cmd" 100 "term";
+      stats "$cmd" 100 "null ">/dev/null;
+      stats "$cmd" 100 "file ">1.txt; } 2>>$statf
 
     rm -f 1.txt; cmd="./strings $bbcmd";
-    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
+    { stats "$cmd" 100 "term";
+      stats "$cmd" 100 "null" >/dev/null;
+      stats "$cmd" 100 "file" >1.txt; } 2>>$statf
 
     rm -f 1.txt; cmd="cat $bbcmd | ./strings";
-    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
+    { stats "$cmd" 100 "term";
+      stats "$cmd" 100 "null" >/dev/null;
+      stats "$cmd" 100 "file" >1.txt; } 2>>$statf
     
     clear; more $statf; echo -e "\nstats file: $statf\n"
 }
