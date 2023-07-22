@@ -48,6 +48,8 @@ Which is exactly what I am doing by now:
 
 - A system patch manager last version patch downloader has been implemented and successfully tested but not released, yet. It creates also a list of patch installed on the system a repository of them for future recovery or removal even in emergency off-line cases and can restart system services or daemon on-demand using a [special formatted patch header](../knowhow/system-patch-manager-p1.md#technical-approach).
 
+- preparing the system for the first installation after having flashed the SFOS, a minimal debug suiute tools and to adapt the recovery image to be the default one and working as it supposed to do, a minimal advanced tools suite for smart system backup and integrity check ([here](../../recovery/README.md)). 
+
 ---
 
 I did not released the current version of these three tools because it is supposed that they should work together and their integration is still in early development stage. For example, the immediately after flashing system configuration shell script did not reach a reasonable maturity level.
