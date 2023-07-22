@@ -35,7 +35,7 @@ The script that downloads and create this tarball is here:
 	
 The package created is less tha 450Kb and it is included in this repository due to its relatively small size.
 
-What is missing is `strings` because with its dependency will have brought this package at the size of 1.5Mb while a 3x faster 16Kb version of `strings` can be compiled from [this source](strings.c).
+What is missing is `strings` because with its dependency will have brought this package at the size of 1.5Mb while a 2x faster 16Kb version of `strings` can be compiled from [this source](strings.c) presented in the busybox developers m-list in [this thread](https://lists.busybox.net/pipermail/busybox/2023-July/090396.html).
  
 ---
 
