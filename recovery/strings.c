@@ -25,7 +25,7 @@
  * time   strings /usr/bin/busybox >1.txt
  * real 0m0.033s
  * time ./strings /usr/bin/busybox >2.txt
- * real 0m0.011s
+ * real 0m0.012s
  *
  ** FOOTPRINT ****************************************************************** 
  *
@@ -39,55 +39,75 @@
  *
  */
  
- /** BENCHMARK SUITE ***********************************************************
- 
+/** BENCHMARK SUITE ***********************************************************
+
+#!/bin/bash
+
+export finput="/boot/grub/unicode.pf2" cdrop=disabled
+
+cachedrop() {
+    if [ "$cdrop" = "enabled" ]; then
+		sync; echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null
+	fi
+    return 0
+}
+
 stats() {
     local tmpf=$(mktemp -p "${TMPDIR:-/tmp}" -t time.XXXX) n=${2:-100}
-    local cmd=${1:-$(which busybox) strings $(which busybox)} 
-    for i in $(seq 1 $n); do eval time $cmd; done 2>$tmpf
+    local cmd=${1:-$(which busybox) strings $finput} m=50
+
+    if [ "$n" != "100" ]; then m=$(( (n+1)/2 )); fi
+    for i in $(seq 1 $n); do cachedrop; eval time $cmd; done 2>$tmpf
+
     {
     echo
     echo "$cmd ${3:-}"
     sed -ne "s,real\t,min: ,p" $tmpf | sort -n | head -n1
     let avg=$(sed -ne "s,real\t0m0.[0]*\([0-9]*\)s,\\1,p" $tmpf | tr '\n' '+')0
-    printf "avg: 0m0.%03ds\n" $(( (50+$avg)/100 ))
-    sed -ne "s,real\t,max: ,p" t.time | sort -n | tail -n1
+    printf "avg: 0m0.%03ds\n" $(( (m+avg)/n ))
+    sed -ne "s,real\t,max: ,p" $tmpf | sort -n | tail -n1
     } >&2
+
     rm -f $tmpf
 }
 
 benchmark() {
-	local statf=${1:-2.txt}
-    local bbcmd=$(which busybox)
+	local statf=${1:-2.txt} bbcmd=$(which busybox) fname="$finput"
 
-    rm -f $statf; $bbcmd strings $bbcmd >/dev/null # just to fill the cache
+    rm -f $statf; $bbcmd strings $bbcmd >/dev/null     # just to fill the cache
+	cachedrop                                          # and drop it
+	stats "$bbcmd strings $fname" 100 >/dev/null 2>&1  # then unleash the CPU
 
-    rm -f 1.txt; cmd="$bbcmd strings $bbcmd";
+    rm -f 1.txt; cmd="$bbcmd strings $fname";
     { stats "$cmd" 100 "term";
       stats "$cmd" 100 "null" >/dev/null;
       stats "$cmd" 100 "file" >1.txt; } 2>>$statf
 
-    rm -f 1.txt; cmd="cat $bbcmd | $bbcmd strings";
-    { stats "$cmd" 100 "term";
-      stats "$cmd" 100 "null ">/dev/null;
-      stats "$cmd" 100 "file ">1.txt; } 2>>$statf
+	if [ "$cdrop" != "enabled" ]; then
+		rm -f 1.txt; cmd="cat $fname | $bbcmd strings";
+		{ stats "$cmd" 100 "term";
+		  stats "$cmd" 100 "null ">/dev/null;
+		  stats "$cmd" 100 "file ">1.txt; } 2>>$statf
+    fi
 
-    rm -f 1.txt; cmd="./strings $bbcmd";
+    rm -f 1.txt; cmd="./strings $fname";
     { stats "$cmd" 100 "term";
       stats "$cmd" 100 "null" >/dev/null;
       stats "$cmd" 100 "file" >1.txt; } 2>>$statf
 
-    rm -f 1.txt; cmd="cat $bbcmd | ./strings";
-    { stats "$cmd" 100 "term";
-      stats "$cmd" 100 "null" >/dev/null;
-      stats "$cmd" 100 "file" >1.txt; } 2>>$statf
-    
+	if [ "$cdrop" != "enabled" ]; then
+		rm -f 1.txt; cmd="cat $fname | ./strings";
+		{ stats "$cmd" 100 "term";
+		  stats "$cmd" 100 "null" >/dev/null;
+		  stats "$cmd" 100 "file" >1.txt; } 2>>$statf
+	fi
+
     clear; more $statf; echo -e "\nstats file: $statf\n"
 }
 
 benchmark stats.txt
  
- * ****************************************************************************/
+** ****************************************************************************/
  
 #define USE_MALLOC 0
 
@@ -99,13 +119,7 @@ benchmark stats.txt
 #include <unistd.h>
 #include <fcntl.h>
 
-static inline bool isPrintable(unsigned char c)
-{
-    if((c >= 0x20 && c <= 0x7e) || c == 0x09)
-        return true;
-
-    return false;
-}
+#define isPrintable(c) ((c) == 0x09 || ((c) >= 0x20 && (c) <= 0x7e))
 
 #define print_text(p,b) if((p)-(b) >= 4) { *p++ = 0; printf("%s\n", (b)); }
 
