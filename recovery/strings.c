@@ -42,33 +42,42 @@
  /** BENCHMARK SUITE ***********************************************************
  
 stats() {
-	local tmpf=$(mktemp -P $PWD -t time.XXXX) n=${2:-100}
-	local cmd=${1:-$(which busybox) strings $(which busybox)} 
-	for i in $(seq 1 $n); do eval time $cmd; done 2>$tmpf
-	{
-	echo
-	echo "$cmd"
-	sed -ne "s,real\t,min: ,p" $tmpfile | sort -n | head -n1
-	let avg=$(sed -ne "s,real\t0m0.[0]*\([0-9]*\)s,\\1,p" $tmpf | tr '\n' '+')0
-	printf "avg: 0m0.%03ds\n" $(( (50+$avg)/100 ))
-	sed -ne "s,real\t,max: ,p" t.time | sort -n | tail -n1
-	} >&2
-	rm -f $tmpf
+    local tmpf=$(mktemp -p . -t time.XXXX) n=${2:-100}
+    local cmd=${1:-$(which busybox) strings $(which busybox)} 
+    for i in $(seq 1 $n); do eval time $cmd; done 2>$tmpf
+    {
+    echo
+    echo "$cmd"
+    sed -ne "s,real\t,min: ,p" $tmpf | sort -n | head -n1
+    let avg=$(sed -ne "s,real\t0m0.[0]*\([0-9]*\)s,\\1,p" $tmpf | tr '\n' '+')0
+    printf "avg: 0m0.%03ds\n" $(( (50+$avg)/100 ))
+    sed -ne "s,real\t,max: ,p" t.time | sort -n | tail -n1
+    } >&2
+    rm -f $tmpf
 }
 
-	bbcmd=$(which busybox)
+benchmark() {
+	local statf=${1:-2.txt}
+    local bbcmd=$(which busybox)
 
-	rm -f 1.txt; cmd="$bbcmd strings $bbcmd";
-	stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt
+    rm -f $statf
 
-	rm -f 1.txt; cmd="cat $bbcmd | $bbcmd strings";
-	stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt
+    rm -f 1.txt; cmd="$bbcmd strings $bbcmd";
+    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
 
-	rm -f 1.txt; cmd="./strings $bbcmd";
-	stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt
+    rm -f 1.txt; cmd="cat $bbcmd | $bbcmd strings";
+    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
 
-	rm -f 1.txt; cmd="cat $bbcmd | ./strings";
-	stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt
+    rm -f 1.txt; cmd="./strings $bbcmd";
+    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
+
+    rm -f 1.txt; cmd="cat $bbcmd | ./strings";
+    { stats "$cmd "; stats "$cmd" >/dev/null; stats "$cmd" >1.txt; } 2>>$statf
+    
+    clear; more $statf; echo -e "\nstats file: $statf\n"
+}
+
+benchmark stats.txt
  
  * ****************************************************************************/
  
