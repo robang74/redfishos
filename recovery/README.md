@@ -64,6 +64,10 @@ To create this package it has been used two Centos 8 binary RPMs repositories:
 	* libmaxminddb-1.2.0-10.el8.aarch64.rpm
 	* protobuf-c-1.3.0-6.el8.aarch64.rpm
 	* fstrm-0.6.1-2.el8.aarch64.rpm
+   
+ * https://dl.fedoraproject.org/pub/epel/8/Everything/aarch64/Packages/a/
+
+	* arp-scan-1.10.0-1.el8.aarch64.rpm
 
 The script that downloads and create this tarball named sysdebug-utils.tar.gz wich its size is near 4Mb. Therefore is not included in this repository. Moreover, due to its nature it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
