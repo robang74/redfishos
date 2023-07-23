@@ -12,10 +12,34 @@
  gcc -Wall -O3 strings.c -o strings && strip strings
  
 *** HOW TO TEST ****************************************************************
- 
- for i in $(ls -1 /usr/bin/); do if test -f $i; then strings $i > out1.txt; 
-     ./strings $i > out2.txt; diff -q out1.txt out2.txt || break; fi; done
- diff -q out1.txt out2.txt || { echo file: $i; xxdiff out1.txt out2.txt; }
+
+#!/bin/bash
+#
+# (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#           Released under the GPLv2 license terms.
+#
+#!/bin/bash
+
+gcc -Wall -Werror -O3 strings.c -o strings ||\
+	exit 1 && strip strings && size strings
+
+bb="busybox"; if ! echo "Using ${bb:+$bb }strings" | $bb strings 2>/dev/null |\
+	grep .; then bb=''; fi;
+
+list=${1:-$(find /usr/ -type f | grep -v ' ')}
+
+out[1]='/tmp/out1.txt'
+out[2]='/tmp/out2.txt'
+
+time {
+	for i in $list; do
+		$bb strings $i   >${out[1]}
+		  ./strings $i   >${out[2]}
+		diff -q ${out[1]} ${out[2]} || break
+	done
+}
+
+diff -pruN ${out[1]} ${out[2]} || { echo file: $i; xxdiff ${out[1]} ${out[2]}; }
  
 *** PERFORMANCES ***************************************************************
 
@@ -35,34 +59,54 @@
 
 *** FOOTPRINT ****************************************************************** 
 
- gcc -Wall -O3 strings.c -o strings && strip strings && size strings
+ gcc -Wall -O3 strings.c -o strings && strip strings && size ./strings
  
  size ./strings # USE_MALLOC=0 on amd64 no change in execution time
   text	   data	    bss	    dec	    hex	filename
-  2965	    664	     48	   3677	    e5d	./strings
+  3050	    672	     48	   3770	    eba	./strings
 
  size ./strings # USE_MALLOC=1 on amd64 no change in execution time
   text	   data	    bss	    dec	    hex	filename
-  2993	    672	     48	   3713	    e81	./strings
+  3094	    680	     48	   3822	    eee	./strings
 
- gcc -Wall -Os strings.c -o strings && strip strings && size strings
+ gcc -Wall -Os strings.c -o strings && strip strings && size ./strings
 
  size ./strings # USE_MALLOC=0 on amd64 no change in execution time
   text	   data	    bss	    dec	    hex	filename
-  2865	    664	     48	   3577	    df9	./strings
+  2966	    672	     48	   3686	    e66	./strings
 
  size ./strings # USE_MALLOC=1 on amd64 no change in execution time
   text	   data	    bss	    dec	    hex	filename
-  2929	    672	     48	   3649	    e41	./strings
+  3046	    680	     48	   3774	    ebe	./string
 
 *** BENCHMARK SUITE ************************************************************
 
 #!/bin/bash
+#
+# (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#           Released under the GPLv2 license terms.
+#
+set -m
 
-export finput="/boot/grub/unicode.pf2" cdrop=disabled
+export finput="${finput:-$(ls -1 '/usr/lib/'*'/libc.so.6' | head -n1)}"
+export cdrop="${cdrop:-0}" # or 1:enabled
+export tmpfs="${tmpfs:-0}" # or 1:enabled
+export statf="stats.txt" tmpout="./1.txt"
+
+tmpout_sync() { :; }
+
+if [ ! -e "$finput" ]; then
+	echo "ERROR: file '$finput' does not exist, set finput and retry."
+	exit 1
+fi
+
+if [ "$(whoami)" != "root" ]; then
+	echo "ERROR: this script needs to be executed by root, abort."
+	exit 1
+fi
 
 cachedrop() {
-    if [ "$cdrop" = "enabled" ]; then
+    if [ "$cdrop" = "1" ]; then
 		sync; echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null
 	fi
     return 0
@@ -73,11 +117,13 @@ stats() {
     local cmd=${1:-$(which busybox) strings $finput} m=50
 
     if [ "$n" != "100" ]; then m=$(( (n+1)/2 )); fi
-    for i in $(seq 1 $n); do cachedrop; eval time $cmd; done 2>$tmpf
+    for i in $(seq 1 $n); do
+		cachedrop; time { eval $cmd; tmpout_sync; }
+    done 2>$tmpf
 
     {
     echo
-    echo "$cmd ${3:-}"
+    echo "$cmd ${3:-} with tmpfs=$tmpfs"
     sed -ne "s,real\t,min: ,p" $tmpf | sort -n | head -n1
     let avg=$(sed -ne "s,real\t0m0.[0]*\([0-9]*\)s,\\1,p" $tmpf | tr '\n' '+')0
     printf "avg: 0m0.%03ds\n" $(( (m+avg)/n ))
@@ -88,46 +134,97 @@ stats() {
 }
 
 benchmark() {
-	local statf=${1:-2.txt} bbcmd=$(which busybox) fname="$finput"
+	local bbcmd=$(which busybox) fname="$finput"
 
-    rm -f $statf; $bbcmd strings $bbcmd >/dev/null     # just to fill the cache
+    $bbcmd strings $bbcmd >/dev/null                   # just to fill the cache
 	cachedrop                                          # and drop it
 	stats "$bbcmd strings $fname" 100 >/dev/null 2>&1  # then unleash the CPU
 
-    rm -f 1.txt; cmd="$bbcmd strings $fname";
-    { stats "$cmd" 100 "term";
-      stats "$cmd" 100 "null" >/dev/null;
-      stats "$cmd" 100 "file" >1.txt; } 2>>$statf
+    rm -f $tmpout
+    cmdlist=""
 
-	if [ "$cdrop" != "enabled" ]; then
-		rm -f 1.txt; cmd="cat $fname | $bbcmd strings";
-		{ stats "$cmd" 100 "term";
-		  stats "$cmd" 100 "null ">/dev/null;
-		  stats "$cmd" 100 "file ">1.txt; } 2>>$statf
-    fi
+	for bin in './' ${bbcmd:+"$bbcmd "} ''; do
+		stats "${bin}strings $fname" 100 "term";
+	done
+	for bin in './' ${bbcmd:+"$bbcmd "} ''; do
+		stats "${bin}strings $fname" 100 "null" >/dev/null;
+	done
+	for bin in './' ${bbcmd:+"$bbcmd "} ''; do
+		stats "${bin}strings $fname" 100 "file" >$tmpout; rm -f $tmpout
+	done
 
-    rm -f 1.txt; cmd="./strings $fname";
-    { stats "$cmd" 100 "term";
-      stats "$cmd" 100 "null" >/dev/null;
-      stats "$cmd" 100 "file" >1.txt; } 2>>$statf
+	test "$cdrop" = "1" && return 0;
 
-	if [ "$cdrop" != "enabled" ]; then
-		rm -f 1.txt; cmd="cat $fname | ./strings";
-		{ stats "$cmd" 100 "term";
-		  stats "$cmd" 100 "null" >/dev/null;
-		  stats "$cmd" 100 "file" >1.txt; } 2>>$statf
-	fi
-
-    clear; more $statf; echo -e "\nstats file: $statf\n"
+	for bin in './' ${bbcmd:+"$bbcmd "} ''; do
+		stats "cat $fname | ${bin}strings" 100 "term";
+	done
+	for bin in './' ${bbcmd:+"$bbcmd "} ''; do
+		stats "cat $fname | ${bin}strings" 100 "null">/dev/null;
+	done
+	for bin in './' ${bbcmd:+"$bbcmd "} ''; do
+		stats "cat $fname | ${bin}strings" 100 "file">$tmpout; rm -f $tmpout
+	done
 }
 
-benchmark stats.txt
+if [ "$tmpfs" = "1" ]; then
+	tmpdir=/tmp/tmpfs
+	tmpout=$tmpdir/1.str
+	mkdir -p "$tmpdir";
+	if ! mount -t tmpfs tmpfs "$tmpdir/"; then
+		echo -e "\nERROR: could not mount tmpfs in '$tmpdir', abort.\n"
+		exit 1
+	fi
+	trap "rm -f '$tmpout'; umount -l '$tmpdir'; rm -rf '$tmpdir'" EXIT
+	echo -e "\ntmpfs enabled and mounted in $tmpdir" >&2
+	tmpout_sync() { sync "$tmpout" 2>/dev/null ||:; }
+	export TMPDIR=$tmpdir
+fi
+
+rm -f "$statf"
+touch "$statf"
+( exec -a myponytail tail -f "$statf" & )
+
+benchmark 2>>"$statf"
+
+cachedrop() {
+	echo "System cache drop with filesystems sync"
+    sync; echo 3 | tee /proc/sys/vm/drop_caches >/dev/null
+}
+
+benchmark2() {
+	for dir in /bin /usr/bin; do
+		test -L $dir && continue
+		for cmd in 'cdrop=1 ./strings "$f"' './strings "$f"' \
+			       'cdrop=1 busybox strings "$f"' 'busybox strings "$f"' \
+			       'cdrop=1 strings "$f"' 'strings "$f"'
+		do
+		{
+			echo
+			echo "$cmd" | grep -qw 'cdrop=1' && cachedrop;
+			echo "For every file '\$f' in '$dir' eval '$cmd'";
+		} >&2
+			file_list="$(find $dir/ -type f | grep -v ' ')"
+		{
+			time for f in $file_list; do eval "$cmd"; done | dd of=/dev/null
+		} 2>&1 | grep -E "real|bytes" >&2
+		done
+	done
+}
+
+benchmark2 2>>"$statf"
+
+echo 2>>"$statf"
+sync "$statf"
+kill $(pgrep -f myponytail)
+echo -e "\nstats file: $statf\n"
+more "$statf"
  
 *******************************************************************************/
  
-#define USE_MALLOC 0
+#define USE_MALLOC 1
 
 #include <stdio.h>
+#include <string.h>
 #if USE_MALLOC
 #include <malloc.h>
 #endif
@@ -137,19 +234,20 @@ benchmark stats.txt
 
 #define isPrintable(c) ((c) == 0x09 || ((c) > 0x1f && (c) < 0x7f))
 
-#define print_text(p,b,c) if(p-b >= 4) { *p++ = 0; printf("%s%c",b,c); }
+#define print_text(p,b,c) if(p-b >= 4) { *p++ = (c); *p++ = 0; printf("%s",b); }
 
 #define BUFSIZE 4096 //RAF: memory page typical size
 
 int main(int argc, char * argv [])
 {
 #if USE_MALLOC
-    char *p, *buffer, *stdout_buffer, *file_buffer;
+    unsigned char *p, *ch = 0, *buffer, *stdout_buffer, *file_buffer;
 #else
-    char buffer[4096], stdout_buffer[4096], file_buffer[4096];
-    char *p = buffer;
+    unsigned char buffer[4096], stdout_buffer[4096], file_buffer[4096];
+    unsigned char *p = buffer, *ch = 0;
 #endif
-    int n, fd = -1;
+    int n, nr = 0, fd = -1;
+    bool ltpr = 0, pr = 0;
 
     if(argv[1] && !argv[1][0])
     {
@@ -183,33 +281,47 @@ int main(int argc, char * argv [])
 	file_buffer = &p[BUFSIZE*2];
 #endif
     
-    setvbuf(stdout, stdout_buffer, _IOFBF, BUFSIZE);
+    setvbuf(stdout, (char *)stdout_buffer, _IOFBF, BUFSIZE);
     
     while(1)
     {
-    	char *ch = file_buffer;
-    	
+		ch = NULL;
 		n = read(fd, file_buffer, BUFSIZE);
 		if(n <= 0)
 			break;
-
+		ch = file_buffer;
+				
 		while(n-- > 0)
 		{
-			bool pr = isPrintable(*ch);
+			nr = p - buffer;
+			pr = isPrintable(*ch);
 			
-		    if(pr && (p-buffer < BUFSIZE-5))
+		    if(pr && (nr < BUFSIZE-7))
 		    {
 		    	*p++ = *ch;
 		    }
 		    else
 		    {
-			    print_text(p, buffer, pr ? *ch : '\n'); // print collected text
+			    if(ltpr || nr > 3) {
+					ltpr = pr;
+					*p++ = pr ? *ch : '\n';
+					*p++ = 0;
+					printf("%s", buffer);
+			    }
 		        p = buffer;
 		    }
 		    ch++;
 		}
 	}
-	print_text(p, buffer, '\n'); // print the rest, if any
+#if 0 //RAF: this is just for debugging and it can be removed or not as you like
+	*p = 0;
+	fprintf(stderr, "ltpr: %d, nr: %d, len: %ld, ch: 0x%02x %s, buf: '%s'\n",
+		ltpr, nr, p - buffer, ch ? *ch : 0, ch ? "(char)" : "(null)", buffer);
+#endif
+	if(ltpr || p - buffer > 3) {
+		*p = 0;
+		printf("%s\n", buffer);
+	}
 
     fflush(stdout);
 #if USE_MALLOC
