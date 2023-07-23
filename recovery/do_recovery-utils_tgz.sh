@@ -24,11 +24,11 @@ for i in $rpm_list; do
 	rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
 done; echo
 
-usr_bin="
+bin_excl="
 addr2line ar as c++filt dwp elfedit gprof ld.bfd size
 ld.gold  nm objcopy objdump ranlib readelf strip
 "
-usr_lib64="libopcodes"
+lib_escl="libopcodes"
 
 #for i in $usr_bin $usr_lib64; do sudo rm -rf usr/bin/$i usr/lib64/$i*; done
 #rm -rf usr/lib/ usr/share/ #*.rpm
@@ -38,8 +38,9 @@ usr_lib64="libopcodes"
 
 cd usr/bin; sudo ln -sf unpigz pigz; cd - >/dev/null
 sudo tar cvzf ../$tgz --exclude="usr/lib" --exclude="usr/share" \
-	$(for i in $usr_bin $usr_lib64; do echo --exclude=usr/bin/$i \
-		--exclude=usr/lib64/$i*; done) $(ls -1d $tar_dir 2>/dev/null)
+	$(for i in $bin_excl; do echo --exclude=usr/*bin/$i --exclude=*bin/$i; \
+	done) $(for i in $lib_excl; do echo --exclude=usr/lib*/$i*; done) \
+	$(ls -1d $tar_dir 2>/dev/null)
 cd ..
 #sudo rm -rf $dir
 sudo chown -R $USER.$USER $tgz
