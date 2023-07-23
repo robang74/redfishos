@@ -158,6 +158,8 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 * [SailFish OS git mirrors](https://github.com/sailfishos-mirror) - A collection of 517 git repository mirrors for SailFish OS.
 
+* [SailFish OS porting](https://gitlab.com/sailfishos-porters-ci) - Gitlab page that contains several unofficial SFOS portings.
+
 ---
 
 ## License
