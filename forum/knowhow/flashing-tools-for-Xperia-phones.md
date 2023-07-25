@@ -1,6 +1,6 @@
 ## Sony Xperia flashing guide
 
-Some pratical knowledge for integrating the Jolla's official procedure.
+Some practical knowledge for integrating the Jolla's official procedure.
 
 ---
 
@@ -34,11 +34,11 @@ Unfortunately, XperiFirm can download just few AOSP versions compared to Sony Em
 
 ### Android version
 
-The Xperia X10 II by factoy cames with Android 12 since 2021 but it will be probably the last major release update that they will receive:
+The Xperia X10 II by factory comes with Android 12 since 2021 but it will be probably the last major release update that they will receive:
 
 * [XperiCheck.com - Xperia 10 II (XQ-AU52)](https://xpericheck.com/XQ-AU52)
 
-In particular we are insterested into the European customised version:
+In particular we are interested into the European customised version:
 
 * [1321-6453 Customized EU 59.2.A.0.463](https://xpericheck.com/XQ-AU52/1321-6453)
 
@@ -53,9 +53,9 @@ Version: 59.2.A.0.463-R14C
 Size: 2.66 GB
 ```
 
-In the installation instructions by Jolla there is the suggestion of to upgrade to Android 11 from 10 but nothing about downgrading 12 to 11. There is also no any warning about the imperative need of having Android 11, like DO NOT INSTALL UNLESS Andorid 11 is flashed before into the device.
+In the installation instructions by Jolla there is the suggestion of upgrading to Android 11 from 10 but nothing about downgrading 12 to 11. There is also no warning about the imperative need of having Android 11, like DO NOT INSTALL UNLESS Android 11 is flashed before into the device.
 
-Therefore, it seems that there is not any reason to not go with the factory Andorid 12 or using XperiFirm for flashing it. Unfortunately the reality presents us another story but further investigation can be conducted to check if Android 12 can be supported as well 11 and 10.
+Therefore, it seems that there is not any reason to not go with the factory Android 12 or using XperiFirm for flashing it. Unfortunately the reality presents us another story but further investigation can be conducted to check if Android 12 can be supported as well 11 and 10.
 
 Android 11 AOSP available on XperiFirm:
 
@@ -69,9 +69,9 @@ Android 10 AOSP available on XperiFirm:
 
 None of these seems suitable for end-users but they can be fine for supporting the SailFish OS.
 
-> __Note__: some users on the forum reported to not having particular problems with SailFish OS in combination with Android 12. However, end-user support can be difficult and community support can be hostile for those did not followed pedantically the flashing instructions.
+> __Note__: some users on the forum reported not having particular problems with SailFish OS in combination with Android 12. However, end-user support can be difficult and community support can be hostile for those who did not follow pedantically the flashing instructions.
 
-Instead, if you are planning to bring back your Xperia smartphone to work with Andorid only, then XperiFirm is fine
+Instead, if you are planning to bring back your Xperia smartphone to work with Android only, then XperiFirm is fine
 
 * [Jolla reverting Xperia back to Android](https://docs.sailfishos.org/Support/Help_Articles/Managing_Sailfish_OS/Reinstalling_Sailfish_OS/#reverting-xperia-back-to-android-os)
 
@@ -88,11 +88,11 @@ This is the page in which you can find the Android restore procedure using Sony 
 
 ### SailFish OS fastboot
 
-What is above is related to Andorid but to flash SailFish OS into the smartphone another tool is used which leverate the fastboot mode.
+What is above is related to Android but to flash SailFish OS into the smartphone another tool is used which leverages the fastboot mode.
 
 * [Jolla how to flash SFOS with Linux](https://jolla.com/how-to-install-sailfish-x-on-xperia-10-ii-on-linux/)
 
-I have tried to erase all the partition before reflashing Sailfish OS plus I flashed also the secondary OEM partition:
+I have tried to erase all the partition before re-flashing Sailfish OS plus I flashed also the secondary OEM partition:
 
 ```
 fastboot erase dtbo_a
@@ -108,7 +108,6 @@ fastboot flash oem_b ./*_v12b_seine.img
 fastboot reboot
 ```
 
-Erasing the partitions before flashing is not strict necessesary but considering that spare images skip those block that are not allocated, it is the quickest way to ensure that no any fragment of the previous data remains. However, that erasing process should not considered safe from a forensic point of view - possibly but not necessarly.
+Erasing the partitions before flashing is not strictly necessary but considering that spare images skip those blocks that are not allocated, it is the quickest way to ensure that no fragment of the previous data remains. However, that erasing process should not be considered safe from a forensic point of view - possibly but not necessarily.
 
-Also flashing the secondary OEM partition is optional because flash.sh does not do but doing it ensure us that SailFish OS will run on the correct OEM binaries whatever the partition is going to be selected. In the future, [having a recovery image that can fulfill its duty](../todo/recovery-image-refactoring.md) also having an OEM partition with a backup of the original data will be a great advantage.
-
+Also flashing the secondary OEM partition is optional because flash.sh does not do but doing it ensures us that SailFish OS will run on the correct OEM binaries whatever the partition is going to be selected. In the future, [having a recovery image that can fulfil its duty](../todo/recovery-image-refactoring.md) also having an OEM partition with a backup of the original data will be a great advantage.
