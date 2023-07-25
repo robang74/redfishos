@@ -36,11 +36,11 @@ Have flashed into `boot_a` and `boot_b` the `hybris-recovery.img` image.
 
 #### STEPS TO REPRODUCE:
 
-1) satisfy the preconditions above 
+1) satisfy the preconditions above
 2) reboot your smartphone
 3) enjoy the recovery mode
 
-####  EXPECTED RESULT:
+####  EXPECTED RESULT:
 
 Many but few delivered ;-)
 
@@ -62,15 +62,15 @@ but using an [ASCII art generator](https://www.ascii-art-generator.org/) service
 
 <sub>
 
-  
+ 
 ```
-  #     ###       #        #####       #####   #####       #####   #####  
- ##    #   #      #    #  #     #     #     # #     #     #     # #     # 
-# #   #     #     #    #        #     #       #           #       #       
-  #   #     #     #    #   #####      ######  ######      ######  ######  
-  #   #     # ### ####### #       ### #     # #     # ### #     # #     # 
-  #    #   #  ###      #  #       ### #     # #     # ### #     # #     # 
-#####   ###   ###      #  ####### ###  #####   #####  ###  #####   #####  
+  #     ###       #        #####       #####   #####       #####   #####  
+ ##    #   #      #    #  #     #     #     # #     #     #     # #     #
+# #   #     #     #    #        #     #       #           #       #      
+  #   #     #     #    #   #####      ######  ######      ######  ######  
+  #   #     # ### ####### #       ### #     # #     # ### #     # #     #
+  #    #   #  ###      #  #       ### #     # #     # ### #     # #     #
+#####   ###   ###      #  ####### ###  #####   #####  ###  #####   #####  
 ```
 
 </sub>
@@ -89,7 +89,7 @@ About `root`:`recovery` login on `SSH`, it is enough that a system starting scri
 the `fsck` is based on `busybox` 1.3.4 which requires its extensions but partially installed because only `.minix` extension is present which is useless
 [/quote]
 
-**UPDATE #1** 
+**UPDATE #1**
 
 There is `/bin/e2fsck` and it would be nice that it would linked in `fsck.ext?` as far as possible.
 
@@ -97,7 +97,7 @@ Using `strings` against the ARM64 binary, it reports that `e2fsck` belong to `e2
 
 Alternatively the `fsck` should be removed or completed with its `fsck.auto` in order to have a coherent user/admin interface: who does not find `fsck`, will search for `e2fsck` or even better `mkfs.auto` and `mkfs.ext?` bring to it.
 
-In the list of supported commands included into `/bin/busybox-static`, the `fsck.auto` is missing in 4.015.9 `rootfs`, `boot` and `recovery` images. 
+In the list of supported commands included into `/bin/busybox-static`, the `fsck.auto` is missing in 4.015.9 `rootfs`, `boot` and `recovery` images.
 
 * https://github.com/sailfishos/busybox
 
@@ -120,45 +120,45 @@ ln -sf e2fsck fsck.ext3
 ln -sf e2fsck fsck.ext4
 ```
 
-This configuration has not been tested, yet. 
+This configuration has not been tested, yet.
 
 Test can be done also with `telnet 10.42.66.66` then using `passwd` to set the root password to rescue and then use `SSH` to transfer the files.
 
 ---
 
-**UPDATE #3** 
+**UPDATE #3**
 
-I have extracted both boot images for the `SFOS` v4.5.019 an check the differences. Then, I started to mod the recovery one. Here below, some hints:
+I have extracted both boot images for the `SFOS` v4.5.019 and checked the differences. Then, I started to mod the recovery one. Here below, some hints:
 
-* the text is printed into a single row, there fore the banner approach does not work but an image can be displayed therefore I used my print_banner.sh to create such image
+* the text is printed into a single row, therefore the banner approach does not work but an image can be displayed therefore I used my print_banner.sh to create such image
 
 * the `miniUI` on which recovery boot image rely on is on GitHub ([here](https://github.com/sailfishos/yamui)) and as you can see the [only font available](https://github.com/sailfishos/yamui/blob/master/minui/font_10x18.h) is code-cabled with a too tiny dimension `10x18`, the best is to change in something like `25x45` for example.
 
-* after having changed the root password and reboot again, my `PIN` code was not valid any more. I suppose that the root password in /etc/shadow- is used to encode something related to the `PIN` but correlation is not causation - I have to investigate further. This let me think that the password for root in `SSH` may be the `PIN` code, itself.
+* after having changed the root password and rebooted again, my `PIN` code was not valid any more. I suppose that the root password in /etc/shadow- is used to encode something related to the `PIN` but correlation is not causation - I have to investigate further. This makes me think that the password for root in `SSH` may be the `PIN` code itself.
 
-* before consuming the 5 tries for the `PIN` code, I have re-flashed completely the smartphone. Just in case, to avoid sending to Jolla for the ultimate recovery procedure. Annoying but I can live with that until I will find why.
+* before consuming the 5 tries for the `PIN` code, I have re-flashed the smartphone completely. Just in case, to avoid sending to Jolla for the ultimate recovery procedure. Annoying but I can live with that until I will find out why.
 
 Here a screenshot of the boot:
 
 <img src="recovery-telnet-phonescreen.jpeg" width="357px" height="500px">
 
-Clearly, you can see the difference between the "ciao ciao" text in 10x18 font on the top and the image presentation. Unfortunately, the image will not change in case someone edit the script and change the default `IP` address. In such a case, s/he should recreate the `PNG` image but the banner script allows it in a very quick way.
+Clearly, you can see the difference between the "ciao ciao" text in the 10x18 font on the top and the image presentation. Unfortunately, the image will not change in case someone edit the script and change the default `IP` address. In such a case, s/he should recreate the `PNG` image but the banner script allows it in a very quick way.
 
-Finally, the image lacks of `strace` and I wish to add to it because it will be very useful in the near future and for debugging purposes especially because the root filesystem (the one on which the `SFOS` usually run) is available from the recovery boot image.
+Finally, the image lacks `strace` and I wish to add to it because it will be very useful in the near future and for debugging purposes especially because the root filesystem (the one on which the `SFOS` usually runs) is available from the recovery boot image.
 
 ---
 
-**UPDATE #4** 
+**UPDATE #4**
 
 This is image has been created with a 6005 bytes, 121 lines shell not-optimized script.
 
 <img src="recovery-telnet-rendering.png" width="607px" height="150px">
 
-> ip-10.42.66.66.png: PNG image data, 1120 x 240, 1-bit greyscale, non-interlaced
+> ip-10.42.66.66.png: PNG image data, 1120 x 240, 1-bit grayscale, non-interlaced
 
-The script creates the text banner with an arbitrary `IP` address in `PBM` format and then converts t is a 596 bytes `PNG` image suitable to be displayed by `yamui`.
+The script creates the text banner with an arbitrary `IP` address in `PBM` format and then converts it to a 596 bytes `PNG` image suitable to be displayed by `yamui`.
 
-On a running system the scripts takes 2 seconds to complete but on an after-boot system - equivalent to `sync; echo 3 > /proc/sys/vm/drop_caches` - it takes 5 seconds which is a lot of time¹. However, the image is saved and therefore nor the banner nor the image will be created anymore as long as the `IP` address will not change. For each `IP` address the script will create and store a new image without deleting the others stored and immediately available.
+On a running system the script takes 2 seconds to complete but on an after-boot system - equivalent to `sync; echo 3 > /proc/sys/vm/drop_caches` - it takes 5 seconds which is a lot of time¹. However, the image is saved and therefore neither the banner nor the image will be created anymore as long as the `IP` address will not change. For each `IP` address the script will create and store a new image without deleting the others stored and immediately available.
 
 The conversion between `PBM` and `PNG` requires 172Kb of binaries and libraries in addition. The script can be compressed because it is used only once to export functions and therefore can keep 1770 bytes on disk which are 2kb because the smallest storage granularity is 512 bytes block.
 
@@ -173,17 +173,17 @@ To integrate the `PBMz` compressed format in `yamui`, there are some options:
 
 The #3 makes sense only for a developers version in which `PBM` format is included but not yet the `zlib` one. About #4, why not? The `PNG` format is the standard most used for lossless image compression.
 
-Why add the `PBMz` support? Because the `PBM` images can be easily creates by `ASCII` manipulating scripts. Those scripts can use `pnmtopng` (32kb) and `libnetpbm.so` to convert `PBM` in `PNG` but this conversion is not acceptable for *on-the-fly* needs. However, *on-the-fly-needs* can be better satisfied if `yamui` would keep open a file-descriptor in which a new image can be written to update the current which is not the case³, AFAIK.
+Why add the `PBMz` support? Because the `PBM` images can be easily created by `ASCII` manipulating scripts. Those scripts can use `pnmtopng` (32kb) and `libnetpbm.so` to convert `PBM` in `PNG` but this conversion is not acceptable for *on-the-fly* needs. However, *on-the-fly-needs* can be better satisfied if `yamui` would keep open a file-descriptor in which a new image can be written to update the current which is not the case³, AFAIK.
 
-The, `yamui` project came with some parts and `grep -rn "main("` on its git/source top folder tell us that the parts are three `yaumi`, `yamui-screensaverd` and `yamui-powerkey`. Having three separated binaries is not optimal for embedded systems (*and a smartphone are a class of embedded system in particular their rescue/boot images*). The best is the `busybox`/`toybox` approach: one single binary with several links for each functions. 
+The, `yamui` project came with some parts and `grep -rn "main("` on its git/source top folder tell us that the parts are three `yaumi`, `yamui-screensaverd` and `yamui-powerkey`. Having three separated binaries is not optimal for embedded systems (*and a smartphone is a class of embedded systems, in particular their rescue/boot images*). The best is the `busybox`/`toybox` approach: one single binary with several links for each function.
 
 **conclusion**
 
-The correct approach is to change the `yamui` code in order to let it support multiple-lines text rendering and using the a print banner shell script that converts a text into a multi-lines banner which take tenth of seconds to run.
+The correct approach is to change the `yamui` code in order to let it support multiple-lines text rendering and using a print banner shell script that converts a text into a multi-lines banner which takes tenth of seconds to run.
 
-The best approach is like the one presented above but with a command line option that allows to rendere the 10x18 (tiny) font multiplicated for a given integer: e.g. 2x (20x36, small), 3x (30x54 regular), 4x (40x72, large), ..., 6x (60x108, huge), etc.
+The best approach is like the one presented above but with a command line option that allows to render the 10x18 (tiny) font multiplicated for a given integer: e.g. 2x (20x36, small), 3x (30x54 regular), 4x (40x72, large), ..., 6x (60x108, huge), etc.
 
-Again³ there is not a specific opened file descriptor to update this text `on-the-fly`, AFAIK. 
+Again³ there is not a specific opened file descriptor to update this text `on-the-fly`, AFAIK.
 
 ---
 
@@ -191,7 +191,7 @@ Again³ there is not a specific opened file descriptor to update this text `on-t
 
 ¹ instead of 1120x240 pixels image, a 560x120 would have fit the bill as well but 4x less of time to convert it because 4x less of data (estimation, spoiler: *not so straight linear, dear*!).
 ² the [pdf417decode](https://github.com/robang74/pdf417decode) project on GitHub is a language-C example of such integration.
-³  the `d-bus` support can fulfil this short coming on a running system but it is not the best approach for a boot/rescue image not as good as <small>`echo goodbye > /run/yamui/update.text`</small>.
+³  the `d-bus` support can fulfil this shortcoming on a running system but it is not the best approach for a boot/rescue image not as good as <small>`echo goodbye > /run/yamui/update.text`</small>.
 
 ---
 
@@ -205,21 +205,21 @@ Looking at `res_create_alpha_surface()`, it is not a font but a `PNG` image and 
 One more option could be to have a signal handler for e.g. **USR1** (or even **HUP** ) causing it to reread whatever it was initialized with.
 [/quote]
 
-Named pipe, it is a inter-communication process (`IPC`) standard way of going. Socket is specifically tailored for d-bus communication and `kill -HUP` for reloading a daemon configuration. BTW, with `inotify`() there is no need of a signal any more as long as the write and the read are atomic, which is not a granted constrain in the most general case.
+Named pipe, it is an inter-communication process (`IPC`) standard way of going. Socket is specifically tailored for d-bus communication and `kill -HUP` for reloading a daemon configuration. BTW, with `inotify`() there is no need for a signal any more as long as the write and the read are atomic, which is not a granted constraint in the most general case.
 
 ---
 
-**UPDATE #5** 
+**UPDATE #5**
 
-These two commits have been developed in 2h 20m. The code is completely untested and it never have been compiled yet. Therefore, it should be considered as a proof-of-concept.
+These two commits have been developed in 2h 20m. The code is completely untested and it has never been compiled yet. Therefore, it should be considered as a proof-of-concept.
 
 * https://github.com/sailfishos/yamui/compare/master...robang74:yamui:master
 
-@piiroin: I have to take care some stuff about my real-world life. In the meantime, let me know your opinion about this approach / implementation. As soon as, this code will work as expected to then the next step is to integrate the multiple-lines text rendering.
+@piiroin: I have to take care of some stuff about my real-world life. In the meantime, let me know your opinion about this approach / implementation. As soon as, this code will work as expected then the next step is to integrate the multiple-lines text rendering.
 
 ---
 
-**UPDATE #6** 
+**UPDATE #6**
 
 I have uploaded into the git repository also the script that prints the banner and created the related PBM and PNG images:
 
@@ -235,11 +235,11 @@ The commits I did on my `yamui` fork compile and the results can be downloaded f
 
 * [yamui fork](https://github.com/robang74/yamui/)
 
-I did not tested yet. If you do, you will do at your own risk.
+I have not tested it yet. If you do, you will do it at your own risk.
 
 ---
 
-**UPDATE #8** 
+**UPDATE #8**
 
 The recovery image, also in 4.5.0.21, have the following shortcomings:
 
@@ -254,21 +254,19 @@ The recovery image, also in 4.5.0.21, have the following shortcomings:
 
 3. the `date` is an applet from busybox-static:
 
-> ```
-> sfos # busybox-static  date --help 2>&1 | head -n1
-> busybox v1.34.1 (2022-09-21 00:00:00 UTC) multi-call binary.
-> sfos # busybox-static date -u -d"Jan 01 00:00:01 1970" +%s
-> date: invalid date 'Jan 01 00:00:01 1970'
-> ```
-> 
-> but busybox date can deal with such date format, in fact:
-> 
-> 
-> ```
-> pcos # busybox date --help 2>&1 | head -n1
-> busybox v1.30.1 (Ubuntu 1:1.30.1-7ubuntu3) multi-call binary.
-> pcos # busybox date -u -d"Jan 01 00:00:01 1970" +%s
-> 1
-> ```
-> 
-> Therefore, it is depend on the options activated into `busybox` applets config
+```
+sfos # busybox-static  date --help 2>&1 | head -n1
+busybox v1.34.1 (2022-09-21 00:00:00 UTC) multi-call binary.
+sfos # busybox-static date -u -d"Jan 01 00:00:01 1970" +%s
+date: invalid date 'Jan 01 00:00:01 1970'
+```
+
+but busybox date can deal with such date format, in fact:
+
+```
+pcos # busybox date --help 2>&1 | head -n1
+busybox v1.30.1 (Ubuntu 1:1.30.1-7ubuntu3) multi-call binary.
+pcos # busybox date -u -d"Jan 01 00:00:01 1970" +%s > 1
+```
+
+Therefore, it is depend on the options activated into `busybox` applets config
