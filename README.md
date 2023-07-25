@@ -86,9 +86,9 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 
 ### About Open Device program
 
-* https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices
+* [ASOP on Xperia Open Devices](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices)
 
-* https://opendevices.ix5.org
+* [Open Devices at ix5.org](https://opendevices.ix5.org)
 
 ---
 
