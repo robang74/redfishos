@@ -14,7 +14,7 @@ AFAIK, the recovery image is not present on the phone but delivered into the pac
 > 
 > When booting the recovery mode on the phone and using a BT keyboard, then rescue operations could be done without having a computer.
 
-AFAIK, no because there is no reasonable way to deal with the display after the recovery boot, e.g. cfr. `yamui` part in the link above. Even the telnet IP address is shown properly.
+AFAIK, no because there is no reasonable way to deal with the display after the recovery boot, e.g. cfr. `yamui` part in the link above. Also the telnet IPv4 address is not shown properly in a manner that can be read easily.
 
 ---
 
