@@ -42,16 +42,16 @@ This means that for OS early-boot hackers the `rsync` is not an immediate option
 
 Which is exactly what I am doing by now:
 
-- A shell scripts suite for `tar`/`gzip` backup/restore has been tested but some more development and tests is needed (cfr. users backup section in the [Quick Start Guide](../quick-start-guide.md).
+- A shell scripts suite for `tar`/`gzip` backup/restore has been tested but some more development and tests are needed (cfr. users backup section in the [Quick Start Guide](../quick-start-guide.md).
 
 - A system patch manager by shell script that can un/apply permanent patches on rootfs has been used successfully to recover the system by a faulty patch installation but not released, yet
 
 - A system patch manager last version patch downloader has been implemented and successfully tested but not released, yet. It creates also a list of patch installed on the system a repository of them for future recovery or removal even in emergency off-line cases and can restart system services or daemon on-demand using a [special formatted patch header](../knowhow/system-patch-manager-p1.md#technical-approach).
 
-- preparing the system for the first installation after having flashed the SFOS, a minimal debug suite tools and to adapt the recovery image to be the default one and working as it supposed to do, a minimal advanced tools suite for smart system backup and integrity check ([here](../../recovery/README.md)). 
+- preparing the system for the first installation after having flashed the SFOS, a minimal debug suite tools and to adapt the recovery image to be the default one and working as it supposed to do, a minimal advanced tools suite for smart system backup and integrity check ([here](../../recovery/README.md)).
 
 ---
 
-I did not released the current version of these three tools because it is supposed that they should work together and their integration is still in the early development stage. For example, the immediately after flashing system configuration shell script did not reach a reasonable maturity level.
+I did not release the current version of these three tools because it is supposed that they should work together and their integration is still in the early development stage. For example, the immediately after flashing system configuration shell script did not reach a reasonable maturity level.
 
 Obviously, if - **I do** - these three facilities, then **I do** in a way to put myself in the most independent position from Jolla Oy - not necessarily against their interests or profit opportunities - simply **I do not** put those values in any place of my working TODO list because I am not paid to take care about their business. Which is good for the SFOS community because it brings more freedom for us.
