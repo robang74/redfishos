@@ -1,3 +1,14 @@
+
+> # :warning: WARNING 
+>
+> The scripts in `recovery` folder are still in alpha or beta testing do not use if you are sure about what you are doing.
+> 
+> Here below a couple of exceptions to this general rule, the scripts to generate the `recovery` and `sysdebug` archives.
+>
+> However, these two archives installed into the root filesystem cab brick your system, hence you have been warned.
+
+---
+
 ## About recovery package
 
 To create this package it has been used the Centos 8 binary RPMs repository:
