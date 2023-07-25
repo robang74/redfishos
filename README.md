@@ -174,7 +174,7 @@ The GPLv3 license applies to the composition unless you are the original copyrig
 
 Some pages, documents, software or firmware components can make an exception to the above general approach due to their specific copyright and license restriction. In doubt, follow the thumb rule of fair-use. Here a list of them: 
 
-* Vendor's proprietary blobs for Sony Xperia 10 II (github repository)
+* Vendor's proprietary blobs for Sony Xperia 10 II ([github repository fork](https://github.com/robang74/proprietary_vendor_sony_pdx201))
 
 For further information or requests about licensing and how to obtain your own business-like fork, please write to the project maintainer:
 
