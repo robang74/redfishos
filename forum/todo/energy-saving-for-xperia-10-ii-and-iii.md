@@ -12,7 +12,7 @@
 
 Recently I set the enery saving mode at 100% of battery threshold which means always active:
 
-* [using mcetool to change the power saving threshold](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/8)
+* [using mcetool to change the power saving threshold](../knowhow/battery-recharge-and-power-saving.md)
 
 Moreover, I dimmed the brightness of the screen to the minimum and I have installed and activated the [Pure Black Backgrounds ](https://coderus.openrepos.net/pm2/project/patch-i-see-a-red-door) patch which it expected to save energy with OLED display which is the case. The display is set to sleep after 30 seconds.
 
@@ -55,6 +55,3 @@ The `START` / `STOP` states for the `Android Support` are not enough because cli
 * `enabled, running` - A.S. behave like now when it running giving the service
 
 With these option the Android Support can be kept safely disabled but quickly to gives it service if the user need it. This will make the SailFish OS more reliable about Android apps background activities and more power energy saving.
-
-
-
