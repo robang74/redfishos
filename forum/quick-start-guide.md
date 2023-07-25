@@ -832,7 +832,7 @@ because these shortcuts will be very useful and you will use them often.
 
 This list of suggested changes is for those Sailors hackers or Jolla that wish to improve `SFOS` and has been moved here:
 
-* [A collection of tasks to do and request of changes](https://forum.sailfishos.org/t/a-collection-of-tasks-to-do-and-request-of-changes/16100/1)
+* [A collection of tasks to do and request of changes](tasks-and-changes-todo.md)
 
 Please, take a look at that list and feel free to indicate the 3 that are the **most** important for you or `SFOS` and the 3 which are the **least** important. To the 3+3 indications add for each one a **brief** explanation about why, just to support your preference.
 
