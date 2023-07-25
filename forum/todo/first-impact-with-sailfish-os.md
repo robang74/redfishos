@@ -42,11 +42,12 @@ Fixing the critical issues in same order listed above
 
 Offer a try-and-buy-or-reset license
 
-The try-and-buy-or-reset license would last e.g. 30gg [30days] and it might be free or cost €5. It let the user to try the Sailfish OS full license features and then decide to pay in full the license fee (€49 - €5) or having the phone reset to the free license or better locked than reset like a ransomware but legal.
+The try-and-buy-or-reset license would last e.g. 30gg [30days] and it might be free or cost €5. It lets the user try the Sailfish OS full license features and then decide to pay in full the license fee (€49 - €5) or having the phone reset to the free license or better locked than reset like a ransomware but legal.
 
-Personally, I would buy it just to see if there is some way (upgrade, patch) that fixes or improve considerably the performance about the 2 first critical issues. I hope that 2 issues (GPS cannot lock satellites, routing manual network) are regression, is it right? Uhm, not really recent at least.
+Personally, I would buy it just to see if there is some way (upgrade, patch) that fixes or improves considerably the performance.
+About the 2 first critical issues. I hope that 2 issues (GPS cannot lock satellites, routing manual network) are regression, is it right? Uhm, not really recent at least.
 
- * [GPS signal very bad](https://forum.sailfishos.org/t/gps-signal-very-bad/13026) (sept, 2022)
+ * [GPS signal very bad](https://forum.sailfishos.org/t/gps-signal-very-bad/13026) (sept, 2022)
 
 ## Notes:
 
@@ -57,15 +58,19 @@ Now I am trying to apply this suggestion hoping that it will fix the GPS problem
 
 * [MLS Manager](https://forum.sailfishos.org/t/sailfish-community-news-25th-february-sdk-openssl/5179/1)
 
+> :information_source: **Note**
+>
 > Back in March of last year Mozilla changed the terms of access to the Mozilla Location Service (MLS), with the unfortunate consequence that Jolla was no longer able to use it as part of the default Sailfish OS install. While GPS is still perfectly usable without MLS, it unfortunately does mean it takes longer to get a fix, especially in cases where GPS hasn’t been used for a while, or is reactivated at a significant distance from the last place it was used. Happily the ever-ingenious Sailfish community has come up with a workaround in the form of MLS Manager by Samuel Kron, which allows location data to be downloaded to your phone for offline use. Being offline this means no sensitive data is sent over the Internet, but if you use it don’t forget to alter your location settings to enable offline lookups in Settings -> Location -> Select custom settings -> Enable GPS and Offline positioning, disable Online positioning .
 
-Obviously, downloading data that help to get a faster localisation on the urban/city areas would not solve the problem of not having access to the real GPS.
+Obviously, downloading data that helps to get a faster localisation on the urban/city areas would not solve the problem of not having access to the real GPS.
 
 ---
 
-In the installation instructions there is the suggestion of to upgrade 11 from 10 but nothing about downgrading 12 to 11. There is also no any warning about, like DO NOT INSTALL SAILFISH UNLESS bla bla.
+In the installation instructions there is the suggestion of upgrading 11 from 10 but nothing about downgrading 12 to 11. There is also no warning about, like DO NOT INSTALL SAILFISH UNLESS bla bla.
 
-> __Note__: some users on the forum reported to not having particular problems with SailFish OS in combination with Android 12. However, end-user support can be difficult and community support can be hostile for those did not followed pedantically the flashing instructions. 
+> :information_source: **Note**
+> 
+> Some users on the forum reported not having particular problems with SailFish OS in combination with Android 12. However, end-user support can be difficult and community support can be hostile for those who did not pedantically follow the flashing instructions.
 
 ---
 
@@ -83,7 +88,7 @@ $ sudo certmgr -ssl -m https://software.sonymobile.com
 
 Despite the error message, enter Y when asked, you should be asked to do so twice from here:
 
- * [XperiFirm: a Xperia Firmware Downloader v5.6.5 on XDA Forums](https://forum.xda-developers.com/t/tool-xperifirm-xperia-firmware-downloader-v5-6-5.2834142/)
+ * [XperiFirm: a Xperia Firmware Downloader v5.6.5 on XDA Forums](https://forum.xda-developers.com/t/tool-xperifirm-xperia-firmware-downloader-v5-6-5.2834142/)
 
 download this zip and extract the binaries for x32 and x64 platform
 
@@ -109,9 +114,9 @@ Sony Emma probably will let me downgrade to Android 11 but it does not work with
 
 * [Open source archive for 59.1.A.2.169 from Sony Developer World](https://developer.sony.com/file/download/open-source-archive-for-59-1-a-2-169/)
 
-I think that flash.sh should be check for the correct baseband (build) before proceed.
+I think that flash.sh should check for the correct baseband (build) before proceeding.
 
-Unless Emma would let me choose a downgrade, I think that there is no a simple way. This means that soon Jolla will need to add the support for Andorid 12 based Xperia X10 II devices which is the default Android version since one year ago:
+Unless Emma would let me choose a downgrade, I think that there is no simple way. This means that soon Jolla will need to add the support for Android 12 based Xperia X10 II devices which is the default Android version since one year ago:
 
 * [XperiCheck.com - Xperia 10 II (XQ-AU52)](https://xpericheck.com/XQ-AU52)
 
@@ -133,7 +138,7 @@ bash flash.sh
 fastboot -s QxxxxA flash oem_b ./SW_xxxx_10.0.7.1_r1_v12b_seine.img
 ```
 
-I did not erase the boot partitions because they are installed in raw mode. Unfortunately the GPS problem persists and at this point I suspect that it should configured in some way. A user find out that reverting back to Android 11 can be considered a work-around:
+I did not erase the boot partitions because they are installed in raw mode. Unfortunately the GPS problem persists and at this point I suspect that it should be configured in some way. A user find out that reverting back to Android 11 can be considered a work-around:
 
 * [GPS Experiences after flashing with Android 11](https://forum.sailfishos.org/t/gps-experiences-after-flashing-with-android-11/11079/1)
 
@@ -148,7 +153,7 @@ Not a fix, but something that will make your life a little easier is a patch by 
 [https://coderus.openrepos.net/pm2/project/android-support-button ](https://coderus.openrepos.net/pm2/project/android-support-button)
 [/quote]
 
-It does not support the last version 4.5.0.19 in which there is a similar icon for the top-menu but it brings to the Android Support page. This button is supposed to enable/disable the Android Support, instead. Is it right? Will the author update it for the last version, also?
+It does not support the last version 4.5.0.19 in which there is a similar icon for the top-menu but it brings it to the Android Support page. This button is supposed to enable/disable the Android Support, instead. Is that right? Will the author update it for the last version, also?
 
 ---
 
