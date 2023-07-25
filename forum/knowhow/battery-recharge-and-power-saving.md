@@ -1,15 +1,15 @@
 ## BATTERY RECHARGE AND POWER SAVING
 
-This is a thread focused on the an user-tailored power management for SailFish OS.
+This is a thread focused on the user-tailored power management for SailFish OS.
 
 It also includes the battery recharge thresholds for a long-lasting battery life.
 
 > @spiiroin wrote:
 >
 > > @Seven.of.nine wrote:
-> > 
+> >
 > > Presently there’s only possible to automatically activate the power saving mode depending on the accu charge level (20%, 15%, 10%, 5%, off), or set manually until next time charger is connected.
-> 
+>
 > Note that from command line you can select any percentage value, e.g.
 >  
 > ```
@@ -25,11 +25,13 @@ should change in this more useful:
 
 * *Enable battery saving mode until next time got charged at 90%*
 
-The reason it is obvious, it is enough that I connect the smartphone just the time to transfer some data from it with the MTP via USB and the energy saving mode will be reset to the normal but no a very little charge has been transferred to the battery.
+The reason is obvious, it is enough that I connect the smartphone just to transfer some data from it with the MTP via USB and the energy saving mode will be reset to the normal but no very little charge has been transferred to the battery.
 
-Finally, the threshold in charging at `{80%, 90%}` will do the rest. In order to keep the smartphone always in energy saving mode. At the cost of few meaningful changes. Personally, I would add `70%` at the values above, for those the battery is somehow compromised.
+Finally, the threshold for charging at `{80%, 90%}` will do the rest. In order to keep the smartphone always in energy saving mode. At the cost of few meaningful changes. Personally, I would add `70%` at the values above, for those the battery is somehow compromised.
 
-Is it possible to generate a patch for `Patch Manager` to changes this behaviour? Which files are involved in changing reconfiguring the UI and/or its business logic? Because for the message to change, it is supposed to be translated in many languages in order to correctly address the various localisations.
+Is it possible to generate a patch for `Patch Manager` to change this behaviour? Which files are involved in changing and reconfiguring the UI and/or its business logic? 
+
+Because for the message to change, it is supposed to be translated in many languages in order to correctly address the various localisations.
 
 The `mcetool` command line should be installed with
 
