@@ -50,7 +50,7 @@ The results clearly indicated that `md5sum` is 1.55x faster than `sh1sum` in our
 
 ### Differential backups
 
-[Writing about backup](../forum/users-backup-analisys.md), we noticed that some advanced command line utilities like `rsync` and `pigz` are missing from the root filesystem after the first boot and they are missing as well into the recovery boot image. Until that utilities will not introduced as default part of `usedata` and `recovery boot` images, we cannot rely on them for the SailFish OS refactoring.
+[Writing about backup](../forum/todo/users-backup-analisys.md), we noticed that some advanced command line utilities like `rsync` and `pigz` are missing from the root filesystem after the first boot and they are missing as well into the recovery boot image. Until that utilities will not introduced as default part of `usedata` and `recovery boot` images, we cannot rely on them for the SailFish OS refactoring.
 
 However a wise combination of `find` with `-newer` and `md5sum` filesystem integrity check will helps us to deliver a reliable differential backup system that can be adopted for the SailFish OS refactoring, also. 
 

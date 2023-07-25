@@ -58,7 +58,7 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * Considering the **USER BACKUP** section of [this guide](quick-start-guide.md), the Settings:System → System:Backup can be put in condition to work also using SSH connection. Below the “Add cloud account” can be added a button for “Use the SSH connection” with brief instructions. Then, also the restore procedure can be added.
 
-* Evaluate a better and more general approach to backup and restore ([>here](https://forum.sailfishos.org/t/the-home-users-backup-my-backup-app-suggestions-for-improvements/16161/1))
+* Evaluate a better and more general approach to backup and restore ([>here](todo/users-backup-analysis.md))
 
 ---
 
