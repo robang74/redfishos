@@ -2,13 +2,13 @@ Hi, this is my feedback about the release. It is my first time with SailFish OS
 
 ## Installation:
 
-I followed the standard installation procedure but the initial phone conditions were not completely matched: Andorid 12 instead of Android 11 and possibly something other like BSP/driver?
+I followed the standard installation procedure but the initial phone conditions were not completely matched: Android 12 instead of Android 11 and possibly something other like BSP/driver?
 
 * [How to install Sailfish X on Xperia™ 10 II on Linux](https://jolla.com/how-to-install-sailfish-x-on-xperia-10-ii-on-linux/)
 
 ## System:
 
-* Xperia X10 II dual SIM, model XQ-AU52 originally with Andorid 12
+* Xperia X10 II dual SIM, model XQ-AU52 originally with Android 12
 * Sailfish OS Jolla-4.5.0.19 qau52-1.0.0.19
 * AOSP Android 10.0 kernel 4.14 seine
 * Free license
@@ -19,17 +19,17 @@ I followed the standard installation procedure but the initial phone conditions 
 
 * critical : SIM in routing, network manual selection is slow and often back to search
 
-* annoying : automatic timezone does not work even with internet connection and GPS on
+* annoying : automatic time zone does not work even with internet connection and GPS on
 
 * annoying : Xperia 10 II mobile data does not work in 2G and 3G networks on SIM2 which is a known issue¹ but [it works for me](https://forum.sailfishos.org/t/release-notes-struven-ketju-4-5-0-19/15078/38) on a Xperia 10 II with 4.5.0.19 (customisations: my ofono is allowed to load the qmi plug-in which by default is disabled + the network on the SIM2 is set manually).
 
 * function: InfoGPS installed among other default applications for GPS testing at first installation
 
-* aesthetic: SIM renaming and signal strenght bar are missing in “Mobile Network(s)” config menu
+* aesthetic: SIM renaming and signal strength bar are missing in “Mobile Network(s)” config menu
 
 * aesthetic: in Settings:Apps page, every icon should be added a subscript-i for info²
 
-* The GPS failure can influence the timezone as well and without a position, Finland as default?
+* The GPS failure can influence the time zone as well and without a position, Finland as default?
 
 ## Software:
 
@@ -51,7 +51,7 @@ Personally, I would buy it just to see if there is some way (upgrade, patch) tha
 ## Notes:
 
 ¹ [Known Issues](https://docs.sailfishos.org/Support/Releases/Known_Issues/) reported on Sailfish OS Documentation
-² despite the topmenu header Apps, System, Accounts is easy to confuse the new users with the apps list from which the applications can be started instead of quieried.
+² despite the top-menu header Apps, System, Accounts is easy to confuse the new users with the apps list from which the applications can be started instead of queried.
 
 Now I am trying to apply this suggestion hoping that it will fix the GPS problem at reduced privacy counter-balance:
 
@@ -105,7 +105,7 @@ Version: 59.2.A.0.463-R14C
 Size: 2.66 GB
 ```
 
-Sony Emma probably will let me downgrade to Android 11 but it does not work with mono. The version opensource archive of the baseband build required by Sailfish is downloadable from here:
+Sony Emma probably will let me downgrade to Android 11 but it does not work with mono. The Open Source archive of the baseband build required by Sailfish OS is downloadable from here:
 
 * [Open source archive for 59.1.A.2.169 from Sony Developer World](https://developer.sony.com/file/download/open-source-archive-for-59-1-a-2-169/)
 
@@ -121,7 +121,7 @@ In particular the European customised version:
 
 ---
 
-I have tried to erase all the partition before reflashing Sailfish OS plus I flashed also the secondary OEM partition:
+I have tried to erase all the partition before reslashing Sailfish OS plus I flashed also the secondary OEM partition:
 
 ```
 fastboot -s QxxxxA erase dtbo_a
@@ -133,7 +133,7 @@ bash flash.sh
 fastboot -s QxxxxA flash oem_b ./SW_xxxx_10.0.7.1_r1_v12b_seine.img
 ```
 
-I did not erase the boot partitions because they are installed in raw mode. Unfortunately the GPS problem persists and at this point I suspect that it should configured in some way. A user findout that reverting back to Android 11 can be considered a work-around:
+I did not erase the boot partitions because they are installed in raw mode. Unfortunately the GPS problem persists and at this point I suspect that it should configured in some way. A user find out that reverting back to Android 11 can be considered a work-around:
 
 * [GPS Experiences after flashing with Android 11](https://forum.sailfishos.org/t/gps-experiences-after-flashing-with-android-11/11079/1)
 
@@ -148,7 +148,7 @@ Not a fix, but something that will make your life a little easier is a patch by 
 [https://coderus.openrepos.net/pm2/project/android-support-button ](https://coderus.openrepos.net/pm2/project/android-support-button)
 [/quote]
 
-It does not support the last version 4.5.0.19 in which there is a similar icon for the topmenu but it brings to the Andorid Support page. This button is supposed to enable/disable the Android Support, instead. Is it right? Will the author update it for the last version, also?
+It does not support the last version 4.5.0.19 in which there is a similar icon for the top-menu but it brings to the Android Support page. This button is supposed to enable/disable the Android Support, instead. Is it right? Will the author update it for the last version, also?
 
 ---
 
@@ -157,4 +157,3 @@ and select ‘No’ in ‘Check version’ option
 [/quote]
 
 Thanks. In fact, at this time I have the *strict check version* enabled.
-
