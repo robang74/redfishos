@@ -14,7 +14,7 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * take care of the short-comings listed into this post ([here](todo/first-impact-with-sailfish-os.md)). 
  
-* an easy way to deploy of the `A-GPS` config for X10 II and III ([>here](https://forum.sailfishos.org/t/quick-start-guide-v1-4-2/15857/6)) moreover about Settings:System -> Location:Location -> device only mode, it should disable the `A-GPS` functioning also at least for the part which communicates / requests data from remote sources. IMHO, the `A-GPS` inevitably does that, thus disabling it completely, it is the only safe way of fulfilling the *device only* user choice/will.
+* an easy way to deploy of the `A-GPS` config for X10 II and III ([>here](forum/quick-start-guide.md)) moreover about Settings:System -> Location:Location -> device only mode, it should disable the `A-GPS` functioning also at least for the part which communicates / requests data from remote sources. IMHO, the `A-GPS` inevitably does that, thus disabling it completely, it is the only safe way of fulfilling the *device only* user choice/will.
 
 * energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](knowhow/battery-recharge-and-power-saving.md)) also for 80% the 75% hysteresis threshold is suggested. Probably the 95%-90% and 80%-75% would address the needs of those that have a fully functional battery and those that do not.
 
@@ -47,8 +47,6 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 * a `cron` task scheduled `@reboot`  is needed to fix some files in users/root home that have too relaxed permissions set. ([>here](https://forum.sailfishos.org/t/some-files-in-users-root-home-have-too-relaxed-permissions-set/16004/1))
 
 * develop a regular expressions pre-parser/sanitiser to deal with `iptables` rules for `connman` ([>here](https://forum.sailfishos.org/t/the-00-devmode-firewall-conf-does-not-apply/15990/4))
-
-* do not let `lxc@multi-user.service` fails for no reason ([>here](https://forum.sailfishos.org/t/quick-start-guide-v1-5-5-3/15857/39))
 
 * bring `Patch Manager` + `Web Catalog` to the next level and change the *crime novel* into a *love story* fo Sailors ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/5)), ([>here](https://forum.sailfishos.org/t/patch-manager-warning-label-to-add/15950/1)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/16)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/21)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/26)) and ([>here](https://forum.sailfishos.org/t/is-there-a-future-for-sailfishos/15463/112)).
 
@@ -85,3 +83,6 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 * device unlock max number of tires - it is not clear what the devices is going to do about it: a) offering new set of retries after a reboot; b) lock forever until a recognised fingerprint is given but it does not work during rebooting volume deciphering this is a quite dangerous statement, thus to exclude; c) delete permanently the user data erasing the LUKS key which can be a nice feature to have in combination with a resetting to standard installation as long as the user explicitly choose this option and s/he should not allowed to. In fact, what happens if the smartphone falls in the hands of someone that makes all the tries just for playing with it or with the precise intention of deleting your data or letting them inaccessible? The best is that after N tries, a timeout 2x-increasing is set and displayed on the screen: 15min, 30min, 60min, 2h, 4h, 8h, 16h, etc.
 
 * add an emergency immediate user data deletion / reset inserting a special `PIN` during the request of the device unlock `PIN` both during the boot or the screen unlocking procedure. A way to implement this, is a secure erase of the `LUKS` key and continue/force the reboot which will land to a default `SFOS` installation in such a way the smartphone will be brought back to the factory settings. About the `SD`/`MMC` card inside if it is present: a similar procedure can be performed but only if the user decided to encrypt it otherwise it is assumed that data is not sensitive by choice.
+
+* do not let `lxc@multi-user.service` fails for no reason
+
