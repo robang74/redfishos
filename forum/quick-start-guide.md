@@ -1,4 +1,4 @@
-## Quick Start Guide v1.7.3.6
+## Quick Start Guide v1.7.4
 
 This is the guide originally written for the SailFish OS community forum reported here in Github .md format.
 
@@ -201,7 +201,7 @@ Deactivate the *Allow untrusted software* option, not now but after having insta
 
 Activate the *Allow untrusted software* option 
 
-> Settings:System -> Security:Untrusted software -> Allow untrusted software
+* Settings:System -> Security:Untrusted software -> Allow untrusted software
 
 Download and install the last release `RPM` package from here:
 
@@ -215,7 +215,7 @@ Deactivate the *Allow untrusted software* option, not now but after having insta
 
 Activate the *Allow untrusted software* option 
 
-> Settings:System -> Security:Untrusted software -> Allow untrusted software
+* Settings:System -> Security:Untrusted software -> Allow untrusted software
 
 Download and install the last release `APK` package from here:
 
@@ -251,7 +251,7 @@ The `Patch Manager` is not an application with an icon but adds a voice in `Sett
 
 `UpToDown`:
 
- * [Aurora Store](https://aurora-store.en.uptodown.com/android) (apps market², Google account required)
+* [Aurora Store](https://aurora-store.en.uptodown.com/android) (apps market², Google account required)
 * [Amazon Appstore](https://amazon-appstore.en.uptodown.com/android) (apps market², Amazon accout required)
 
 `Chum`:
@@ -312,7 +312,7 @@ To gain a secure and fast password-less access to you device via a SSH session, 
 
 The SSHd service can be configure from
 
-> Settings:System -> System:Developer mode -> enable -> Remote Connection
+* Settings:System -> System:Developer mode -> enable -> Remote Connection
 
 Add these two lines at the end of your `.bashrc` or `.profile` for your laptop/`PC` user:
 
@@ -323,7 +323,9 @@ wfish() { ssh root@172.28.172.1 "$@"; }
 
 The next time you will start a console, you will be able to use `ufish` or `wfish` to connect or execute commands via `SSH` on your `SFOS` device.
 
-**`TODO`**: make a script that does this job for the user
+> :heavy_exclamation_mark: **TODO**
+>
+> Make a script that does this job for the user
 
 ----
 
@@ -425,7 +427,7 @@ About `dnsmasq` integration with `connman`, read this `Patch Manager` patch desc
 
 **SAFE & PRIVACY DNS**
 
-About DNS, using those from your network provider (default) is not always the best choice. There are some more interesting alternatives:
+About `DNS`, using those from your network provider (default) is not always the best choice. There are some more interesting alternatives:
 
 * [Cloudflare](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/) uses `1.1.1.1` and `1.0.0.1` for its DNS service over IPv4 and their name resolution services have some extra features for safety. It claims to be the fastest DNS in the world.
 
@@ -453,7 +455,7 @@ This is an example of `/etc/resolv.conf` for every host connected with an `IPv4`
 
 > :warning: **Attention**
 >
-> usually the `/etc/resolv.conf` is not the right place to insert these values.
+> Usually the `/etc/resolv.conf` is not the right place to insert these values.
 
 ---
 
@@ -479,6 +481,8 @@ Now, we easily can imagine why [Archive.org](Archive.org) is facing a nasty and 
 
 Paranoia? Possibly, in the meantime also the ProtonVPN presentation page has been changed at the same time. Among others parts changes, this one has been removed:
 
+> :information_source: **NOTE"**
+>
 > ProtonVPN is created by the CERN scientists behind ProtonMail, the world's largest encrypted email service with 20 million users, including many **activists** and **journalists** such as **Reporters Without Borders**.
 
 You might think that privacy and security are a concern of criminals only but reading these kinds of claims, you might drop that bias. It is about everyone of us and especially for protecting those of us that are more exposed for the good sake of many.
@@ -502,6 +506,7 @@ From `F-Droid` market install:
 * [LocalGsmNlpBackend, a UnifiedNlp location provider for local GSM database](https://f-droid.org/packages/org.fitchfamily.android.gsmlocation/)
 * [Déjà Vu, a local RF based backend for the µg with Mobile/cell and WLAN/WiFi](https://f-droid.org/packages/org.fitchfamily.android.dejavu/)
 * [NominatimNlpBackend, a UnifiedNlp geocoding provider MapQuest Nominatim](https://f-droid.org/packages/org.microg.nlp.backend.nominatim/)
+
 Then open the `UnifiedNlp` app, do the self-check and configure and active all the services. 
 
 Then open the `microG Settings` app, in the Location menu switch on all every option.
@@ -540,11 +545,12 @@ This approach can be attempted also for other Xperia devices like `XA2`.
 
 The `A-GPS` configuration here proposed is Google free and it uses the Qualcomm `SUPL` hosts and it offers some others advantages ([here](https://forum.sailfishos.org/t/gps-stopped-working/1181/699)) respect the [suplpatcher](https://gitlab.com/nekrondev/suplpatcher) approach. Moreover it uses `HTTPS` encrypted protocol to data transfer by default.
 
-> :info_source: **Suggestion**
+> :memo: **Suggestion**
 >
 > uploading the certificates / key with suplpatcher and keep the size of the new gps.conf identical with the old removing comments and adding spaces or hashes at the end will grant to bypass the overlay filesystem problem with modem/GPS (if it exists) and probably will shrink also the time for the cold start.
 
 ---
+
 **THE FOLLOWING PART OF THIS SECTION IS OBSOLETE**
 
 Even if obsolete, It will remain for a while in order to be reworked as - advanced users section - to introduce the `SSH` / terminal / `qCommand` as universal tools to customize in deep a SFOS smartphone. In the meantime, jump to the next section which is **mobile data**.
@@ -571,7 +577,7 @@ The solution consists in changing some values into `/etc/gps.conf` or in `/vendo
 * `north-america.pool.ntp.org`
 * `south-america.pool.ntp.org`
 
-`SUPL_HOST:PORT`, list of options:
+The `SUPL_HOST:PORT`, list of options:
 
 * `supl.google.com:7276` (default)
 * `supl.grapheneos.org:7275`
@@ -582,44 +588,44 @@ To make these changes can be used the [terminal app](https://openrepos.net/conte
 
 Another way to access the terminal is using `qCommand` and asking him to run `devel-su /bin/ash` in interactive mode. In interactive mode, it will always ask for the password even if you choose to run `/bin/ash` as `root` and you saved the password.
 
----
-
 **ssh session**
 
 Activate the `SSH` session. This allows you to connect to your `SailFish OS` device with a `SSH` connection using the `USB` cable or the `WiFi` tethering or the `WiFi` home network. The most secure way is using the `USB` cable while the smartphone is off-line.
 
-> `ssh defaultuser@192.168.2.15`
-> `remote]$ devel-su /bin/sh`
-> `Download]# update-ca-trust`
-> `remote]# vi /etc/gps.conf`
-> `remote]# exit`
-> `remote]$ exit`
+```
+ssh defaultuser@192.168.2.15
+remote]$ devel-su /bin/sh
+Download]# update-ca-trust
+remote]# vi /etc/gps.conf
+remote]# exit
+remote]$ exit
+```
 
 Before changing those values, prepare yourself to use [vi the editor](https://web.mit.edu/merolish/Public/vi-ref.pdf) and make a backup copy of the original file. Or you can install `nano`, and use it instead of `vi`, as kindly suggested by @miau following these instructions:
 
-> `remote]$ devel-su pkcon install nano`
+`remote]$ devel-su pkcon install nano`
 
 Alternatively, you can download and copy the `gps.conf` as described in the next session and decide to modify it by your own hands. Instead of downloading the file, apply the `Patch Manager` patch cited above and then perform the changes you like. 
-
-----
 
 **terminal app**
 
 Visit this link for the [modified gps.conf](https://drive.google.com/file/d/1ZCheJadDhO38atpIFmRKMjBA42XYnUJT/view)  and save it in `Downloads`. Then open the terminal and execute the following commands:
 
-> `home]$ cd android_storage/Download`
-> `Download]$ devel-su /bin/sh`
-> `Download]# update-ca-trust`
-> `Download]# cp /vendor/etc/gps.conf gps.conf.bak`
-> `Download]# cat gps.conf >/vendor/etc/gps.conf`
-> `Download]# exit`
-> `Download]$ exit`
+```
+home]$ cd android_storage/Download
+Download]$ devel-su /bin/sh
+Download]# update-ca-trust
+Download]# cp /vendor/etc/gps.conf gps.conf.bak
+Download]# cat gps.conf >/vendor/etc/gps.conf
+Download]# exit
+Download]$ exit
+```
 
-----
+**after the changes**
 
 After the changes **disable** the developer mode and set the high precision mode for the `GPS`:
 
-> Settings:System -> Connectivity:Location -> High-accuracy positioning
+* Settings:System -> Connectivity:Location -> High-accuracy positioning
 
 At this point you can switch on the network, the `GPS` and give it a try indoors.
 
@@ -633,7 +639,7 @@ The first step you should do after having inserted the `SIM` into your new `SFOS
 
 You might experience a sensible registration lag or sometimes even a complete failure. Deactivate the mobile network auto selection mode in this way:
 
-> Settings:System → Connectivity:Mobile network:SIM# → Select network automatically:off
+* Settings:System → Connectivity:Mobile network:SIM# → Select network automatically:off
 
 This will bring you into a new page in which - after a while - all the mobile networks found will be visible and just some will be available. For example - if you are an `iliad italia` customer with 4G enabled - you will find `IT 88` and `IT 50`. You will also find that with 4G, you might not be able to register with `IT 88` but `IT 50` only. Select this one and then the next registration will take a reasonable time, even if not immediate.
 
@@ -643,13 +649,14 @@ Another solution that might work in your case is the following. Imagine that you
 
 You might decide to limit your mobile data to use the `IPv4` .
 
-> **A free VPN may leak data over IPv6**
+> :warning: **WARNING**
 >
+> **Every IPv4-only VPN leaks data over IPv6**
 > This can be a good idea especially if you are using a free `VPN` service that tunnels the data over `IPv4` but leaks those over `IPv6` .
 
 To limit your mobile data over IPv4 proceed in this way:
 
-> Settings:System → Connectivity:Mobile network:SIM# -> Data / MMS
+* Settings:System → Connectivity:Mobile network:SIM# -> Data / MMS
 
 In the `Data` and `MMS` access points changed the protocol field from `dual` to `IP`.
 
@@ -679,11 +686,11 @@ First of all, set the brightness of the screen to the minimum in auto-brightness
 
 Set the energy saving mode at 100% of battery threshold to let it stay always active. The energy consumption will drop from a 12%/h to a 8%/h which is 33% less on average therefore a 50% of battery lasting. At the moment, is is necessary to use `mcetool` from command line:
 
-> `mcetool --set-psm-threshold=100 --set-power-saving-mode=enabled`
+* `mcetool --set-psm-threshold=100 --set-power-saving-mode=enabled`
 
 Moreover, that tool should be installed before using it. This requires access to the smartphone with root privileges. Please refer to the **A-GPS INDOOR : manual editing or copy** to learn how.
 
-> `devel-su pkcon install mce-tools`
+* `devel-su pkcon install mce-tools`
 
 Because `mcetool`does not need `root` privileges to change the battery threshold for enabling the energy saving mode, it is possible to use `qCommand` to execute it in an non-interactive, non-root, ignore-output task. The `qCommand` allows to create an icon for this specific task⁴ and it is useful because the energy saving mode can be changed or disabled by Settings:System -> System:Battery menu but not set to 100% back by it.
 
@@ -756,7 +763,7 @@ These are few websites that worth to have in your native browser bookmark:
 
 * [webssh.de](https://webssh.de/) - is a minimal SSH web client by Robert Krause
 
- * [qr.io](https://qr.io) - creates `QR` codes from text for many applications, in particular is useful to quickly transfer a link/clip text from your laptop to your smartphone using the `QR` code reader integrated into default camera `SFOS` native app.
+* [qr.io](https://qr.io) - creates `QR` codes from text for many applications, in particular is useful to quickly transfer a link/clip text from your laptop to your smartphone using the `QR` code reader integrated into default camera `SFOS` native app.
 
 Feel free to propose your best choices or alternatives. As far as possible, I will update this list which is a mere suggestion based on an evaluation done at the time of writing (2023.06.16) and could become outdated.
 
@@ -766,17 +773,14 @@ Feel free to propose your best choices or alternatives. As far as possible, I wi
 
 This section is working in progress. Be patient. :blush:
 
-> `pkcon install -y`
-> 
-> > `usb-moded-host-mode-jolla`
-> >
-> > `usb-moded-systemd-rescue-mode`
-> >
-> > `usb-moded-connection-sharing-android-config`
-> 
->   XOR
-> 
-> > `usb-moded-connection-sharing-android-connman-config`
+```
+pkcon install -y usb-moded-host-mode-jolla usb-moded-systemd-rescue-mode \
+                  usb-moded-connection-sharing-android-config
+```
+or
+```
+                  usb-moded-connection-sharing-android-connman-config
+```
 
 ---
 
@@ -793,9 +797,13 @@ then you can use the *developer mode* as `USB` tethering following sending this 
 
 Follow the instructions on the description of the link above. Before that take this notice in consideration:
 
+> :warning: **WARNING**
+>
 > Therefore this patch is for expert users and developers. Until this feature will not be added to `SFOS` and managed by `connman`, it will be easier to install one of the packages listed above. Unless, you live in *developer mode* and you are acknowledged about how easy it is cracking `WiFi` passwords.
 
-**TODO**: check with `iptables -t nat -S` or `iptables -nvL -t nat` if the added iptables rules persist after a reboot and in the case, if they keep their position in the `NAT`ting.
+> :heavy_exclamation_mark: **TODO**
+>
+> check with `iptables -t nat -S` or `iptables -nvL -t nat` if the added iptables rules persist after a reboot and in the case, if they keep their position in the `NAT`ting.
 
 ----
 
