@@ -2,6 +2,7 @@
 
 The original title of this post was about the too old version of gnu-utils installed in the system having problems in dealing with the root filesystem overlay provided by LVM. Then, it has been discovered that the userdata image is broken due to factory truncation.
 
+This list of documents [root volume size sources](../../Olf0/root-volume-size_sources.md) found by Olf0 is very intersting and can help to deal with the root cause of this issue.
 
 ```
 REPRODUCIBILITY: 100%
