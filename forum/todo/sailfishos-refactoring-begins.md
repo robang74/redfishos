@@ -1,6 +1,18 @@
 ## SailFish OS refactoring begins
 
-> **Seven.of.nine**
+This is the [-1day pre-lauch announcement](../sfos-refactoring-1day-launch.md) which contains a brief presentation of the project. 
+
+In the following sections you can read the refactoring 1st stage plan.
+
+However for the current state of the tasks completion check the link above.
+
+---
+
+### Current limitations
+
+The current recovery image does not work on Xperia 10 II and moreover, it clearly show an early stage of development compared with the users expectations:
+
+> **Seven.of.nine** wrote:
 > 
 > A boot manager on the phone would be really great, that asks the user to boot the phone into normal mode or into rescue mode on powering up the phone, like a linux computer has it.
 >
@@ -10,7 +22,7 @@
 
 AFAIK, the recovery image is not present on the phone but delivered into the package which can be downloaded from the Jolla shop. Unfortunately, it seems almost useless at least on Xperia 10 II.
 
-> **Seven.of.nine**
+> **Seven.of.nine** wrote:
 > 
 > When booting the recovery mode on the phone and using a BT keyboard, then rescue operations could be done without having a computer.
 
@@ -18,7 +30,7 @@ AFAIK, no because there is no reasonable way to deal with the display after the 
 
 ---
 
-**More in general**
+### More in general
 
 There is no viable way to debug and fix SFOS until these three facilities will be fully functional in place unless you wish to waste your time as if you were an immortal highlander.
 
@@ -30,7 +42,7 @@ There is no viable way to debug and fix SFOS until these three facilities will b
 
 ---
 
-**About backup**
+### About backup
 
 The `rsync` is our friend but a script user-friendly interface is needed and moreover `rsync` is not available in the userdata image and cannot be installed until the device is registered with Jolla and related repositories are available.
 
@@ -38,7 +50,7 @@ This means that for OS early-boot hackers the `rsync` is not an immediate option
 
 ---
 
-**Working in progress**
+### Working in progress
 
 Which is exactly what I am doing by now:
 
@@ -51,6 +63,8 @@ Which is exactly what I am doing by now:
 - preparing the system for the first installation after having flashed the SFOS, a minimal debug suite tools and to adapt the recovery image to be the default one and working as it supposed to do, a minimal advanced tools suite for smart system backup and integrity check ([here](../../recovery/README.md)).
 
 ---
+
+### Conclusion
 
 I did not release the current version of these three tools because it is supposed that they should work together and their integration is still in the early development stage. For example, the immediately after flashing system configuration shell script did not reach a reasonable maturity level.
 
