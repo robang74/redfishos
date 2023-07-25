@@ -1,4 +1,4 @@
-Unfortunately there is no an app for SFOS that satisfy the backups need of all the users and this is the main reason for this new thread.
+Unfortunately there is no app for SFOS that satisfies the backups need of all the users and this is the main reason for this new thread.
 
 Here below a list of positive contributions towards the aim to develop one which can fulfill the needs of most advanced and end-users.
 
@@ -23,27 +23,27 @@ and here below the related code
 ```
 %postun
 if [ "$1" == 0 ] ; then
-  for u in $(getent passwd | cut -d: -f1); do
-    eval rm -fr ~$u/.local/share/openrepos-mybackup ||:
-  for d in $(getent passwd | cut -d: -f6) ; do
-    if [ "$d" != "" ] && [ "$d" != "/" ] && \
-       [ -d "$d/.local/share/openrepos-mybackup" ] ; then
-      rm -fr "$d/.local/share/openrepos-mybackup" ||:
-    fi
-  done
+  for u in $(getent passwd | cut -d: -f1); do
+    eval rm -fr ~$u/.local/share/openrepos-mybackup ||:
+  for d in $(getent passwd | cut -d: -f6) ; do
+    if [ "$d" != "" ] && [ "$d" != "/" ] && \
+       [ -d "$d/.local/share/openrepos-mybackup" ] ; then
+      rm -fr "$d/.local/share/openrepos-mybackup" ||:
+    fi
+  done
 fi
 ```
 
-The command `getent passwd` here would do almost the same of `cut -d: -f1 /etc/passwd` for user or `-f6` for user folders and guess what? Some users might have their home folder in `/` root. In SFOS, a quick way to find the users (humans) is to do `grep ^users: /etc/group because the others are system users. This is the code to find the home folders:
+The command `getent passwd` here would do almost the same as `cut -d: -f1 /etc/passwd` for users or `-f6` for user folders and guess what? Some users might have their home folder in `/` root. In SFOS, a quick way to find the users (humans) is to do `grep ^users: /etc/group because the others are system users. This is the code to find the home folders:
 
 ```
 for i in $(grep ^users: /etc/group | cut -d: -f4 | tr ',' ' '); 
 do grep "^$i:" /etc/passwd; done | cut -d: -f6 |\
 grep -E "^/home|^/root"
 ```
-The last grep grants for mistakes: only users that have a home folder in `root` or `home` can be managed. The others? The others should not exist or they are system users. Therefore the code - the @slava shell scrip uninstall code - is not completely fixed, yet.
+The last grep grants for mistakes: only users that have a home folder in `root` or `home` can be managed. The others? The others should not exist or they are system users. Therefore the code - the @slava shell script uninstall code - is not completely fixed, yet.
 
-However, to stay safe despite the script trying to challenge 114 users currently present in SFOS 4.5.0.19 /etc/passwd while usually 2 o 3 are involved (defaultuser, guest and root), it check for the existence of its own folder creation:
+However, to stay safe despite the script trying to challenge 114 users currently present in SFOS 4.5.0.19 /etc/passwd while usually 2 or 3 are involved (defaultuser, guest and root), it check for the existence of its own folder creation:
 
 `[ -d "$d/.local/share/openrepos-mybackup" ]`
 
@@ -102,7 +102,7 @@ busybox-1.34.1+git2-1.8.1.jolla.aarch64
 -bash: x: parameter not set
 ```
 
-I am not blaming you because missing the quotes, because I do constantly me too BUT it is **wrong** and usually on Friday 4pm you will discover in production HOW MUCH it is wrong.
+I am not blaming you for missing the quotes, because I constantly do too BUT it is **wrong** and usually on Friday at 4pm you will discover HOW MUCH it is wrong.
 
 **always check paths**
 
@@ -126,7 +126,7 @@ plus double quotes, obviously.
 
 **about the design**
 
-Usually it is not a good idea to do with compiled code those tasks which are usually considered system administration like user backup and restore. The compiled code is fine for the GUI but the GUI should use shell scripts. Because the shell scripts are arch-independent, because they are easy to modify and fix or just customize.
+Usually it is not a good idea to compile code for those tasks which are usually considered system administration like user backup and restore. The compiled code is fine for the GUI but the GUI should use shell scripts. Because the shell scripts are arch-independent, because they are easy to modify and fix or just customize.
 
 The console is the ultimate tool for rescue a system and the system administrators should be able to operate also without the GUI or - in particular - when the GUI is down or in rescue mode. Moreover, separation between GUI shell scripts brings - not only a useful separation between the GUI and the sysadmin level - but also tends to deliver better and more reliable code/apps.
 
@@ -152,9 +152,8 @@ The `rsync` is the best choice for additive backups of home users contents while
 
 ### Differential backups
 
-Writing about backup, we noticed that some advanced command line utilities like rsync and pigz are missing from the root filesystem after the first boot and they are missing as well into the recovery boot image. Until that utilities will not introduced as default part of usedata and recovery boot images, we cannot rely on them for the SailFish OS refactoring.
+Writing about backup, we noticed that some advanced command line utilities like rsync and pigz are missing from the root filesystem after the first boot and they are missing as well into the recovery boot image. Until that utility is not introduced as the default part of usedata and recovery boot images, we cannot rely on them for the SailFish OS refactoring.
 
-However a wise combination of find with -newer and md5sum [filesystem intgrity check](../4.5.0.21/README.md#file-tree-checksum) will helps us to deliver a reliable differntial backup system that can be adopted for the SailFish OS refactoring, also.
+However a wise combination of find with -newer and md5sum [filesystem integrity check](../4.5.0.21/README.md#file-tree-checksum) will helps us to deliver a reliable differential backup system that can be adopted for the SailFish OS refactoring, also.
 
-An alternative approach is to build and deliver an off-line tiny set of packages to install immediately after the first boot in such a way that rsync and pigz will be a granted as facilities. Obviously, the recovery image refactoring should include these tools, as well.
-
+An alternative approach is to build and deliver an off-line tiny set of packages to install immediately after the first boot in such a way that rsync and pigz will be granted as facilities. Obviously, the recovery image refactoring should include these tools, as well.
