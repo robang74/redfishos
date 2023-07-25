@@ -62,7 +62,7 @@ Due to its way of working the `Patch Manager` is not the right tool for this kin
 
 * [robang74-dnsmasq-connman-integration-0.0.6.tar.gz](https://coderus.openrepos.net/media/documents/robang74-dnsmasq-connman-integration-0.0.6.tar.gz)
 
-> Changelog: 0.0.6 - connman starts after patchmanager and dnsmasq before connman (in my wishes)
+  > Changelog: 0.0.6 - connman starts after patchmanager and dnsmasq before connman (in my wishes)
 
 In practice, because this patch will not be applied unless Patch Manager will complete its job, sometimes the connman and dnsmasq services will start before their .service files have been patched and therefore the system will not be able to resolve the domain names. Moreover, the network restart from SailFish Utilities cannot solve the issue and also rebooting might not solve but usually does.
 
@@ -122,8 +122,8 @@ This determines the uninstall procedure by defining a global non-parametric func
 
 ```
 patch_uninstall() { 
-rm -f $(cat /$store_dirpath/patch-$project_name.list)
-busybox tar xzf /$store_dirpath/patch-$project_name.tar.gz -C /
+  rm -f $(cat /$store_dirpath/patch-$project_name.list)
+  busybox tar xzf /$store_dirpath/patch-$project_name.tar.gz -C /
 }
 ```
 
@@ -131,13 +131,13 @@ This is useful before apply the `diff` patch in order to creates dir and files n
 
 ```
 patch_apply() {
-ret=0
-for i in $files; do mkdir -p $(basename $i); touch $i; done
-if ! patch -d / $pagrs -p$plvl unified_diff.patch; then 
-patch_uninstall
-ret=$((1+$?))
-fi
-return $ret
+  ret=0
+  for i in $files; do mkdir -p $(basename $i); touch $i; done
+  if ! patch -d / $pagrs -p$plvl unified_diff.patch; then 
+  patch_uninstall
+  ret=$((1+$?))
+  fi
+  return $ret
 }
 ```
 
@@ -166,13 +166,15 @@ This seems promising to install system updates also for those that do not requir
 
 * https://man7.org/linux/man-pages/man7/systemd.special.7.html
 
->        system-update.target, system-update-pre.target,
->        system-update-cleanup.service
->            A special target unit that is used for offline system
->            updates.  systemd-system-update-generator(8) will redirect
->            the boot process to this target if /system-update or
->            /etc/system-update exists. For more information see
->            systemd.offline-updates(7).
+```
+system-update.target, system-update-pre.target,
+system-update-cleanup.service
+    A special target unit that is used for offline system
+    updates.  systemd-system-update-generator(8) will redirect
+    the boot process to this target if /system-update or
+    /etc/system-update exists. For more information see
+    systemd.offline-updates(7).
+```
 
 * https://man7.org/linux/man-pages/man7/systemd.offline-updates.7.html
 
@@ -186,7 +188,7 @@ The `Patch Manager` patches can be applied and unapplied many times during a use
 
 For example [DNS Alternative](https://openrepos.net/content/kan/dns-alternative) is delivered like a `RPM` and probably it is the best way to have it. The way of providing a change could be exemplified in three main passages:
 
-> 1. system patch -> 2. optional RPM package -> 3. default RPM package 
+* 1. system patch -> 2. optional RPM package -> 3. default RPM package 
 
 Which also implies three different levels of integration with `SFOS`: unsupported (community only), supported in terms of the repository consistency (community aided by professional technical support) and fully supported (commercial support). Which three different levels of `SLA` and `QoS` in terms of supporting the end-users.
 
@@ -206,7 +208,7 @@ The #1 and the #3 are almost straightforward cases to deal with. The second is a
 
 **UPDATE #3**
 
-> Settings:System -> Patchmanger:Settings -> Activate enabled Patches when booting
+* Settings:System -> Patchmanger:Settings -> Activate enabled Patches when booting
 
 **Why** activate at boot time instead of making them permanent with that option?
 
@@ -231,7 +233,7 @@ We can evaluate a change between "*activate at boot time*" and "*keep persistent
 
 Here we are, we can have a `Persistent Patch Manager` with a little change. Now, it is your time to play roles or simply express yourself. What good can provide persistence and what problems can cause?
 
-About the better solution: 
+**About the better solution** 
 
 1. I show that it is easy and feasible to patch the filesystem (files and directory) without creating links to a temporary directory
 2. the `Patch Manager` can move easily from "*apply at boot time*" in "*persistent mode*" with check by `--dry-run` option which probably is just implemented because currently the `Patch Manager` is able to detect when a patched file is changed
