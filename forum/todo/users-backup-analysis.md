@@ -137,7 +137,7 @@ The console is the ultimate tool for rescue a system and the system administrato
 The scripting approach is far away to be completed and it seems that everyone developed its own solution in one way or another depending on their personal needs but the general problem has not been challenged yet.
 
 [quote="robang74, post:2, topic:16132"]
-In the [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-7-3-4/15857/1), there is a **USER BACKUP** section in which by two shell scripts and the use of the SSH connection available in developer mode, it is possible to create a backup of the entire user home for every users and restore it.
+In the [Quick Start Guide](../quick-start-guide.md), there is a **USER BACKUP** section in which by two shell scripts and the use of the SSH connection available in developer mode, it is possible to create a backup of the entire user home for every users and restore it.
 [/quote]
 
 [quote="robang74, post:24, topic:16132, full:true"]
