@@ -19,7 +19,7 @@ If you want use the url-links in this guide for configuring your `SailFish OS` s
 <!-- img src="https://raw.githubusercontent.com/robang74/redfishos/main/forum/quick-start-guide-qrcode.png" width=50% height=50% //-->
 <!-- img src="https://forum.sailfishos.org/uploads/db4219/original/2X/e/e742d186a7075a7ac05501a720b995b135255415.png" width=50% height=50% //--> 
 
-Then open the encoded url-link with the default native browser and save it into your bookmark for future and faster accesses to this guide.
+Then open the encoded url-link with the default native browser and save it into your bookmark for future and faster access to this guide.
 
 ---
 
@@ -31,11 +31,11 @@ Currently the Xperia 10 II are delivered with Android 12 (since 2022-06-13, last
 
 Reading the [flashing procedure described by Jolla](https://jolla.com/sailfishxinstall/), the suggested version and almost required is the Android 11, instead. Therefore you the need to re-flash your smartphone in order to downgrade the Android version. To accomplish this task you need to download the [Sony Emma flashing tool](https://developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/flash-tool) which runs only on Microsoft Windows and to follow these instructions about [reverting Xperia device to Android OS](https://docs.sailfishos.org/Support/Help_Articles/Managing_Sailfish_OS/Reinstalling_Sailfish_OS/#reverting-xperia-device-to-android-os-and-reinstalling-sailfish-os).
 
-The alternative to Sony Emma flashtool is [Xperifirm](https://xperifirmtool.com/category/tool) which requires mono to run on a GNU/Linux distribution and have a limited access to the firmware. For example, Xperia 10 III is not supported and for Xperia 10 II offers geographic areas customized firmware based on Android 12 and just a couple of alternatives which are customization.
+The alternative to Sony Emma flashtool is [Xperifirm](https://xperifirmtool.com/category/tool) which requires mono to run on a GNU/Linux distribution and has limited access to the firmware. For example, Xperia 10 III is not supported and Xperia 10 II offers geographic areas customized firmware based on Android 12 and just a couple of alternatives which are customization.
 
 * [Sony Xperia flashing guide](/forum/knowhow/flashing-tools-for-Xperia-phones.md)
 
-This guide provides some pratical knowledge for integrating the Jolla's official procedure.
+This guide provides some practical knowledge for integrating the Jolla's official procedure.
 
 ---
 
@@ -43,13 +43,13 @@ This guide provides some pratical knowledge for integrating the Jolla's official
 
 During the [flashing procedure described by Jolla](https://jolla.com/sailfishxinstall/), you might encounter two different problem with `fastboot` util and `flash.sh`: the `USB` v3.x issue and `USB` sleeping after the first `fastboot` command which will make your smartphone reboot preventing the `flash.sh` script to complete its job.
 
-To solve these two problems at once, use a `USB` v2.0-only hub and connect to it a `USB` stick which your system should mount. This because the `BIOS` of some laptops are configured to give energy even if the `USB`/`PC` is sleeping but with a `USB` stick mounted the `OS` will know that there is a data transfer in place and it should keep the `USB` port awake.
+To solve these two problems at once, use a `USB` v2.0-only hub and connect to it a `USB` stick which your system should mount. This is because the `BIOS` of some laptops are configured to give energy even if the `USB`/`PC` is sleeping but with a `USB` stick mounted the `OS` will know that there is a data transfer in place and it should keep the `USB` port awake.
 
 The alternative is to give a try to this script that it fixed both issues on my USB v3.x-only laptop:
 
 * https://coderus.openrepos.net/pm2/project/fastboot_usb3fix_script
 
-It is a script delivered by `Patch Manager` but it is for your laptop/`PC` not for `SFOS`. It also have double nature: a patch that can be applied to have the script and a shell script embedded into the patch header, both!
+It is a script delivered by `Patch Manager` but it is for your laptop/`PC` not for `SFOS`. It also has a double nature: a patch that can be applied to have the script and a shell script embedded into the patch header, both!
 
 The script will unbind all the `USB` devices connected to `xhci_pci` kernel driver, it will set the communication standard to `USB` v2.0 with always-on powering policy and then it will bind all the devices back.
 
@@ -73,10 +73,10 @@ fastboot flash oem_b SW_binaries_*_seine.img
 # key pressed until the notifications led become blue
 
 fastboot reboot
-# This line above makes your smartphone will reboot.
+# This line above makes your smartphone reboot.
 ```
 
-It leverages the fact that `fastboot` has been executed before the smartphone is connected and thus it set the `USB` parameters before the smartphone is engaged. This trick will work for a single run of `fastboot`. Hence it will not work with `flash.sh` unless the `USB` v2.0-only mode is set.
+It leverages the fact that `fastboot` has been executed before the smartphone is connected and thus it sets the `USB` parameters before the smartphone is engaged. This trick will work for a single run of `fastboot`. Hence it will not work with `flash.sh` unless the `USB` v2.0-only mode is set.
 
 **flash.sh tricks**
 
@@ -101,7 +101,7 @@ This is the header of `flash_config.sh` which shows you the list of actions. If 
 
 > `"flash_blob oem_b *_v12b_seine.img"`
 
-Then you have to use call `flash.sh` with `--force` option. Otherwise, it fails complaining about `md5sum` mismatch.
+Then you have to call `flash.sh` with `--force` option. Otherwise, it fails complaining about `md5sum` mismatch.
 
 **Android debug**
 
@@ -114,25 +114,25 @@ eval $(lsusb | sed -ne "s/.* \([a-f0-9]\{4\}\):\([a-f0-9]\{4\}\) "\
 udev_file=/etc/udev/rules.d/51-android.rules
 
 if [ -z "$idVendor" -o -z "idProduct" ]; then
-  echo "connect the Sony Xperia smartphone to your USB port"
+  echo "connect the Sony Xperia smartphone to your USB port"
 elif ! grep -q "grep-RAF-check" $udev_file; then
-  echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="$idVendor",'\
+  echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="$idVendor",'\
 ' ATTR{idProduct}=="$idProduct", MODE="0666", GROUP="plugdev",'\
 ' SYMLINK+="xperia%n" # grep-RAF-check' | sudo tee -a $udev_file
-  sudo systemctl reload udev
-  sudo systemctl restart udev
+  sudo systemctl reload udev
+  sudo systemctl restart udev
 fi
 ```
 
-The above settings should be done one single time and you have to replace the `idVendor` and `idProduct` with those you will found using `lsusb` with your smartphone connected to the `USB` port of your `PC`/laptop. The script above should do it for you.
+The above settings should be done one single time and you have to replace the `idVendor` and `idProduct` with those you will find using `lsusb` with your smartphone connected to the `USB` port of your `PC`/laptop. The script above should do it for you.
 
 ---
- 
+ 
 **AFTER LICENSING**
 
 Install the *Android Support* from the Jolla market, then the `F-Droid` market app.
 
-> Instead, do not install `APToide` because  in the past it shown relevant security issues and moreover anyone can upload an app in such store thus is not secure.
+> Instead, do not install `APToide` because  in the past it shown relevant security issues and moreover anyone can upload an app in such store thus is not secure.
 >
 > *Suggestion source*: @olf 
 
@@ -146,7 +146,7 @@ The `microG` project components are not anymore available on `F-Droid`, in parti
 
 While the `UnifiedNlp` component [org.microg.nlp](https://f-droid.org/packages/org.microg.nlp/) is still hosted but AFAIK, it does not work anymore and its lack of support for the recent Android versions is not a news.
 
-Therefore, I will not suggest to install the `microG` components anymore. Jump to the next section or proceed at your own risk.
+Therefore, I will not suggest installing the `microG` components anymore. Jump to the next section or proceed at your own privacy risk.
 
 **-= deprecated =-**
 
@@ -165,7 +165,7 @@ Open the `SFOS` app menu:
 
 > Settings:Apps -> MicroG Settings -> Open Android settings -> microG Service Core -> Permissions
 
-then allow all permissions at maximum privileges level: 	
+then allow all permissions at maximum privileges level:
 
 - `Body Sensors` : Allow
 - `Contacts` : Allow
@@ -183,7 +183,7 @@ Then open the `microG Service Core` and in the *self-check* page, accept for all
 
 Activate the *Allow untrusted software* option:
 
-> Setttings:System -> Security:Untrusted software -> Allow untrusted software
+> Settings:System -> Security:Untrusted software -> Allow untrusted software
 
 Download and install the last release `RPM` package from here for `SFOS` v4.5.0.19 and `ARM64` architecture:
 
@@ -201,7 +201,7 @@ Deactivate the *Allow untrusted software* option, not now but after having insta
 
 Activate the *Allow untrusted software* option 
 
-> Setttings:System -> Security:Untrusted software -> Allow untrusted software
+> Settings:System -> Security:Untrusted software -> Allow untrusted software
 
 Download and install the last release `RPM` package from here:
 
@@ -215,7 +215,7 @@ Deactivate the *Allow untrusted software* option, not now but after having insta
 
 Activate the *Allow untrusted software* option 
 
-> Setttings:System -> Security:Untrusted software -> Allow untrusted software
+> Settings:System -> Security:Untrusted software -> Allow untrusted software
 
 Download and install the last release `APK` package from here:
 
@@ -231,7 +231,7 @@ Available in `Chum` market as `Patch Manager` for `SailFishOS`
 
 - https://openrepos.net/content/patchmanager/patchmanager
 
-The `Patch Manager` is not an application with an icon but add a voice in `Settings` menù.
+The `Patch Manager` is not an application with an icon but adds a voice in `Settings` menù.
 
 ---
 
@@ -251,7 +251,7 @@ The `Patch Manager` is not an application with an icon but add a voice in `Setti
 
 `UpToDown`:
 
- * [Aurora Store](https://aurora-store.en.uptodown.com/android) (apps market², Google account required)
+ * [Aurora Store](https://aurora-store.en.uptodown.com/android) (apps market², Google account required)
 * [Amazon Appstore](https://amazon-appstore.en.uptodown.com/android) (apps market², Amazon accout required)
 
 `Chum`:
@@ -270,13 +270,13 @@ The `Patch Manager` is not an application with an icon but add a voice in `Setti
 * [Emoji+ keyboard](https://openrepos.net/content/ade/emoji-keyboard) (follow the installation instructions)
 * [XT9 improved punctuation handling](https://openrepos.net/content/ichthyosaurus/patch-xt9-improved-punctuation-handling) (patch³)
 * [Alternative UI for Pure Maps](https://openrepos.net/content/pichlo/patch-alternative-ui-pure-maps) (patch³)
-* [System Monitor](https://openrepos.net/content/ade/system-monitor-fork)  (sys-tool)
-* [Space Inspector](https://openrepos.net/content/ade/space-inspector)  (sys-tool)
-* [Wifi Analyser](https://openrepos.net/content/osanwe/wifi-analyser)  (net-tool)
+* [System Monitor](https://openrepos.net/content/ade/system-monitor-fork)  (sys-tool)
+* [Space Inspector](https://openrepos.net/content/ade/space-inspector)  (sys-tool)
+* [Wifi Analyser](https://openrepos.net/content/osanwe/wifi-analyser)  (net-tool)
 
 `Patch Manager` in `Web Catalog`:
 
-* [sailfish utilities quick fingerprint service restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart)  (patch³)
+* [sailfish utilities quick fingerprint service restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart)  (patch³)
 * [x10ii-iii-agps-config-emea](https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea) (patch³, cfr. the `A-GPS` indoor section)
 
 ----
@@ -287,13 +287,13 @@ This can be a quite amusing Android web-browser with *Turbo Mode* to speed you u
 
 * [Rocket Lightweight Web Browser](https://apkpure.com/rocket%E2%80%94lightweight-web-browser/dev.rocketscientists.rocket) on `apkpure`.
 
-created by the previous Firefox Lite team, it weights only 6MB in APK size and grants:
+created by the previous Firefox Lite team, it weighs only 6MB in APK size and grants:
 
 * No data shared with third parties
 * Data is encrypted in transit
 * No data collected.
 
-Moreover, it is a [open-source project](https://github.com/RocketScientists/Rocket) hosted on Gitub.
+Moreover, it is a [open-source project](https://github.com/RocketScientists/Rocket) hosted on Github.
 
 ----
 
@@ -340,10 +340,10 @@ Suggested package to install, by root user:
 ```
 pkcon -y remove busybox-symlinks-vi
 pkcon -y install --allow-reinstall \
-    rpm pigz xz patch htop vim-minimal harbour-gpsinfo zypper \ 
-    zypper-aptitude mce-tools harbour-file-browser harbour-todolist \
-    sailfish-filemanager sailfish-filemanager-l10n-all-translations \
-    harbour-qrclip
+    rpm pigz xz patch htop vim-minimal harbour-gpsinfo zypper \ 
+    zypper-aptitude mce-tools harbour-file-browser harbour-todolist \
+    sailfish-filemanager sailfish-filemanager-l10n-all-translations \
+    harbour-qrclip
 ```
 
 ----
@@ -374,13 +374,13 @@ tar tzf backup-${user}-${date_time}.tar.gz >/dev/null && echo "OK" || echo "KO"
 
 </small>
 
-The script above requires `pigz` the much faster parallel version of `gzip`. Unless the **SYSTEM UPDATE** procedure has been completed, the `pigz` should be installed by root user with this command:
+The script above requires `pigz`, the much faster parallel version of `gzip`. Unless the **SYSTEM UPDATE** procedure has been completed, the `pigz` should be installed by root user with this command:
 
 ```
 pkcon install -y pigz
 ```
 
-or the script  edited for working with the much slower `gzip`.
+or the script  edited for working with the much slower `gzip`.
 
 **backup restore**
 
@@ -409,17 +409,17 @@ The script takes the last backup available in the current folder.
 
 **DNS CACHING**
 
-For `DNS` caching and proxying, you can install the [DNS Alternative](https://openrepos.net/content/kan/dns-alternative) which is a package available on `Chum` market. However, if this solution does not fit your needs there is a 2nd choice using `dnsmasq` directly and configuring it specififcally for your needs.
+For `DNS` caching and proxying, you can install the [DNS Alternative](https://openrepos.net/content/kan/dns-alternative) which is a package available on `Chum` market. However, if this solution does not fit your needs there is a 2nd choice using `dnsmasq` directly and configuring it specifically for your needs.
 
 **dnsmasq**
 
-For every beginners in SFOS, who is used to use a GNU/Linux distribution, the first tough is to install `dnsmasq`. Unfortunately the `RPM` package available is not working `AS-IS` and a patch should be applied to avoid it conflicts with `connman`.
+For every beginner in SFOS, who is used to using a GNU/Linux distribution, the first step is to install `dnsmasq`. Unfortunately the `RPM` package available is not working `AS-IS` and a patch should be applied to avoid it conflicts with `connman`.
 
 About `dnsmasq` integration with `connman`, read this `Patch Manager` patch description ([here](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration))
 
 > :warning: **ATTENTION**
 >
-> <small>despite the `Patch Manager` is not the right tool for this kind of patches but the `dnsmasq` and `connman` `RPM`s should be fixed instead, this patch seems working reliably as long as the systemd services start-up order is not changed far away from the factory default. Rarely, because this patch is not applied unless `Patch Manager` will complete is job, sometimes the `connman` and `dnsmasq` services will start before their `.service` files have been patched and therefore the system will not be able to resolv the domain names. Moreover, the network restart from `SailFish Utilities` cannot solve the issue (unless patched) and also rebooting might not solve it but usually does unless `systemd` is far away the factory configuration.</small>
+> <small>despite the `Patch Manager` is not the right tool for this kind of patches but the `dnsmasq` and `connman` `RPM`s should be fixed instead, this patch seems working reliably as long as the systemd services start-up order is not changed far away from the factory default. Rarely, because this patch is not applied unless `Patch Manager` will complete his job, sometimes the `connman` and `dnsmasq` services will start before their `.service` files have been patched and therefore the system will not be able to resolve the domain names. Moreover, the network restart from `SailFish Utilities` cannot solve the issue (unless patched) and also rebooting might not solve it but usually does unless `systemd` is far away the factory configuration.</small>
 
 ----
 
@@ -431,22 +431,22 @@ About DNS, using those from your network provider (default) is not always the be
 
 * [AdGuard](https://adguard-dns.io/en/public-dns.html) uses `94.140.14.14` and `94.140.15.15` and offers an {advertising, malicious, malware} hosts resolution name blocking feature plus family protections on `94.140.14.15` and `94.140.15.16` but they also offer an unfiltered service (check the link).
 
-* [Quad9](https://www.quad9.net/) uses `9.9.9.9` and `149.112.112.112` to offer a service which a combination between the two above, in their claims (fast and safe).
+* [Quad9](https://www.quad9.net/) uses `9.9.9.9` and `149.112.112.112` to offer a service which is a combination between the two above, in their claims (fast and safe).
 
-The best choice is alternating two coherent DNS services together - for reliability - and using a caching system configured for leveraging a large DNS cache to gain speed, privacy and also safety depending the services you choose.
+The best choice is alternating two coherent DNS services together - for reliability - and using a caching system configured for leveraging a large DNS cache to gain speed, privacy and also safety depending on the services you choose.
 
 ```
 #IPv4 nameservers
-nameserver  9.9.9.9 
-nameserver  94.140.14.14
-nameserver  149.112.112.112
-nameserver  94.140.15.15
+nameserver  9.9.9.9 
+nameserver  94.140.14.14
+nameserver  149.112.112.112
+nameserver  94.140.15.15
 
 #IPv6 nameservers
-nameserver  2620:fe::fe
-nameserver  2a10:50c0::ad1:ff
-nameserver  2620:fe::9
-nameserver  2a10:50c0::ad2:ff
+nameserver  2620:fe::fe
+nameserver  2a10:50c0::ad1:ff
+nameserver  2620:fe::9
+nameserver  2a10:50c0::ad2:ff
 ```
 
 This is an example of `/etc/resolv.conf` for every host connected with an `IPv4` + `IPv6` network which alternates *AdGuard* and *Quad9* ad-blocking and safe-filtered `DNS`.
@@ -463,9 +463,9 @@ The `SailFish OS` supports many clients to establish a `VPN` tunnel for your tra
 
 About `VPN` services there is a very [interesting post on `F-Droid` blog](https://web.archive.org/web/20230628153815/https://f-droid.org/en/2023/03/08/vpn-trust-requires-free-software.html) which refers to also others articles and independent studies. The article deserve to be read but for those are in hurry, this topic can be briefly summarized with these three statements:
 
-* [proton.me](https://proton.me/) - a suite of SaaS services tailored for the privacy with the headquarter and data-center in Switzerland. Allows free accounts but limited, included a `VPN` compatible with `OpenVPN` but `IPv4` .only.
+* [proton.me](https://proton.me/) - a suite of SaaS services tailored for privacy with the headquarters and data-center in Switzerland. Allows free accounts but limited, included a `VPN` compatible with `OpenVPN` but `IPv4` .only.
 
-* [VPNs with full `IPv6` Support in 2023](https://restoreprivacy.com/vpn/best/ipv6/) - an article that presents three `VPN` providers that support the `IPv6` but do not have free trial plan which means you have to pay with your credit card (privacy but not anonimity).
+* [VPNs with full `IPv6` Support in 2023](https://restoreprivacy.com/vpn/best/ipv6/) - an article that presents three `VPN` providers that support the `IPv6` but do not have free trial plan which means you have to pay with your credit card (privacy but not anonymity).
 
 Therefore the only viable way to go with ProtonVPN relying on a `IPv6`-only network operator is using [CLAT](https://forum.sailfishos.org/t/testing-clat-for-ipv6-only-mobile-networks/14520/1) which is still under testing.
 
@@ -475,13 +475,13 @@ The original [article](https://f-droid.org/en/packages/ch.protonvpn.android/) ab
 
 Then it returned back soon after I wrote this part because exposing idiots is easier when the memory is not short (*written not to stay but to be saved in this post history* :blush:). You may wonder why? The spoiler is ([here](https://forum.sailfishos.org/t/where-to-go-after-sailfish/6876/147)).
 
-Now, we easily can imagine why [Archive.org](Archive.org) is facing a nasty and expensive trial in USA about copyright violation: *it easier to control those have a short-only memory*.
+Now, we easily can imagine why [Archive.org](Archive.org) is facing a nasty and expensive trial in the USA about copyright violation: *it easier to control those who have a short-only memory*.
 
-Paranoia? Possibly, in the meantime also the ProtonVPN presentation page has been changed in the same time. Among others parts changes, this one has been removed:
+Paranoia? Possibly, in the meantime also the ProtonVPN presentation page has been changed at the same time. Among others parts changes, this one has been removed:
 
 > ProtonVPN is created by the CERN scientists behind ProtonMail, the world's largest encrypted email service with 20 million users, including many **activists** and **journalists** such as **Reporters Without Borders**.
 
-You might think that privacy and security are a concern of criminals only but reading this kind of claims, you might drop that bias. It is about everyone of us and especially for protecting those of us that are more exposed for the good sake of many.
+You might think that privacy and security are a concern of criminals only but reading these kinds of claims, you might drop that bias. It is about everyone of us and especially for protecting those of us that are more exposed for the good sake of many.
 
 ---
 
@@ -502,12 +502,11 @@ From `F-Droid` market install:
 * [LocalGsmNlpBackend, a UnifiedNlp location provider for local GSM database](https://f-droid.org/packages/org.fitchfamily.android.gsmlocation/)
 * [Déjà Vu, a local RF based backend for the µg with Mobile/cell and WLAN/WiFi](https://f-droid.org/packages/org.fitchfamily.android.dejavu/)
 * [NominatimNlpBackend, a UnifiedNlp geocoding provider MapQuest Nominatim](https://f-droid.org/packages/org.microg.nlp.backend.nominatim/)
-	
 Then open the `UnifiedNlp` app, do the self-check and configure and active all the services. 
 
-Then open the `microG Settings` app, in Location menu switch on all every option.
+Then open the `microG Settings` app, in the Location menu switch on all every option.
 
-Install `GPSinfo` app from `Chum` market because the one in the Jolla market can be outdated (cfr. update #1), switch on the `GPS` and test it outdoor.
+Install `GPSinfo` app from `Chum` market because the one in the Jolla market can be outdated (cfr. update #1), switch on the `GPS` and test it outdoors.
 
 **freezing issue**
 
@@ -523,19 +522,19 @@ Or they can make the `A-GPS` working (cfr. update #3) like described below which
 
 **A-GPS INDOOR**
 
-You may experience problems in `GPS` fixing indoor. The current solution is to adopt the `A-GPS` approach which needs a mobile data connection thus exchanges data that can undermining your privacy about your position.
+You may experience problems in `GPS` fixing indoors. The current solution is to adopt the `A-GPS` approach which needs a mobile data connection thus exchanging data that can undermine your privacy about your position.
 
-*  [x10ii-iii-agps-config-emea](https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea) (check the instruction)
+*  [x10ii-iii-agps-config-emea](https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea) (check the instruction)
 
 > :warning: **WARNING #1**
 >
-> install the patch for being notified about updated but do not use the Patch Manager apply the patch because is not the right tool for this kind of patches. Instead, explode this tarball by root in the root:
+> install the patch for being notified about updates but do not use the Patch Manager to apply the patch because it is not the right tool for this kind of patch. Instead, explode this tarball by root in the root:
 
 * https://t.ly/ZJMA (or scan the QR-code in the screenshots)
 
 > :warning: **WARNING #2**
 >
->  filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured. Check this bug report [here](https://t.ly/omO0) for more information.
+>  filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents modem/GPS from being correctly configured. Check this bug report [here](https://t.ly/omO0) for more information.
 
 This approach can be attempted also for other Xperia devices like `XA2`.
 
@@ -548,13 +547,13 @@ The `A-GPS` configuration here proposed is Google free and it uses the Qualcomm 
 ---
 **THE FOLLOWING PART OF THIS SECTION IS OBSOLETE**
 
-Even if obsolete, It will remain for a while in order to be reworked as - advanced users section - to introduce the `SSH` / terminal / `qCommand` as universal tools to customize in deep a SFOS smartphone. In the meantime, jump to next section which is **mobile data**.
+Even if obsolete, It will remain for a while in order to be reworked as - advanced users section - to introduce the `SSH` / terminal / `qCommand` as universal tools to customize in deep a SFOS smartphone. In the meantime, jump to the next section which is **mobile data**.
 
 ---
 
 **manual editing or copy**
 
-> This solution works with Xperia 10 smartphone serie and might works with others smartphones but not with the XA2 which requires the and for the XA2 the parameters are slightly different as. Therefore, XA2 users should ignore the following and follow the suplpatcher instructions.
+> This solution works with Xperia 10 smartphone series and might work with others smartphones but not with the XA2 which requires the and for the XA2 the parameters are slightly different as. Therefore, XA2 users should ignore the following and follow the suplpatcher instructions.
 >
 > *Suggestion source*: @miau
 
@@ -577,7 +576,7 @@ The solution consists in changing some values into `/etc/gps.conf` or in `/vendo
 * `supl.google.com:7276` (default)
 * `supl.grapheneos.org:7275`
 
-To make these changes can be used the [terminal app](https://openrepos.net/content/lourens/fingerterm-terminal-app) that appear in the app menu when **developer mode** is enabled. Or a `SSH` session created using the developer tools. In both cases, it necessary to activate the **developer mode** and provide to the `defaultuser` a password:
+To make these changes can be used the [terminal app](https://openrepos.net/content/lourens/fingerterm-terminal-app) that appears in the app menu when **developer mode** is enabled. Or a `SSH` session created using the developer tools. In both cases, it necessary to activate the **developer mode** and provide to the `defaultuser` a password:
 
 > Settings:System -> System:Developer tools -> Developer Mode -> Remote connection -> Password:Create
 
@@ -596,17 +595,17 @@ Activate the `SSH` session. This allows you to connect to your `SailFish OS` dev
 > `remote]# exit`
 > `remote]$ exit`
 
-Before change that values, prepare yourself to use [vi the editor](https://web.mit.edu/merolish/Public/vi-ref.pdf) and make a backup copy of the original file. Or you can install `nano`, and use it instead of `vi`, as kindly suggested by @miau following these instructions:
+Before changing those values, prepare yourself to use [vi the editor](https://web.mit.edu/merolish/Public/vi-ref.pdf) and make a backup copy of the original file. Or you can install `nano`, and use it instead of `vi`, as kindly suggested by @miau following these instructions:
 
 > `remote]$ devel-su pkcon install nano`
 
-Alternatevely, you can download and copy the `gps.conf` as described in the next session and decide to modify it by your own hands. Instead of download the file, apply the `Patch Manager` patch cited above and then performs the changes you like. 
+Alternatively, you can download and copy the `gps.conf` as described in the next session and decide to modify it by your own hands. Instead of downloading the file, apply the `Patch Manager` patch cited above and then perform the changes you like. 
 
 ----
 
 **terminal app**
 
-Visit this link for the [modified gps.conf](https://drive.google.com/file/d/1ZCheJadDhO38atpIFmRKMjBA42XYnUJT/view)  and save it in `Downloads`. Then open the terminal and execute the following commands:
+Visit this link for the [modified gps.conf](https://drive.google.com/file/d/1ZCheJadDhO38atpIFmRKMjBA42XYnUJT/view)  and save it in `Downloads`. Then open the terminal and execute the following commands:
 
 > `home]$ cd android_storage/Download`
 > `Download]$ devel-su /bin/sh`
@@ -622,13 +621,13 @@ After the changes **disable** the developer mode and set the high precision mode
 
 > Settings:System -> Connectivity:Location -> High-accuracy positioning
 
-At this point you can switch on the network, the `GPS` and give it a try indoor.
+At this point you can switch on the network, the `GPS` and give it a try indoors.
 
 ----
 
 **MOBILE DATA**
 
-The first step you should do after having inserted the `SIM` into your new `SFOS` smartphone is to ask your network operator to send their mobile data configuration back to your device. Usually, you can do that sending a `SMS` a specific number.
+The first step you should do after having inserted the `SIM` into your new `SFOS` smartphone is to ask your network operator to send their mobile data configuration back to your device. Usually, you can do that by sending a `SMS` to a specific number.
 
 **registration lag**
 
@@ -636,9 +635,9 @@ You might experience a sensible registration lag or sometimes even a complete fa
 
 > Settings:System → Connectivity:Mobile network:SIM# → Select network automatically:off
 
-This will bring you into a new page in which - after a while - all the mobile networks found will be visible and just some will be available. For example - if you are an `iliad italia` customer with 4G enabled - you will find `IT 88` and `IT 50`. You will also found that with 4G, you might not be able to register with `IT 88` but `IT 50` only. Select this one and then the next registration will take a reasonable time, even if not immediate.
+This will bring you into a new page in which - after a while - all the mobile networks found will be visible and just some will be available. For example - if you are an `iliad italia` customer with 4G enabled - you will find `IT 88` and `IT 50`. You will also find that with 4G, you might not be able to register with `IT 88` but `IT 50` only. Select this one and then the next registration will take a reasonable time, even if not immediate.
 
-Another solution that might work in your case is the following. Imagine that you have the `SIM1` that is slow in registering with the mobile network. You can try putting the slower `SIM` into the slot #2 which means `SIM` exchange (1:faster, 2: slower) or you can skip the unlock `PIN` for the faster `SIM` and activate it after the slower one has completed the registration with the mobile network. Keep the faster for 2nd to register and possibly use the auto-search for the mobile network because in this way `ofono` will preferably keep the current operator schema as long as possible, even better if the faster SIM is in roaming.  
+Another solution that might work in your case is the following. Imagine that you have the `SIM1` that is slow in registering with the mobile network. You can try putting the slower `SIM` into the slot #2 which means `SIM` exchange (1:faster, 2: slower) or you can skip the unlock `PIN` for the faster `SIM` and activate it after the slower one has completed the registration with the mobile network. Keep the faster for 2nd to register and possibly use the auto-search for the mobile network because in this way `ofono` will preferably keep the current operator schema as long as possible, even better if the faster SIM is in roaming.  
 
 **data on IPv4 only**
 
@@ -646,7 +645,7 @@ You might decide to limit your mobile data to use the `IPv4` .
 
 > **A free VPN may leak data over IPv6**
 >
-> This can be a good idea especially if you are using a free `VPN` service that tunnel the data over `IPv4` but leaks those over `IPv6` .
+> This can be a good idea especially if you are using a free `VPN` service that tunnels the data over `IPv4` but leaks those over `IPv6` .
 
 To limit your mobile data over IPv4 proceed in this way:
 
@@ -654,7 +653,7 @@ To limit your mobile data over IPv4 proceed in this way:
 
 In the `Data` and `MMS` access points changed the protocol field from `dual` to `IP`.
 
-> :esclamation: **TODO**
+> :exclamation: **TODO**
 >
 > <small>include the Linux kernel settings to disable `IPv6` for the whole system leveraging `/usr/lib/sysctl.d` configuration folder. Working in progress: testing.</small>
 
@@ -670,19 +669,19 @@ Section yet to do, in the meantime check these posts below:
 
 * [Bluetooth power drain issue](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)
 
-Here below few hints to keep your `SFOS` smartphone lasting longer.
+Here are a few hints to keep your `SFOS` smartphone lasting longer.
 
 **display settings**
 
-First of all, set the brightness of the screen to the minimum in auto-brightness mode then install and activate the [Pure Black Backgrounds ](https://coderus.openrepos.net/pm2/project/patch-i-see-a-red-door) patch with `Patch Manager`. This setting is expected to save energy with `OLED` display which is the case for Xperia 10 II and III. The display should be set to sleep after 30 seconds.
+First of all, set the brightness of the screen to the minimum in auto-brightness mode then install and activate the [Pure Black Backgrounds ](https://coderus.openrepos.net/pm2/project/patch-i-see-a-red-door) patch with `Patch Manager`. This setting is expected to save energy with an `OLED` display which is the case for Xperia 10 II and III. The display should be set to sleep after 30 seconds.
 
 **energy saving mode**
 
-Set the energy saving mode at 100% of battery threshold let it stay always active. The energy consumption will drop from a 12%/h to a 8%/h which is 33% less on average therefore a 50% of battery lasting. At the moment, is is necessary to use `mcetool` from command line:
+Set the energy saving mode at 100% of battery threshold to let it stay always active. The energy consumption will drop from a 12%/h to a 8%/h which is 33% less on average therefore a 50% of battery lasting. At the moment, is is necessary to use `mcetool` from command line:
 
 > `mcetool --set-psm-threshold=100 --set-power-saving-mode=enabled`
 
-Moreover that tool should be installed before using it. This requires to access to the smartphone with root privileges. Please refer to the **A-GPS INDOOR : manual editing or copy** to learn how.
+Moreover, that tool should be installed before using it. This requires access to the smartphone with root privileges. Please refer to the **A-GPS INDOOR : manual editing or copy** to learn how.
 
 > `devel-su pkcon install mce-tools`
 
@@ -711,19 +710,19 @@ The default value is 1024, other reasonable values are 512 or 1536. For example,
 ```
 [root@sfos ~]# zramctl | tail -n1 | tr -s ' '; free
 /dev/zram0 lz4 1.5G 222.9M 53.2M 66.7M 8 [SWAP]
-              total        used        free      shared  buff/cache   available
-Mem:        3643472     1571548     1243824       19744      828100     2078652
-Swap:       1572860      230624     1342236
+              total        used        free      shared  buff/cache   available
+Mem:        3643472     1571548     1243824       19744      828100     2078652
+Swap:       1572860      230624     1342236
 ```
 </small>
 
 but considering that the compressed ratio is about 3x or 4x times this means that for `1536` value we can have:
 
-*  `3558 + (1536 × 2.5) = 7398`
+*  `3558 + (1536 × 2.5) = 7398`
 
-the available `RAM`+swap will grown up to 7GB with an **important drawback**: running apps and system services will be able to use just 2GB and the rest will be useful only to keep alive sleeping apps. Instead, reducing the size to 512MB (previous `SFOS` configuration) the available `RAM` will be 3GB and the total `RAM`+swap would be near 5GB.
+The available `RAM`+swap will grow up to 7GB with an **important drawback**: running apps and system services will be able to use just 2GB and the rest will be useful only to keep sleeping apps alive. Instead, reducing the size to 512MB (previous `SFOS` configuration) the available `RAM` will be 3GB and the total `RAM`+swap would be near 5GB.
 
-In my personal case which includes the use of `Android Support`, the [statistics collected](https://coderus.openrepos.net/media/screenshots/zram-swap-resize-script-ram-and-swap-usage.png) by [System Monitor](https://openrepos.net/content/ade/system-monitor-fork) indicates that 1GB of `zRAM` swap is large value because its use rarely will go over 60% of its full capacity probably the best valiue for my use style is 768MB or even 512MB with a 5% of swapiness insted of 25% (default).
+In my personal case which includes the use of `Android Support`, the [statistics collected](https://coderus.openrepos.net/media/screenshots/zram-swap-resize-script-ram-and-swap-usage.png) by [System Monitor](https://openrepos.net/content/ade/system-monitor-fork) indicates that 1GB of `zRAM` swap is large value because its use rarely will go over 60% of its full capacity probably the best value for my use style is 768MB or even 512MB with a 5% of swappiness instead of 25% (default).
 
 **swap offloading**
 
@@ -733,7 +732,7 @@ Since `v0.0.8`, it has been introduced the offload parameter that enforce - as f
 2. stop the `Android Support`
 3. call the script with `offload`
 
-It might fail but usually in less than one minute, it will move all your Android apps sleeping in backgroud to the `RAM` with the high chance to be terminated by `OOM`. After this action, your smartphone will performe with native apps like after a reboot.
+It might fail but usually in less than one minute, it will move all your Android apps sleeping in background to the `RAM` with the high chance to be terminated by `OOM`. After this action, your smartphone will perform with native apps like after a reboot.
 
 -----
 
@@ -741,15 +740,15 @@ It might fail but usually in less than one minute, it will move all your Android
 
 These are few websites that worth to have in your native browser bookmark:
 
-* [startpage.com](https://startpage.com) - an European based web search engine focus for the privacy, it can be set as default web search and it allows several themes included the dark one, plus it offers a translation service just searching for *translate*.
+* [startpage.com](https://startpage.com) - an European based web search engine focused for privacy, it can be set as default web search and it allows several themes including the dark one, plus it offers a translation service just searching for *translate*.
 
-* [time.is](https://time.is) - to get in sync with a real-time clock. The default timezone depends on your `IP` geolocalisation or by your current outcoming `VPN` server but you can choose any city in the world.
+* [time.is](https://time.is) - to get in sync with a real-time clock. The default time zone depends on your `IP` geo-localisation or by your current outcoming `VPN` server but you can choose any city in the world.
 
-* [ipleak.net](https://ipleak.net) - a website that show you what data are your browser/connection leaks out. It is impressive and useful for testing your VPN tunneling.
+* [ipleak.net](https://ipleak.net) - a website that shows you what data your browser/connection leaks out. It is impressive and useful for testing your VPN tunneling.
 
 * [italia.fm](https://italia.fm) - webradio website but you can easily switch to the German, Spanisch and Belgian version with the related radio stations online.
 
-* [proton.me](https://proton.me) -  a suite of `SaaS` services tailored for the privacy with the headquarter and data-center in Switzerland. It allows accounts with a free plan which includes a  `VPN` compatible with `OpenVPN` but `IPv4`-only (cfr. the `VPN` section).
+* [proton.me](https://proton.me) -  a suite of `SaaS` services tailored for privacy with the headquarters and data-center in Switzerland. It allows accounts with a free plan which includes a  `VPN` compatible with `OpenVPN` but `IPv4`-only (cfr. the `VPN` section).
 
 * [paste.systemli.org](https://paste.systemli.org) - is a minimalist, open source online *pastebin* where the server has *zero knowledge* of pasted data. Data is en/decrypted in the browser using 256 bits `AES` key.
 
@@ -757,9 +756,9 @@ These are few websites that worth to have in your native browser bookmark:
 
 * [webssh.de](https://webssh.de/) - is a minimal SSH web client by Robert Krause
 
- * [qr.io](https://qr.io) - creates `QR` codes from text for many applications, in particular is useful to quickly transfer a link/clip text from your laptop to your smartphone using the `QR` code reader integrated into default camera `SFOS` native app.
+ * [qr.io](https://qr.io) - creates `QR` codes from text for many applications, in particular is useful to quickly transfer a link/clip text from your laptop to your smartphone using the `QR` code reader integrated into default camera `SFOS` native app.
 
-Feel free to propose your best choices or alternatives. As far as possible, I will update this list which is a mere suggestion based on an evaluation done at the time of writing (2023.06.16) and could became outdated.
+Feel free to propose your best choices or alternatives. As far as possible, I will update this list which is a mere suggestion based on an evaluation done at the time of writing (2023.06.16) and could become outdated.
 
 ----
 
@@ -769,15 +768,15 @@ This section is working in progress. Be patient. :blush:
 
 > `pkcon install -y`
 > 
-> >	`usb-moded-host-mode-jolla`
-> >	
-> >	`usb-moded-systemd-rescue-mode`
+> > `usb-moded-host-mode-jolla`
 > >
-> >	`usb-moded-connection-sharing-android-config`
+> > `usb-moded-systemd-rescue-mode`
+> >
+> > `usb-moded-connection-sharing-android-config`
 > 
-> 	  XOR
+>   XOR
 > 
-> >	`usb-moded-connection-sharing-android-connman-config`
+> > `usb-moded-connection-sharing-android-connman-config`
 
 ---
 
@@ -792,9 +791,9 @@ then you can use the *developer mode* as `USB` tethering following sending this 
 
 * https://coderus.openrepos.net/pm2/project/set-network-postroute
 
-Follow the instruction on the description of the link above. Before that take this notice in consideration:
+Follow the instructions on the description of the link above. Before that take this notice in consideration:
 
-> Therefore this patch is for expert users and developers. Util this feature will not be added to `SFOS` and managed by `connman`, it will be easier to install one of the package listed above. Unless, you live in *developer mode* and you are acknowledged about how easy is cracking `WiFi` passwords.
+> Therefore this patch is for expert users and developers. Until this feature will not be added to `SFOS` and managed by `connman`, it will be easier to install one of the packages listed above. Unless, you live in *developer mode* and you are acknowledged about how easy it is cracking `WiFi` passwords.
 
 **TODO**: check with `iptables -t nat -S` or `iptables -nvL -t nat` if the added iptables rules persist after a reboot and in the case, if they keep their position in the `NAT`ting.
 
@@ -802,22 +801,22 @@ Follow the instruction on the description of the link above. Before that take th
 
 **TIPS & HINTS**
 
-* the phone calls with wired headphones have the audio volume too high even when it is at the minimum. Using a good bluetooth buds pair will solve the problem and free yourself from the wire.
+* the phone calls with wired headphones have the audio volume too high even when it is at the minimum. Using a good bluetooth earbuds pair will solve the problem and free yourself from the wire.
 
-* sometimes when the data interface changes (e.g. switching from `4G` to `WiFi` or viceversa) or changes its state (airplane mode off), the network stack needs to be reset with the specific button in Settings:System -> Info:Utilities. However - after the smartphone reboot or after having switched-off the airplane mode - the SIM takes a very long time to register with the `4G` network then it is time to follow the instructions in the **fixing the 4G registration** section.
+* Sometimes when the data interface changes (e.g. switching from `4G` to `WiFi` or vice versa) or changes its state (airplane mode off), the network stack needs to be reset with the specific button in Settings:System -> Info:Utilities. However - after the smartphone reboot or after having switched-off the airplane mode - the SIM takes a very long time to register with the `4G` network then it is time to follow the instructions in the **fixing the 4G registration** section.
 
-* unlocking the smartphone with your fingerprint is a great choice especially for X10 II because the fingerprint reader is installed on the on/off button and it immediate to use but not totally reliable. In fact, sometimes the lockscreen suggest to *clean the fingerprint reader*. Instead much probably, you need to reset the fingerprint software stack with the specific button in Settings:System -> Info:Utilities
+* Unlocking the smartphone with your fingerprint is a great choice especially for X10 II because the fingerprint reader is installed on the on/off button and it is immediate to use but not totally reliable. In fact, sometimes the lockscreen suggests to *clean the fingerprint reader*. Instead much probably, you need to reset the fingerprint software stack with the specific button in Settings:System -> Info:Utilities
 
-* download and install `APK`s from untrusted sources can seriously harm your privacy and security. In the best case, you will miss important future updates. Moreover, by default this practice is not allowed unless you enable the option of *Allow to install from untrusted sources* but do not do that after this device post-installation customization.
+* Downloading and installing `APK`s from untrusted sources can seriously harm your privacy and security. In the best case, you will miss important future updates. Moreover, by default this practice is not allowed unless you enable the option of *Allow to install from untrusted sources* but do not do that after this device post-installation customization.
 
-* it is suggested to restore the `/bin/bash` symlink to the real `bash` shell executing `devel-su pkcon remove busybox-symlinks-bash`. This may influence the whole system but you can revert back the system re-installing that package using `install` instead of `remove`: easy to do, easy to undo.
+* it is suggested to restore the `/bin/bash` symlink to the real `bash` shell executing `devel-su pkcon remove busybox-symlinks-bash`. This may influence the whole system but you can revert back the system reinstalling that package using `install` instead of `remove`: easy to do, easy to undo.
 
 In conclusion add to the top menu these two voices:
 
 * Settings:System -> Info:Utilities
 * Settings:System -> Info:Android support
 
-because these shortcuts will be very useful and you will use often.
+because these shortcuts will be very useful and you will use them often.
 
 ----
 
@@ -827,7 +826,7 @@ This list of suggested changes is for those Sailors hackers or Jolla that wish t
 
 * [A collection of tasks to do and request of changes](https://forum.sailfishos.org/t/a-collection-of-tasks-to-do-and-request-of-changes/16100/1)
 
-Please, take a look of that list and feel free to indicate the 3 that are the **most** important for you or `SFOS` and the 3 which are the **least** important. To the 3+3 indications add for each one a **brief** explanation about why, just to support your preference.
+Please, take a look at that list and feel free to indicate the 3 that are the **most** important for you or `SFOS` and the 3 which are the **least** important. To the 3+3 indications add for each one a **brief** explanation about why, just to support your preference.
 
 ----
 
