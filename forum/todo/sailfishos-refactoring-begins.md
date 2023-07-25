@@ -1,6 +1,6 @@
 ## SailFish OS refactoring begins
 
-This is the [-1day pre-lauch announcement](../sfos-refactoring-1day-launch.md) which contains a brief presentation of the project. 
+This is the [-1day pre-lauch announcement](../sfos-refactoring-announce.md) which contains a brief presentation of the project. 
 
 In the following sections you can read the refactoring 1st stage plan.
 

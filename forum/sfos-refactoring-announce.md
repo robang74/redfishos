@@ -1,4 +1,4 @@
-## SFOS refactoring project (-1 day to the launch)
+## The SFOS refactoring project
 
 About the need for this work, it has been written a lot in the forum. Just to recap briefly the technical imminent goals:
 
@@ -20,7 +20,7 @@ The project naming **RedFish OS** (RFOS) is part of its marketing campaign - eve
 
 ### Current state
 
-At the moment some github projects have been forked and developed towards these goals.
+At the moment (25th July 2023) some github projects have been forked and developed towards these goals.
 
 * [yamui](https://github.com/robang74/yamui) - Yet Another Minimal UI. Tool for displaying graphical notifications in minimal environments like early boot/initrd, build-able by Github action..
   * **done**: the project correctly build with github actions
@@ -38,7 +38,7 @@ At the moment some github projects have been forked and developed towards these 
   * **done**: working examples for most common cases, quick step-by-step guide to deploy the action, github branches protected for high-availability, mirror of the docker image
   * **todo**: it would be great being able to cache the docker image instead of pull it for each build.
 
-Finally, a list of proprietary and/or closed-source components has been started and it contains: `devel-su` completely, `silica` some files are available only. The sources of lipstick still need to be reviewed and tested to prove that they produce an update and fully working UI engine.
+Finally, a list of proprietary and/or closed-source components has been started and it contains: `devel-su` completely, `silica` some files are available only. The sources of lipstick still need to be reviewed and tested to prove that they produce an updated and fully working UI engine.
 
 ---
 
@@ -55,9 +55,28 @@ The github project can also provide a specific wiki, a project management tool, 
 
 ---
 
-### Scheduled launch
+### Budget allocation
 
-On 26th July 2023 probably on the late evening when the stars are bright in the sky...
+Dear Sailors, now it is time to set the budget allocation, here below some simple rules of thumb to give an estimation.
+
+* time for delivering: the date for which you wish the 3-points above completed
+* number of people and roles needed: a list of skilled people that are required
+* number of weeks of working: the number of the people x the duration of the project
+* the value and the cost of the project: how is this stuff worth? How much will it cost?  
+
+Please write your own into the comments. Do not be shy, you will not be asked to pay for it. Unless you want to, naturally and in such a case check the RFOS main page on github.
+
+---
+
+### GitHub repository
+
+> :memo: **scheduled launch**
+>
+> On 26th July 2023 probably on the late evening when the stars are bright in the sky...
+
+* [RedFish OS: a SFOS refactoring project](https://github.com/robang74/redfishos)
+
+The weather conditions were favorable and the launch went on-line within the first time window available: 25th July 2023 at 14:21 (CET) with one day in advance of the schedule. :blush:
 
 ---
 
