@@ -4,7 +4,7 @@
 # 
 # usage example:
 #
-# . findinmd.sh -nc forum.sailfishos.org |\
+# . findinmd.sh -nc forum.sailfishos.org | cut -d: -f3- | tr ' ' '\n' |\
 #   sed -ne 's,.*\(https://forum.sailfishos.org/[^)]*\).*,\1,p' | sort | uniq
 #
 ################################################################################
