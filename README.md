@@ -35,6 +35,10 @@ in the files headers, in the ChangeLogs, in the documents authorship or referal 
 
 ### About SFOS refactoring
 
+> :information_source: **Disclaimer**
+>
+> Since the beginning, the first stage has been planned in such a way to put RFOS in the most independent position from Jolla Oy - not necessarily against their interests or their profit opportunities - but because there is no reason to depend on a private company or at least as little as possible. An approach that is good for the SFOS community also because it brings more freedom for everyone wishing to continue using the apps developed for SFOS. Therefore this project is **not** directly related to Jolla Oy nor with **any** of its business affiliates.
+
 Refactoring the SFOS is the main aim of this project and therefore it deserves a [dedicated page](forum/todo/sailfishos-refactoring-begins.md), in brief the list of macro-activities for the **first stage**:
 
 * 1.1. a recovery boot mode always available on-demand at users request or automatically when the system is badly bricked;
