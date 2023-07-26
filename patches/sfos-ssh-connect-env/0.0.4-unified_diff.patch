@@ -1,0 +1,323 @@
+#!/usr/bin/env
+################################################################################
+#
+# Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# version 2 as published by the Free Software Foundation
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+################################################################################
+#
+# INSTALLATION:
+#
+# save this file in /usr/bin/sfos-ssh-connect.env as text file not as a script
+#
+# add this line to the end of your ~/.bashrc for the future bash instances:
+#
+#	source /usr/bin/sfos-ssh-connect.env
+#
+# and / or manually load into the current bash instance in the same way above.
+#
+# USAGE:
+#
+# tfish [command] - to use recovery telnet via USB on its default IPv4
+# rfish [command] - to use recovery SSH via USB on its default IPv4
+# ufish [command] - to use SSH via USB connection on its default IPv4
+# wfish [command] - to use SSH via WiFi connection on its default IPv4
+# afish [command] - to use the fast route IPv4 for SSH, updates IPv4 default
+# sfish [command] - to use the previous route for SSH or it finds the fastest
+#
+# extras:
+#
+# afish getip - set the fastest route IPv4 for establishing the SSH connection
+# ufish devtether - enable on the SFOS the tethering via USB in developer mode
+#
+################################################################################
+# release: 0.0.4
+
+export sfos_ipaddr=""
+export ssh_opts="-o ConnectTimeout=5 -o StrictHostKeyChecking=no"
+
+ufish() {
+    if [  "${1:-}" = "devtether" ]; then
+        ufish_devtether
+        return $?
+    fi
+    ssh $ssh_opts root@192.168.2.15 "$@";
+}
+wfish() { ssh $ssh_opts root@172.28.172.1 "$@"; }
+rfish() { ssh $ssh_opts root@10.42.66.66  "$@"; }
+tfish() { telnet             10.42.66.66  "$@"; }
+
+get_check_cmd() {
+	local cmd=""
+
+	printf "sfos_ipaddr: auto-detection\n\\_using cmd: " >&2
+	if which timeout >/dev/null && which telnet; then
+		# telnet 0m0.050s (0m0.105s) is faster than culr
+		cmd='timeout 1 telnet $ip 22 2>/dev/null | grep -q $ip'
+	elif which curl; then
+		# curl 0m0.095s (0m0.197s) is faster than netcat
+		cmd='curl --connect-timeout 1 -sv telnet://$ip:22 2>&1 | grep -q $ip'
+	elif which nc; then
+	    # netcat 0m0.111s (0m0.200s) is faster than wget
+		cmd='nc -w 1 $ip 22 | grep -qi openssh'
+	elif which wget; then
+		# wget 0m0.122s (0m0.211s) is way faster than nmap
+		cmd='wget -t1 -T1 $ip:22 2>&1 | grep -q " $ip"'
+	elif which nmap; then
+		# nmap 0m0.256s (0m0.326s) is faster than ssh
+		cmd='nmap --host-timeout 1 $ip -PN -p ssh | grep -q open'
+	elif which ssh; then
+		# ssh 0m0.541s (0m0.498s) is the slowest command
+		local cmd_opts="-o PasswordAuthentication=no -o ConnectTimeout=1"
+		cmd_opts="$cmd_opts -o StrictHostKeyChecking=no -o BatchMode=yes"
+		cmd='ssh -qn '$cmd_opts' root@$ip echo root | grep -q "^root"'
+	fi >&2
+
+	echo $cmd
+}
+
+afish_getip() {
+	local ip fifo_name ipaddr="" cmd_tag="sshcontest" cmd="$(get_check_cmd)"
+	local iplist="$sfos_ipaddr 192.168.2.15 172.28.172.1 10.42.66.66"
+
+	if [ ! -z "$cmd" ]; then
+		fifo_name=$(mktemp -up ${TMPDIR:-/tmp} fifo.XXXXXXXX)
+		if mkfifo "$fifo_name"; then
+			for ip in $iplist; do
+				echo quit | { 2>&3
+					eval exec -a $cmd_tag $cmd && \
+						echo $ip >"$fifo_name" &
+				} 3>&2
+				# Prevent whine if job ended already
+				disown &>/dev/null
+			done
+			read ipaddr < "$fifo_name"
+			pkill -9 -f $cmd_tag
+			rm -f "$fifo_name"
+		fi
+	fi
+
+	sfos_ipaddr=$ipaddr
+	echo sfos_ipaddr: ${ipaddr:-not found}
+	test -n "$ipaddr"
+}
+
+alt_afish_getip() {
+	local ip fifo_name ipaddr="" cmd_tag="sshcontest" cmd="$(get_check_cmd)"
+	local iplist="$sfos_ipaddr 192.168.2.15 172.28.172.1 10.42.66.66"
+	
+	if [ ! -z "$cmd" ]; then
+		for ip in $iplist; do
+			echo quit | eval $cmd && break
+			ip=""
+		done
+	fi
+
+	sfos_ipaddr=$ip
+	echo sfos_ipaddr: ${ip:-not found}
+	test -n "$ip"
+}
+
+afish() {
+	afish_getip || return 1
+	if [  "${1:-}" = "getip" -o "x${1:-}" = "x--ip" ]
+		then return 0; fi
+	ssh $ssh_opts root@$sfos_ipaddr "$@"
+}
+
+sfish() {
+	if [ -z "$sfos_ipaddr" ]; then
+		afish "$@"
+	else
+		ssh $ssh_opts root@$sfos_ipaddr "$@"
+	fi
+}
+
+ufish_devtether() {
+	env_file="/usr/bin/setnet_postroute.sh"
+	if ! ufish "exec $env_file"; then
+		echo
+		echo "ERROR: $env_file not found on SFOS, abort."
+		echo
+		return 1
+	fi >&2
+	return 0
+}
+
+# this return is useful for creating an executable patch for Web Catalog
+return $?
+--- /dev/null
++++ /usr/bin/sfos-ssh-connect.env
+@@ -0,0 +1,160 @@
++#!/usr/bin/env
++################################################################################
++#
++# Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
++#
++# This program is free software; you can redistribute it and/or
++# modify it under the terms of the GNU General Public License
++# version 2 as published by the Free Software Foundation
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License along
++# with this program; if not, write to the Free Software Foundation, Inc.,
++# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++#
++################################################################################
++#
++# INSTALLATION:
++#
++# save this file in /usr/bin/sfos-ssh-connect.env as text file not as a script
++#
++# add this line to the end of your ~/.bashrc for the future bash instances:
++#
++#	source /usr/bin/sfos-ssh-connect.env
++#
++# and / or manually load into the current bash instance in the same way above.
++#
++# USAGE:
++#
++# tfish [command] - to use recovery telnet via USB on its default IPv4
++# rfish [command] - to use recovery SSH via USB on its default IPv4
++# ufish [command] - to use SSH via USB connection on its default IPv4
++# wfish [command] - to use SSH via WiFi connection on its default IPv4
++# afish [command] - to use the fast route IPv4 for SSH, updates IPv4 default
++# sfish [command] - to use the previous route for SSH or it finds the fastest
++#
++# extras:
++#
++# afish getip - set the fastest route IPv4 for establishing the SSH connection
++# ufish devtether - enable on the SFOS the tethering via USB in developer mode
++#
++################################################################################
++# release: 0.0.4
++
++export sfos_ipaddr=""
++export ssh_opts="-o ConnectTimeout=5 -o StrictHostKeyChecking=no"
++
++ufish() {
++    if [  "${1:-}" = "devtether" ]; then
++        ufish_devtether
++        return $?
++    fi
++    ssh $ssh_opts root@192.168.2.15 "$@";
++}
++wfish() { ssh $ssh_opts root@172.28.172.1 "$@"; }
++rfish() { ssh $ssh_opts root@10.42.66.66  "$@"; }
++tfish() { telnet             10.42.66.66  "$@"; }
++
++get_check_cmd() {
++	local cmd=""
++
++	printf "sfos_ipaddr: auto-detection\n\\_using cmd: " >&2
++	if which timeout >/dev/null && which telnet; then
++		# telnet 0m0.050s (0m0.105s) is faster than culr
++		cmd='timeout 1 telnet $ip 22 2>/dev/null | grep -q $ip'
++	elif which curl; then
++		# curl 0m0.095s (0m0.197s) is faster than netcat
++		cmd='curl --connect-timeout 1 -sv telnet://$ip:22 2>&1 | grep -q $ip'
++	elif which nc; then
++	    # netcat 0m0.111s (0m0.200s) is faster than wget
++		cmd='nc -w 1 $ip 22 | grep -qi openssh'
++	elif which wget; then
++		# wget 0m0.122s (0m0.211s) is way faster than nmap
++		cmd='wget -t1 -T1 $ip:22 2>&1 | grep -q " $ip"'
++	elif which nmap; then
++		# nmap 0m0.256s (0m0.326s) is faster than ssh
++		cmd='nmap --host-timeout 1 $ip -PN -p ssh | grep -q open'
++	elif which ssh; then
++		# ssh 0m0.541s (0m0.498s) is the slowest command
++		local cmd_opts="-o PasswordAuthentication=no -o ConnectTimeout=1"
++		cmd_opts="$cmd_opts -o StrictHostKeyChecking=no -o BatchMode=yes"
++		cmd='ssh -qn '$cmd_opts' root@$ip echo root | grep -q "^root"'
++	fi >&2
++
++	echo $cmd
++}
++
++afish_getip() {
++	local ip fifo_name ipaddr="" cmd_tag="sshcontest" cmd="$(get_check_cmd)"
++	local iplist="$sfos_ipaddr 192.168.2.15 172.28.172.1 10.42.66.66"
++
++	if [ ! -z "$cmd" ]; then
++		fifo_name=$(mktemp -up ${TMPDIR:-/tmp} fifo.XXXXXXXX)
++		if mkfifo "$fifo_name"; then
++			for ip in $iplist; do
++				echo quit | { 2>&3
++					eval exec -a $cmd_tag $cmd && \
++						echo $ip >"$fifo_name" &
++				} 3>&2
++				# Prevent whine if job ended already
++				disown &>/dev/null
++			done
++			read ipaddr < "$fifo_name"
++			pkill -9 -f $cmd_tag
++			rm -f "$fifo_name"
++		fi
++	fi
++
++	sfos_ipaddr=$ipaddr
++	echo sfos_ipaddr: ${ipaddr:-not found}
++	test -n "$ipaddr"
++}
++
++alt_afish_getip() {
++	local ip fifo_name ipaddr="" cmd_tag="sshcontest" cmd="$(get_check_cmd)"
++	local iplist="$sfos_ipaddr 192.168.2.15 172.28.172.1 10.42.66.66"
++	
++	if [ ! -z "$cmd" ]; then
++		for ip in $iplist; do
++			echo quit | eval $cmd && break
++			ip=""
++		done
++	fi
++
++	sfos_ipaddr=$ip
++	echo sfos_ipaddr: ${ip:-not found}
++	test -n "$ip"
++}
++
++afish() {
++	afish_getip || return 1
++	if [  "${1:-}" = "getip" -o "x${1:-}" = "x--ip" ]
++		then return 0; fi
++	ssh $ssh_opts root@$sfos_ipaddr "$@"
++}
++
++sfish() {
++	if [ -z "$sfos_ipaddr" ]; then
++		afish "$@"
++	else
++		ssh $ssh_opts root@$sfos_ipaddr "$@"
++	fi
++}
++
++ufish_devtether() {
++	env_file="/usr/bin/setnet_postroute.sh"
++	if ! ufish "exec $env_file"; then
++		echo
++		echo "ERROR: $env_file not found on SFOS, abort."
++		echo
++		return 1
++	fi >&2
++	return 0
++}
++
++# this return is useful for creating an executable patch for Web Catalog
++return $?

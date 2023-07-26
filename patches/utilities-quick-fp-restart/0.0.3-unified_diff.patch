@@ -1,0 +1,10 @@
+--- /usr/share/sailfish-utilities/restart_fingerprint.sh
++++ /usr/share/sailfish-utilities/restart_fingerprint.sh
+@@ -14,5 +14,5 @@
+ }
+ 
+ service_do restart sailfish-fpd
+-sleep 3
+-service_do restart sailfish-fpd
++# sleep 3
++# service_do restart sailfish-fpd

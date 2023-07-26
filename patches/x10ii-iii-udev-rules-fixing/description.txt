@@ -1,0 +1,10 @@
+BETA TESTING DO NOT INSTALL, WAIT FOR THE NEXT VERSION
+
+== INSTALLATION ==
+
+patch_vers=0.0.1
+patch_link='https://t.ly/v8Ar9'
+patch_save='/root/set-network-postroute-${patch_vers}.patch'
+patch_opts='-Efp1 -r /dev/null --no-backup-if-mismatch -d/'
+
+# curl -L $patch_link | tar xz -O | tee $patch_save | patch $patch_opts

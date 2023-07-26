@@ -1,0 +1,26 @@
+--- /lib/udev/rules.d/999-android-system.rules
++++ /lib/udev/rules.d/999-android-system.rules
+@@ -131,10 +131,10 @@
+ DEVPATH=="/devices/virtual/usb_composite/*", TEST=="/sys/$devpath/enable", RUN+="/bin/chmod 0664 /sys/$devpath/enable", RUN+="/bin/chown root:system /sys/$devpath/enable"
+ #:/sys/devices/system/cpu/cpu*   cpufreq/scaling_max_freq   0664  system system
+ # sys rule
+-DEVPATH=="/devices/system/cpu/cpu*", TEST=="/sys/$devpath/cpufreq/scaling_max_freq", RUN+="/bin/chmod 0664 /sys/$devpath/cpufreq/scaling_max_freq", RUN+="/bin/chown system:system /sys/$devpath/cpufreq/scaling_max_freq"
++# DEVPATH=="/devices/system/cpu/cpu*", TEST=="/sys/$devpath/cpufreq/scaling_max_freq", RUN+="/bin/chmod 0664 /sys/$devpath/cpufreq/scaling_max_freq", RUN+="/bin/chown system:system /sys/$devpath/cpufreq/scaling_max_freq"
+ #:/sys/devices/system/cpu/cpu*   cpufreq/scaling_min_freq   0664  system system
+ # sys rule
+-DEVPATH=="/devices/system/cpu/cpu*", TEST=="/sys/$devpath/cpufreq/scaling_min_freq", RUN+="/bin/chmod 0664 /sys/$devpath/cpufreq/scaling_min_freq", RUN+="/bin/chown system:system /sys/$devpath/cpufreq/scaling_min_freq"
++# DEVPATH=="/devices/system/cpu/cpu*", TEST=="/sys/$devpath/cpufreq/scaling_min_freq", RUN+="/bin/chmod 0664 /sys/$devpath/cpufreq/scaling_min_freq", RUN+="/bin/chown system:system /sys/$devpath/cpufreq/scaling_min_freq"
+ ################
+ # From ueventd.rc
+ 
+--- /lib/udev/rules.d/50-udev-default.rules
++++ /lib/udev/rules.d/50-udev-default.rules
+@@ -11,7 +11,7 @@
+ SUBSYSTEM=="rtc", KERNEL=="rtc0", SYMLINK+="rtc", OPTIONS+="link_priority=-100"
+ 
+ SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", IMPORT{builtin}="usb_id", IMPORT{builtin}="hwdb --subsystem=usb"
+-ENV{MODALIAS}!="", IMPORT{builtin}="hwdb --subsystem=$env{SUBSYSTEM}"
++#ENV{MODALIAS}!="", IMPORT{builtin}="hwdb --subsystem=$env{SUBSYSTEM}"
+ 
+ ACTION!="add", GOTO="default_end"
+ 
