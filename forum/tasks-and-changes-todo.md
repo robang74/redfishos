@@ -48,7 +48,7 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * develop a regular expressions pre-parser/sanitiser to deal with `iptables` rules for `connman` ([>here](https://forum.sailfishos.org/t/the-00-devmode-firewall-conf-does-not-apply/15990/4))
 
-* bring `Patch Manager` + `Web Catalog` to the next level and change the *crime novel* into a *love story* fo Sailors ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/5)), ([>here](https://forum.sailfishos.org/t/patch-manager-warning-label-to-add/15950/1)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/16)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/21)) and ([>here](knowhow/system-patch-manager-p1.md#proposal-evaluation)).
+* bring `Patch Manager` + `Web Catalog` to the next level and change the *crime novel* into a *love story* fo Sailors ([>here](knowhow/system-patch-manager-p1.md)).
 
 * filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured ([>here](tasks-and-changes-todo.md))
 
