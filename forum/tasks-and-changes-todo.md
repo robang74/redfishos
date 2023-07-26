@@ -18,7 +18,7 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](knowhow/battery-recharge-and-power-saving.md)) also for 80% the 75% hysteresis threshold is suggested. Probably the 95%-90% and 80%-75% would address the needs of those that have a fully functional battery and those that do not.
 
-* implementing power saving templates to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)), ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([>here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
+* implementing power saving templates to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([>here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
 
 * device lock adding 5/10/30/60 seconds, also ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/3)). Much probably adding just 1 minute to the list because it seems to be the finest granularity. ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/6)).
 
@@ -32,7 +32,7 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * transition to the "*user situational approach*" in setting the smartphone behaviour models. ([>here](todo/energy-saving-for-xperia-10-ii-and-iii.md))
 
-* in the `Patch Manager` patch list page a (de)activation "*tap to undo*" grace time needs to be added. ([>here](https://forum.sailfishos.org/t/patch-manager-de-activation-tap-to-undo/15986/1))
+* in the `Patch Manager` patch list page a (de)activation "*tap to undo*" grace time needs to be added. ([>here](knowhow/system-patch-manager-p1.md#ui-improvment))
 
 * add a permanent tethering setting because restarting the network WiFi tethering fails to raise up but WLAN, instead. ([>here](https://forum.sailfishos.org/t/restarting-the-network-wifi-tethering-fails-to-raise-up-but-wlan-instead/15946/1))
 
@@ -50,7 +50,7 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * bring `Patch Manager` + `Web Catalog` to the next level and change the *crime novel* into a *love story* fo Sailors ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/5)), ([>here](https://forum.sailfishos.org/t/patch-manager-warning-label-to-add/15950/1)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/16)), ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/21)) and ([>here](https://forum.sailfishos.org/t/rfc-adding-shell-scripting-capabilities-will-bring-pm2-to-the-next-level/15987/26)).
 
-* filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured ([>here](https://forum.sailfishos.org/t/the-coreutils-cp-and-gnu-tar-version-are-too-old-to-support-filesystem-overlay-correctly/16027/1))
+* filesystem overlay tricks too old versions of filesystem utils like cp and tar but possibly also prevents that modem/GPS can be correctly configured ([>here](tasks-and-changes-todo.md))
 
 * try to optimise the native browser `about:config`, some suggestions ([>here](https://forum.sailfishos.org/t/my-wishes-of-the-next-release-just-fixup-e-g-the-oom-killer-situations/15541/17))
 

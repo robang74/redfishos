@@ -665,7 +665,7 @@ Section yet to do, in the meantime check these posts below:
 
 * [Energy saving for Xperia 10 II and III](todo/energy-saving-for-xperia-10-ii-and-iii.md)
 
-* [Power saving templates and policies](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)
+* [Power saving templates and policies](todo/energy-saving-for-xperia-10-ii-and-iii.md#power-saving-templates)
 
 * [Bluetooth power drain issue](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)
 
