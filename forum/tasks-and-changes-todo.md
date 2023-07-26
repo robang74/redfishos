@@ -18,19 +18,19 @@ Please, take a look at that list and feel free to indicate the 3 that are the **
 
 * energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](knowhow/battery-recharge-and-power-saving.md)) also for 80% the 75% hysteresis threshold is suggested. Probably the 95%-90% and 80%-75% would address the needs of those that have a fully functional battery and those that do not.
 
-* implementing power saving templates to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)), ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([>here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1)).
+* implementing power saving templates to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)), ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([>here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
 
 * device lock adding 5/10/30/60 seconds, also ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/3)). Much probably adding just 1 minute to the list because it seems to be the finest granularity. ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/6)).
 
 * fingerprint reader and bluetooth awakening or a fingerprint restart icon/link in lockscreen ([>here](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878/4)) but probably the best approach is to `start sailfish-fpd` service just in those few cases - just 2 - it is needed and bring down soon after it did its work. ([>here](https://forum.sailfishos.org/t/patches-by-ichthyosaurus/15387/48))
 
-* add an option for disabling the `Android Support` autostart and keep it sleeping/ready to start. ([>here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1))
+* add an option for disabling the `Android Support` autostart and keep it sleeping/ready to start. ([>here](todo/energy-saving-for-xperia-10-ii-and-iii.md))
 
 * add an option in the native browser to let it keep alive a background tab that is doing some tasks like playing music. ([>here](https://forum.sailfishos.org/t/an-option-to-keep-alive-a-background-tab-in-native-browser/15884/1)).
 
 * this solution about urls encoding [>here](https://forum.sailfishos.org/t/4-4-0-72-browser-url-copy-does-not-encode-uri-string/13152/11) + sanitisation should be applied also to shared links in particular with native browser that fails to open those `URL`s that did not just converted.
 
-* transition to the "*user situational approach*" in setting the smartphone behaviour models. ([>here](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/2))
+* transition to the "*user situational approach*" in setting the smartphone behaviour models. ([>here](todo/energy-saving-for-xperia-10-ii-and-iii.md))
 
 * in the `Patch Manager` patch list page a (de)activation "*tap to undo*" grace time needs to be added. ([>here](https://forum.sailfishos.org/t/patch-manager-de-activation-tap-to-undo/15986/1))
 

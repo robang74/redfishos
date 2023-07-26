@@ -670,7 +670,7 @@ In the `Data` and `MMS` access points changed the protocol field from `dual` to 
 
 Section yet to do, in the meantime check these posts below:
 
-* [Energy saving for Xperia 10 II and III](https://forum.sailfishos.org/t/energy-saving-for-xperia-10-ii-and-iii/15883/1)
+* [Energy saving for Xperia 10 II and III](todo/energy-saving-for-xperia-10-ii-and-iii.md)
 
 * [Power saving templates and policies](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)
 
