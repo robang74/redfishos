@@ -87,7 +87,6 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 ### About Open Device program
 
 * [ASOP on Xperia Open Devices](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices)
-
 * [Open Devices at ix5.org](https://opendevices.ix5.org)
 
 ---
@@ -95,23 +94,14 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 ### Useful documentation
 
 * [Sony Xperia flashing guide](forum/knowhow/flashing-tools-for-Xperia-phones.md) - Some practical knowledge about flashing tools.
-
 * [Quick First Setup Guide](forum/quick-first-setup-guide.md) - A step-by-step guide for the first setup after SFOS flashing.
-
 * [Quick Start Guide](forum/quick-start-guide.md) - An end-users step-by-step guide for a quick start with SailFish OS.
-
 * [SFOS install on Xperias](https://gitlab.com/Olf0/sailfishX) - A guide for installing SailFish OS on Sony Xperias by Olf0.
-
 * [de-google](https://github.com/robang74/degoogle) - A huge list of alternatives to Google products. Privacy tips, tricks, and links.
-
 * [Awesome SFOS](https://github.com/robang74/awesome-sailfishos) - A curated list of awesome Sailfish OS resources.
-  
 * [Equivalents in SFOS](https://github.com/robang74/equivalentsinsailfish): A list of Android apps and their Sailfish equivalents.
-
 * [FAQ for SFOS porting guide](https://github.com/robang74/hadk-faq) - A collection of knowledge about HADK guide.
-
 * [SFOS community forum know-how](./forum/README.md) - A collection of yet un-organised posts and documents.
-
 * [SFOS rootfs integrity check](4.5.0.21/README.md) - An analysis about how to keep root filesystem changes under control.
 
 ---
@@ -119,45 +109,25 @@ The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. I
 ### List of components available on Github
 
 * [hibrys boot](https://github.com/robang74/hybris-boot) - This project enables the building of boot images for Google Android fastboot based devices.
-
 * [yamui](https://github.com/robang74/yamui) - Yet Another Minimal UI. Tool for displaying graphical notifications in minimal environments like early boot/initrd, build-able by Github action :exclamation:
-
 * [busybox for SFOS](https://github.com/robang74/sailfish-os-busybox) - The busybox config and RPM spec for SailFish OS, buildable by Github action :exclamation:
-
 * [fsck.auto](https://github.com/robang74/fsck.auto) - This is a simple b/ash script for busybox fsck.auto to check block device partition file system type.
-
 * [Patch Manager](https://github.com/robang74/patchmanager) - The Patch Manager page in Settings:System for Sailfish OS, buildable by Github action :exclamation:
-
 * [lipstick](https://github.com/robang74/lipstick) - The lipstick aims to offer an easy to modify user experiences for varying mobile device form factors, e.g. handsets, netbooks, tablets. User interface components are written in [QML](https://doc.qt.io/qt-6/qml-tutorial.html). Here is an example of a QML application: [home example](https://github.com/robang74/lipstick-example-home). Here is another simple one with instructions: [hello world](https://github.com/robang74/hello-world-for-sailfish).
-
 * [device tree](https://github.com/robang74/android_device_sony_pdx201) - The device tree for the Sony Xperia 10 II
-
 * [vendor's blobs](https://github.com/robang74/proprietary_vendor_sony_pdx201) - Vendor's proprietary blobs for Sony Xperia 10 II
-
 * [patches by ichthyosaurus](https://github.com/robang74/sailfish-public-patch-sources) - Sources for all ichthyosaurus Sailfish OS patches
-
 * [Waydroid packaging](https://github.com/robang74/waydroid) - Waydroid packaging for Sailfish OS
-
 * [SailJail sandbox](https://github.com/robang74/sailjail) - SailJail is a thin Firejail wrapper and it command is used to create Sailfish OS application sandboxes
-
 * [SailJail permissions](https://github.com/robang74/sailjail-permissions) - SailFish OS application sandboxing and permissions system built on top of FireJail.This project enables the building of boot images for Google Android fastboot based devices.
-
 * [mce-tools](https://github.com/robang74/mce) - mcetool command line executable to set some SailFish OS parameters about timeouts and power management.
-
 * [Advanced Camera](https://github.com/robang74/harbour-advanced-camera) - Advanced Camera application for SailFish OS.
-
 * [Sony Open Telephony](https://github.com/robang74/SonyOpenTelephony) - A boot-time modem flasher for the appropriate firmware configurations for SIMs subscriptions.
-
 * [ofono fork](https://github.com/robang74/ofono) - An oFono fork with QRTR support, the Qualcomm IPC router protocol which is used to communicate with services provided by other hardware blocks in the system.
-
 * [connman iptables](https://github.com/robang74/sailfish-connman-plugin-iptables) - The connman plugin that provides d-bus API for controlling iptables rules. 
-
 * [Github actions for SFOS apps](https://github.com/robang74/github-sfos-apps-build) - Github actions for building SailFish OS apps  :exclamation:
-
 * [SailFish OS git repositories](https://github.com/sailfishos) - A collection of 907 git repositories about SailFish OS.
-
 * [SailFish OS git mirrors](https://github.com/sailfishos-mirror) - A collection of 517 git repository mirrors for SailFish OS.
-
 * [SailFish OS porting](https://gitlab.com/sailfishos-porters-ci) - Gitlab page that contains several unofficial SFOS portings.
 
 ---
