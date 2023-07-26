@@ -74,7 +74,7 @@ $ sudo lvscan
 
 There is no way to deal with an operative system running on a factory-truncated `LVM` filesystem AFAIK.
 
-Below there is the report of the state of the internal storage taken after a complete reflash of the smartphone with the `hybris-recovery.img` which suffers of some shortcoming, reported [here](https://forum.sailfishos.org/t/hybris-recovery-img-shortcoming/16112/1). 
+Below there is the report of the state of the internal storage taken after a complete reflash of the smartphone with the `hybris-recovery.img` which suffers of some shortcoming, reported [here](recovery-image-refactoring.md). 
 
 **todo**: I will also add the information available after the installation but I have double checked them because I saw things that you would not believe like a `GPT` partition (broken at the end of the truncated image) of 2TB with 97GB available only.
 
