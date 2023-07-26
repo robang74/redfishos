@@ -18,11 +18,11 @@ Moreover, I dimmed the brightness of the screen to the minimum and I have instal
 
 **DATA COLLECTED**
 
-The [System Monitor ](https://openrepos.net/content/basil/system-monitor) was running since the begging and collecting data. Here a composition of what I found:
+The [System Monitor](https://openrepos.net/content/basil/system-monitor) was running since the begging and collecting data. Here a composition of what I found:
 
-![power-consumption](upload://ezmg4SyDr4KQvE8qvjJuGxYziQe)
+<img src="power-consumption.png" width="400px" height="800px">
 
-The high-resolution image is available for download from [here ](https://drive.google.com/file/d/1EJvPc5XkaWFy07DPnLuiD9vSIBqkj7X6/view?usp=sharing).
+The high-resolution image is available for download from [here](https://drive.google.com/file/d/1EJvPc5XkaWFy07DPnLuiD9vSIBqkj7X6/view).
 
 ---
 
@@ -36,12 +36,11 @@ Despite this the activity about system processes were more intense that normal u
 
 Counter sides effects: some sub-system was not working when the smartphone has been waked-up. In this specific case the Bluetooth. More often the fingerprints reader get asleep probably and should be reset.
 
-* [Fingerprint reader restart in LockScreen](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878)
+* [Fingerprint reader restart in LockScreen](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878/1)
 
 There is a huge opportunity to extend the battery life leveraging the power save mode as far as all the hardware sub-system are awaken correctly and at expences of the response time because applications starting lag a bit.
 
-In fact, I have installed and activated the [Reduce settings app lag](https://coderus.openrepos.net/pm2/project/sfos-patch-settings-fix-startup-lag) patch but this patch changes the visualisation of some SFOS native menu/app not the time of starting of an Android apps.
-
+This [Reduce settings app lag](https://coderus.openrepos.net/pm2/project/sfos-patch-settings-fix-startup-lag) patch changes the way in which the visualisation of some SFOS native menu/app are presented but not the time of starting of an Android apps.
 
 ---
 
