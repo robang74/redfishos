@@ -1,5 +1,10 @@
 ## The SFOS refactoring project
 
+```diff
++ This is the announcemnt of the github project pubblication, two weeks after its creation.
+```
+---
+
 About the need for this work, it has been written a lot in the forum. Just to recap briefly the technical imminent goals:
 
 1. a recovery boot mode always available on-demand at users request or automatically when the system is badly bricked;
