@@ -2,6 +2,10 @@
 
 This is the [-1day pre-lauch announcement](../sfos-refactoring-announce.md) which contains a brief presentation of the project with the the current state (updated at 25th Jul 2023) of the tasks completion. In the following sections you can read  about the refactoring **first stage** of [four stages refactoring plan](../../README.md#about-sfos-refactoring).
 
+> :information_source: **Disclaimer**
+>
+> Since the beginning, the first stage has been planned in such a way to put RFOS in the most independent position from Jolla Oy - not necessarily against their interests or their profit opportunities - but because there is no reason to depend on a private company or at least as little as possible. An approach that is good for the SFOS community also because it brings more freedom for everyone wishing to continue using the apps developed for SFOS. Therefore this project is **not** directly related to Jolla Oy nor with **any** of its business affiliates.
+
 ---
 
 ### Current limitations
@@ -58,10 +62,4 @@ Which is exactly what I am doing by now:
 
 - Preparing the system for the first installation after having flashed the SFOS, a minimal debug suite tools and to adapt the recovery image to be the default one and working as it supposed to do, a minimal advanced tools suite for smart system backup and integrity check ([here](../../recovery/README.md)).
 
----
-
-### Conclusion
-
-I did not release the current version of these three tools because it is supposed that they should work together and their integration is still in the early development stage. For example, the immediately after flashing system configuration shell script did not reach a reasonable maturity level.
-
-Obviously, if - **I do** - these three facilities, then **I do** in a way to put myself in the most independent position from Jolla Oy - not necessarily against their interests or profit opportunities - simply **I do not** put those values in any place of my working TODO list because I am not paid to take care about their business. Which is good for the SFOS community because it brings more freedom for us.
+To be continued, stay tuned.
