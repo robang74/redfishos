@@ -36,7 +36,7 @@ Despite this the activity about system processes were more intense that normal u
 
 Counter sides effects: some sub-system was not working when the smartphone has been waked-up. In this specific case the Bluetooth. More often the fingerprints reader get asleep probably and should be reset.
 
-* [Fingerprint reader restart in LockScreen](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878/1)
+* [Fingerprint reader restart in LockScreen](fingerprint-reader-restart-in-lockscreen.md)
 
 There is a huge opportunity to extend the battery life leveraging the power save mode as far as all the hardware sub-system are awaken correctly and at expences of the response time because applications starting lag a bit.
 
