@@ -1,6 +1,6 @@
 ## SailFish OS refactoring (1st stage)
 
-This is the [-1day pre-lauch announcement](../sfos-refactoring-announce.md) which contains a brief presentation of the project with the the current state (updated at 25th Jul 2023) of the tasks completion. In the following sections you can read  about the refactoring **first stage** of [four stages refactoring plan](../../README.md#about-sfos-refactoring).
+This is the [lauch announcement](../sfos-refactoring-announce.md) which contains a brief presentation of the project with the the current state (updated at 25th Jul 2023) of the tasks completion. In the following sections you can read  about the refactoring **first stage** of [four stages refactoring plan](../../README.md#about-sfos-refactoring).
 
 > :information_source: **Disclaimer**
 >
