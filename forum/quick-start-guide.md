@@ -16,9 +16,6 @@ If you want use the url-links in this guide for configuring your `SailFish OS` s
 > 
 > short url: [https://t.ly/rD8LD](https://t.ly/rD8LD)
 
-<!-- img src="https://raw.githubusercontent.com/robang74/redfishos/main/forum/quick-start-guide-qrcode.png" width=50% height=50% //-->
-<!-- img src="https://forum.sailfishos.org/uploads/db4219/original/2X/e/e742d186a7075a7ac05501a720b995b135255415.png" width=50% height=50% //--> 
-
 Then open the encoded url-link with the default native browser and save it into your bookmark for future and faster access to this guide.
 
 ---
