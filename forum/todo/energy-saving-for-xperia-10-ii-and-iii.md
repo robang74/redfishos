@@ -113,7 +113,7 @@ In fact, the `dmesg -Hw` shows a lot of this stuff on the WARN level and above:
 
 If what written above is correct (because correlation does **not** necessarily means cause-effect relationship) then `SFOS` should correctly set the FP reader about suspend/awakening. About bluetooth, one single event even in conjunction with the FP reader failure make the assumption statistically too weak,
 
-<img src="nightly-sleeping-awakening.png" width="1024px" height="585px">
+<img src="nightly-sleeping-awakening.png" width="837px" height="478px">
 
 Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdnk8n2IRDYjOMrKY5xp/view).
 
