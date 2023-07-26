@@ -69,6 +69,8 @@ Regarding the **third stage**, the agenda is still not defined but these macro-a
 
 Finally the **fourth stage** will be about granting a good enough bug-free maturity level starting from the OS up to the apps level.
 
+As you can read the first stage is well defined in its aims and partially completed while the others progressively less defined in deep details, as usual in modern project management.
+
 ---
 
 ### About SailFish OS
