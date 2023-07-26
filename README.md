@@ -67,7 +67,15 @@ Regarding the **third stage**, the agenda is still not defined but these macro-a
   >
   > Some SFOS end-users reported that [WayDroid](https://waydro.id/) can be a feasible alternative to Alien Dalvik but currently it is not completely supported by SFOS which seems reasonable considering that SFOS is bounded with Alien Dalvik and it has not a standard root filesystem like RFOS aims to deliver.
 
-Finally the **fourth stage** will be about granting a good enough bug-free maturity level starting from the OS up to the apps level.
+Finally the **fourth stage** will be about granting a good enough bug-free maturity level starting from the OS up to the apps level. Plus move in the direction to emancipate the hardware support from binary proprietary and closed-source firmware and blobs mainly included into the AOSP trying to leverage the effort of the [DivestOS Mobile support for Sony smartphones](https://divestos.org/pages/devices):
+
+* [Sony Xperia XA2 and XA2 Ultra](https://www.gsmarena.com/compare.php3?idPhone1=8986&idPhone2=8985) (sony legacy, jolla supported)
+
+* [Sony Xperia 10 and 10 plus](https://www.gsmarena.com/compare.php3?&idPhone1=9353&idPhone2=9591) (sony legacy, jolla supported)
+
+* [Sony Xperia XZ2 and XZ3](https://www.gsmarena.com/compare.php3?idPhone1=9081&idPhone2=9232) (sony maintained)
+
+which unfortunately at the moment supports few [Sony Open Devices smartphones](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/supported-devices-and-functionality/) and not the most recent [officially supported by Jolla SailFish OS](https://shop.jolla.com/).
 
 As you can read the first stage is well defined in its aims and partially completed while the others progressively less defined in deep details, as usual in modern project management.
 
