@@ -116,3 +116,37 @@ If what written above is correct (because correlation does **not** necessarily m
 <img src="nightly-sleeping-awakening.png" width="1024px" height="585px">
 
 Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdnk8n2IRDYjOMrKY5xp/view).
+
+---
+
+### ABOUT THE FUTURE OF SFOS
+
+Before answering this question, we should agree what is `SFOS` and what is not. However, I wish to skip this premise and go straight to the point with this image:
+
+<img src="sfos-sleeping-untouched.png" width="1024px" height="478px">
+
+*The original high resolution image is [here](https://tinyurl.com/28kv3zga).*
+
+What’s this image show? A sleeping system when untouched that consumes 5%/h of battery which means 20h of stand-by. It is not a great achievement because it should be 100h of stand by for an optimised system ([here ](https://forum.sailfishos.org/t/standby-battery-high-drain-on-xperia-10-iii/15208/6)).
+
+On the other hand, we notice that `CPU` stops to be polluted and falls asleep and awakens constantly (sleep, awake, sleep, awake) apparently without a real need. BTW, the system consumed 5%/h of battery - while untouched with the `CPU` s which **NEVER** goes to sleep. This means that apart from the display consumption, `4G` and `WiFi` connections, the system was running at its 100% of the time.
+
+**Update** : now, with the `4G` data mobile and `WiFi` tethering connections active, it sucks 6%/h. Therefore the changes tested are more suitable for a daily calm working session rather than keeping the smartphone near our bed while we are sleeping (check [here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)).
+
+**How did I achieved this?**
+
+This is the log of that day and changes:
+
+1. in the morning I developed [this patch to fix few udev rules ](https://coderus.openrepos.net/pm2/project/x10ii-iii-udev-rules-fixing) and applied to the system - reloading and restarting the systemd-udevd and related services would have been enough but I did a reboot for be 100% sure to not have bad surprises after.
+2. During the day, I used it with different applications and for several tasks also with `Android Support` and Android apps.
+3. Before leaving the smartphone untouched for 4h, I did a swap offload using [the script conveyed by this patch ](https://coderus.openrepos.net/pm2/project/zram-swap-resize-script) about `zRAM` and applied some power management rules (not published yet) about CPUs and internal `SSD` flash devices.
+
+**Why this achievement matters?**
+
+From a point of view of the performances, it is not a game changer. From the `PoV` of bringing the `OS` part of `SailFish OS` under strict control - in particular about power management vs performances - it is a huge advancement.
+
+After all, the great business that Google and Apple did was not about their `OS` but about their Market revenues. In fact, there is no hope for app developers to earn good money as long as the operating system below their app is out of control and does not provide consistently good performances.
+
+Which is the reason because the Linux kernel won the global challenge of being adopted. Also in this case, the great business is not about the kernel itself but about all the applications that can run because that kernel delivers a consistent good `QoS` (quality of service).
+
+Think about this, because it is about the future of `SFOS` much more than everything else.
