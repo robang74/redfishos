@@ -646,3 +646,18 @@ As you can see in this screenshot:
 <img src="patch-manager-list-of-patches.png" width="214px" height="500px">
 
 the Patch Manager (de)activation dots dangerously near to the swipe left border therefore adding the “tap to undo” grace period will be useful and safer especially when the list of patches is very long and is going to keep all the screen.
+
+---
+
+### WEB CATALOG LABELS
+
+It would be useful to have two labels **`ALPHA`** in red and **`BETA`** in yellow to clearly aware the users that a `Patch Manager` is not ready for universal deployment.
+
+Considering how `Patch Manager` works the `Web Catalog` needs a third label related to a flag: `TESTING`. With such flag `ON` the related label will be shown and users will be informed that the developer / modder is going to change the package associated as many times as s/he needs to for the time as long as s/he needs to. There is an option in `Patch Manager` that sets the developer mode, the `TESTING` patches will show up only when that mode is enabled.
+
+A quick way¹ to add this `TESTING` feature is to add a testing version like `0.0.0.0` into the version management. That version could be enforced only in `Patch Manager` *developer mode* with *strict version check* disabled - not something that the end-user will do or s/he will do acknowledge that s/he takes some risks. The only other change to make is to extend forever the timeout for uploading a new archive on such testing version.
+
+**Notes**
+
+¹ the inspiration came from @carmenfdezb who wrote: "*I think that you have to enable developer mode from settings in Patchmanager, and select ‘No’ in ‘Check version’ option*".
+
