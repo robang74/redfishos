@@ -64,8 +64,6 @@ With these options the Android Support can be kept safely disabled but quickly g
 
 My Xperia 10 II is running with energy power saving always active and at the beginning it shown some troubles about bluetooth and fingerprint reader awakening which forced me to reset that sub-systems.
 
-> *I should **not** say this because it will be considered trolling* but… :sweat_smile:
-
 After having configured some options about suspending/awakening hardware subsystems in Android while I was running the Android Support, the bluetooth and fingerprint reader reader never got stuck anymore even with AS stopped. However, the counter side is that my smartphone - when left alone without no any interaction or connections active - started to be busy in suspend/awake the systems continuously loading the CPU for 25% but with no impact on the battery discharge rate (less than 1%) because the CPU seems busy by System Monitor handling I/O but no power is drained because there is no code/math processing.
 
 In fact, the `dmesg -Hw` shows a lot of this stuff on the WARN level and above:
@@ -119,27 +117,117 @@ Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdn
 
 ---
 
+### POWER SAVING TEMPLATES
+
+Considering the results from the tests aboce, which are based on some information collected in this post:
+
+* https://forum.sailfishos.org/t/high-battery-drainage-xperia-10-iii/12393/321
+
+After these tests, my opinion is that the Xperia 10 II & III should be equipped with few templates (system configurations) about power management. Below, I will describe these templates in terms of their features.
+
+<sup>________</sup>
+
+**A. nightly stand-by**
+
+1. `WiFi`, Bluetooth, mobile data, fingerprints reader, sensors, photo cameras and `GPS` all off and as far as possible their hardware subsystems should be powered off. For the `GPS`, the [gpstoggle](https://openrepos.net/content/halftux/gpstoggle) can do that but for the other hardware subsystems I have not checked, yet.
+
+2. The `Android Support` should be disabled and `zRAM` swap should be off-loaded with [the script from this patch](https://coderus.openrepos.net/pm2/project/zram-swap-resize-script).
+
+3. CPUs [0-3] for Xperia 10 II and CPUs [0-1] for Xperia 10 III should be set to minimum working frequency and to `conservative` scaling mode. The other CPUs, the same but put off-line (all the processes will switch to other online CPUs). Linux kernel, real-time and some few specific system processes that need to deal with time jittering tend to rely on CPU #0 only. Moreover because the [0-3] belong to the same multiple-cores CPU, all of them can be kept online. **Update**: considering that on Xperia 10 II, the CPUs [0-4] are 1.8GHz while the others are at 2.0GHz the first CPUs set is also the one more conservative in terms of power consumption. Instead, in Xperia 10 III the most powerful CPUs probably will be at [7-8] enumeration. Therefore for the Xperia 10 III, putting just those 2 cores off-line will result in a smaller power save. 
+
+4. the external `MMC` card should be unmounted and its hardware controller powered off while the internal `SSD` flash should be put in the power saving mode.
+
+5. the display should be kept powered off unless hardware keys are triggered.
+
+<sup>________</sup>
+
+**B. daily stand-by**
+
+This templates is similar to *night stand-by* but with these differences:
+
+* the second set of the CPUs are kept online without enforcing their working frequency but the max working frequency can be limited to the half of the hardware max working frequency aka top scaling cap.
+
+* the `Android Support` - if it is running - keeps running thus the `zRAM` swap off-loading will be not performed when this template is applied, unless the `Android Support` was not running.
+
+* only the hardware related to unused/inactive services (WiFi, Bluetooth, GPS, mobile connection, etc.) should be powered off.
+
+* sensors should be kept powered on because they can be useful for some apps like shaking the phone to switch on/off the flashlight but not the compass unless `GPS` is active or used by an application. Like the fingerprints reader, the compass should be awakened when requested by an application.
+
+* external MMC can be mounted and kept ready. Most depends how fast / reliably we can `mount` and `umount` such a partition when it is not used by any application or by the implication about having a fake-root filesystem-overlay (probably none but it has to be verified and tested).
+
+<sup>________</sup>
+
+**C. daily power saving mode**
+
+This templates is similar to *daily stand-by* but with these differences:
+
+* the first set of `CPU`s are put in `interactive` (mark2) or `ondemand` (mark3) frequency scheduling policy while the others are in `conservative` mode. A top cap about the max working frequency can be set for the second group of `CPU`s. Therefore the user can decide between *daily power saving* mode or *daily power saving plus* mode by an option (one or another).
+
+* without the *plus* option activated, also the internal flash are set to a more responsive / performing power saving mode.
+
+<sup>________</sup>
+
+**D. daily performance mode**
+
+When a battery is less important than productivity or the smartphone is connected to a power source then all the policies can be set to the most performing option available.
+
+<sup>________</sup>
+
+**E. general settings**
+
+These following settings apply to all the power management templates.
+
+* The fingerprint reader and the photo cameras should be kept switched off unless the few cases in which should be temporarily awakened for its duty.
+
+* The `GPS` should be powered off when it is not used. The same for Bluetooth and `WiFi` subsystems.
+
+* The `WiFi` tethering should be not ask which is the source  of data networking (`SIM1`, `SIM2`, `WiFi`) because the user may want to use it to access to the smartphone locally and we do not know which network services s/he installed to be used. Moreover, when WiFi tethering is asking for which source should be used to share the data connection, it mess-ups the state of the toggle button in the topmenu about mobile data when a SIM is chosen. Under this PoV the related Settings page should be renamed from "internet sharing" to "wifi tethering" 
+
+* The WiFi tethering should be powered off when it is not used by any client for a user-customizable timeout (eg. 5, 10, 15, 30, 60 minutes) but the user can disable this by default.
+
+* Few default native applications takes too much time to be started {phone, `SMS`/text, contacts/people, photo camera} but these applications are supposed to be used also in emergency situation like calling the 112/911 or call/texting the home/family or take a shot/video of an incident and any other situations in which a photo/video proof can have a sensible impact about legal consequences. For this reason, these apps should be put in run, kept in run, restarted quickly when they are not running (1-min or immediately waiting on their `/proc/$pid/cmdline`¹) as many times is necessary and the user should be notified when N restarts fail consecutively in such a way s/he can act accordingly.
+
+* The default camera app should be replaced in the above role by the [Advanced Camera](https://openrepos.net/content/piggz/advanced-camera) when the end-user decides so (optional). Therefore a Settings page about always-running apps should be created.
+
+* Some other native default apps that the user optionally can decide to keep ready are clock/alarms, calendar, todo-list, notes. These apps lag-to-start can have a social impact: you are in a hurry and meet a person, then you need to set some quickly some schedule, alarm or simply take a note/todo reminder. Some todo reminders should have an alarm associated but I did not see this feature implemented.
+
+* The always running native apps should not be closed in the default way (with `kill $pid`, probably) but set to a suspended state (with `kill -STOP $pid`) and then awaken when they are started again (with `kill -CONT $pid`). This is an efficient way to have them ready to run.
+
+<sup>________</sup>
+
+**Notes**
+
+¹ In all the Linux systems that I had the chance to work on, the `/proc/$pid/cmdline` still exists when a process is terminated but it is a zombi. In such a case that `procfs` item is void with zero size. Therefore, the suggestion to wait on `/proc/$pid/cmdline` is not completely correct but choosing another instance in the same folder is subjective/arbitrary.
+
+---
+
 ### ABOUT THE FUTURE OF SFOS
 
 Before answering this question, we should agree what is `SFOS` and what is not. However, I wish to skip this premise and go straight to the point with this image:
 
 <img src="sfos-sleeping-untouched.png" width="1024px" height="478px">
 
-*The original high resolution image is [here](https://tinyurl.com/28kv3zga).*
+The original high resolution image is [here](https://tinyurl.com/28kv3zga).
 
 What’s this image show? A sleeping system when untouched that consumes 5%/h of battery which means 20h of stand-by. It is not a great achievement because it should be 100h of stand by for an optimised system ([here ](https://forum.sailfishos.org/t/standby-battery-high-drain-on-xperia-10-iii/15208/6)).
 
 On the other hand, we notice that `CPU` stops to be polluted and falls asleep and awakens constantly (sleep, awake, sleep, awake) apparently without a real need. BTW, the system consumed 5%/h of battery - while untouched with the `CPU` s which **NEVER** goes to sleep. This means that apart from the display consumption, `4G` and `WiFi` connections, the system was running at its 100% of the time.
 
-**Update** : now, with the `4G` data mobile and `WiFi` tethering connections active, it sucks 6%/h. Therefore the changes tested are more suitable for a daily calm working session rather than keeping the smartphone near our bed while we are sleeping (check [here](https://forum.sailfishos.org/t/please-add-function-for-automatic-power-saving-mode/7322/23)).
+Now, with the `4G` data mobile and `WiFi` tethering connections active, it sucks 6%/h. Therefore the changes tested are more suitable for a daily calm working session rather than keeping the smartphone near our bed while we are sleeping (check [here](#power-saving-templates)).
+
+<sup>________</sup>
 
 **How did I achieved this?**
 
 This is the log of that day and changes:
 
 1. in the morning I developed [this patch to fix few udev rules ](https://coderus.openrepos.net/pm2/project/x10ii-iii-udev-rules-fixing) and applied to the system - reloading and restarting the systemd-udevd and related services would have been enough but I did a reboot for be 100% sure to not have bad surprises after.
+
 2. During the day, I used it with different applications and for several tasks also with `Android Support` and Android apps.
+
 3. Before leaving the smartphone untouched for 4h, I did a swap offload using [the script conveyed by this patch ](https://coderus.openrepos.net/pm2/project/zram-swap-resize-script) about `zRAM` and applied some power management rules (not published yet) about CPUs and internal `SSD` flash devices.
+
+<sup>________</sup>
 
 **Why this achievement matters?**
 
