@@ -473,19 +473,15 @@ Therefore the only viable way to go with ProtonVPN relying on a `IPv6`-only netw
 
 **Why using a VPN?**
 
-The original [article](https://f-droid.org/en/packages/ch.protonvpn.android/) about `VPN`s posted into `F-Droid` blog has been removed (404) soon after I published its link on this forum, but the Wayback Machine of [Archive.org](Archive.org) did a copy which the last version is on 28th June 2023.
-
-Then it returned back soon after I wrote this part because exposing idiots is easier when the memory is not short (*written not to stay but to be saved in this post history* :blush:). You may wonder why? The spoiler is ([here](https://forum.sailfishos.org/t/where-to-go-after-sailfish/6876/147)).
-
-Now, we easily can imagine why [Archive.org](Archive.org) is facing a nasty and expensive trial in the USA about copyright violation: *it easier to control those who have a short-only memory*.
-
-Paranoia? Possibly, in the meantime also the ProtonVPN presentation page has been changed at the same time. Among others parts changes, this one has been removed:
+The original [article](https://f-droid.org/en/packages/ch.protonvpn.android/) about `VPN`s posted into `F-Droid` blog has been removed (404) but the Wayback Machine of [Archive.org](Archive.org) did a copy which the last version is on 28th June 2023. Later, the page came back but it has been changed. Among others parts changes, this one has been removed:
 
 > :information_source: **NOTE"**
 >
 > ProtonVPN is created by the CERN scientists behind ProtonMail, the world's largest encrypted email service with 20 million users, including many **activists** and **journalists** such as **Reporters Without Borders**.
 
 You might think that privacy and security are a concern of criminals only but reading these kinds of claims, you might drop that bias. It is about everyone of us and especially for protecting those of us that are more exposed for the good sake of many.
+
+Now, we easily can imagine why [Archive.org](Archive.org) is facing a nasty and expensive trial in the USA about copyright violation: *it easier to control those who have a short-only memory*.
 
 ---
 
