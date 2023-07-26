@@ -35,13 +35,39 @@ in the files headers, in the ChangeLogs, in the documents authorship or referal 
 
 ### About SFOS refactoring
 
-Refactoring the SFOS is the main aim of this project and therefore it deserves a [dedicated page](forum/todo/sailfishos-refactoring-begins.md), in brief:
+Refactoring the SFOS is the main aim of this project and therefore it deserves a [dedicated page](forum/todo/sailfishos-refactoring-begins.md), in brief the list of macro-activities for the **first stage**:
 
-1. a recovery boot mode always available on-demand at users request or automatically when the system is badly bricked;
-2. a system patch manager that can un/apply persistent patches on the root filesystem for system services configuration;
-3. a early-boot backup/restore script suite with the related after-flashing system configuration shell script.
+* 1.1. a recovery boot mode always available on-demand at users request or automatically when the system is badly bricked;
 
+* 1.2. a system patch manager that can un/apply persistent patches on the root filesystem for system services configuration;
+
+* 1.3. a early-boot backup/restore script suite with the related after-flashing system configuration shell script.
+  
 Without these facilities fully working, there is no reasonable chance to operate in a traceable and efficient way at OS level. Everything else will follow and be added here depending also on the supporters and contributors agendas.
+
+The **second stage** of the refactoring process will be divided in few steps:
+
+* 2.1. use the recovery image to create a basic root filesystem from scratch based on full features busybox;
+
+* 2.2. including an advanced RPM tools like yum in order to leverage the CentOS 8 and Fedora 8 repository to install a set of packages that will create a fully working root filesystem back-compatible with the last available version (4.5.0.21) of SaiFish OS;
+
+* 2.3. add on the top of this new RedFish OS the Jolla software layer related to the graphics UI, apps markets and the Alien Dalvik support (optional)
+
+Regarding the **third stage**, the agenda is still not defined but these macro-activities should be accounted:
+
+* About the Jolla software layer, considering that `devel-su` and partially `silica` are closed source proprietary software which cannot be further developed, customised, bug-fixed and adapted/ported without the support of Jolla Oy a SWOT analysis needs to be conducted in order to evaluate alternatives which can reasonable support the apps developed for SFOS with a {zero, minimal, automatic} adaptation.
+
+  > :information_source: **Note**
+  >
+  > Thanks to Jonas Karlsson aka @Mohjive, [Glacier](https://nemomobile.net/glacier-home/) has been identified as an alternative UI but not yet evaluated.
+
+* About the last point, the support for Android apps also includes other 3rd party components like MicroG suite and before integrating such a kind of middle-ware layer a SWOT analysis needs to be conducted in order to evaluate alternatives. Under this point of view, it makes sense that unless a supporter will fund a different agenda, the Android Support will be left behind and goes in the last place of macro-activities of this refactoring project.
+
+  > :information_source: **Note**
+  >
+  > Some SFOS end-users reported that [WayDroid](https://waydro.id/) can be a feasible alternative to Alien Dalvik but currently it is not completely supported by SFOS which seems reasonable considering that SFOS is bounded with Alien Dalvik and it has not a standard root filesystem like RFOS aims to deliver.
+
+Finally the **fourth stage** will be about granting a good enough bug-free maturity level starting from the OS up to the apps level.
 
 ---
 
