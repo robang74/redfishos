@@ -8,7 +8,7 @@ You can jump to the end to see how the first implementation approach begins and 
 
 ---
 
-#### DESCRIPTION
+### DESCRIPTION
 
 Reading the description of [this patch](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration), we clearly realise that adding shell script capabilities will bring PM2 to the next level. In order to achieve this there are some type of specific scripts to keep in consideration:
 
@@ -21,7 +21,7 @@ Which are the same types that are allowed into any kind of package (rpm, deb, et
 
 ---
 
-#### ADDITIONAL INFORMATION
+### ADDITIONAL INFORMATION
 
 This feature can be implemented in two different ways:
 
@@ -72,7 +72,7 @@ Fulfilling that gap will step down the curve of people that can learn from doing
 
 ---
 
-**SYSTEM PM2 PATCHES, IMPLEMENTATION EXAMPLE**
+### SYSTEM PM2 PATCHES, IMPLEMENTATION EXAMPLE
 
 In applying this `Patch Manager` patch, two cases arises
 
@@ -258,7 +258,7 @@ About the point #2, checking the `/tmp/patchmanager3/patchmanager.log` I found t
 
 ---
 
-**UPDATE #3**
+**UPDATE #4**
 
 BTW the main question is: **why should a community care** modding the SFOS in such a manner that can support a *system configuration manager* and a *fleet management tool*?
 
@@ -346,7 +346,7 @@ This is a patch which probably will not work because I saw that `Patch Manager` 
 
 ---
 
-**UPDATE #4**
+**UPDATE #5**
 
 Instead of the current version of `Patch Manager`, I forked it from its github repository. Today with seven patches
 
@@ -482,3 +482,13 @@ Just a set of essential information which the vital field is:
 which lists the system services that should be reloaded and restarted as consequence of un/apply the configuration patch. It is vital information because everything else is to separate the volatile UI from the permanent system patches and to separate the application of those patches between the SFOS and your laptop/PC GNU/Linux system.
 
 After all, the beauty of such an approach is that it can be used also for every GNU/Linux system and every other system which is reasonably similar and provides a shell compatible scripting environment.
+
+---
+
+### UI IMPROVMENT
+
+As you can see in this screenshot:
+
+<img src="patch-manager-list-of-patches.png" width="214px" height="500px">
+
+the Patch Manager (de)activation dots dangerously near to the swipe left border therefore adding the “tap to undo” grace period will be useful and safer especially when the list of patches is very long and is going to keep all the screen.
