@@ -28,21 +28,21 @@ At the moment, I set the energy saving mode at 100% of battery threshold: always
 > there should be a setting for this.
 > cause if the user manually stops the fingerprint reader (for border crossing, for example), it shouldn’t restart the service.
 
-If someone is going to crossing a border, entering or exiting between a hostile / unsecure country. The best s/he can do is to remove the fingerprint via the specific menu into Settings:System and rely only on a long-enough PIN with limited tries.
+If someone is going to cross a border, entering or exiting between a hostile / unsecure country. The best s/he can do is to remove the fingerprint via the specific menu into Settings:System and rely only on a long-enough PIN with limited tries.
 
-* **Question** : *what happens when the max numbers of tries has been reached without inserting the right PIN? Someone ever tried it?*
+* **Question** : *what happens when the max number of tries has been reached without inserting the right PIN? Someone ever tried it?*
 
-IMHO, the SailFish OS currently lacks of many features for being used as a secure personal device in a hostile real-world enviroment. Privacy - intended as a protection for mass surveillance and unprofessional stalking - it is just a small subset of the security one needs to keep safe life-depending assets or data.
+IMHO, the SailFish OS currently lacks of many features for being used as a secure personal device in a hostile real-world environment. Privacy - intended as a protection for mass surveillance and unprofessional stalking - is just a small subset of the security one needs to keep safe life-depending assets or data.
 
 > @remote wrote:
 > 
 > I don’t wanna remove fingerprints and then add them again. Just a toggle to use it, or don’t.
 
-Then something crashes for any reason and the system restarts¹ with the fingerprint reader activated but not the icon to restart it in the lockscreen. Threfore you think that everything is fine but it is not.
+Then something crashes for any reason and the system restarts¹ with the fingerprint reader activated but not the icon to restart it in the lock screen. Therefore you think that everything is fine but it is not.
 
-Security and safety is about restricting the chances of a negative evet not increasing the options for no reason. The option you are asking is a completely another feature, like:
+Security and safety is about restricting the chances of a negative event not increasing the options for no reason. The option you are asking is a completely another feature, like:
 
-* possibility to enchrypt the fingerprints with the PIN code in order to store them for a future use but the stored fingerprints should be displayed with a lock otherwise the user might forget that s/he has encrypted and stored. This might arise the possibility to rename the fingerprints not just enumerate them².
+* possibility to encrypt the fingerprints with the PIN code in order to store them for a future use but the stored fingerprints should be displayed with a lock otherwise the user might forget that s/he has encrypted and stored. This might raise the possibility to rename the fingerprints, not just enumerate them².
 
 I know you did not forget anything in your life, not the used toothbrush in a hotel room but those escape for their lives tends to overlook, forget and leave behind a lot of things… :wink:
 
@@ -50,13 +50,13 @@ I know you did not forget anything in your life, not the used toothbrush in a ho
 >
 > What is the relation between a personal fingerprint reader and border crossing?
 
-It is easy to pretend to have forgot a PIN but it is not so easy to refuse to put your finger on the reader. The quick solution is to reboot the phone because the LUKs engine requires the code and in such a state the data are not yet uncyphered. Thus, any action will be - in theory - useless without knowing the PIN and at that time a maximun number of tryies before safely erase the LUKs key will be a nice feature to have.
+It is easy to pretend to have forgotten a PIN but it is not so easy to refuse to put your finger on the reader. The quick solution is to reboot the phone because the LUKs engine requires the code and in such a state the data are not yet undeciphered. Thus, any action will be - in theory - useless without knowing the PIN and at that time a maximum number of tries before safely erasing the LUKs key will be a nice feature to have.
 
-I answer one question, I am doing a question: what’s happen when the max number of tries has been exhausted in the lockscreen PIN reader? Does someone tried it?
+I answer one question, I am doing a question: what happens when the max number of tries has been exhausted in the lock screen PIN reader? Has anyone tried it?
 
 ---
 
-The fingerprint reader suspending/awakening investigation goes much further and here you will find the analysiss about it.
+The fingerprint reader suspending/awakening investigation goes much further and here you will find the analysis about it.
 
 ```
 service_do restart sailfish-fpd
@@ -66,11 +66,13 @@ service_do restart sailfish-fpd
 
 @piggz, the sleep 3 is a waste of time and having to repeat the restart means that restart does not work correctly and it should be fixed.
 
-@ichthyosaurus, it would be nice to have a patch in Patch Manger to remove that 2 lines of code. The diff patch could be downloaded from here while the Patch Manager patch from here:
+@ichthyosaurus, it would be nice to have a patch in Patch Manager to remove that 2 lines of code. The diff patch could be downloaded from here while the Patch Manager patch from here:
 
 * [utilities-quick-fp-restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart)
 
-Obviosly, if the patch improves the performance and does not introduce regressions then it should be integrated with the SailFish Utilities. Unfortunately, in PM2 the fingerprint is missing among the category therefore I choose others.
+This patch applies on SailFish Utilities (Jolla Store) to make the fingerprint service restarting without the delay of 3 seconds.
+
+Obviously, if the patch improves the performance and does not introduce regressions then it should be integrated with the SailFish Utilities. Unfortunately, in PM2 the fingerprint is missing among the category therefore I choose others.
 
 ---
 
@@ -80,42 +82,42 @@ Looking at the running process, I found these about FP reader:
 
 ```
 [root@sfos defaultuser]# ps | grep fpd
- 2904 root     /usr/lib64/qt5/plugins/devicelock/encsfa-fpd --daemon
- 4887 root     /usr/bin/sailfish-fpd --systemd
- 4888 root     /usr/libexec/sailfish-fpd/fpslave --log-to=syslog --log-level=4
- 4954 root     grep fpd
+ 2904 root     /usr/lib64/qt5/plugins/devicelock/encsfa-fpd --daemon
+ 4887 root     /usr/bin/sailfish-fpd --systemd
+ 4888 root     /usr/libexec/sailfish-fpd/fpslave --log-to=syslog --log-level=4
+ 4954 root     grep fpd
 ```
 
 Restarting the service is quite immediate:
 
 ```
 [root@sfos defaultuser]# time systemctl restart sailfish-fpd
-real	0m 0.14s
+real 0m 0.14s
 ```
 
 To understand which processes were restarted I did a stop and a check:
 
 ```
 [root@sfos defaultuser]# ps | grep fpd
- 2904 root     /usr/lib64/qt5/plugins/devicelock/encsfa-fpd --daemon
- 5107 root     grep fpd
+ 2904 root     /usr/lib64/qt5/plugins/devicelock/encsfa-fpd --daemon
+ 5107 root     grep fpd
 ```
 
-Probably the restart from `Utilities` will restart also the QT5 plug-in, I did not verified the code of `service_do` function but considering the parameters passed to the function, it is about `systemctl`.
+Probably the restart from `Utilities` will also restart the QT5 plug-in, I did not verify the code of the `service_do` function but considering the parameters passed to the function, it is about `systemctl`.
 
 ---
 
-## About the fingerprint reader service
+### About the fingerprint reader service
 
 Considering how fast is the FP reader service in being started
 
 ```
 [root@sfos defaultuser]# systemctl stop sailfish-fpd
 [root@sfos defaultuser]# time systemctl start sailfish-fpd
-real	0m 0.16s
+real 0m 0.16s
 ```
 
-and the few static places in which it is needed 1. unlock the screen and 2. add a new fingerprint, I think that it would a sane policy to start it only when it is necessary and stop immediately after. By default do start it at the boot time.
+and the few static places in which it is needed 1. unlock the screen and 2. add a new fingerprint, I think that it would be a sane policy to start it only when it is necessary and stop immediately after. By default do start it at the boot time.
 
 Unlock the screen:
 
@@ -126,7 +128,7 @@ no: wait for the PIN
 * start the FP service
 * does unlock succeed?
 no: wait for unlock or timeout
-* timeout exipired?
+* timeout expired?
 stop the FP service
 * stop the FP service
 
@@ -136,12 +138,12 @@ Add a new fingerprint:
 * acquire the fingerprint
 * stop the FP service
 
-Probably implementing the logic about unlocking the screen would be easier that the one described because those check are just done for sure. Therefore there are just three points to change: start, stop and stop. Instead, the logic for adding a fingerprint is straightforward.
+Probably implementing the logic about unlocking the screen would be easier than the one described because those checks are just done for sure. Therefore there are just three points to change: start, stop and stop. Instead, the logic for adding a fingerprint is straightforward.
 
 ---
 
 ### Notes
 
-¹ you did well, hiding the icon and shut-down the fingerprint but just before locking the screen, something goes wrong and you decide to restart the UI without the knowlegde that such action will restart also the fingerprint reader system because an updated you did recently changed that part and you did not noticed yet. Plus more other corner cases, etc. etc.
+¹ you did well, hiding the icon and shut-down the fingerprint but just before locking the screen, something goes wrong and you decide to restart the UI without the knowledge that such action will also restart the fingerprint reader system because an update you did recently changed that part and you did not notice yet. Plus more other corner cases, etc. etc.
 
 ² a feature that can be good or bad, depending if cutting a finger to your son/daughter in another city and sending it to the border is an option… :expressionless:
