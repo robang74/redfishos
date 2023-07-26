@@ -56,11 +56,87 @@ I answer one question, I am doing a question: what’s happen when the max numbe
 
 ---
 
-The fingerprint reader suspending/awakening investigation goes much further and here you will find the analasys about it, updated at the time of writing:
+The fingerprint reader suspending/awakening investigation goes much further and here you will find the analysiss about it.
 
-* [Patches by ichthyosaurus - #48 by robang74 ](https://forum.sailfishos.org/t/patches-by-ichthyosaurus/15387/48)
+```
+service_do restart sailfish-fpd
+sleep 3
+service_do restart sailfish-fpd
+```
 
-I hope this helps, R-
+@piggz, the sleep 3 is a waste of time and having to repeat the restart means that restart does not work correctly and it should be fixed.
+
+@ichthyosaurus, it would be nice to have a patch in Patch Manger to remove that 2 lines of code. The diff patch could be downloaded from here while the Patch Manager patch from here:
+
+* [utilities-quick-fp-restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart)
+
+Obviosly, if the patch improves the performance and does not introduce regressions then it should be integrated with the SailFish Utilities. Unfortunately, in PM2 the fingerprint is missing among the category therefore I choose others.
+
+---
+
+### About the fingerprint reader restart
+
+Looking at the running process, I found these about FP reader:
+
+```
+[root@sfos defaultuser]# ps | grep fpd
+ 2904 root     /usr/lib64/qt5/plugins/devicelock/encsfa-fpd --daemon
+ 4887 root     /usr/bin/sailfish-fpd --systemd
+ 4888 root     /usr/libexec/sailfish-fpd/fpslave --log-to=syslog --log-level=4
+ 4954 root     grep fpd
+```
+
+Restarting the service is quite immediate:
+
+```
+[root@sfos defaultuser]# time systemctl restart sailfish-fpd
+real	0m 0.14s
+```
+
+To understand which processes were restarted I did a stop and a check:
+
+```
+[root@sfos defaultuser]# ps | grep fpd
+ 2904 root     /usr/lib64/qt5/plugins/devicelock/encsfa-fpd --daemon
+ 5107 root     grep fpd
+```
+
+Probably the restart from `Utilities` will restart also the QT5 plug-in, I did not verified the code of `service_do` function but considering the parameters passed to the function, it is about `systemctl`.
+
+---
+
+## About the fingerprint reader service
+
+Considering how fast is the FP reader service in being started
+
+```
+[root@sfos defaultuser]# systemctl stop sailfish-fpd
+[root@sfos defaultuser]# time systemctl start sailfish-fpd
+real	0m 0.16s
+```
+
+and the few static places in which it is needed 1. unlock the screen and 2. add a new fingerprint, I think that it would a sane policy to start it only when it is necessary and stop immediately after. By default do start it at the boot time.
+
+Unlock the screen:
+
+* is there a PIN set?
+no: proceed
+* is there a FP set, at least?
+no: wait for the PIN
+* start the FP service
+* does unlock succeed?
+no: wait for unlock or timeout
+* timeout exipired?
+stop the FP service
+* stop the FP service
+
+Add a new fingerprint:
+
+* start the FP service
+* acquire the fingerprint
+* stop the FP service
+
+Probably implementing the logic about unlocking the screen would be easier that the one described because those check are just done for sure. Therefore there are just three points to change: start, stop and stop. Instead, the logic for adding a fingerprint is straightforward.
 
 ---
 
