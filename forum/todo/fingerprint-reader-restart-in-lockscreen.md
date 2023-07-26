@@ -70,7 +70,7 @@ service_do restart sailfish-fpd
 
 * [utilities-quick-fp-restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart)
 
-This patch applies on SailFish Utilities (Jolla Store) to make the fingerprint service restarting without the delay of 3 seconds.
+This patch applies on SailFish Utilities (Jolla Store) to make the fingerprint service restart without the delay of 3 seconds.
 
 Obviously, if the patch improves the performance and does not introduce regressions then it should be integrated with the SailFish Utilities. Unfortunately, in PM2 the fingerprint is missing among the category therefore I choose others.
 
