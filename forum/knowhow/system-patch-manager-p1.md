@@ -407,6 +407,146 @@ If we put all the information and skills and experience together, everything mak
 
 ---
 
+### PROPOSAL EVALUATION
+
+> @miau wrote:
+>
+> If i remember correctly patchmanager in the old days did modify the original files directly. Back then a patch could brake your device, for example lipstick doesn’t start anymore after a reboot.
+
+This can be a real issue, thanks for having highlighted it. 
+
+It can be solved in another way without renouncing to have a `system configuration manager`. This is the reason because since the first comment in this thread in which I have included some code, I suggested making a system backup of each patch.
+
+How to revert the backup in case of system failure? It can be done with a userland watchdog (which is missing) and `dsmetool` seems a useful piece of software to deal with a controlled reboot after the watchdog expired. Smarter solutions might also arise.
+
+> @miau wrote
+> 
+> Or not unapllying all patches before a system upgrade could break the system. 
+
+Also this can be a real issue thanks to highlighting it.
+
+This means that the upgrade procedure should be better implemented. After all, there is the command to uninstall all the patches immediately available: `patchmanager --unapply-all` which deactivates and disables (unapply) all patches.
+
+Despite the PM patches, the SFOS upgrade can fail because the user made some kind of changes including installing RPM packages. Before the upgrade, a procedure can be created for doing a backup of the system and the recovery procedure above will also solve the system upgrade failure reverting the system to the previous state.
+
+> @miau wrote:
+> 
+> Please stop whining around, because of your dnsmasq patch. Only a few people who use SFOS are using PM and alot less are using dnsmasq. Make a RPM,make a script, make a patchmanager fork or something else, but please stop spamming the forum with totally off topic posts about your view of the world.
+
+Sorry, here you missed the whole point but I can understand you because I wrote a lot about PM nextgen. Therefore a little recap is necessary:
+
+* The `dnsmasq` `connman` integration is a test (about different PoV) because the [DNS Alternative](https://openrepos.net/content/kan/dns-alternative) is considered the way to go and it contains dnsmasq.
+
+* The correct approach is to fix the `dnsmasq` and `connman` RPMs and this is clearly stated into the [patch description](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration). Also this information should be considered acquired and accepted.
+
+* The [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-6-3-1/15857/1) diverged from its original aim and started to collect parts that IMHO need to be fixed. Progressively with the time, it moved from being a "*end-user*" guide to a "*product-manager*" guide. Thus, it still reports my patch because it is a corner-case.
+
+* There is a huge gap between patch applications (even with a little of scripting support) and RPMs packaging because the RPMs repository - the sum of all repositories of all contributors - should NOT make a SFOS upgrade procedure fail. As you can read in the forum, the upgrade failure seems normal, instead. Or at leask a not so rare incident.
+
+* The `SFOS` completely lacks a *system configuration manager* which is an indispensable tool to have for developing a *fleet management tool*. The two should completely solve the problem of upgrade failures otherwise they are not good enough for that role. But they can do much more than this.
+
+BTW the main question is: **why should a community care** modding the SFOS in such a manner that can support a *system configuration manager* and a *fleet management tool*?
+
+The first and straightforward answer: a safe and friendly relationship with upgrades but there is **much more** related to these two tools which are missing because the `SFOS` is not designed to support them. That **much more** is also about Jolla profitability therefore Jolla should be **much more** interested in these design-changes than the community.
+
+After all, unless people here wish to follow a strict policy about RPMs repository like Debian, Ubuntu, RedHat, SuSE, etc are doing which brings a lot of top-down organised work (debian is a non-profit foundation, in fact), then those two tools are the solely way to go in order to obtain something equivalent or at least, a restore system to the last working configuration.
+
+By the `ZFS` has filesystem snapshots for this purpose but it is not the right approach for dealing with a fleet of IoT devices. It is tailored for servers even desktop can leverage it with some important constraints (user data, for example).
+
+Finally: am I going to change the `Patch Manager` in order to make it a *system configuration manager*. I do not think so. Since the beginning, I have been thinking about another completely different solution, much more flexible. But it would be a shame to not learn from what has been done and learning by doing is the best way. Doing *strange* things under your PoV but they seem strange exactly because they are challenging the current system constraints.
+
+#### UPDATE #1
+
+This is a patch which probably will not work because I saw that `Patch Manager` runs in a jail and reasonably with user-privileges and not root-privileges (**update**: it works, after a reboot also). Despite the privileges, it is still a proof-of-concept rather than a definitive solution.
+
+<small>
+
+```
+--- /usr/libexec/pm_unapply
++++ /usr/libexec/pm_unapply
+@@ -25,7 +25,8 @@
+ PATCH_EDITED_NAME="unified_diff_${SYS_BITNESS}bit.patch"
+ PATCH_EDITED_BACKUP="$PM_PATCH_BACKUP_DIR"/"$PATCH_EDITED_NAME"
+ 
+-ROOT_DIR="/tmp/patchmanager"
++ROOT_DIR="/"
++TMP_ROOT_DIR="/tmp/patchmanager"
+ 
+ # Applications
+ PATCH_EXEC="/usr/bin/patch"
+@@ -66,6 +67,7 @@
+   exit 0
+ }
+ 
++files=""
+ verify_text_patch() {
+   if [ -f "$PATCH_FILE" ]; then
+     log
+@@ -74,6 +76,12 @@
+     log "----------------------------------"
+     log
+ 
++    files=$(/bin/sed -ne "s,^+++ *\.*[^/]*\([^ ]*\).*,/\\1,p" "$PATCH_PATH")
++    for i in $files; do
++      [ -L "$i" ] && /bin/rm "$i"
++      [ -f "$TMP_ROOT_DIR/$i" ] && /bin/cp -arf "$TMP_ROOT_DIR/$i" "$i"
++    done
++
+     $PATCH_EXEC -R -p 1 -d "$ROOT_DIR" --dry-run < "$PATCH_FILE" 2>&1 | tee -a "$PM_LOG_FILE"
+   fi
+ }
+@@ -87,6 +95,7 @@
+     log
+ 
+     $PATCH_EXEC -R -p 1 -d "$ROOT_DIR" --no-backup-if-mismatch < "$PATCH_FILE" 2>&1 | tee -a "$PM_LOG_FILE"
++    for i in $files; do [ -s "$i" ] || /bin/rm -f "$i"; done
+   fi
+ }
+ 
+--- /usr/libexec/pm_apply
++++ /usr/libexec/pm_apply
+@@ -29,7 +29,7 @@
+     source /etc/patchmanager/manglelist.conf
+ fi
+ 
+-ROOT_DIR="/tmp/patchmanager"
++ROOT_DIR="/"
+ 
+ # Applications
+ PATCH_EXEC="/usr/bin/patch"
+@@ -69,6 +69,13 @@
+     log "Test if already applied patch"
+     log "----------------------------------"
+     log
++
++    files=$(/bin/sed -ne "s,^+++ *\.*[^/]*\([^ ]*\).*,/\\1,p" "$PATCH_PATH")
++    for i in $files; do
++      if [ -L "$i" ]; then
++        /bin/rm "$i" && /bin/touch "$i"
++      fi
++    done
+ 
+     $PATCH_EXEC -R -p 1 -d "$ROOT_DIR" --dry-run < "$PATCH_PATH" 2>&1 | tee -a "$PM_LOG_FILE"
+```
+
+</small>
+
+#### UPDATE #2
+
+Instead of the current version of `Patch Manager`, I forked it from its github repository. Today with seven patches
+
+* [8 patches on devel branch with an unified view](https://github.com/sailfishos-patches/patchmanager/compare/master...robang74:patchmanager:devel?diff=unified) (slightly tested code)
+* [patched files ready to install in a tarball](https://raw.githubusercontent.com/robang74/patchmanager/devel/tgz/patchmanager-unified-pm_scripts-v0.0.8.tgz) (`devel-su curl $link | tar xvz -C /`) 
+
+I have unified the `pm_apply` and `pm_unapply` shells script in a single one `pm_patch.env` because most of the code was redundant.
+
+* `pm_apply` does `source pm_patch.env apply "$@"`
+* `pm_unapply` does `source pm_patch.env unapply "$@"`
+
+This would help to maintain such shell script code in the future.
+
+---
+
 ### SYSTEM PATCH MANAGER
 
 You can skip the introductory sections and jump directly to the end where the technical stuff is presented. In case you like that, you may come back here to read the premises.
