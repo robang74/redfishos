@@ -2,15 +2,15 @@
 
 Patch Manager is the tool that allows SFOS users to apply patches usually to customize the UI and its behaviour. These patches are applied with a volatile policy with respect to the reboot. However, this tool has no specific limitation for being able to operate on the root filesystem and un/apply permanent patches. Obviously, this task should be delegated to a scripts suite that should be available also for system maintenance and recovery. Moreover, in this way the UI will be separated from the underlying business logic even more.
 
-* [Technical Approach of the first implementation](https://github.com/robang74/redfishos/blob/main/forum/knowhow/system-patch-manager-p1.md#technical-approach)
+* [Technical Approach of the first implementation](#technical-approach)
 
 You can jump to the end to see how the first implementation approach begins and then you can read the whole document to be acknowledged by the informative process that brings to that choice.
 
 ---
 
-### DESCRIPTION
+### INTRODUCTION
 
-Reading the description of [this patch](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration), we clearly realise that adding shell script capabilities will bring PM2 to the next level. In order to achieve this there are some type of specific scripts to keep in consideration:
+Reading the description of [this patch](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration), we clearly realise that adding shell script capabilities will bring Patch Manager to the next level. In order to achieve this there are some type of specific scripts to keep in consideration:
 
 - pre-install script: `pre-install.sh`
 - post-install script: `post-install.sh`
@@ -60,7 +60,7 @@ An example of the current limitations of `Patch Manager` which is great for patc
 
 Due to its way of working the `Patch Manager` is not the right tool for this kind of patches but the `dnsmasq` `RPM` can be fixed with this patch:
 
-* [robang74-dnsmasq-connman-integration-0.0.6.tar.gz](https://coderus.openrepos.net/media/documents/robang74-dnsmasq-connman-integration-0.0.6.tar.gz)
+* [dnsmasq-connman-integration](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration)
 
   > Changelog: 0.0.6 - connman starts after patchmanager and dnsmasq before connman (in my wishes)
 
@@ -72,11 +72,13 @@ Fulfilling that gap will step down the curve of people that can learn from doing
 
 ---
 
-### SYSTEM PM2 PATCHES, IMPLEMENTATION EXAMPLE
+### CURRENT IMPLEMENTATION
 
-In applying this `Patch Manager` patch, two cases arises
+In applying this `Patch Manager` patch:
 
-* https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea
+* [x10ii-iii-agps-config-emea](https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea)
+
+two cases arises, here below considered.
 
 **case #1**: `cacerts_gps` folder exists
 
@@ -93,7 +95,15 @@ roots.pem -> /tmp/patchmanager/.../roots.pem
 cacerts_gps -> /tmp/patchmanager/system/etc/security/cacerts_gps
 ```
 
-Both cases are wrong because `Patch Manager` creates a symlink where it was supposed to create dirs and files. In fact, symlinks are not the same story because some tools that operate on the filesystem require a specific option to follow symlinks. Like old versions of the `tar` and `tar` is one of the widely used tools for doing backups. The approach can be easily changed following these examples:
+Both cases are wrong because `Patch Manager` creates a symlink where it was supposed to create folders and files. In fact, symlinks are not the same story because some tools that operate on the filesystem require a specific option to follow symlinks. Like `tar` and `cp` which togheter are one of the widely used tool for doing backups.
+
+Clearly, in the mind of the Patch Manager developers this should be considered a feature because makes the changes volatile and therefore protect the system from any change which can brick it. Reasonable for customize the UI but not useful for changing the system configuration. Obviously the risk of bricking the system changing its configuration should be addressed in a reasonable way.
+
+---
+
+### REFACTORING EXAMPLE 
+
+The approach can be easily changed following these examples:
 
 ```
 mkdir /tmp/test
@@ -160,7 +170,11 @@ That's all, unless I forgot or overlooked something essential or important.
 
 ----
 
-**UPDATE #1**
+### FURTHER INVESTIGATION
+
+Here below the information collected and the notes taken in the first month of SFOS internals investigation.
+
+#### UPDATE #1
 
 This seems promising to install system updates also for those that do not require a reboot:
 
@@ -182,7 +196,7 @@ It seems a general solution that requires - by documentation - a reboot but the 
 
 ---
 
-**UPDATE #2**
+#### UPDATE #2
 
 The `Patch Manager` patches can be applied and unapplied many times during a user session and this is a great feature :heart_eyes:. However, changing the way in which the `PM2` works some of them might not fall into this category.
 
@@ -206,7 +220,7 @@ The #1 and the #3 are almost straightforward cases to deal with. The second is a
 
 ---
 
-**UPDATE #3**
+#### UPDATE #3
 
 * Settings:System -> Patchmanger:Settings -> Activate enabled Patches when booting
 
@@ -258,7 +272,7 @@ About the point #2, checking the `/tmp/patchmanager3/patchmanager.log` I found t
 
 ---
 
-**UPDATE #4**
+#### UPDATE #4
 
 BTW the main question is: **why should a community care** modding the SFOS in such a manner that can support a *system configuration manager* and a *fleet management tool*?
 
@@ -346,7 +360,7 @@ This is a patch which probably will not work because I saw that `Patch Manager` 
 
 ---
 
-**UPDATE #5**
+#### UPDATE #5
 
 Instead of the current version of `Patch Manager`, I forked it from its github repository. Today with seven patches
 
