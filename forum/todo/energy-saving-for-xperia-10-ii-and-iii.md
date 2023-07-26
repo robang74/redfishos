@@ -15,7 +15,9 @@ Recently I set the energy saving mode at 100% of battery threshold which means a
 
 Moreover, I dimmed the brightness of the screen to the minimum and I have installed and activated the [Pure Black Backgrounds ](https://coderus.openrepos.net/pm2/project/patch-i-see-a-red-door) patch which it expected to save energy with OLED display which is the case. The display is set to sleep after 30 seconds.
 
-**DATA COLLECTED**
+---
+
+### DATA COLLECTED
 
 The [System Monitor](https://openrepos.net/content/basil/system-monitor) was running since the beginning and collecting data. Here a composition of what I found:
 
@@ -31,7 +33,9 @@ In the area highlighted, the smartphone was resting alone with no native nor And
 
 Despite this the activity about system processes were more intense that normal usage but despite this the battery discharge rate was less or about 1% which is a great achievement.
 
-**OBSERVATIONS**
+---
+
+### OBSERVATIONS
 
 Counter side effects: some sub-system were not working when the smartphone has been waked-up. In this specific case the Bluetooth. More often the fingerprints reader gets asleep probably and should be reset.
 
@@ -65,6 +69,8 @@ My Xperia 10 II is running with energy power saving always active and at the beg
 After having configured some options about suspending/awakening hardware subsystems in Android while I was running the Android Support, the bluetooth and fingerprint reader reader never got stuck anymore even with AS stopped. However, the counter side is that my smartphone - when left alone without no any interaction or connections active - started to be busy in suspend/awake the systems continuously loading the CPU for 25% but with no impact on the battery discharge rate (less than 1%) because the CPU seems busy by System Monitor handling I/O but no power is drained because there is no code/math processing.
 
 In fact, the `dmesg -Hw` shows a lot of this stuff on the WARN level and above:
+
+<sub>
 
 ```
 [  +0.000236] ------------[ cut here ]------------
@@ -103,8 +109,10 @@ In fact, the `dmesg -Hw` shows a lot of this stuff on the WARN level and above:
 [  +0.000435] somc_panel_color_manager: somc_panel_pcc_setup (886): Cannot read uv data: missing command
 ```
 
+</sub>
+
 If what written above is correct (because correlation does **not** necessarily means cause-effect relationship) then `SFOS` should correctly set the FP reader about suspend/awakening. About bluetooth, one single event even in conjunction with the FP reader failure make the assumption statistically too weak,
 
-![nightly-sleeping-awakening](upload://yDTDdSR3gh2SjGQr0uhapK3cZfD)
+<img src="nightly-sleeping-awakening.png" width="1024px" height="585px">
 
 Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdnk8n2IRDYjOMrKY5xp/view).
