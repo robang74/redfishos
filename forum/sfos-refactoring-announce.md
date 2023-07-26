@@ -86,13 +86,13 @@ Due to its peculiar nature of mobile embedded system plus the barrier of dealing
 
 ---
 
-### Contributors
+### Acknowledgements
 
-Just the most relevant contributors are listed here:
+These is a list of projects on which the SFOS refactoring 1st stage is based on, listed by their authors:
 
 * @coderus : provided the docker image, the initial Sailfish OS busybox github project
 * @olf : provided the initial Patch Manager github project
 * @Nephros : which suggestion was determining in unlocking the build of the busybox
 * Jolla developers : for their numerous contributes and 907 github projects
  
-In case I missed to cite you, my anticipated excuses and please remember me about your effort.
+In case I missed to cite your project, my anticipated excuses and please remember me about your effort.
