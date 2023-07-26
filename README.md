@@ -65,7 +65,7 @@ The paid licensed version adds the support for Android integrating the proprieta
 * [Community Forum](https://forum.sailfishos.org/)
 * [Community apps repository](https://sailfish.openrepos.net/)
 * [Patch Manager Web Catalog](http://coderus.openrepos.net/pm2/)
-* [Patches by robang74](patches)
+* [Patches by robang74](patches/README.md)
 
 Few components in SailFish OS are proprietary and the package downloaded from their shop contains such proprietary software and vendor firmware. The framework to build the images is an open source project:
 
