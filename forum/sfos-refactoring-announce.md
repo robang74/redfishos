@@ -79,7 +79,7 @@ Please write your own into the comments. Do not be shy, you will not be asked to
 >
 > On 26th July 2023 probably on the late evening when the stars are bright in the sky...
 
-* [RedFish OS: a SFOS refactoring project](https://github.com/robang74/redfishos)
+* [RedFish OS: a SFOS refactoring project](https://github.com/robang74/redfishos#redfish-os)
 
 The weather conditions were favorable and the launch went on-line within the first time window available: 25th July 2023 at 14:21 (CET) with one day in advance of the schedule. :blush:
 
