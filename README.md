@@ -49,6 +49,8 @@ Refactoring the SFOS is the main aim of this project and therefore it deserves a
   
 Without these facilities fully working, there is no reasonable chance to operate in a traceable and efficient way at OS level.
 
+<sup>________</sup>
+
 The **second stage** of the refactoring process can be divided in few other macro-activities:
 
 * 2.1. using the recovery image to create a basic root filesystem from scratch based on full features busybox;
@@ -56,6 +58,8 @@ The **second stage** of the refactoring process can be divided in few other macr
 * 2.2. including an advanced RPM tool like `yum` in order to leverage the CentOS 8 and Fedora 8 repositories to install a set of packages that will create a fully working root filesystem back-compatible with the last available version (4.5.0.21) of SaiFish OS;
 
 * 2.3. adding on the top of the RedFish OS the Jolla software layer related to the graphics UI, apps markets and the Alien Dalvik support (optional) in order to provide a fully back-compatibility system, at least for the most significant SFOS apps currently available.
+
+<sup>________</sup>
 
 Regarding the **third stage**, the agenda is still not fully defined but these macro-activities should be accounted:
 
@@ -70,6 +74,14 @@ Regarding the **third stage**, the agenda is still not fully defined but these m
   > :information_source: **Note**
   >
   > Some SFOS end-users reported that [WayDroid](https://waydro.id/) can be a feasible alternative to Alien Dalvik but currently it is not completely supported by SFOS which seems reasonable considering that SFOS is bounded with Alien Dalvik (included in the per-users-per-device paying license) and SFOS runs on a customised root filesystem which may imply a sort of adaptation / integration for WayDroid smooth functioning.
+
+* 3.3. about the [SailJail](https://github.com/sailfishos/sailjail) based on [FireJail](https://github.com/netblue30/firejail) approach to constraint the apps privileges and user approval for accessing the hardware functionalities a SWOT analysis needs to be conducted in order to evaluate a less work-intensive alternative.
+
+  > :information_source: **Note**
+  >
+  > At the moment, a SFOS app to be compliant with SailJail needs to use a limited set of API validated by Jolla. This approach has two great shortcomings which are quite obvious: a. the app developers are supposed to collaborate in keeping SFOS secure and end-users data private and b. the API validation is a skilled work intensive task that requires continuous or frequent updates, as frequently updates as the apps market grows. It is crystal clear that this design cannot scale up in any profitable nor sustainable way.
+
+<sup>________</sup>
 
 Finally the **fourth stage** will be about:
 
