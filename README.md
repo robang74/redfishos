@@ -185,9 +185,10 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 * [ofono fork](https://github.com/robang74/ofono) - An oFono fork with QRTR support, the Qualcomm IPC router protocol which is used to communicate with services provided by other hardware blocks in the system.
 * [connman iptables](https://github.com/robang74/sailfish-connman-plugin-iptables) - The connman plugin that provides d-bus API for controlling iptables rules. 
 * [Github actions for SFOS apps](https://github.com/robang74/github-sfos-apps-build) - Github actions for building SailFish OS apps  :exclamation:
-* [SailFish OS git repositories](https://github.com/sailfishos) - A collection of 907 git repositories about SailFish OS.
-* [SailFish OS git mirrors](https://github.com/sailfishos-mirror) - A collection of 517 git repository mirrors for SailFish OS.
+* [SailFish OS git repositories](https://github.com/sailfishos) - A collection of 907 github repositories about SailFish OS.
+* [SailFish OS git mirrors](https://github.com/sailfishos-mirror) - A collection of 517 github repository mirrors for SailFish OS.
 * [SailFish OS porting](https://gitlab.com/sailfishos-porters-ci) - Gitlab page that contains several unofficial SFOS portings.
+* [Hello Volla repositories](https://github.com/HelloVolla) - A collections of 42 github repositories and mirrors for SailFish OS.
 
 ---
 
