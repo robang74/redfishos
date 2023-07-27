@@ -8,7 +8,7 @@ If you are going to use this guide for commercial purposes, feel free to contact
 
 ---
 
-**QUICK ACCESS**
+### QUICK ACCESS
 
 If you want use the url-links in this guide for configuring your `SailFish OS` smartphone scan the `QR`-code below with the default native camera app:
 
@@ -20,7 +20,7 @@ Then open the encoded url-link with the default native browser and save it into 
 
 ---
 
-**ANDROID VERSION**
+### ANDROID VERSION
 
 Currently the Xperia 10 II are delivered with Android 12 (since 2022-06-13, last update 2022-07-27) while the Xperia 10 III (since 2022-06-13, last update 2022-07-27) are delivered with Android 13. 
 
@@ -36,7 +36,7 @@ This guide provides some practical knowledge for integrating the Jolla's officia
 
 ---
 
-**USB PROBLEMS**
+### USB PROBLEMS
 
 During the [flashing procedure described by Jolla](https://jolla.com/sailfishxinstall/), you might encounter two different problem with `fastboot` util and `flash.sh`: the `USB` v3.x issue and `USB` sleeping after the first `fastboot` command which will make your smartphone reboot preventing the `flash.sh` script to complete its job.
 
@@ -58,6 +58,8 @@ sudo ./fastboot_usb3fix.sh 3
 
 The last command with `3` because you want to return to the `USB` v3.x communication standard due to its speed/performance improvements over the `USB` v2.0.
 
+<sup>________</sup>
+
 **fasboot usage**
 
 Here below a way to re-flash the vendor backup partition despite `USB` problems:
@@ -74,6 +76,8 @@ fastboot reboot
 ```
 
 It leverages the fact that `fastboot` has been executed before the smartphone is connected and thus it sets the `USB` parameters before the smartphone is engaged. This trick will work for a single run of `fastboot`. Hence it will not work with `flash.sh` unless the `USB` v2.0-only mode is set.
+
+<sup>________</sup>
 
 **flash.sh tricks**
 
@@ -100,6 +104,8 @@ This is the header of `flash_config.sh` which shows you the list of actions. If 
 
 Then you have to call `flash.sh` with `--force` option. Otherwise, it fails complaining about `md5sum` mismatch.
 
+<sup>________</sup>
+
 **Android debug**
 
 This is useful for the Android debugger `ADB` mode and it does not conflict with the `fastboot` mode:
@@ -125,7 +131,7 @@ The above settings should be done one single time and you have to replace the `i
 
 ---
  
-**AFTER LICENSING**
+### AFTER LICENSING
 
 Install the *Android Support* from the Jolla market, then the `F-Droid` market app.
 
@@ -137,7 +143,7 @@ These choices can be made at the first boot of your newly flashed smartphone.
 
 ---
 
-**MICRO-G CONFIG**
+### MICRO-G CONFIG
 
 The `microG` project components are not anymore available on `F-Droid`, in particular about [com.google.android.gms](https://f-droid.org/en/packages/com.google.android.gms/) the page reports the error `404 Page Not Found`.
 
@@ -176,7 +182,7 @@ Then open the `microG Service Core` and in the *self-check* page, accept for all
 
 ---
 
-**CHUM MARKET**
+### CHUM MARKET
 
 Activate the *Allow untrusted software* option:
 
@@ -194,7 +200,7 @@ Deactivate the *Allow untrusted software* option, not now but after having insta
 
 ---
 
-**STOREMAN**
+### STOREMAN
 
 Activate the *Allow untrusted software* option 
 
@@ -208,7 +214,7 @@ Deactivate the *Allow untrusted software* option, not now but after having insta
 
 ---
 
-**UPTODOWN**
+### UPTODOWN
 
 Activate the *Allow untrusted software* option 
 
@@ -222,7 +228,7 @@ Deactivate the *Allow untrusted software* option.
 
 ---
 
-**PATCH MANAGER**
+### PATCH MANAGER
 
 Available in `Chum` market as `Patch Manager` for `SailFishOS`
 
@@ -232,7 +238,7 @@ The `Patch Manager` is not an application with an icon but adds a voice in `Sett
 
 ---
 
-**APPS INSTALLATION**
+### APPS INSTALLATION
 
 `Jolla`: 
 
@@ -278,7 +284,7 @@ The `Patch Manager` is not an application with an icon but adds a voice in `Sett
 
 ----
 
-**WEB BROWSER**
+### WEB BROWSER
 
 This can be a quite amusing Android web-browser with *Turbo Mode* to speed you up:
 
@@ -294,14 +300,14 @@ Moreover, it is a [open-source project](https://github.com/RocketScientists/Rock
 
 ----
 
-**GOOGLE CAMERA PORT**
+### GOOGLE CAMERA PORT
 
 * [Gcam Hub](https://www.celsoazevedo.com/files/android/google-camera/dev-hasli/f/dl14/)
 * [Gcam Service](https://f-droid.org/en/packages/de.lukaspieper.gcam.services/)
 
 ----
 
-**PASSWORDLESS SSH**
+### PASSWORDLESS SSH
 
 To gain a secure and fast password-less access to you device via a SSH session, read the instruction from this *Patch Manager* patch:
 
@@ -326,7 +332,7 @@ The next time you will start a console, you will be able to use `ufish` or `wfis
 
 ----
 
-**SYSTEM UPDATE**
+### SYSTEM UPDATE
 
 After having activated the `SSH` service - especially if `SFOS` has been recently installed in your smartphone execute these commands by root user:
 
@@ -347,7 +353,7 @@ pkcon -y install --allow-reinstall \
 
 ----
 
-**USER BACKUP**
+### USER BACKUP
 
 The following script allows you to make the backup of every user home folder by `USB` (`192.168.2.15`) or `WiFi` tethering (`172.28.172.1`):
 
@@ -381,6 +387,8 @@ pkcon install -y pigz
 
 or the script  edited for working with the much slower `gzip`.
 
+<sup>________</sup>
+
 **backup restore**
 
 Once a backup is created in this way, it can be restored with this other script:
@@ -406,9 +414,11 @@ The script takes the last backup available in the current folder.
 
 ----
 
-**DNS CACHING**
+### DNS CACHING
 
 For `DNS` caching and proxying, you can install the [DNS Alternative](https://openrepos.net/content/kan/dns-alternative) which is a package available on `Chum` market. However, if this solution does not fit your needs there is a 2nd choice using `dnsmasq` directly and configuring it specifically for your needs.
+
+<sup>________</sup>
 
 **dnsmasq**
 
@@ -422,7 +432,7 @@ About `dnsmasq` integration with `connman`, read this `Patch Manager` patch desc
 
 ----
 
-**SAFE & PRIVACY DNS**
+### SAFE & PRIVACY DNS
 
 About `DNS`, using those from your network provider (default) is not always the best choice. There are some more interesting alternatives:
 
@@ -456,7 +466,7 @@ This is an example of `/etc/resolv.conf` for every host connected with an `IPv4`
 
 ---
 
-**VPN USE**
+### VPN USE
 
 The `SailFish OS` supports many clients to establish a `VPN` tunnel for your traffic. The most known and used is related to the `OpenVPN` standard. When a client is involved then a server is needed on the other side, in this case a VPN service provider.
 
@@ -467,6 +477,8 @@ About `VPN` services there is a very [interesting post on `F-Droid` blog](https:
 * [VPNs with full `IPv6` Support in 2023](https://restoreprivacy.com/vpn/best/ipv6/) - an article that presents three `VPN` providers that support the `IPv6` but do not have free trial plan which means you have to pay with your credit card (privacy but not anonymity).
 
 Therefore the only viable way to go with ProtonVPN relying on a `IPv6`-only network operator is using [CLAT](https://forum.sailfishos.org/t/testing-clat-for-ipv6-only-mobile-networks/14520/1) which is still under testing.
+
+<sup>________</sup>
 
 **Why using a VPN?**
 
@@ -482,13 +494,13 @@ Now, we easily can imagine why [Archive.org](Archive.org) is facing a nasty and 
 
 ---
 
-**COMPASS CALIBRATION**
+### COMPASS CALIBRATION
 
 Compass calibration feature can be seen in `GPSinfo`’s change log since v0.9.0-1 release in 2019. Using the last version from `Chum` market, the compass will be calibrated automatically doing some oo-loops. Therefore [OrienteeringCompass](https://openrepos.net/node/10468) is redundant for this aim but it can be installed for its main purpose.
 
 ---
 
-**GPS & MAPS**
+### GPS & MAPS
 
 The MLS data packaged and delivered from Jolla market can be outdated. Therefore use `MLS Manager` to download your country or geographic area of your interest (cfr. update #2).
 
@@ -506,6 +518,8 @@ Then open the `microG Settings` app, in the Location menu switch on all every op
 
 Install `GPSinfo` app from `Chum` market because the one in the Jolla market can be outdated (cfr. update #1), switch on the `GPS` and test it outdoors.
 
+<sup>________</sup>
+
 **freezing issue**
 
 For those the [GPS satellite fix freezes and crashes](https://forum.sailfishos.org/t/xperia-x-10-ii-gpu-heavily-affected-by-gps-fix-pure-maps-and-other-gps-related-apps/15797) with `Pure Maps` the native navigation app, they can try this Android app, instead:
@@ -518,7 +532,7 @@ Or they can make the `A-GPS` working (cfr. update #3) like described below which
 
 ---
 
-**A-GPS INDOOR**
+### A-GPS INDOOR
 
 You may experience problems in `GPS` fixing indoors. The current solution is to adopt the `A-GPS` approach which needs a mobile data connection thus exchanging data that can undermine your privacy about your position.
 
@@ -548,7 +562,7 @@ The `A-GPS` configuration here proposed is Google free and it uses the Qualcomm 
 
 Even if obsolete, It will remain for a while in order to be reworked as - advanced users section - to introduce the `SSH` / terminal / `qCommand` as universal tools to customize in deep a SFOS smartphone. In the meantime, jump to the next section which is **mobile data**.
 
----
+<sup>________</sup>
 
 **manual editing or copy**
 
@@ -556,7 +570,7 @@ Even if obsolete, It will remain for a while in order to be reworked as - advanc
 >
 > *Suggestion source*: @miau
 
----
+<sup>________</sup>
 
 The solution consists in changing some values into `/etc/gps.conf` or in `/vendor/etc/gps.conf`. You can check the real path using the `File Manager` included by default in `SFOS`. If both exist one should be a link to the other.
 
@@ -581,6 +595,8 @@ To make these changes can be used the [terminal app](https://openrepos.net/conte
 
 Another way to access the terminal is using `qCommand` and asking him to run `devel-su /bin/ash` in interactive mode. In interactive mode, it will always ask for the password even if you choose to run `/bin/ash` as `root` and you saved the password.
 
+<sup>________</sup>
+
 **ssh session**
 
 Activate the `SSH` session. This allows you to connect to your `SailFish OS` device with a `SSH` connection using the `USB` cable or the `WiFi` tethering or the `WiFi` home network. The most secure way is using the `USB` cable while the smartphone is off-line.
@@ -600,6 +616,8 @@ Before changing those values, prepare yourself to use [vi the editor](https://we
 
 Alternatively, you can download and copy the `gps.conf` as described in the next session and decide to modify it by your own hands. Instead of downloading the file, apply the `Patch Manager` patch cited above and then perform the changes you like. 
 
+<sup>________</sup>
+
 **terminal app**
 
 Visit this link for the [modified gps.conf](https://drive.google.com/file/d/1ZCheJadDhO38atpIFmRKMjBA42XYnUJT/view)  and save it in `Downloads`. Then open the terminal and execute the following commands:
@@ -614,6 +632,8 @@ Download]# exit
 Download]$ exit
 ```
 
+<sup>________</sup>
+
 **after the changes**
 
 After the changes **disable** the developer mode and set the high precision mode for the `GPS`:
@@ -624,9 +644,11 @@ At this point you can switch on the network, the `GPS` and give it a try indoors
 
 ----
 
-**MOBILE DATA**
+### MOBILE DATA
 
 The first step you should do after having inserted the `SIM` into your new `SFOS` smartphone is to ask your network operator to send their mobile data configuration back to your device. Usually, you can do that by sending a `SMS` to a specific number.
+
+<sup>________</sup>
 
 **registration lag**
 
@@ -637,6 +659,8 @@ You might experience a sensible registration lag or sometimes even a complete fa
 This will bring you into a new page in which - after a while - all the mobile networks found will be visible and just some will be available. For example - if you are an `iliad italia` customer with 4G enabled - you will find `IT 88` and `IT 50`. You will also find that with 4G, you might not be able to register with `IT 88` but `IT 50` only. Select this one and then the next registration will take a reasonable time, even if not immediate.
 
 Another solution that might work in your case is the following. Imagine that you have the `SIM1` that is slow in registering with the mobile network. You can try putting the slower `SIM` into the slot #2 which means `SIM` exchange (1:faster, 2: slower) or you can skip the unlock `PIN` for the faster `SIM` and activate it after the slower one has completed the registration with the mobile network. Keep the faster for 2nd to register and possibly use the auto-search for the mobile network because in this way `ofono` will preferably keep the current operator schema as long as possible, even better if the faster SIM is in roaming.  
+
+<sup>________</sup>
 
 **data on IPv4 only**
 
@@ -659,7 +683,7 @@ In the `Data` and `MMS` access points changed the protocol field from `dual` to 
 
 ----
 
-**POWER SAVING**
+### POWER SAVING
 
 Section yet to do, in the meantime check these posts below:
 
@@ -671,9 +695,13 @@ Section yet to do, in the meantime check these posts below:
 
 Here are a few hints to keep your `SFOS` smartphone lasting longer.
 
+<sup>________</sup>
+
 **display settings**
 
 First of all, set the brightness of the screen to the minimum in auto-brightness mode then install and activate the [Pure Black Backgrounds ](https://coderus.openrepos.net/pm2/project/patch-i-see-a-red-door) patch with `Patch Manager`. This setting is expected to save energy with an `OLED` display which is the case for Xperia 10 II and III. The display should be set to sleep after 30 seconds.
+
+<sup>________</sup>
 
 **energy saving mode**
 
@@ -687,13 +715,15 @@ Moreover, that tool should be installed before using it. This requires access to
 
 Because `mcetool`does not need `root` privileges to change the battery threshold for enabling the energy saving mode, it is possible to use `qCommand` to execute it in an non-interactive, non-root, ignore-output task. The `qCommand` allows to create an icon for this specific task⁴ and it is useful because the energy saving mode can be changed or disabled by Settings:System -> System:Battery menu but not set to 100% back by it.
 
+<sup>________</sup>
+
 **wireless settings**
 
 Keep disabled the 4G connection, Bluetooth and Wireless as long as possible. In dual-sim phones, the 2nd SIM could be registered in 2G if that service is still available and largely deployed, unless you plan to use it also for mobile data.
 
 -----
 
-**ZRAM SWAP SIZE CHANGE**
+### ZRAM SWAP SIZE CHANGE
 
 This `Patch Manager` patch will help you in resizing the `zRAM` swap while the system is running:
 
@@ -724,6 +754,8 @@ The available `RAM`+swap will grow up to 7GB with an **important drawback**: run
 
 In my personal case which includes the use of `Android Support`, the [statistics collected](https://coderus.openrepos.net/media/screenshots/zram-swap-resize-script-ram-and-swap-usage.png) by [System Monitor](https://openrepos.net/content/ade/system-monitor-fork) indicates that 1GB of `zRAM` swap is large value because its use rarely will go over 60% of its full capacity probably the best value for my use style is 768MB or even 512MB with a 5% of swappiness instead of 25% (default).
 
+<sup>________</sup>
+
 **swap offloading**
 
 Since `v0.0.8`, it has been introduced the offload parameter that enforce - as far as possible - the dump of the `zRAM` swap in order to free it:
@@ -736,7 +768,7 @@ It might fail but usually in less than one minute, it will move all your Android
 
 -----
 
-**BOOKMARKS**
+### BOOKMARKS
 
 These are few websites that worth to have in your native browser bookmark:
 
@@ -762,7 +794,7 @@ Feel free to propose your best choices or alternatives. As far as possible, I wi
 
 ----
 
-**USB MODES**
+### USB MODES
 
 This section is working in progress. Be patient. :blush:
 
@@ -777,7 +809,7 @@ or
 
 ---
 
-**DEVELOPER MODE + USB TETHERING**
+### DEVELOPER MODE + USB TETHERING
 
 Just in case you are annoyed to have too many `USB` modes to choose among and you wish not install one of these with `pkcon`:
 
@@ -800,7 +832,7 @@ Follow the instructions on the description of the link above. Before that take t
 
 ----
 
-**TIPS & HINTS**
+### TIPS & HINTS
 
 * the phone calls with wired headphones have the audio volume too high even when it is at the minimum. Using a good bluetooth earbuds pair will solve the problem and free yourself from the wire.
 
@@ -821,7 +853,7 @@ because these shortcuts will be very useful and you will use them often.
 
 ----
 
-**LIST OF TASKS TO DO**
+### LIST OF TASKS TO DO
 
 This list of suggested changes is for those Sailors hackers or Jolla that wish to improve `SFOS` and has been moved here:
 
