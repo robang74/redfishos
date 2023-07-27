@@ -439,7 +439,7 @@ Sorry, here you missed the whole point but I can understand you because I wrote 
 
 * The correct approach is to fix the `dnsmasq` and `connman` RPMs and this is clearly stated into the [patch description](https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration). Also this information should be considered acquired and accepted.
 
-* The [Quick Start Guide](https://forum.sailfishos.org/t/quick-start-guide-v1-6-3-1/15857/1) diverged from its original aim and started to collect parts that IMHO need to be fixed. Progressively with the time, it moved from being a "*end-user*" guide to a "*product-manager*" guide. Thus, it still reports my patch because it is a corner-case.
+* The [Quick Start Guide](../quick-start-guide.md) diverged from its original aim and started to collect parts that IMHO need to be fixed. Progressively with the time, it moved from being a "*end-user*" guide to a "*product-manager*" guide. Thus, it still reports my patch because it is a corner-case.
 
 * There is a huge gap between patch applications (even with a little of scripting support) and RPMs packaging because the RPMs repository - the sum of all repositories of all contributors - should NOT make a SFOS upgrade procedure fail. As you can read in the forum, the upgrade failure seems normal, instead. Or at leask a not so rare incident.
 
