@@ -221,7 +221,7 @@ Now, with the `4G` data mobile and `WiFi` tethering connections active, it sucks
 
 This is the log of that day and changes:
 
-1. in the morning I developed [this patch to fix few udev rules ](https://coderus.openrepos.net/pm2/project/x10ii-iii-udev-rules-fixing) and applied to the system - reloading and restarting the systemd-udevd and related services would have been enough but I did a reboot for be 100% sure to not have bad surprises after.
+1. in the morning I developed [this patch to fix few udev rules](https://coderus.openrepos.net/pm2/project/x10ii-iii-udev-rules-fixing) and applied to the system - reloading and restarting the systemd-udevd and related services would have been enough but I did a reboot for be 100% sure to not have bad surprises after.
 
 2. During the day, I used it with different applications and for several tasks also with `Android Support` and Android apps.
 
