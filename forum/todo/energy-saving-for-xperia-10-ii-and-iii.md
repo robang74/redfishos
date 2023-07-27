@@ -270,7 +270,6 @@ It would be possible to keep 4 cpu in a conservative mode and 4 in schedutil or 
 
 I am trying this one configuration:
 
-
 ```
 for i in /sys/devices/system/cpu/cpu[0-3]/cpufreq/scaling_governor;
 do echo "interactive" >$i; done
@@ -303,3 +302,36 @@ do echo “conservative” >$i; done
 ```
 
 The differences for Xperia 10 III in the shell script are very little.
+
+<sup>________</sup>
+
+**Sleeping CPUs**
+
+Considering also the application of the [udev patch](https://coderus.openrepos.net/pm2/project/x10ii-iii-udev-rules-fixing) at system level, when the SFOS is correctly configured the CPUs finally sleeping like dead rats while the UI is still responsive:
+
+<img src="sleeping-cpus-like-dead-rats.png" width="214px" height="500px">
+
+Despite the results achieved, these messages in the system log are NOT completely gone just mitigated. It seems that the [problem is known](https://forum.sailfishos.org/t/xperia-10-ii-bugs/6321/37) since the SFOS v4.4.0.68, at least.
+
+```
+[  +0.000108] OOM killer enabled.
+[  +0.000001] Restarting tasks ... done.
+[  +0.013891] PM: PM: suspend exit 2023-07-03 18:52:53.726781389 UTC
+[  +0.000002] PM: suspend exit
+[  +0.048486] ## mmc1: mmc_gpio_set_uim2_en: gpio=101 value=1
+[  +0.057462] PM: PM: suspend entry 2023-07-03 18:52:53.832776345 UTC
+[  +0.000005] PM: suspend entry (deep)
+[  +0.000003] PM: Syncing filesystems ... done.
+[  +0.003319] Freezing user space processes ... 
+[  +0.011845] PM: Wakeup pending, aborting suspend
+[  +0.000066] Freezing of tasks aborted after 0.011 seconds
+```
+
+These below, continues to pollute the `syslog` but I am investigating about them as well.
+
+```
+[  +1.003158] binder: 2784:2784 transaction failed 29189/-22, size 32-0 line 3096
+[  +1.001224] binder: 2784:2784 transaction failed 29189/-22, size 32-0 line 3096
+```
+
+The `transaction failed` messages are from `ofono` (pid: 2784). If killed, it re-spawns and start again to make such a show. In fact, activating the `Android Support`, it calms down.
