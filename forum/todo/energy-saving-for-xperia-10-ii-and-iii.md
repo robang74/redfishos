@@ -119,11 +119,9 @@ Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdn
 
 ### POWER SAVING TEMPLATES
 
-Considering the results from the tests aboce, which are based on some information collected in this post:
+It makes sense to develop and adopt few templates which are system configurations about power management.
 
-* https://forum.sailfishos.org/t/high-battery-drainage-xperia-10-iii/12393/321
-
-After these tests, my opinion is that the Xperia 10 II & III should be equipped with few templates (system configurations) about power management. Below, I will describe these templates in terms of their features.
+Below, the description of these templates in terms of their features.
 
 <sup>________</sup>
 
