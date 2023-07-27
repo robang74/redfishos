@@ -4,11 +4,11 @@
 + Refactoring SailFish OS 4.5.0.21 while it is running on a Sony Xperia 10 II smartphone.
 ```
 
-Support for other smartphones like Sony Xperia 10 III or IV, Gigaset GS5 and its variants in particular the Volla and the Rephone ones, could be added as far as concrete support and mainteners will be available.
-
 > :warning: **Warning**
 > 
-> this project is **NOT** related to this one: [RedFishOS by Richard Guerci](https://redfish.github.io/redfish-os/).
+> despite the same name this project is **NOT** related to this one: [RedFishOS by Richard Guerci](https://redfish.github.io/redfish-os/).
+
+Support for other smartphones like Sony Xperia 10 III or IV, Gigaset GS5 and its variants in particular the Rephone, can be added as far as concrete support will be specifically received. While the support for open hardware platforms like Pine64 or Librem smartphones can be added depending on the availability of developers and maintainers.
 
 ---
 
@@ -25,11 +25,11 @@ Roberto Foglietta is the document-id real persona name behind on-line `Roberto A
 (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
 ```
 
-in the files headers, in the ChangeLogs, in the documents authorship or referal sections, at the end of websites, etc.
+in the files headers, in the Change Logs, in the documents authorship or referal sections, on the websites footers, etc.
 
 > :information_source: **Note**
 > 
-> The report of activities and related proof of expenses will be submitted to those contributed, only. On a regular basis monthly, quarterly or yearly depending on the amount of support they trusted to delegate to my management. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
+> The report of activities and related proof of expenses will be submitted to those contributed, only. On a regular basis: monthly, quarterly or yearly depending on the amount of support. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years the date of the report.
 
 ---
 
@@ -37,7 +37,7 @@ in the files headers, in the ChangeLogs, in the documents authorship or referal 
 
 > :information_source: **Disclaimer**
 >
-> Since the beginning, the first stage has been planned in such a way to put RFOS in the most independent position from Jolla Oy - not necessarily against their interests or their profit opportunities - but because there is no reason to depend on a private company or at least as little as possible. An approach that is good for the SFOS community also because it brings more freedom for everyone wishing to continue using the apps developed for SFOS. Therefore this project is **not** directly related to Jolla Oy nor with **any** of its business affiliates.
+> Since the beginning, the first stage has been planned in such a way to put RFOS in the most independent position from Jolla Oy, not necessarily against their interests or their profit opportunities. This is because there is no reason to depend on a private company or at least as little as possible, as short as possible. An approach that is good for the SFOS community also because it brings more freedom for everyone wishing to continue using the apps developed for SFOS. Therefore this project is **not** directly related to Jolla Oy nor with **any** of its business affiliates.
 
 Refactoring the SFOS is the main aim of this project and therefore it deserves a [dedicated page](forum/todo/sailfishos-refactoring-begins.md), in brief the list of macro-activities for the **first stage**:
 
@@ -45,43 +45,49 @@ Refactoring the SFOS is the main aim of this project and therefore it deserves a
 
 * 1.2. a system patch manager that can un/apply persistent patches on the root filesystem for system services configuration;
 
-* 1.3. a early-boot backup/restore script suite with the related after-flashing system configuration shell script.
+* 1.3. a early-boot backup/restore scripts suite with the related after-flashing system configuration shell script.
   
-Without these facilities fully working, there is no reasonable chance to operate in a traceable and efficient way at OS level. Everything else will follow and be added here depending also on the supporters and contributors agendas.
+Without these facilities fully working, there is no reasonable chance to operate in a traceable and efficient way at OS level.
 
-The **second stage** of the refactoring process will be divided in few steps:
+The **second stage** of the refactoring process can be divided in few other macro-activities:
 
-* 2.1. use the recovery image to create a basic root filesystem from scratch based on full features busybox;
+* 2.1. using the recovery image to create a basic root filesystem from scratch based on full features busybox;
 
-* 2.2. including an advanced RPM tools like yum in order to leverage the CentOS 8 and Fedora 8 repository to install a set of packages that will create a fully working root filesystem back-compatible with the last available version (4.5.0.21) of SaiFish OS;
+* 2.2. including an advanced RPM tool like `yum` in order to leverage the CentOS 8 and Fedora 8 repositories to install a set of packages that will create a fully working root filesystem back-compatible with the last available version (4.5.0.21) of SaiFish OS;
 
-* 2.3. add on the top of this new RedFish OS the Jolla software layer related to the graphics UI, apps markets and the Alien Dalvik support (optional)
+* 2.3. adding on the top of the RedFish OS the Jolla software layer related to the graphics UI, apps markets and the Alien Dalvik support (optional) in order to provide a fully back-compatibility system, at least for the most significant SFOS apps currently available.
 
-Regarding the **third stage**, the agenda is still not defined but these macro-activities should be accounted:
+Regarding the **third stage**, the agenda is still not fully defined but these macro-activities should be accounted:
 
-* About the Jolla software layer, considering that `devel-su` and partially `silica` are closed source proprietary software which cannot be further developed, customised, bug-fixed and adapted/ported without the support of Jolla Oy a SWOT analysis needs to be conducted in order to evaluate alternatives which can reasonable support the apps developed for SFOS with a {zero, minimal, automatic} adaptation.
-
-  > :information_source: **Note**
-  >
-  > Thanks to Jonas Karlsson aka @Mohjive, [Glacier](https://nemomobile.net/glacier-home/) has been identified as an alternative UI but not yet evaluated.
-
-* About the last point, the support for Android apps also includes other 3rd party components like MicroG suite and before integrating such a kind of middle-ware layer a SWOT analysis needs to be conducted in order to evaluate alternatives. Under this point of view, it makes sense that unless a supporter will fund a different agenda, the Android Support will be left behind and goes in the last place of macro-activities of this refactoring project.
+* 3.1. about the Jolla software layer, considering that `devel-su` and partially `silica` are closed source proprietary software which cannot be further developed, customised, bug-fixed and adapted/ported without the support of Jolla Oy a SWOT analysis needs to be conducted in order to evaluate alternatives which can reasonable support the apps developed for SFOS with a {zero, minimal, automatic} adaptation.
 
   > :information_source: **Note**
   >
-  > Some SFOS end-users reported that [WayDroid](https://waydro.id/) can be a feasible alternative to Alien Dalvik but currently it is not completely supported by SFOS which seems reasonable considering that SFOS is bounded with Alien Dalvik and it has not a standard root filesystem like RFOS aims to deliver.
+  > Thanks to Jonas Karlsson aka @Mohjive, [Glacier](https://nemomobile.net/glacier-home/) has been identified as an alternative UI which has not been evaluated, yet.
 
-Finally the **fourth stage** will be about granting a good enough bug-free maturity level starting from the OS up to the apps level. Plus move in the direction to emancipate the hardware support from binary proprietary and closed-source firmware and blobs mainly included into the AOSP trying to leverage the effort of the [DivestOS Mobile support for Sony smartphones](https://divestos.org/pages/devices):
+* 3.2. about the support for Android apps a SWOT analysis needs to be conducted in order to evaluate alternatives to Alien Dalvik + MicroG and their effective impact in separating the RedFish OS from the SailFish OS user experience, as little as possible and for the better as much as possible.
 
-* [Sony Xperia XA2 and XA2 Ultra](https://www.gsmarena.com/compare.php3?idPhone1=8986&idPhone2=8985) (sony legacy, jolla supported)
+  > :information_source: **Note**
+  >
+  > Some SFOS end-users reported that [WayDroid](https://waydro.id/) can be a feasible alternative to Alien Dalvik but currently it is not completely supported by SFOS which seems reasonable considering that SFOS is bounded with Alien Dalvik (included in the per-users-per-device paying license) and SFOS runs on a customised root filesystem which may imply a sort of adaptation / integration for WayDroid smooth functioning.
 
-* [Sony Xperia 10 and 10 plus](https://www.gsmarena.com/compare.php3?&idPhone1=9353&idPhone2=9591) (sony legacy, jolla supported)
+Finally the **fourth stage** will be about:
 
-* [Sony Xperia XZ2 and XZ3](https://www.gsmarena.com/compare.php3?idPhone1=9081&idPhone2=9232) (sony maintained)
+* 4.1. developing and testing alternatives to every closed source software running on top of RedFish OS; 
 
-which unfortunately at the moment supports few [Sony Open Devices smartphones](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/supported-devices-and-functionality/) and not the most recent [officially supported by Jolla SailFish OS](https://shop.jolla.com/).
+* 4.2. granting a good enough bug-free maturity level starting from the OS level up to the apps level;
 
-As you can read the first stage is well defined in its aims and partially completed while the others progressively less defined in deep details, as usual in modern project management.
+* 4.3. moving in the direction to emancipate the hardware support from binary proprietary closed-source firmware and blobs mainly included into the AOSP trying to leverage the [DivestOS Mobile support for Sony smartphones](https://divestos.org/pages/devices):
+
+  * [Sony Xperia XA2 and XA2 Ultra](https://www.gsmarena.com/compare.php3?idPhone1=8986&idPhone2=8985) (sony legacy, jolla supported)
+
+  * [Sony Xperia 10 and 10 plus](https://www.gsmarena.com/compare.php3?&idPhone1=9353&idPhone2=9591) (sony legacy, jolla supported)
+
+  * [Sony Xperia XZ2 and XZ3](https://www.gsmarena.com/compare.php3?idPhone1=9081&idPhone2=9232) (sony maintained)
+
+  which unfortunately at the moment supports few [Sony Open Devices smartphones](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/supported-devices-and-functionality/) and not the most recent [officially supported by Jolla SailFish OS](https://shop.jolla.com/).
+
+As you can read the first stage is well defined in its aims and partially completed while the others progressively less and less granularly defined. As usual in modern project management best practices, the further stages of a product development will be completely defined when the previous will be completed. Moreover, some tasks can be moved from the current stage to the next if a scope change or integration need will arise. In the moment that some people will join the developing team, a project management tool will be used.
 
 ---
 
@@ -100,14 +106,14 @@ Therefore it cannot be *almost* redistributed AS-IS even if can be downloaded fo
 * [SailFish OS official documentation](https://docs.sailfishos.org/) or its [mirror](https://github.com/robang74/docs.sailfishos.org)
 * [SailFish OS official website](https://sailfishos.org/)
 
-The paid licensed version adds the support for Android integrating the proprietary [Alien Dalvik](https://en.wikipedia.org/wiki/Dalvik_Turbo_virtual_machine) middle-ware framework plus some others features. The zero-budget version is supported by its related community:
+The paid licensed version adds the support for Android apps integrating the proprietary [Alien Dalvik](https://en.wikipedia.org/wiki/Dalvik_Turbo_virtual_machine) middle-ware framework plus some other features like the support for Microsoft Exchange. Instead, the zero-budget version is supported by the SFOS community:
 
 * [Community Forum](https://forum.sailfishos.org/)
 * [Community apps repository](https://sailfish.openrepos.net/)
 * [Patch Manager Web Catalog](http://coderus.openrepos.net/pm2/)
 * [Patches by robang74](patches/README.md)
 
-Few components in SailFish OS are proprietary and the package downloaded from their shop contains such proprietary software and vendor firmware. The framework to build the images is an open source project:
+Few components in SailFish OS are proprietary and the package downloaded from Jolla shop contains such proprietary software and vendor firmware. While the framework to build the images is an open source project:
 
 * [MER project Wiki page](https://wiki.merproject.org/wiki/Main_Page)
 
@@ -115,13 +121,13 @@ Some other proprietary software and vendor firmwares came from Sony Open Device 
 
 > :information_source: **Note**
 >
-> The alternative to fulfill by yourself those obligations is to link this page which the aim is to collect all those FOSS contributions. However, you have to check by yourself if this list of resources is complete and updated with respect to the boot image that you wish to distribute.
+> In case you wish to redistribute the SFOS images, the alternative to fulfill by yourself those obligations is to link this page which one of the aims is to collect all those FOSS contributions. However, you have to check by yourself if this list of resources is complete and updated with respect to the boot image that you wish to distribute. Usually, it is not unless you have paid for it.
 
 ---
 
 ### About Xperia 10 II
 
-The Sony Xperia 10 II (codename `pdx201`) is a mid-range smartphone from Sony. It was announced in February 2020 and released in May 2020 and it [has been added](https://developer.sony.com/posts/xperia-10-ii-added-to-sonys-open-devices-program/) on Sony Open Device program in June 2020.
+The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idPhone2=10698) (codename `pdx201`) is a mid-range smartphone which was announced in February 2020, released in May 2020 and included [in June 2020](https://developer.sony.com/posts/xperia-10-ii-added-to-sonys-open-devices-program/) in the [Sony Open Device program](https://developer.sony.com/open-source/aosp-on-xperia-open-devices).
 
 ---
 
