@@ -238,3 +238,68 @@ After all, the great business that Google and Apple did was not about their `OS`
 Which is the reason because the Linux kernel won the global challenge of being adopted. Also in this case, the great business is not about the kernel itself but about all the applications that can run because that kernel delivers a consistent good `QoS` (quality of service).
 
 Think about this, because it is about the future of `SFOS` much more than everything else.
+
+---
+
+### CPU GOVERNORS
+
+> @direct85 wrote:
+>
+> Another yolo test: setting the governor to `ondemand` yields the lowest frequencies when idling, but boosting rapidly when needed:
+>
+> ```
+> echo -n "ondemand" > /sys/devices/system/cpu/cpuX/cpufreq/scaling_governor
+> ```
+>
+> where `cpuX` is `cpu0` , `cpu1` … `cpu7` .
+>
+> The default values were `schedutil` for cpu0…5 and `performance` for cpu6…7.
+
+Here there is about 100 options about power governators:
+
+* [Saber's guide on CPU governors, I/O schedulers and more!](https://forum.xda-developers.com/t/ref-guide-sabers-guide-on-cpu-governors-i-o-schedulers-and-more.3048957/)
+
+But those available are here listed:
+
+```
+# cat  /sys/devices/system/cpu/cpufreq/policy[0-7]/scaling_available_governors
+conservative powersave interactive performance schedutil
+```
+
+It would be possible to keep 4 cpu in a conservative mode and 4 in schedutil or any combination. I am not aware if it is better to run at full throttle few CPUs or keep balanced. My gut feeling indicates the second but ....
+
+I am trying this one configuration:
+
+
+```
+for i in /sys/devices/system/cpu/cpu[0-3]/cpufreq/scaling_governor;
+do echo "interactive" >$i; done
+
+for i in /sys/devices/system/cpu/cpu[4-7]/cpufreq/scaling_governor;
+do echo "conservative" >$i; done
+
+mcetool \
+	--set-power-saving-mode=enabled \
+	--set-low-power-mode=enabled \
+	--set-psm-threshold=100 \
+	--set-forced-psm=disabled \
+	--set-ps-on-demand=enabled
+```
+
+Different hardware have different configuration but most the commands are the same.
+
+* Xperia 10 III : Octa-core (2x2.0 GHz Kryo 560 Gold & 6x1.7 GHz Kryo 560 Silver)
+
+* Xperia 10 II : Octa-core (4x2.0 GHz Kryo 260 Gold & 4x1.8 GHz Kryo 260 Silver)
+
+Therefore it makes sense to have two different governor policies in the two CPUs sets:
+
+```
+for i in /sys/devices/system/cpu/cpu[0-1]/cpufreq/scaling_governor;
+do echo “ondemand” >$i; done
+
+for i in /sys/devices/system/cpu/cpu[2-7]/cpufreq/scaling_governor;
+do echo “conservative” >$i; done
+```
+
+The differences for Xperia 10 III in the shell script are very little.
