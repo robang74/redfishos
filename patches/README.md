@@ -1,7 +1,6 @@
 ## Patches by robang74
 
-This is a list of patches developed to evaluate the potential of the Patch Manager
-and how it works.
+This is a list of patches developed to evaluate the potential of `Patch Manager` and how it works.
 
 * **dnsmasq connman integration**: [description](dnsmasq-connman-integration/description.txt), patch [v0.1.1](dnsmasq-connman-integration/0.1.1-unified_diff.patch) (system) - The dnsmasq conflicts with connman because both have their own business with port 53 and /etc/resolv.conf. Therefore, a full integration between these two services is required. 
   
@@ -21,4 +20,4 @@ and how it works.
   
 * **zram swap resize script**: [description](zram-swap-resize-script/description.txt), patch [v0.0.9](zram-swap-resize-script/0.0.9-unified_diff.patch) - Provides a shell script to resize the zRAM and to off-loading it to free memory from sleeping in background apps.
 
-For more information about Patch Manager check this [analysis](../forum/knowhow/system-patch-manager-p1.md) about its shortcomings and future improvements.
+For more information about `Patch Manager`, check out this [analysis](../forum/knowhow/system-patch-manager-p1.md) about its shortcomings and future improvements.

@@ -1,17 +1,16 @@
-
 > # :warning: WARNING 
->
-> The scripts in `recovery` folder are still in alpha or beta testing do not use if you are sure about what you are doing.
 > 
-> Here below a couple of exceptions to this general rule, the scripts to generate the `recovery` and `sysdebug` archives.
->
-> However, these two archives installed into the root filesystem cab brick your system, hence you have been warned.
+> The scripts in `recovery` folder are still in alpha or beta testing. Do not use it if you are sure about what you are doing.
+> 
+> Here below are a couple of exceptions to this general rule: the scripts to generate the `recovery` and `sysdebug` archives.
+> 
+> However, these two archives installed in the root filesystem can brick your system. Hence, you have been warned.
 
 ---
 
 ## About recovery package
 
-To create this package it has been used the Centos 8 binary RPMs repository:
+To create this package, the `Centos 8` binary `aarch64` RPM repository was used:
 
 * https://vault.centos.org/centos/8/BaseOS/aarch64/os/Packages/
 
@@ -20,7 +19,7 @@ To create this package it has been used the Centos 8 binary RPMs repository:
   * rsync-3.1.3-12.el8.aarch64.rpm
   * pigz-2.4-4.el8.aarch64.rpm
 
-Just the essential utils packaged into a gzip tarball:
+Just the essential utilities packaged into a gzip tarball:
 
 * [recovery-utils.tar.gz](recovery-utils.tar.gz)
 
@@ -30,9 +29,9 @@ to explode directly on the root filesystem:
 tar -k xvzf $PWD/recovery-utils.tar.gz -C /
 ```
 
-The `-k` avoids overwriting the original files but it is supposed that they were not in place if you need this tarball.
+The `-k` avoids overwriting the original files, but it is supposed that they were not in place if you need this tarball.
 
-Or it can be exploded into the volatile `/tmp` exporting this variables:
+Or it can be exploded into the volatile `/tmp` exporting these variables:
 
 ```
 export PATH=$PATH:/tmp/usr/bin LD_LIBRARY_PATH=/tmp/usr/lib64:$LD_LIBRARY_PATH
@@ -40,19 +39,19 @@ export PATH=$PATH:/tmp/usr/bin LD_LIBRARY_PATH=/tmp/usr/lib64:$LD_LIBRARY_PATH
 
 to set properly the shell environment for using the imported binaries in `/tmp`.
 
-The script that downloads and create this tarball is here:
+The script that downloads and creates this tarball is here:
 
 * [do_recovery-utils_tgz](do_recovery-utils_tgz)
 
 The package created is less than 450Kb and it is included in this repository due to its relatively small size.
 
-What is missing is `strings` because with its dependency will have brought this package at the size of 1.5Mb while a 2x faster 16Kb version of `strings` can be compiled from [this source](strings.c) presented in the busybox developers m-list in [this thread](https://lists.busybox.net/pipermail/busybox/2023-July/090396.html).
- 
+What is missing is `strings` because its dependency will have brought this package to a size of 1.5Mb while a 2x faster 16Kb version of `strings` can be compiled from [this source](strings.c) presented in the busybox developers m-list in [this thread](https://lists.busybox.net/pipermail/busybox/2023-July/090396.html).
+
 ---
 
 ## About sysdebug package
 
-To create this package it has been used two Centos 8 binary RPMs repositories:
+To create this package, it has been used `Centos 8` and `Fedora 8` `aarch64` binary RPM repositories:
 
 * https://vault.centos.org/centos/8/BaseOS/aarch64/os/Packages/
 
@@ -66,7 +65,7 @@ To create this package it has been used two Centos 8 binary RPMs repositories:
   * libidn2-2.2.0-1.el8.aarch64.rpm
 
 * https://vault.centos.org/centos/8/AppStream/aarch64/os/Packages/
-  
+
   * tcpdump-4.9.3-2.el8.aarch64.rpm
   * nmap-ncat-7.70-6.el8.aarch64.rpm
   * bind-utils-9.11.26-6.el8.aarch64.rpm
@@ -80,10 +79,10 @@ To create this package it has been used two Centos 8 binary RPMs repositories:
 
   * arp-scan-1.10.0-1.el8.aarch64.rpm
 
-The script that downloads and creates this tarball named sysdebug-utils.tar.gz wich its size is near 4Mb. Therefore is not included in this repository. Moreover, due to its nature it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
+The script that downloads and creates this tarball is named sysdebug-utils.tar.gz, and its size is near 4Mb. Therefore, it is not included in this repository. Moreover, due to its nature, it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
 ```
 tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /
 ```
 
-The `-k` avoids overwriting the original files but it is supposed that they were not in place if you need this tarball.
+The `-k` avoids overwriting the original files, but it is supposed that they were not in place if you need this tarball.

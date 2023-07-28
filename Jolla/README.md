@@ -1,8 +1,8 @@
 ## About Jolla folder
 
-This folder contains some documentation and apps icons template and library. Some of this material is under Creative Commons while some other is copyrighted by Jolla.
+This folder contains some documentation, an app icon template, and a library. Some of this material is under Creative Commons, while others are copyrighted by Jolla.
 
-At the time I did the backup, there was not into the copyright notice "*all right reserved*" but by default the copyright is always "*all right reserved*" therefore such documentation in PDF should be considered as a fair-use backup and the original website should be consulted as long as it would be available on-line.
+At the time I did the backup, there was not a copyright notice saying "*all rights reserved*", but by default the copyright is always "*all rights reserved*". Therefore, such documentation in PDF should be considered a fair-use backup, and the original website should be consulted as long as it is available online.
 
 ### Content
 

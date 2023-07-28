@@ -2,10 +2,11 @@
 
 The goal is to have a recovery boot mode always available on-demand at users request or automatically when the system is badly bricked:
 
-* when the user leave the USB cable connected at boot time could be a way
-* when the UI cannot rise up, a file-flag is set after a watchdog expired
+* when the user leaves the USB cable connected at boot time, there could be a way
 
-Make working the recovery image because it is the starting point for everyone that seriously wants debugging / fixing their OS and for everyone that wish to experiment with the system but having a quick recovery option. For this reason the recovery boot image should be the standard and only one.
+* when the UI cannot rise up, a file-flag is set after a watchdog has expired.
+
+Make working the recovery image because it is the starting point for everyone who seriously wants to debug or fix their SFOS and for everyone who wishes to experiment with the system but has a quick recovery option. For this reason, the recovery boot image should be the standard and the only one available to install.
 
 #### BUG REPORT:
 
@@ -21,18 +22,20 @@ REGRESSION: no, AFAIK
 
 <img src="recovery-telnet-menu.png" width="588px" height="252px">
 
-on recovery boot image:
+About recovery boot image:
 
-- the `sshd` does not work because root password is not set as supposed to be;
-- the factory reset does not work because the scripts are not updated for Xperia 10 II;
-- the `fsck` is based on `busybox` 1.3.4 which requires its extensions but partially installed because only `.minix` extension is present which is useless (cfr. UPDATE #1);
-- notice about telnet 10.42.66.66 is written to small to be read by an average human;
-- the recovery image is not supposed to stay in recovery mode forever but reboot the standard SFOS after a timeout without receiving the first telnet connection;
-- even better if the recovery image would NOT boot in recovery mode unless a hardware key is pressed at boot time (volume down key?) or even better unless the phone is connected to an USB cable during the reboot (this makes even more sense).
+- the `sshd` does not work because the root password is not set as it is supposed to be;
+- the factory reset does not work because the scripts are not updated for the Xperia 10 II;
+- the `fsck` is based on `busybox` 1.3.4, which requires its extensions but is partially installed because only the `.minix` extension is present, which is useless (cfr. UPDATE #1);
+- notice that `telnet 10.42.66.66` is written too small to be read by an average human;
+- the recovery image is not supposed to stay in recovery mode forever but to reboot the standard SFOS after a timeout without receiving the first telnet connection;
+- even better if the recovery image would NOT boot in recovery mode unless the smartphone is connected by a USB cable during the reboot.
+
+About the last point, connection by USB should be intended so that the data lines are active (and in some advanced battery chargers, this is true) in such a way that a USB network interface can be raised.
 
 #### PRECONDITIONS:
 
-Have flashed into `boot_a` and `boot_b` the `hybris-recovery.img` image.
+I have flashed into `boot_a` and `boot_b` the `hybris-recovery.img` image.
 
 #### STEPS TO REPRODUCE:
 
@@ -46,7 +49,7 @@ Many but few delivered ;-)
 
 #### ACTUAL RESULT:
 
-That image is near to be useless and BTW available only after flashing the boot partitions with `fastboot`
+That image is available only after flashing the boot partitions with `fastboot` and it is likely to be useless.
 
 #### MODIFICATIONS:
 
@@ -58,7 +61,7 @@ I cannot read this:
 
 <img src="recovery-telnet-ipaddress.png" width="605px" height="185px">
 
-but using an [ASCII art generator](https://www.ascii-art-generator.org/) service it would be much easier to read and no particular changes will be required (work smart, not hard).
+but using an [ASCII art generator](https://www.ascii-art-generator.org/) service, it would be much easier to read and no particular changes would be required (work smart, not hard).
 
 <sub>
 
@@ -75,21 +78,15 @@ but using an [ASCII art generator](https://www.ascii-art-generator.org/) service
 
 </sub>
 
-This is a rendering readable even shrunk down to fit here:
+This is a rendering that is even shrunk down to fit here:
 
 <img src="recovery-telnet-rendering.png" width="607px" height="150px">
 
----
-
 About `root`:`recovery` login on `SSH`, it is enough that a system starting script set the password with the `passwd` command or set the right string into `/etc/shadow` and `/etc/shadow-`, just in case.
 
----
+<sup>________</sup>
 
-[quote="robang74, post:1, topic:16112"]
-the `fsck` is based on `busybox` 1.3.4 which requires its extensions but partially installed because only `.minix` extension is present which is useless
-[/quote]
-
-**UPDATE #1**
+#### UPDATE #1
 
 There is `/bin/e2fsck` and it would be nice that it would linked in `fsck.ext?` as far as possible.
 
@@ -103,9 +100,9 @@ In the list of supported commands included into `/bin/busybox-static`, the `fsck
 
 Here below the GitHub project with the config for the `SFOS` busybox-static and its `RPM` spec.
 
----
+<sup>________</sup>
 
-**UPDATE #2**
+#### UPDATE #2
 
 A enhanced version of `fsck.auto` is here
 
@@ -124,9 +121,9 @@ This configuration has not been tested, yet.
 
 Test can be done also with `telnet 10.42.66.66` then using `passwd` to set the root password to rescue and then use `SSH` to transfer the files.
 
----
+<sup>________</sup>
 
-**UPDATE #3**
+#### UPDATE #3
 
 I have extracted both boot images for the `SFOS` v4.5.019 and checked the differences. Then, I started to mod the recovery one. Here below, some hints:
 
@@ -146,9 +143,9 @@ Clearly, you can see the difference between the "ciao ciao" text in the 10x18 fo
 
 Finally, the image lacks `strace` and I wish to add to it because it will be very useful in the near future and for debugging purposes especially because the root filesystem (the one on which the `SFOS` usually runs) is available from the recovery boot image.
 
----
+<sup>________</sup>
 
-**UPDATE #4**
+#### UPDATE #4
 
 This is image has been created with a 6005 bytes, 121 lines shell not-optimized script.
 
@@ -167,8 +164,11 @@ Analysing the yamui code, I think that the best is NOT to add the `PBM` format t
 To integrate the `PBMz` compressed format in `yamui`, there are some options:
 
 1. integrate just the `PBM` format² statically linked (few kb) or add the `libnetpbm.so` (150kb) to the system
+
 2. integrate the `zlib` support which the library is on the system and required by `libpng` (216kb) required by `yamui`
+
 3. or create a shell script wrapper that provide decompression in `/tmp` before passing the `PBM` images to `yamui`
+
 4. evaluate to drop the support to `PNG` in favour of `PBMz` images
 
 The #3 makes sense only for a developers version in which `PBM` format is included but not yet the `zlib` one. About #4, why not? The `PNG` format is the standard most used for lossless image compression.
@@ -177,7 +177,9 @@ Why add the `PBMz` support? Because the `PBM` images can be easily created by `A
 
 The, `yamui` project came with some parts and `grep -rn "main("` on its git/source top folder tell us that the parts are three `yaumi`, `yamui-screensaverd` and `yamui-powerkey`. Having three separated binaries is not optimal for embedded systems (*and a smartphone is a class of embedded systems, in particular their rescue/boot images*). The best is the `busybox`/`toybox` approach: one single binary with several links for each function.
 
-**conclusion**
+<sup>________</sup>
+
+#### Conclusions
 
 The correct approach is to change the `yamui` code in order to let it support multiple-lines text rendering and using a print banner shell script that converts a text into a multi-lines banner which takes tenth of seconds to run.
 
@@ -185,9 +187,9 @@ The best approach is like the one presented above but with a command line option
 
 Again³ there is not a specific opened file descriptor to update this text `on-the-fly`, AFAIK.
 
----
+<sup>________</sup>
 
-**notes**
+#### Notes
 
 ¹ instead of 1120x240 pixels image, a 560x120 would have fit the bill as well but 4x less of time to convert it because 4x less of data (estimation, spoiler: *not so straight linear, dear*!).
 ² the [pdf417decode](https://github.com/robang74/pdf417decode) project on GitHub is a language-C example of such integration.
@@ -195,41 +197,35 @@ Again³ there is not a specific opened file descriptor to update this text `on-t
 
 ---
 
-[quote="spiiroin, post:6, topic:16112"]
-Yamui supports externally defined font
-[/quote]
+### About Yamui
 
-Looking at `res_create_alpha_surface()`, it is not a font but a `PNG` image and considering what I saw about the `C` definition of the font is a table of the `ASCII` printable characters (96 chars) painted in `B/W`. This brings us to appreciate the idea of a script that can generate `B/W` images in `PBM` format which can be easily converted into `PNG`. Because, it can be modified in order to create fonts for `yamui`.
+These following are some notes took while I was discussing about the recovery boot image in the SFOS community forum.
 
-[quote="nephros, post:8, topic:16112"]
-One more option could be to have a signal handler for e.g. **USR1** (or even **HUP** ) causing it to reread whatever it was initialized with.
-[/quote]
+> @spiiroin wrote:
+> 
+> Yamui supports externally defined font.
+
+Looking at `res_create_alpha_surface()`, it is not a font but a `PNG` image, and considering what I saw about the `C` definition of the font, it is a table of the `ASCII` printable characters (96 characters) painted in `B/W`. This brings us to appreciate the idea of a script that can generate `B/W` images in `PBM` format, which can be easily converted into `PNG`. Because it can be modified in order to create fonts for `yamui`.
+
+> @nephros wrote:
+> 
+> One more option could be to have a signal handler for e.g. **USR1** (or even **HUP** ) causing it to reread whatever it was initialized with.
 
 Named pipe, it is an inter-communication process (`IPC`) standard way of going. Socket is specifically tailored for d-bus communication and `kill -HUP` for reloading a daemon configuration. BTW, with `inotify`() there is no need for a signal any more as long as the write and the read are atomic, which is not a granted constraint in the most general case.
 
----
-
-**UPDATE #5**
-
-These two commits have been developed in 2h 20m. The code is completely untested and it has never been compiled yet. Therefore, it should be considered as a proof-of-concept.
+These two commits have been developed in 2h 20m. The code is completely untested, and it has never been compiled yet. Therefore, it should be considered a proof-of-concept.
 
 * https://github.com/sailfishos/yamui/compare/master...robang74:yamui:master
 
-@piiroin: I have to take care of some stuff about my real-world life. In the meantime, let me know your opinion about this approach / implementation. As soon as, this code will work as expected then the next step is to integrate the multiple-lines text rendering.
+> robang74 wrote:
+> 
+> @piiroin: I have to take care of some stuff about my real-world life. In the meantime, let me know your opinion about this approach or implementation. As soon as this code works as expected, the next step is to integrate the multiple-line text rendering.
 
----
-
-**UPDATE #6**
-
-I have uploaded into the git repository also the script that prints the banner and created the related PBM and PNG images:
+I have uploaded to the git repository the script that prints the banner and creates the related PBM and PNG images:
 
 * https://github.com/robang74/yamui/blob/master/banner/print_banner.env
 
-This script has been modified since the last tested version and it might fail to run or to run properly. It is just a proof-of-concept by now.
-
----
-
-**UPDATE #7**
+This script has been modified since the last tested version, and it might fail to run properly. It is just a proof-of-concept by now.
 
 The commits I did on my `yamui` fork compile and the results can be downloaded from here:
 
@@ -237,11 +233,7 @@ The commits I did on my `yamui` fork compile and the results can be downloaded f
 
 I have not tested it yet. If you do, you will do it at your own risk.
 
----
-
-**UPDATE #8**
-
-The recovery image, also in 4.5.0.21, have the following shortcomings:
+The recovery image, also in 4.5.0.21, has the following shortcomings.
 
 1. the `/bin/bash` is missing but can be replaced in this way:
 
@@ -261,7 +253,7 @@ sfos # busybox-static date -u -d"Jan 01 00:00:01 1970" +%s
 date: invalid date 'Jan 01 00:00:01 1970'
 ```
 
-but busybox date can deal with such date format, in fact:
+but busybox date can deal with such a format, in fact:
 
 ```
 pcos # busybox date --help 2>&1 | head -n1
@@ -269,4 +261,4 @@ busybox v1.30.1 (Ubuntu 1:1.30.1-7ubuntu3) multi-call binary.
 pcos # busybox date -u -d"Jan 01 00:00:01 1970" +%s > 1
 ```
 
-Therefore, it is depend on the options activated into `busybox` applets config
+Therefore, it depends on the options activated in the `busybox` applets config.

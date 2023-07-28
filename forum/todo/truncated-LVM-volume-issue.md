@@ -1,8 +1,8 @@
 ## Truncated LVM image issue
 
-The original title of this post was about the too old version of gnu-utils installed in the system having problems in dealing with the root filesystem overlay provided by LVM. Then, it has been discovered that the userdata image is broken due to factory truncation.
+The original title of this post was about the too-old version of gnu-utils installed in the system having problems dealing with the root filesystem overlay provided by LVM. Then, it was discovered that the `userdata` image is broken due to factory truncation.
 
-This list of documents [root volume size sources](../../Olf0/root-volume-size_sources.md) found by Olf0 is very intersting and can help to deal with the root cause of this issue.
+This list of documents [root volume size sources](../../Olf0/root-volume-size_sources.md) found by Olf0 is very interesting and can help to deal with the root cause of this issue.
 
 ```
 REPRODUCIBILITY: 100%
@@ -12,44 +12,48 @@ UI LANGUAGE: English
 REGRESSION: no, AFAIK
 ```
 
-### DESCRIPTION:
+#### DESCRIPTION
 
 The read-write upper layer does not communicate to some tools like `coreutils` `cp` and `tar` the size of the new version of the file but the one of the old underlying and overwritten.
 
-### PRECONDITIONS:
+#### PRECONDITIONS
 
-A read-write overlay, overwritten a file, using very old filesystem tools.
+A read-write overlay overwrites a file using very old filesystem tools.
 
-### STEPS TO REPRODUCE:
+#### STEPS TO REPRODUCE
 
-1) Install this tarball ([here](https://t.ly/ZJMA)) on the root as root user
+1) Install this tarball ([here](https://drive.google.com/file/d/1_SM-tNXiZO4a1PRjDWfb9iZVVF2NDJ2G/view)) on the root as the root user.
 2) Try to create the tarball back from the files with `tar cvzf`
-3) Check the tarball the /vendor/etc/gps.conf will be truncated at the size of the original file
+3) Check the tarball to see if /vendor/etc/gps.conf will be truncated to the size of the original file.
 4) Try to copy the overwritten `/vendor/etc/gps.conf` to `/tmp` with `coreutils` `cp --preserve`
 
-### EXPECTED RESULT:
+#### EXPECTED RESULT
 
 The file should be copied or archived correctly with its newest size and content.
 
-### ACTUAL RESULT:
+#### ACTUAL RESULT
 
-The file is shorten at the original size
+The file is shorted to its original size.
 
-### MODIFICATIONS:
+#### MODIFICATIONS
 
-Compile a new version of `tar` that supports the overlays or use the one included into `busybox` which requires it to be recompiled to offer the `tar` command as well.
+Compile a new version of `tar` that supports the overlays, or use the one included in `busybox` which requires it to be recompiled to offer the `tar` command as well.
 
-### ADDITIONAL INFORMATION:
+#### ADDITIONAL INFORMATION
 
-The file `/vendor/etc/gps.conf` is read for the Qualcomm modem/`GPS`, if it is read at its original size, then it is completely useless for configuring the modem unless everything would stay into the original size (removing all the comments, for example). I fear that links on overlay would give a similar result or worse.
+The file `/vendor/etc/gps.conf` is read for the Qualcomm modem/`GPS`. If it is read at its original size, then it is completely useless for configuring the modem unless everything stays in the original size (removing all the comments, for example). I fear that links on overlay would give a similar result or worse.
 
 ---
 
 ### UPDATE #1
 
-If you cannot reproduce this bug in a freshly installed SFOS, then cause a hard-shutdown pressing down all the lateral hardware buttons. This will make the fake-root filesystem to be interrupted in a dirty way. I did few times with my smartphone this procedure because I made things with it hardware/systemd services that brings it to a unmanageable state. Hardware forced shutdone is not a every-day procedure but it can happen in an end-user scenario and SFOS should deal properly with it.
+> :information_source: **Spoiler**
+> 
+> those below are hypotheses that are not relevant anymore, but the LVM userdata image, which contains the root filesystem, is delivered truncated by the factory.
 
-Instead, if the bug is 100% reproducible in a freshly installed SFOS system, its nature is because part of the system has been upgraded while some others parts remain behind and that parts are too old. However, another reasonable question is: hardware which accesses directly or indirectly to configuration files can do these operations in a times/ways for which fake-root is not yet ready or not supported. Without a specific investigation and a deep knowledge about the filesystem stack, it is not easy to determine with a black-box analysis.
+If you cannot reproduce this bug in a freshly installed SFOS, then cause a hard shutdown by pressing down all the lateral hardware buttons. This will cause the fake-root filesystem to be interrupted in a dirty way. I performed this procedure a few times with my smartphone because I did things with its hardware and system services that caused it to become unmanageable. Hardware-forced shutdown is not an every-day procedure, but it can happen in an end-user scenario, and SFOS should deal properly with it.
+
+Instead, if the bug is 100% reproducible in a freshly installed SFOS system, its nature is because part of the system has been upgraded while some other parts remain behind and those parts are too old. However, another reasonable question is: hardware that accesses configuration files directly or indirectly can do these operations in times or ways for which the root filesystem is not yet ready or not supported. Without a specific investigation and deep knowledge about the filesystem stack, it is not easy to determine with a black-box analysis.
 
 ---
 
@@ -57,7 +61,7 @@ Instead, if the bug is 100% reproducible in a freshly installed SFOS system, its
 
 The file userdata `LVM` system is working on the edge of an emotional collapse because it has been truncated at its birth in the factory:
 
-<small>
+<sub>
 
 ```
 $ simg2img sailfish.img001 sailfish.img001.raw
@@ -70,15 +74,18 @@ $ sudo lvscan
   ACTIVE            '/dev/sailfish/root' [1.61 GiB] inherit
   inactive          '/dev/sailfish/home' [32.00 MiB] inherit
 ```
-</small>
+
+</sub>
 
 There is no way to deal with an operative system running on a factory-truncated `LVM` filesystem AFAIK.
 
-Below there is the report of the state of the internal storage taken after a complete reflash of the smartphone with the `hybris-recovery.img` which suffers of some shortcoming, reported [here](recovery-image-refactoring.md). 
+Below there is the report of the state of the internal storage taken after a complete reflash of the smartphone with the `hybris-recovery.img` which suffers from some shortcoming, reported [here](recovery-image-refactoring.md), but can provide some facilities, which was enough for this investigation.
 
-**todo**: I will also add the information available after the installation but I have double checked them because I saw things that you would not believe like a `GPT` partition (broken at the end of the truncated image) of 2TB with 97GB available only.
+> :information_source: **todo**
+> 
+> It would be useful adding the information available after the first normal boot but I have to double checked them because I saw things that you would not believe like a `GPT` partition (broken at the end of the truncated image) of 2TB with 97GB available only.
 
-<small>
+<sub>
 
 ```
 -----------------------------
@@ -435,4 +442,4 @@ root@10.42.66.66's password:
 root@10.42.66.66: Permission denied (publickey,password,keyboard-interactive).
 ```
 
-</small>
+</sub>
