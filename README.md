@@ -195,6 +195,14 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ---
 
+## Forum
+
+RedFish OS will probably (*never say never*) never have a dedicated forum, and the reason is that the "*forum*" is a Latin word that, in its etymological roots, is equivalent to "*agorà*" in ancient Greek meaning: a public physical place where people living in the same geographical area are used to meet each other for a variety of social activities, and not all of those activities are reputable as good, also for the moral and ethical of that time.
+
+Therefore, if you like the "forum" concept, embrace it in its original meaning and go out of your home or office and make friends in the real world. The only reasonable way to use a platform like a virtual e-forum is to use it as a wiki or a bulletin board, and also for these purposes, it is not the best tool because it easily drives people out of their tracks. In fact, in a virtual environment, the social dynamics are different.
+
+---
+
 ## Licence
 
 Almost all the files are under one of many FOSS licenses, and the others are in the public domain. Instead, the composition of these files is protected by the GPLv3 license under the effects of the Copyright Act, title 17. U.S.C. § 101.
