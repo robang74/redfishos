@@ -12,6 +12,8 @@ This is a list of original contents written in the SailFish OS community forum:
 
 More contributions will be added later.
 
+---
+
 ## Knowhow from the forum
 
 This is a list of relevant information shared in and collected from the SailFish OS community forum:
