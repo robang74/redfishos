@@ -7,7 +7,7 @@
 
 ---
 
-### APPROACH
+### Approach
 
 Recently, I set the energy saving mode at 100% of the battery threshold, which means it is always active:
 
@@ -17,7 +17,7 @@ Moreover, I dimmed the brightness of the screen to the minimum, and I have insta
 
 ---
 
-### DATA COLLECTED
+### Data collected
 
 The [System Monitor](https://openrepos.net/content/basil/system-monitor) has been running since the beginning and collecting data. Here is a composition of what I found:
 
@@ -27,7 +27,7 @@ The high-resolution image is available for download from [here](https://drive.go
 
 ---
 
-### SCENARIO
+### Scenario
 
 In the area highlighted, the smartphone was resting alone with neither a native nor an Android application apparently running and with `Android Support` active.
 
@@ -35,7 +35,7 @@ Despite this, the activity about system processes was more intense than normal u
 
 ---
 
-### OBSERVATIONS
+### Observations
 
 Counter side effects: some sub-systems were not working when the smartphone was woken up. In this specific case, the Bluetooth. More often than not, the fingerprint reader gets asleep and probably should be reset for being awaken.
 
@@ -47,7 +47,7 @@ This [Reduce settings app lag](https://coderus.openrepos.net/pm2/project/sfos-pa
 
 ---
 
-### PROPOSAL
+### Proposal
 
 The `START` / `STOP` states for the `Android Support` are not enough because, when clicking on an Android app, the `Android Support` starts automatically. It would be much better to have an option to disable `Android Support` to avoid that it can support any application without the express will of the user:
 
@@ -60,7 +60,7 @@ With these options, Android Support can be safely disabled but quickly given if 
 
 ---
 
-### FURTHER INVESTIGATION
+### Further investigation
 
 My Xperia 10 II is running with energy and power saving always active, and at the beginning it showed some troubles with Bluetooth and fingerprint reader awakening, which forced me to reset those sub-systems.
 
@@ -121,7 +121,7 @@ Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdn
 
 ---
 
-### CPU GOVERNORS
+### CPU governors
 
 > @direct85 wrote:
 >
@@ -215,6 +215,16 @@ These below, continue to pollute the `syslog` but I am investigating them as wel
 ```
 
 The `transaction failed` messages are from `ofono` (pid: 2784). If killed, it respawns and starts again to make such a show. In fact, after activating the `Android Support`, it calms down.
+
+---
+
+### Most time-active processes
+
+The most promising candidates for optimizations are `d-bus` and `lipstick` daemons because, using `htop` and ordering the processes for time spent in `CPU`, these two are the winners.
+
+However, with the `udevd` patch above applied and the power management configuration shown in the CPU GOVERNORS section, the `CPU` usage did not impact the battery anymore.
+
+In fact, the discharge rate with `4G` and `WiFi` tethering active is around 6% per hour, which means that with a fully charged battery, there are about 16 hours of working as a 4G-Wifi tethering router with some sporadic user interactions.
 
 ---
 
