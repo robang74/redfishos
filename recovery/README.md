@@ -71,6 +71,12 @@ tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /
 
 The `-k` avoids overwriting the original files, but it is supposed that they were not in place if you need this tarball.
 
+<sup>________</sup>
+
+> :warning: **WARNING**
+>
+> In the `sysdebug` tarball is included `stress-ng` a command-line tool that can put your smartphone's CPUs under full work-load. This tools is not a 100% harmless toy because, in the unlucky scenario in which the CPUs' thermal throttle is broken, down, or whatever but not correctly functioning, you seriously risk literally cooking your smartphone. Therefore, the first time you play with it to stress your CPUs herd, pay close attention to their temperature, and `System Monitor` may not help but trick you because monitoring my Xperia 10 II, it reports 36°C all the time.
+
 ---
 
 ### Scripts dependencies
