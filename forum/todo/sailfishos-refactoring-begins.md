@@ -72,3 +72,8 @@ Considering the shortcomings above and the related needs, the following is going
 
 Almost all of this material is available in the [recovery folder](../../recovery/README.md). To be continued, stay tuned :exclamation:
 
+---
+
+### News & updates
+
+* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md) - shell scripts suite available for advanced users testing
