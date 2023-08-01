@@ -12,6 +12,21 @@ Support for other smartphones like the Sony Xperia 10 III or IV, Gigaset GS5 and
 
 ---
 
+### Index
+
+1. [Fund raising](#fund-raising)
+2. [About SFOS refactoring](#about-sfos-refactoring)
+3. [About SailFish OS](#about-sailfish-os)
+4. [About Xperia 10 II](#about-xperia-10-ii)
+5. [About Open Device program](#about-open-device-program)
+6. [Useful documentation](#useful-documentation)
+7. [List of components](#list-of-components)
+8. [News and updates](#news--updates)
+9. [Forum](#forum)
+10. [License](#license)
+
+---
+
 ### Fund raising
 
 As much as you are interested in this project, you can concretely support a specific task or just provide a free donation.
@@ -170,7 +185,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ---
 
-### List of components available on Github
+### List of components
 
 * [hibrys boot](https://github.com/robang74/hybris-boot) - This project enables the building of boot images for Google Android fastboot based devices.
 * [yamui](https://github.com/robang74/yamui) - Yet Another Minimal UI. Tool for displaying graphical notifications in minimal environments like early boot/initrd, build-able by Github action :exclamation:
@@ -197,7 +212,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ---
 
-### News & Updates
+### News & updates
 
 * 26.05.2023, a second hand Sony Xperia 10 II arrived in excellent conditions.
 
@@ -233,7 +248,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ---
 
-## Forum
+### Forum
 
 RedFish OS will probably (*never say never*) never have a dedicated forum, and the reason is that the "*forum*" is a Latin word that, in its etymological roots, is equivalent to "*agorà*" in ancient Greek meaning: a public physical place where people living in the same geographical area are used to meet each other for a variety of social activities, and not all of those activities are reputable as good, also for the moral and ethical of that time.
 
@@ -241,7 +256,7 @@ Therefore, if you like the "forum" concept, embrace it in its original meaning a
 
 ---
 
-## License
+### License
 
 Almost all the files are under one of many FOSS licenses, and the others are in the public domain. Instead, the composition of these files is protected by the GPLv3 license under the effects of the Copyright Act, title 17. U.S.C. § 101.
 
