@@ -82,4 +82,7 @@ This list of suggested changes is for those Sailors hackers or Jolla employees t
 
 * add an emergency immediate user data deletion / reset inserting a special `PIN` during the request of the device unlock `PIN` both during the boot or the screen unlocking procedure. A way to implement this, is a secure erase of the `LUKS` key and continue/force the reboot which will land to a default `SFOS` installation in such a way the smartphone will be brought back to the factory settings. About the `SD`/`MMC` card inside if it is present: a similar procedure can be performed but only if the user decided to encrypt it otherwise it is assumed that data is not sensitive by choice.
 
+* these `adaptation0` `aliendalvik` `sailfish-eas` `xt9` repositories are enabled by default, but it is wrong because they can be refreshed only when the device has a Jolla account. Otherwise, a relative long timeout for each of them keeps the refresh procedure stuck. Therefore, the Jolla account creation and deletion actions must take care of enabling and disabling them, which must be set as disabled by default.
+
 * do not let `lxc@multi-user.service` fails for no reason.
+
