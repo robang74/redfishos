@@ -33,6 +33,12 @@ in the files headers, in the Change Logs, in the documents authorship or referal
 
 ---
 
+### News & Updates
+
+* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md) - shell scripts suite available for advanced users testing
+
+---
+
 ### About SFOS refactoring
 
 > :information_source: **Disclaimer**
