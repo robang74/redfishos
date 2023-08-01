@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#           Released under the GPLv2 license terms.
+#
+################################################################################
 
 tar_dir="etc bin usr var"
 name="recovery-utils"
@@ -37,9 +42,9 @@ lib_escl="libopcodes"
 
 cd usr/bin; sudo ln -sf unpigz pigz; cd - >/dev/null
 sudo tar cvzf ../$tgz --exclude="usr/lib" --exclude="usr/share" \
-	$(for i in $bin_excl; do echo --exclude=usr/*bin/$i --exclude=*bin/$i; \
-	done) $(for i in $lib_excl; do echo --exclude=usr/lib*/$i*; done) \
-	$(ls -1d $tar_dir 2>/dev/null)
+	$(for i in $lib_excl; do echo --exclude={,usr/}lib*/$i*; done; \
+	  for i in $bin_excl; do echo --exclude={,usr/}*bin/$i; done;) \
+	$(find ./ ! -name \*.rpm -maxdepth 1|cut -d/ -f2-)
 cd ..
 
 sudo chown -R $USER.$USER $tgz
@@ -47,34 +52,22 @@ echo; du -ks $tgz | tr '\t' ' '
 
 if [ "x$1" = "x--ssh-test" ]; then shift #======================================
 
-srcfile="$(dirname $0)/sfos-ssh-connect.env"
-if [ ! -r "$srcfile" ]; then
-	srcfile="/usr/bin/sfos-ssh-connect.env"
-fi
-if [ ! -r "$srcfile" ]; then
-	echo
-	echo "ERROR: sfos-ssh-connect.env not found, abort."
-	echo
-fi
+pcos_source_env() {
+	local srcfile="$(dirname $0)/$1.env"
+	if [ ! -r "$srcfile" ]; then
+		srcfile="/usr/bin/$1.env"
+	fi
+	if [ ! -r "$srcfile" ]; then
+		echo
+		echo "ERROR: $1.env not found, abort."
+		echo
+		return 1
+	fi >&2
+	source $1.env
+}
 
-source $srcfile
-echo; afish getip
+pcos_source_env do_ssh_ldd_test_utils
 
-tmpf=$(mktemp -p ${TMPDIR:-/tmp} -t lddout.XXXX)
-
-scp $tgz root@${sfos_ipaddr}:/tmp; 
-sfish 'cd /tmp; rm -rf tb; mkdir -p tb; tar xzf '$tgz' -C tb; (export'\
-' LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-/tmp/tb}:/tmp/tb/lib64:/tmp/tb/lib:'\
-'/tmp/tb/usr/lib:/tmp/tb/usr/lib64; find tb -type f | xargs ldd) 2>&1 |'\
-' egrep ":|found" | grep -v "warning:"' >$tmpf
-
-if grep -q "found" $tmpf; then
-	echo -e "\nldd check: KO\n"
-	cat $tmpf
-	echo
-else
-	echo -e "\nldd check: OK\n"
-fi
-rm -f $tmpf
+do_ssh_ldd_test_utils
 
 fi #============================================================================
