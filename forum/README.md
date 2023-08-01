@@ -2,7 +2,7 @@
 
 This is a list of original contents written in the SailFish OS community forum:
 
-* [Quick Start Guide](./quick-start-guide.md) - An end-users step-by-step guide for a quick start.
+* [Quick Start Guide](quick-start-guide.md) - An end-users step-by-step guide for a quick start.
 
 * [A list of tasks and changes](./tasks-and-changes-todo.md) - There is a lot to do to improve and bugfix the SailFish OS.
 
@@ -16,10 +16,12 @@ More contributions will be added later.
 
 This is a list of relevant information shared in and collected from the SailFish OS community forum:
 
-* [Sony Xperia flashing guide](./knowhow/flashing-tools-for-Xperia-phones.md)  - Some practical knowledge for integrating Jolla's official procedure.
+* [Sony Xperia flashing guide](knowhow/flashing-tools-for-Xperia-phones.md)  - Some practical knowledge for integrating Jolla's official procedure.
 
-* [System Patch Manager p.1](./knowhow/scripting-for-patch-manager.md) - A collection of considerations about system patch management.
+* [System Patch Manager p.1](knowhow/scripting-for-patch-manager.md) - A collection of considerations about system patch management.
 
-* [Battery recharge and powersaving](./knowhow/battery-recharge-and-power-saving.md) - Some considerations about making the SFOS run longer.
+* [Battery recharge and powersaving](knowhow/battery-recharge-and-power-saving.md) - Some considerations about making the SFOS run longer.
+
+* [Standby battery high drain](knowhow/standby-battery-high-drain-on-x10iii.md) - Some considerations about battery lifespan in standby.
 
 More contributions will be added later.
