@@ -35,7 +35,17 @@ in the files headers, in the Change Logs, in the documents authorship or referal
 
 ### News & Updates
 
-* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md) - shell scripts suite available for advanced users testing
+* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md)
+
+    **description**: shell scripts suite for the first boot setup after flashing
+
+    **status**: ready for advanced users testing
+
+* 01.08.2023, [sysdebug and recovery tarballs](https://github.com/robang74/redfishos/blob/main/recovery/README.md)
+
+    **description**: shell scripts that produce tarballs for debugging and recovering
+
+    **status**: ready for advanced users testing
 
 ---
 
