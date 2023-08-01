@@ -220,6 +220,12 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 * 12.07.2023, this repository has been created as a private project.
 
+* 13.07.2023, [github SFOS apps build](https://github.com/robang74/github-sfos-apps-build)
+
+    **description**: github action for building SailFish OS apps and other RPM packages.
+
+    **status**: ready for app developers, easy to deploy, with SDK 4.5.0.16 container mirror.
+
 * 21.07.2023, [sailfish-os-busybox 1.36.1-git2-raf3](https://github.com/robang74/sailfish-os-busybox#readme)
 
     **description**: full features static and dynamic linked busybox build RPMs correctly for all the architectures.
