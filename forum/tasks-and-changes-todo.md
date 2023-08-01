@@ -16,7 +16,7 @@ This list of suggested changes is for those Sailors hackers or Jolla employees t
 
 * energy saver at 50%, 100% battery threshold and hysteresis at 87% is too much, 85% at least ([here](knowhow/battery-recharge-and-power-saving.md)) also for 80% the 75% hysteresis threshold is suggested. Probably the 95%-90% and 80%-75% would address the needs of those that have a fully functional battery and those that do not.
 
-* implementing power saving templates ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md#power-saving-templates)) to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
+* implementing power saving templates ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md#power-saving-templates)) to better dealing with Bluetooth crazy CPU usage ([>here](bluetooth-crazy-CPU-usage.md)) and ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
 
 * adding more options for device lock considering that 1 minute seems to be the finest granularity. ([>here](todo/device-lock-more-options.md)).
 
