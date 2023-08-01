@@ -1,7 +1,7 @@
 # RedFish OS
 
 ```diff
-+ Refactoring SailFish OS 4.5.0.21 while it is running on a Sony Xperia 10 II smartphone.
++ Refactoring SailFish OS while it is running on a Sony Xperia 10 II
 ```
 
 > :warning: **Warning**
