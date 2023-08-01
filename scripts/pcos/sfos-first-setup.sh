@@ -27,9 +27,9 @@ test -n "${2:-}" || exit 1
 rpm_list_1="
 pigz tcpdump bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
 mce-tools sailfish-filemanager xz sailfish-filemanager-l10n-all-translations
-rsync
+rsync patch
 "
-rpm_list_2="harbour-file-browser harbour-todolist harbour-qrclip patch"
+rpm_list_2="" #"harbour-file-browser harbour-todolist harbour-qrclip"
 sfos_hostname="redfishos"
 
 echo
@@ -50,18 +50,17 @@ hostname  >/etc/hostname
 echo
 echo "=> Repository selection"
 echo "   \_this operation will take a minute, wait..."
-echo
-ssu status | tee /tmp/ssu.status
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
-if grep -q 'status: not registered' /tmp/ssu.status; then
-	for i in $repo_list; do ssu disablerepo $i; done
-	ssu_status="an unregistered"
-    rpm_list_2=''
-else
+if ssu repos | grep -q "[ -]* store ..."; then
+	echo "   \_jolla store: found, enabling all repositories..."
 	for i in $repo_list; do ssu enablerepo $i; done
-	ssu_status="a registered"
+	ssu_status="Jolla"
+else
+	echo "   \_jolla store: not found, disabling some repositories..."
+	for i in $repo_list; do ssu disablerepo $i; done
+	ssu_status="Linux"
+    rpm_list_2=''
 fi
-rm -f /tmp/ssu.status
 echo; ssu repos
 
 echo
@@ -83,7 +82,7 @@ if [ -n "$rpm_list_1" ]; then
 fi
 
 echo
-echo "=> Initial setup of $ssu_status device completed."
+echo "=> Initial setup of a $ssu_status device completed."
 echo
 
 else ## pcos ###################################################################
