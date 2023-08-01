@@ -18,9 +18,9 @@ This list of suggested changes is for those Sailors hackers or Jolla employees t
 
 * implementing power saving templates ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md#power-saving-templates)) to better dealing with this aspect ([>here](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)) and ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
 
-* device lock adding 5/10/30/60 seconds, also ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/3)). Much probably adding just 1 minute to the list because it seems to be the finest granularity. ([>here](https://forum.sailfishos.org/t/custom-timeouts-for-automatic-device-lock-or-at-least-more-options/8513/6)).
+* adding more options for device lock considering that 1 minute seems to be the finest granularity. ([>here](todo/device-lock-more-options.md)).
 
-* fingerprint reader and bluetooth awakening or a fingerprint restart icon/link in lockscreen ([>here](https://forum.sailfishos.org/t/fingerprint-reader-restart-in-lockscreen/15878/4)) but probably the best approach is to `start sailfish-fpd` service just in those few cases - just 2 - it is needed and bring down soon after it did its work. ([>here](https://forum.sailfishos.org/t/patches-by-ichthyosaurus/15387/48)).
+* provide a fingerprint restart icon/link in lockscreen ([>here](todo/fingerprint-reader-restart-in-lockscreen.md)) but probably the best approach is to `start sailfish-fpd` service just in those few cases - just two - it is needed and bring down soon after it did its work.
 
 * add an option for disabling the `Android Support` autostart and keep it sleeping/ready to start. ([here](todo/energy-saving-for-xperia-10-ii-and-iii.md)).
 
