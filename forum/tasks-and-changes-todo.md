@@ -60,7 +60,7 @@ This list of suggested changes is for those Sailors hackers or Jolla employees t
 
 **REQUEST OF CHANGES**
 
-* the `sleep 1` takes between 1s and 2.6s to expire on Xperia 10 II despite the power saving mode but power saving makes this **HUGE** time jittering more probable. This should be fixed because it can create more nasty problems and it is an indicator (common root cause, I suppose) of **HUGE** lag in interactive processes.
+* the `sleep 1` takes between 1s and 12s to expire on Xperia 10 II despite the power saving mode but power saving makes this **HUGE** time jittering more probable. This should be fixed because it can create more nasty problems and it is an indicator (common root cause, I suppose) of **HUGE** lag in interactive processes.
 
 * when `ofono` service starts the `GPS`/modem has just read the configuration files from the original vendor partition not from the root overlay under which is mounted and this is the main reason because it is always a cold start.
 
