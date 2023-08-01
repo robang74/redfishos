@@ -218,7 +218,7 @@ The `transaction failed` messages are from `ofono` (pid: 2784). If killed, it re
 
 ---
 
-### POWER SAVING TEMPLATES
+## Power saving templates
 
 It makes sense to develop and adopt a few templates, which are system configurations about power management.
 
@@ -302,7 +302,7 @@ These following settings apply to all the power management templates.
 
 ---
 
-### ABOUT THE FUTURE OF SFOS
+## About the future of SFOS
 
 Before answering this question, we should agree on what is `SFOS` and what is not. However, I wish to skip this premise and go straight to the point with this image:
 
