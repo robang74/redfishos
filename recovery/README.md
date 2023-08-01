@@ -84,3 +84,13 @@ Both scripts requires some extra dependencies, if they are executed with `--ssh-
 * [sfos-ssh-connect-env patch](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above. 
 
 The `--ssh-test` enables shell script code which copy and test via SSH the tarball content about libraries dependency with `ldd`.
+
+---
+
+### Full features busybox
+
+Most - but not all - the command-line binaries included into these tarballs can be replaced by those available into the full features busybox statically linked available at the link here below:
+
+* [sailfish-os-busybox 1.36.1-git2-raf3 all-arch .zip archive](https://github.com/robang74/sailfish-os-busybox/suites/14532585331/artifacts/822197317)
+
+Before installing any of the RPM package contained in that .zip archive read [this page](https://github.com/robang74/sailfish-os-busybox#readme).
