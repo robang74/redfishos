@@ -6,9 +6,9 @@
 
 This script provides a *standard* system configuration immediately after the first boot, after the flashing procedure:
 
-* [pcos / sfos-first-setup.sh](https://github.com/robang74/redfishos/blob/main/scripts/pcos/sfos-first-setup.sh) is now available for testing by advanced end-user
+* [pcos / sfos-first-setup.sh](sfos-first-setup.sh) is now available for testing by advanced end-user
 
-* [pcos / sfos-ssh-connect.env](https://github.com/robang74/redfishos/blob/main/scripts/pcos/sfos-ssh-connect.env) - is the bash environment required by the script above for SSH automatic connection.
+* [pcos / sfos-ssh-connect.env](sfos-ssh-connect.env) - is the bash environment required by the script above for SSH automatic connection.
 
 * [sfos-ssh-connect-env patch](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above. 
 
