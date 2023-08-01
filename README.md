@@ -109,13 +109,13 @@ Finally, the **fourth stage** will be about:
 
 * 4.3. moving in the direction to emancipate the hardware support from binary proprietary closed-source firmware and blobs mainly included in the AOSP trying to leverage the [DivestOS Mobile support for Sony smartphones](https://divestos.org/pages/devices):
 
-  * [Sony Xperia XA2 and XA2 Ultra](https://www.gsmarena.com/compare.php3?idPhone1=8986&idPhone2=8985) (sony legacy, jolla supported)
+    * [Sony Xperia XA2 and XA2 Ultra](https://www.gsmarena.com/compare.php3?idPhone1=8986&idPhone2=8985) (sony legacy, jolla supported)
 
-  * [Sony Xperia 10 and 10 plus](https://www.gsmarena.com/compare.php3?&idPhone1=9353&idPhone2=9591) (sony legacy, jolla supported)
+    * [Sony Xperia 10 and 10 plus](https://www.gsmarena.com/compare.php3?&idPhone1=9353&idPhone2=9591) (sony legacy, jolla supported)
 
-  * [Sony Xperia XZ2 and XZ3](https://www.gsmarena.com/compare.php3?idPhone1=9081&idPhone2=9232) (sony maintained)
+    * [Sony Xperia XZ2 and XZ3](https://www.gsmarena.com/compare.php3?idPhone1=9081&idPhone2=9232) (sony maintained)
 
-  which unfortunately at the moment supports few [Sony Open Devices smartphones](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/supported-devices-and-functionality/) and not the most recent [officially supported by Jolla SailFish OS](https://shop.jolla.com/).
+    which unfortunately at the moment supports few [Sony Open Devices](https://developerworld.wpp.developer.sony.com/open-source/aosp-on-xperia-open-devices/get-started/supported-devices-and-functionality/) smartphones and not the most recent [supported by Jolla](https://shop.jolla.com/).
 
 As you can see, the first stage is well defined in its aims and partially completed, while the others are progressively less and less granularly defined. As usual in modern project management best practises, the next stages of product development will be completely defined when the previous ones are completed.
 
