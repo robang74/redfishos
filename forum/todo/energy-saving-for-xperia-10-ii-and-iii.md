@@ -320,7 +320,7 @@ Before answering this question, we should agree on what is `SFOS` and what is no
 
 The original high-resolution image is [here](https://drive.google.com/file/d/1TojQHjOUG_fB1MJbPXxj0fAQP3Dp48Bf/view).
 
-What does this image show? A sleeping system, when untouched, consumes 5% of battery per hour, which means 20 hours of standby. It is not a great achievement because it should be 100 hours of standby for an optimised system ([here](https://forum.sailfishos.org/t/standby-battery-high-drain-on-xperia-10-iii/15208/12)).
+What does this image show? A sleeping system, when untouched, consumes 5% of battery per hour, which means 20 hours of standby. It is not a great achievement because it should be 100 hours of standby for an optimised system ([here](../knowhow/standby-battery-high-drain-on-x10iii.md)).
 
 On the other hand, we notice that `CPU` stops being polluted, falls asleep, and awakens constantly (sleep, awake, sleep, awake), apparently without a real need. BTW, the system consumed 5%/h of battery - while untouched with the `CPU` s which **NEVER** goes to sleep. This means that apart from the display consumption and `4G` and `WiFi` connections, the system was running 100% of the time.
 
