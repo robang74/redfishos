@@ -31,21 +31,7 @@ in the files headers, in the Change Logs, in the documents authorship or referal
 > 
 > The report of activities and related proof of expenses will be submitted only to those who contributed. On a regular basis: monthly, quarterly, or yearly, depending on the amount of support. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years from the date of the report.
 
----
-
-### News & Updates
-
-* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md)
-
-    **description**: shell scripts suite for the first boot setup after flashing
-
-    **status**: ready for advanced users testing
-
-* 01.08.2023, [sysdebug and recovery tarballs](https://github.com/robang74/redfishos/blob/main/recovery/README.md)
-
-    **description**: shell scripts that produce tarballs for debugging and recovering
-
-    **status**: ready for advanced users testing
+If you are visiting this page to be updated about the project progression, jump to the [news & updates] section. 
 
 ---
 
@@ -211,6 +197,42 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ---
 
+### News & Updates
+
+* 26.05.2023, a second hand Sony Xperia 10 II arrived in excellent conditions.
+
+* 01.07.2023, a Jolla SFOS license bought to install the Android Support.
+
+* 12.07.2023, this repository has been created as a private project.
+
+* 21.07.2023, [sailfish-os-busybox 1.36.1-git2-raf3](https://github.com/robang74/sailfish-os-busybox#readme)
+
+    **description**: full features static and dynamic linked busybox build RPMs correctly for all the architectures.
+
+    **status**: ready for advanced users testing.
+
+* 25.07.2023, this repository has been public and the RedFish OS project launched.
+
+* 31.07.2023, [All .md files: content review and re-organisation, v3](https://github.com/robang74/redfishos/commit/d28fae223e2be655e5adf46d986abd83d05cb26d)
+
+    **description**: review and reorganisation of all .md files collected since the beginning.
+
+    **status**: ready for everybody, documents collection continues. 
+
+* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md)
+
+    **description**: shell scripts suite for the first boot setup after flashing
+
+    **status**: ready for advanced users testing.
+
+* 01.08.2023, [sysdebug and recovery tarballs](https://github.com/robang74/redfishos/blob/main/recovery/README.md)
+
+    **description**: shell scripts that produce tarballs for debugging and recovering
+
+    **status**: ready for advanced users testing.
+
+---
+
 ## Forum
 
 RedFish OS will probably (*never say never*) never have a dedicated forum, and the reason is that the "*forum*" is a Latin word that, in its etymological roots, is equivalent to "*agorà*" in ancient Greek meaning: a public physical place where people living in the same geographical area are used to meet each other for a variety of social activities, and not all of those activities are reputable as good, also for the moral and ethical of that time.
@@ -219,7 +241,7 @@ Therefore, if you like the "forum" concept, embrace it in its original meaning a
 
 ---
 
-## Licence
+## License
 
 Almost all the files are under one of many FOSS licenses, and the others are in the public domain. Instead, the composition of these files is protected by the GPLv3 license under the effects of the Copyright Act, title 17. U.S.C. § 101.
 
