@@ -39,17 +39,17 @@ Despite this, the activity about system processes was more intense than normal u
 
 Counter side effects: some sub-systems were not working when the smartphone was woken up. In this specific case, the Bluetooth. More often than not, the fingerprint reader gets asleep and probably should be reset for being awaken.
 
-* [Fingerprint reader restart in LockScreen](fingerprint-reader-restart-in-lockscreen.md)
+* [fingerprint reader restart in LockScreen](fingerprint-reader-restart-in-lockscreen.md)
 
 There is a huge opportunity to extend the battery life by leveraging the power-saving mode as long as all the hardware subsystems are awakened correctly, but at the expense of the response time because applications are starting to lag a bit.
 
-This [Reduce settings app lag](https://coderus.openrepos.net/pm2/project/sfos-patch-settings-fix-startup-lag) patch changes the way in which the visualisation of some SFOS native menus or apps are presented but not the time an Android app needs for being put in run.
+This [reduce settings app lag](https://coderus.openrepos.net/pm2/project/sfos-patch-settings-fix-startup-lag) patch changes the way in which the visualisation of some SFOS native menus or apps are presented but not the time an Android app needs for being put in run.
 
 ---
 
 ### Proposal
 
-The `START` / `STOP` states for the `Android Support` are not enough because, when clicking on an Android app, the `Android Support` starts automatically. It would be much better to have an option to disable `Android Support` to avoid that it can support any application without the express will of the user:
+The `START` and `STOP` states for the `Android Support` are not enough because, when clicking on an Android app, the `Android Support` starts automatically. It would be much better to have an option to disable `Android Support` to avoid that it can support any application without the express will of the user:
 
 * `disabled, stopped` - A.S. is not running, and it will not start automatically.
 * `disabled, running` - A.S. is put in a sleep state for which it results in being unavailable.
@@ -320,11 +320,11 @@ Before answering this question, we should agree on what is `SFOS` and what is no
 
 The original high-resolution image is [here](https://drive.google.com/file/d/1TojQHjOUG_fB1MJbPXxj0fAQP3Dp48Bf/view).
 
-What does this image show? A sleeping system, when untouched, consumes 5%/h of battery, which means 20 hours of standby. It is not a great achievement because it should be 100 hours of standby for an optimised system ([here](https://forum.sailfishos.org/t/standby-battery-high-drain-on-xperia-10-iii/15208/6)).
+What does this image show? A sleeping system, when untouched, consumes 5% of battery per hour, which means 20 hours of standby. It is not a great achievement because it should be 100 hours of standby for an optimised system ([here](https://forum.sailfishos.org/t/standby-battery-high-drain-on-xperia-10-iii/15208/12)).
 
 On the other hand, we notice that `CPU` stops being polluted, falls asleep, and awakens constantly (sleep, awake, sleep, awake), apparently without a real need. BTW, the system consumed 5%/h of battery - while untouched with the `CPU` s which **NEVER** goes to sleep. This means that apart from the display consumption and `4G` and `WiFi` connections, the system was running 100% of the time.
 
-Now, with the `4G` data mobile and `WiFi` tethering connections active, it sucks 6%/h. Therefore, the changes tested are more suitable for a daily calm working session than keeping the smartphone near our bed while we are sleeping (check out [here](#power-saving-templates)).
+Now, with the `4G` data mobile and `WiFi` tethering connections active, it sucks 6%/h. Therefore, the changes tested are more suitable for a daily calm working session than keeping the smartphone near our bed while we are sleeping, check out ([here](#power-saving-templates)).
 
 <sup>________</sup>
 
