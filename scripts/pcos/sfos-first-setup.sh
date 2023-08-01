@@ -17,31 +17,95 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.1
+# release: 0.0.2
+
+sfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
+if [ "$sfos" != "" ]; then ## pcos #############################################
+
+test -n "${2:-}" || exit 1
+
+rpm_list_1="
+pigz tcpdump bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
+mce-tools sailfish-filemanager xz sailfish-filemanager-l10n-all-translations
+rsync
+"
+rpm_list_2="harbour-file-browser harbour-todolist harbour-qrclip patch"
+sfos_hostname="redfishos"
+
+echo
+echo shell script execution by pcos${1:+:$1}
+echo ---------------------------------------
+echo "=> Updating date time from the host"
+echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+TZ=UTC date -s @"$2"
+echo "\_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+mkdir -p /etc/.time/
+touch /etc/.time/.refernce
+chmod a-w /etc/.time/.refernce
+echo
+echo "=> Refresh library cache and set the hostname: $3"
+ldconfig
+hostname "$sfos_hostname"
+hostname  >/etc/hostname
+echo
+echo "=> Repository selection"
+echo "   \_this operation will take a minute, wait..."
+echo
+ssu status | tee /tmp/ssu.status
+repo_list='adaptation0 aliendalvik sailfish-eas xt9'
+if grep -q 'status: not registered' /tmp/ssu.status; then
+	for i in $repo_list; do ssu disablerepo $i; done
+	ssu_status="an unregistered"
+    rpm_list_2=''
+else
+	for i in $repo_list; do ssu enablerepo $i; done
+	ssu_status="a registered"
+fi
+rm -f /tmp/ssu.status
+echo; ssu repos
+
+echo
+echo "=> Repository and packages update"
+echo "   \_this operation will take a minute, wait..."
+echo
+ssu updaterepos
+pkcon -yp refresh
+pkcon -yp update
+
+echo
+echo "=> Packages installation"
+echo
+
+if [ -n "$rpm_list_1" ]; then
+	rpm -qi busybox-symlinks-vi | grep -q "not installed$" ||\
+		pkcon -yp remove busybox-symlinks-vi
+	pkcon -yp install --allow-reinstall $(echo $rpm_list_1 $rpm_list_2)
+fi
+
+echo
+echo "=> Initial setup of $ssu_status device completed."
+echo
+
+else ## pcos ###################################################################
 
 bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
 
 spcmd=""
 set_key_login="no"
-sfos_hostname="redfishos"
-setup_file="/tmp/initial.setup"
-rpm_list="
-pigz xz bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
-mce-tools harbour-file-browser harbour-todolist sailfish-filemanager tcpdump
-sailfish-filemanager-l10n-all-translations harbour-qrclip patch
-"
 
 # ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
 
-rm -f $setup_file
-if [ -e $setup_file ]; then
+srcfile="$(dirname $0)/sfos-ssh-connect.env"
+if [ ! -r "$srcfile" ]; then
+	srcfile="/usr/bin/sfos-ssh-connect.env"
+fi
+if [ ! -r "$srcfile" ]; then
 	echo
-	echo "ERROR: $setup_file exists but it should not, abort"
+	echo "ERROR: sfos-ssh-connect.env not found, abort."
 	echo
-	exit 1
 fi
 
-source /usr/bin/sfos-ssh-connect.env
+source $srcfile
 echo; afish getip
 
 if [ "x${1:-}" = "x--key-login" ]; then
@@ -69,55 +133,7 @@ if [ "$set_key_login" = "yes" ]; then
 	      "echo 'root password-less access: OK'"
 fi
 
-echo "
-echo
-echo shell script execution by pcos:$(whoami)
-echo ---------------------------------------
-echo '=> Updating date time from the host'
-echo '\_ current date/time: $(TZ=UTC date +%F-%H-%M-%S) UTC'
-TZ=UTC date -s $(TZ=UTC date +%F-%H-%M-%S)
-echo '\_ updated date/time: $(TZ=UTC date +%F-%H-%M-%S) UTC'
-mkdir -p /etc/.time/
-touch /etc/.time/.refernce
-chmod a-w /etc/.time/.refernce
-echo
-echo '=> Refresh library cache and set the hostname: $sfos_hostname'
-ldconfig
-hostname $sfos_hostname
-hostname >/etc/hostname
-echo
-echo '=> Repository selection'
-echo '   \_this operation will take a minute, wait...'
-echo
-ssu status | tee /tmp/ssu.status
-repo_list='adaptation0 aliendalvik sailfish-eas xt9'
-if grep -q 'status: not registered' /tmp/ssu.status; then
-	for i in $repo_list; do ssu disablerepo $i; done
-    rpm_list=''
-else
-	for i in $repo_list; do ssu enablerepo $i; done
-fi
-rm -f /tmp/ssu.status
-ssu repos
-
-echo
-echo '=> Repository and packages update'
-echo '   \_this operation will take a minute, wait...'
-echo
-ssu updaterepos
-pkcon -yp refresh
-pkcon -yp update
-
-echo
-echo '=> Packages installation'
-echo
-pkcon -yp remove busybox-symlinks-vi
-pkcon -yp install --allow-reinstall $(echo $rpm_list)
-
-echo
-echo '=> Initial setup completed, end.'
-echo
-" >$setup_file
+setup_file=$0
 
 echo
 echo '=> Script transfer'
@@ -125,9 +141,9 @@ echo
 echo "pcos: $(md5sum $setup_file)"
 
 if scp $setup_file root@$sfos_ipaddr:$setup_file >/dev/null; then
-	sfish "echo 'sfos: $(md5sum $setup_file)';
-		/bin/bash $setup_file; 
-		rm -f '$setup_file'"
+	sfish "echo 'sfos: $(md5sum $setup_file)'; /bin/bash $setup_file" \
+" $(whoami) $(TZ=UTC date "+%s") $sfos_hostname;"
 fi
-rm -f $setup_file
+
+fi #############################################################################
 
