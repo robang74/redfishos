@@ -31,7 +31,7 @@ in the files headers, in the Change Logs, in the documents authorship or referal
 > 
 > The report of activities and related proof of expenses will be submitted only to those who contributed. On a regular basis: monthly, quarterly, or yearly, depending on the amount of support. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years from the date of the report.
 
-If you are visiting this page to be updated about the project progression, jump to the [news & updates] section. 
+If you are visiting this page to be updated about the project progression, jump to the [news and updates](README.md#news--updates) section. 
 
 ---
 
