@@ -41,9 +41,9 @@ to set properly the shell environment for using the imported binaries in `/tmp`.
 
 The script that downloads and creates this tarball is here:
 
-* [do_recovery-utils_tgz](do_recovery-utils_tgz)
+* [do_recovery-utils_tgz.sh](do_recovery-utils_tgz.sh)
 
-The package created is less than 450Kb and it is included in this repository due to its relatively small size.
+The created package is less than 450Kb and it is included in this repository due to its relatively small size.
 
 What is missing is `strings` because its dependency will have brought this package to a size of 1.5Mb while a 2x faster 16Kb version of `strings` can be compiled from [this source](strings.c) presented in the busybox developers m-list in [this thread](https://lists.busybox.net/pipermail/busybox/2023-July/090396.html).
 
@@ -57,10 +57,11 @@ To create this package, it has been used `Centos 8` and `Fedora 8` `aarch64` bin
 
   * strace-5.7-3.el8.aarch64.rpm
   * traceroute-2.1.0-6.el8.aarch64.rpm
+  * libunistring-0.9.9-3.el8.aarch64.rpm
   * elfutils-libelf-0.185-1.el8.aarch64.rpm
   * keyutils-libs-1.5.10-9.el8.aarch64.rpm
-  * elfutils-libs-0.185-1.el8.aarch64.rpm
   * krb5-libs-1.18.2-14.el8.aarch64.rpm
+  * libverto-0.3.0-5.el8.aarch64.rpm
   * json-c-0.13.1-2.el8.aarch64.rpm
   * libidn2-2.2.0-1.el8.aarch64.rpm
 
@@ -68,18 +69,29 @@ To create this package, it has been used `Centos 8` and `Fedora 8` `aarch64` bin
 
   * tcpdump-4.9.3-2.el8.aarch64.rpm
   * nmap-ncat-7.70-6.el8.aarch64.rpm
-  * bind-utils-9.11.26-6.el8.aarch64.rpm
   * bind-libs-9.11.26-6.el8.aarch64.rpm
+  * bind-utils-9.11.26-6.el8.aarch64.rpm
+  * compat-openssl10-1.0.2o-3.el8.aarch64.rpm
   * bind-libs-lite-9.11.26-6.el8.aarch64.rpm
   * libmaxminddb-1.2.0-10.el8.aarch64.rpm
   * protobuf-c-1.3.0-6.el8.aarch64.rpm
   * fstrm-0.6.1-2.el8.aarch64.rpm
+ 
+* http://mirror.centos.org/altarch/7/os/aarch64/Packages/"
+
+  * ntpdate-4.2.6p5-29.el7.centos.2.aarch64.rpm
 
 * https://dl.fedoraproject.org/pub/epel/8/Everything/aarch64/Packages/a/
 
   * arp-scan-1.10.0-1.el8.aarch64.rpm
 
-The script that downloads and creates this tarball is named sysdebug-utils.tar.gz, and its size is near 4Mb. Therefore, it is not included in this repository. Moreover, due to its nature, it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
+The script that downloads and creates the `sysdebug` tarball is here:
+
+* [do_sysdebug-utils_tgz.sh](do_sysdebug-utils_tgz.sh)
+
+The created tarball size is about 6.4Mb. Therefore, it is not included in this repository.
+
+Moreover, due to its nature, it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
 ```
 tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /
