@@ -17,7 +17,19 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.2
+# release: 0.0.3
+
+# WARNING NOTE
+#
+# These `adaptation0`, `aliendalvik`, `sailfish-eas` and `xt9` repositories are
+# enabled by default, but it is wrong because they can be refreshed only when
+# the device has a Jolla account. Otherwise, a relative long timeout for each of
+# them keeps the refresh procedure stuck. Therefore, the Jolla account creation
+# and deletion actions must take care of enabling and disabling them, which must
+# be set as disabled by default. Until this fix will be implemented and provided
+# this script deal with this aspect enabling or disabling those repositories.
+#
+################################################################################
 
 sfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
 if [ "$sfos" != "" ]; then ## pcos #############################################
