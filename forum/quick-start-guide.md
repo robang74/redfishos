@@ -685,7 +685,7 @@ Section yet to be done; in the meantime, check out these posts below:
 
 * [Power saving templates and policies](todo/energy-saving-for-xperia-10-ii-and-iii.md#power-saving-templates)
 
-* [Bluetooth power drain issue](https://forum.sailfishos.org/t/the-bluetooth-crazy-cpu-usage-creates-battery-drain/16070/1)
+* [Bluetooth power drain issue](todo/bluetooth-crazy-CPU-usage.md)
 
 Here are a few hints to keep your `SFOS` smartphone lasting longer.
 
