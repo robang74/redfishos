@@ -6,7 +6,9 @@
 
 This script provides a *standard* system configuration immediately after the first boot, after the flashing procedure:
 
-* [pcos / sfos-first-setup.sh](sfos-first-setup.sh) is now available for testing by advanced end-user
+* [pcos / sfos-first-setup.sh](sfos-first-setup.sh) - is now available for testing by advanced end-user
+
+These are its dependencies:
 
 * [pcos / sfos-ssh-connect.env](sfos-ssh-connect.env) - is the bash environment required by the script above for SSH automatic connection.
 

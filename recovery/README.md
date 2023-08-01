@@ -10,7 +10,7 @@
 
 ## About recovery package
 
-To create this package, the `Centos 8` binary `aarch64` RPM repository was used:
+To create this package, `aarch64` binaries and libraries from a `Centos 8` RPM repository have been used.
 
 * https://vault.centos.org/centos/8/BaseOS/aarch64/os/Packages/
 
@@ -51,45 +51,17 @@ What is missing is `strings` because its dependency will have brought this packa
 
 ## About sysdebug package
 
-To create this package, it has been used `Centos 8` and `Fedora 8` `aarch64` binary RPM repositories:
+To create this package, `aarch64` binaries and libraries from `Centos 8` and `Fedora 8` RPM repositories have been used.
 
-* https://vault.centos.org/centos/8/BaseOS/aarch64/os/Packages/
+This below is the list of the main binaries, while some others, which are their helpers, have been not reported:
 
-  * strace-5.7-3.el8.aarch64.rpm
-  * traceroute-2.1.0-6.el8.aarch64.rpm
-  * libunistring-0.9.9-3.el8.aarch64.rpm
-  * elfutils-libelf-0.185-1.el8.aarch64.rpm
-  * keyutils-libs-1.5.10-9.el8.aarch64.rpm
-  * krb5-libs-1.18.2-14.el8.aarch64.rpm
-  * libverto-0.3.0-5.el8.aarch64.rpm
-  * json-c-0.13.1-2.el8.aarch64.rpm
-  * libidn2-2.2.0-1.el8.aarch64.rpm
-
-* https://vault.centos.org/centos/8/AppStream/aarch64/os/Packages/
-
-  * tcpdump-4.9.3-2.el8.aarch64.rpm
-  * nmap-ncat-7.70-6.el8.aarch64.rpm
-  * bind-libs-9.11.26-6.el8.aarch64.rpm
-  * bind-utils-9.11.26-6.el8.aarch64.rpm
-  * compat-openssl10-1.0.2o-3.el8.aarch64.rpm
-  * bind-libs-lite-9.11.26-6.el8.aarch64.rpm
-  * libmaxminddb-1.2.0-10.el8.aarch64.rpm
-  * protobuf-c-1.3.0-6.el8.aarch64.rpm
-  * fstrm-0.6.1-2.el8.aarch64.rpm
- 
-* http://mirror.centos.org/altarch/7/os/aarch64/Packages/"
-
-  * ntpdate-4.2.6p5-29.el7.centos.2.aarch64.rpm
-
-* https://dl.fedoraproject.org/pub/epel/8/Everything/aarch64/Packages/a/
-
-  * arp-scan-1.10.0-1.el8.aarch64.rpm
+* `arp-scan`, `tcpdump`, `tcpslice`, `ntpdate`, `tcptraceroute`, `traceroute`, `ncat`, `dig`, `host`, `nslookup`, `strace`, `stress-ng`.
 
 The script that downloads and creates the `sysdebug` tarball is here:
 
 * [do_sysdebug-utils_tgz.sh](do_sysdebug-utils_tgz.sh)
 
-The created tarball size is about 6.4Mb. Therefore, it is not included in this repository.
+The created tarball size is about 7.2Mb. Therefore, it is not included in this repository.
 
 Moreover, due to its nature, it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
@@ -98,3 +70,17 @@ tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /
 ```
 
 The `-k` avoids overwriting the original files, but it is supposed that they were not in place if you need this tarball.
+
+---
+
+### Scripts dependencies
+
+Both scripts requires some extra dependencies, if they are executed with `--ssh-test` as command line parameter:
+
+* [do_ssh_ldd_test_utils.env](do_ssh_ldd_test_utils.env) - it contains the code to make the `ldd` libraries test via SSH 
+
+* [pcos / sfos-ssh-connect.env](../scripts/pcos/sfos-ssh-connect.env) - it is the bash environment required by the script above for SSH automatic connection.
+
+* [sfos-ssh-connect-env patch](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above. 
+
+The `--ssh-test` enables shell script code which copy and test via SSH the tarball content about libraries dependency with `ldd`.
