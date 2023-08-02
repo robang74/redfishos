@@ -229,7 +229,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
     **status**: ready for app developers, easy to deploy, with SDK 4.5.0.16 container mirror.
 
-* 21.07.2023, [SFOS busybox v1.36.1+git2-raf3](https://github.com/robang74/sailfish-os-busybox#readme)
+* 21.07.2023, [busybox v1.36.1+git2-raf3 for SFOS](https://github.com/robang74/sailfish-os-busybox#readme)
 
     **description**: full features static and dynamic linked busybox build RPMs correctly for all the architectures.
 
@@ -237,13 +237,13 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 * 25.07.2023, this repository has been public and the RedFish OS project launched.
 
-* 31.07.2023, [All .md files: content review and re-organisation, v3](https://github.com/robang74/redfishos/commit/d28fae223e2be655e5adf46d986abd83d05cb26d)
+* 31.07.2023, [all .md files: content review and reorganisation, v3](https://github.com/robang74/redfishos/commit/d28fae223e2be655e5adf46d986abd83d05cb26d)
 
     **description**: review and reorganisation of all .md files collected since the beginning.
 
     **status**: ready for everybody, documents collection continues. 
 
-* 01.08.2023, [1st-boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md)
+* 01.08.2023, [first boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md)
 
     **description**: shell scripts suite for the first boot setup after flashing
 
