@@ -48,6 +48,18 @@ In particular, the second one seems to be the most work-intensive task of the tw
  
 However, before starting about light sensor management, it will be important to clearly understand how the various settings are working because their descriptions, especially in some cases, are definitely not very useful in describing their effective role. This is the reason for the third point in the task list above.
 
+```
+mcetool \
+--set-brightness-fade-dim=1000 \
+--set-brightness-fade-als=1000 \
+--set-brightness-fade-blank=1000 \
+--set-brightness-fade-unblank=150 \
+--set-als-autobrightness=enabled \
+--set-brightness-fade-def=150
+```
+
+This is a script that sets some reasonable value for display auto-brightness and enables it.
+
 ---
 
 ### CPU governors
@@ -73,7 +85,7 @@ for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
 #   echo "interactive" >$i 2>/dev/null || echo "schedutil" >$i
     echo "schedutil" >$i
 done
-mcetool \
+mcetool -S performance \
 	--set-power-saving-mode=disabled \
 	--set-low-power-mode=disabled \
 	--set-ps-on-demand=enabled \
@@ -86,7 +98,7 @@ mcetool \
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
     echo "conservative" >$i
 done
-mcetool \
+mcetool -S interactive \
 	--set-power-saving-mode=enabled \
 	--set-low-power-mode=disabled \
 	--set-ps-on-demand=enabled \
@@ -99,7 +111,7 @@ mcetool \
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
     echo "conservative" >$i
 done
-mcetool \
+mcetool -S automatic \
 	--set-power-saving-mode=enabled \
 	--set-low-power-mode=enabled \
 	--set-ps-on-demand=enabled \
