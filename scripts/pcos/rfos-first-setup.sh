@@ -2,6 +2,7 @@
 ################################################################################
 #
 # Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#                     Released under GPLv2 license terms
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.4
+# release: 0.0.5
 
 # WARNING NOTE
 #
@@ -31,12 +32,14 @@
 #
 ################################################################################
 
-sfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
-if [ "$sfos" != "" ]; then ## pcos #############################################
+set -u -o pipefail
+
+rfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
+if [ "$rfos" != "" ]; then ## pcos #############################################
 
 test -n "${2:-}" || exit 1
 
-sfos_hostname="redfishos"
+rfos_hostname="redfishos"
 
 rpm_list_1="
 pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
@@ -59,7 +62,7 @@ chmod a-w /etc/.time/.refernce
 echo
 echo "=> Refresh library cache and set the hostname: $3"
 ldconfig
-hostname "$sfos_hostname"
+hostname "$rfos_hostname"
 hostname  >/etc/hostname
 echo
 echo "=> Repository selection"
@@ -134,18 +137,11 @@ set_key_login="no"
 
 # ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
 
-srcfile="$(dirname $0)/sfos-ssh-connect.env"
-if [ ! -r "$srcfile" ]; then
-	srcfile="/usr/bin/sfos-ssh-connect.env"
-fi
-if [ ! -r "$srcfile" ]; then
-	echo
-	echo "ERROR: sfos-ssh-connect.env not found, abort."
-	echo
-fi
-
-source $srcfile
+set -e
+source /usr/bin/rfos-script-functions.env
+src_file_env "sfos-ssh-connect"
 echo; afish getip
+set +e
 
 if [ "x${1:-}" = "x--key-login" ]; then
 	set_key_login="yes"
@@ -156,16 +152,16 @@ fi
 
 if [ "$set_key_login" = "yes" ]; then
 	if [ ! -s ~/.ssh/id_rsa.pub ]; then
-		ssh-keygen -t rsa -b 4096 -C "$(whoami)@sfos.local"
+		ssh-keygen -t rsa -b 4096 -C "$(whoami)@rfos.local"
 	fi
 	if which sshpass >/dev/null; then
-		IFS= read -s -p 'Using sshpass, SFOS password: ' passwd; echo
+		IFS= read -s -p 'Using sshpass, RFOS password: ' passwd; echo
 		spcmd="sshpass -p '$passwd'"
 		passwd=""
 	fi
-	target="defaultuser@$sfos_ipaddr"
-	$spcmd ssh-copy-id -fi ~/.ssh/id_rsa.pub $target
-	$spcmd ssh $target devel-su install -Dpo root -g root \
+	hostnm="defaultuser@$rfos_ipaddr"
+	$spcmd ssh-copy-id -fi ~/.ssh/id_rsa.pub $hostnm
+	$spcmd ssh $hostnm devel-su install -Dpo root -g root \
 		-m 600 -t '~root/.ssh/ ~defaultuser/.ssh/auth*keys'
 	spcmd=""
 	sfish "echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config;" \
@@ -179,9 +175,9 @@ echo '=> Script transfer'
 echo
 echo "pcos: $(md5sum $setup_file)"
 
-if scp $setup_file root@$sfos_ipaddr:$setup_file >/dev/null; then
-	sfish "echo 'sfos: $(md5sum $setup_file)'; /bin/bash $setup_file" \
-" $(whoami) $(TZ=UTC date "+%s") $sfos_hostname;"
+if scp $setup_file root@$rfos_ipaddr:$setup_file >/dev/null; then
+	sfish "echo 'rfos: $(md5sum $setup_file)'; /bin/bash $setup_file" \
+" $(whoami) $(TZ=UTC date "+%s") $rfos_hostname;"
 fi
 
 fi #############################################################################

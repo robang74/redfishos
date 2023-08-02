@@ -175,12 +175,12 @@ check_patch_download_lastpkg() {
 	hdr_type=$(_get_hdr_strn_field "type")
 	hdr_targ=$(_get_hdr_strn_field "target")
 
-	if echo $hdr_targ | grep -qw "sfos" \
+	if echo $hdr_targ | grep -Eqw "sfos|rfos" \
 	&& echo $hdr_type | grep -qw "system"
 	then
        :
     else
-		echo -e "\nWARNING: $prj_name is not a SFOS system patch, removed.\n"
+		echo -e "\nWARNING: $prj_name is not a RFOS system patch, removed.\n"
 		rm -f "$patch_path"
 		return 1
 	fi >&2 

@@ -8,7 +8,7 @@
 #\header #######################################################################
 #
 # type: system
-# target: sfos
+# target: rfos
 # services: dnsmasq connman
 #
 ## optional fields using tabs instead of spaces just for test ##################

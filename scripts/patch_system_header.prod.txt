@@ -7,7 +7,7 @@
 ##
 #\header #######################################################################
 #
-# target  : sfos
+# target  : rfos
 # type    : system
 # provider: robang74
 # services: dnsmasq connman
