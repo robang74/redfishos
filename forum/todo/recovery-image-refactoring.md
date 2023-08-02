@@ -247,7 +247,7 @@ The recovery image, also in 4.5.0.21, has the following shortcomings.
 3. the `date` is an applet from busybox-static:
 
 ```
-sfos # busybox-static  date --help 2>&1 | head -n1
+sfos # busybox-static date --help 2>&1 | head -n1
 busybox v1.34.1 (2022-09-21 00:00:00 UTC) multi-call binary.
 sfos # busybox-static date -u -d"Jan 01 00:00:01 1970" +%s
 date: invalid date 'Jan 01 00:00:01 1970'
