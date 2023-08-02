@@ -1,4 +1,4 @@
-### 1st-boot setup after flashing
+### First boot setup after flashing
 
 > :warning: **WARNING NOTE**
 > 
@@ -6,11 +6,13 @@
 
 This script provides a *standard* system configuration immediately after the first boot, after the flashing procedure:
 
-* [pcos / sfos-first-setup.sh](sfos-first-setup.sh) - is now available for testing by advanced end-user
+* [pcos / rfos-first-setup.sh](rfos-first-setup.sh) - it is now available for testing by advanced end-user.
 
 These are its dependencies:
 
-* [pcos / sfos-ssh-connect.env](sfos-ssh-connect.env) - is the bash environment required by the script above for SSH automatic connection.
+* [scripts / rfos-script-functions.env](../rfos-script-functions.env) - it is the canvas that will collect all the generic functions.
+
+* [pcos / sfos-ssh-connect.env](sfos-ssh-connect.env) - it is the bash environment required by the script above for SSH automatic connection.
 
 * [sfos-ssh-connect-env patch](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above. 
 
