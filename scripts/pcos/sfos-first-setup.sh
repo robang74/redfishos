@@ -17,7 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.3
+# release: 0.0.4
 
 # WARNING NOTE
 #
@@ -36,13 +36,15 @@ if [ "$sfos" != "" ]; then ## pcos #############################################
 
 test -n "${2:-}" || exit 1
 
-rpm_list_1="
-pigz tcpdump bind-utils htop vim-minimal harbour-gpsinfo zypper zypper-aptitude
-mce-tools sailfish-filemanager xz sailfish-filemanager-l10n-all-translations
-rsync patch
-"
-rpm_list_2="" #"harbour-file-browser harbour-todolist harbour-qrclip"
 sfos_hostname="redfishos"
+
+rpm_list_1="
+pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
+xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
+"
+
+#TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
+rpm_list_2="gpstoggle"
 
 echo
 echo shell script execution by pcos${1:+:$1}
