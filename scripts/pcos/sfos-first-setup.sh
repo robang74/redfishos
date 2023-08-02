@@ -96,6 +96,32 @@ if [ -n "$rpm_list_1" ]; then
 fi
 
 echo
+echo "=> Enable auto-brightness"
+echo
+
+mcetool \
+--set-brightness-fade-dim=1000 \
+--set-brightness-fade-als=1000 \
+--set-brightness-fade-blank=1000 \
+--set-brightness-fade-unblank=150 \
+--set-als-autobrightness=enabled \
+--set-brightness-fade-def=150
+
+echo
+echo "=> Set balanced-conservative governor"
+echo
+
+for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
+    echo "conservative" >$i
+done
+mcetool -S interactive \
+	--set-power-saving-mode=enabled \
+	--set-low-power-mode=disabled \
+	--set-ps-on-demand=enabled \
+	--set-forced-psm=disabled \
+	--set-psm-threshold=100
+
+echo
 echo "=> Initial setup of a $ssu_status device completed."
 echo
 
