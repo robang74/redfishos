@@ -123,6 +123,14 @@ Original hi-res image is [here](https://drive.google.com/file/d/1nHU4bdjLfSURLdn
 
 ### CPU governors
 
+The CPU governors subject has been faced in two different pages:
+
+* [battery-recharge-and-power-saving.md](https://github.com/robang74/redfishos/blob/main/forum/knowhow/battery-recharge-and-power-saving.md#cpu-governors) (the other)
+
+* [energy-saving-for-xperia-10-ii-and-iii.md](https://github.com/robang74/redfishos/blob/main/forum/todo/energy-saving-for-xperia-10-ii-and-iii.md#cpu-governors) (this one)
+
+<sup>________</sup>
+
 > @direct85 wrote:
 >
 > Another yolo test: setting the governor to `ondemand` yields the lowest frequencies when idling, but boosting rapidly when needed:
