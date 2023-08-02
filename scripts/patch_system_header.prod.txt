@@ -7,19 +7,12 @@
 ##
 #\header #######################################################################
 #
-# type: system
-# target: sfos
+# target  : sfos
+# type    : system
+# provider: robang74
 # services: dnsmasq connman
-#
-## optional fields but without these it will raise a warning  ##################
-#
-# name    : dnsmasq-connman-integration     # a comment
-# provider: robang74					    # another comment
-# version : 0.1.1						    # yes another one
-#
-## a repetition to show a different syntax #####################################
-#
-# service : dnsmasq, connman;
+# name    : dnsmasq-connman-integration
+# version : x.y.z
 #
 #/header #######################################################################
 #
