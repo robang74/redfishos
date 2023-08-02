@@ -85,7 +85,9 @@ In conclusion, two governors are useful: one powersaving-oriented and the other 
 
 The two best governors to use under this PoV are the **`conservative`** because the `powersave` is a static one unless a userland application takes care of dynamically changing the minimum frequency of working for each CPU, and the **`schedutil`** because the `performance` has the same shortcomings as the `powersave`. The `interactive` is available on mark2 only, and it seems the best for smartphones, but should be paired with `ondemand`, which is available on mark3.
 
-Therefore, `schedutil`, which is a pretty new and advanced governor, seems like a reasonable choice. On the other hand, it is quite limiting considering SFOS mobile devices like smartphones only because, unlike Android and iOS smartphones, it is supposed they will be on duty even when the user does not interact with them, e.g. providing services like any UNIX server has done since 1970. 
+Therefore, `schedutil`, which is a pretty new and advanced governor, seems like a reasonable choice. On the other hand, it is quite limiting considering SFOS mobile devices like smartphones only because, unlike Android and iOS smartphones, it is supposed they will be on duty even when the user does not interact with them, e.g. providing services like any UNIX server has done since 1970.
+
+For those end-users that wish to use a SFOS smartphone just as a mere smartphone, then they can be addressed towards the use of an userland application specifically developed for dealing with CPUs, like `zgovernor` a [CPU governor manager for SFOS](https://github.com/robang74/zgovernor) and from which we can take the suggestion to put some CPUs offline in some particular conditions, like when the battery runs lower than 10% or 5% of its full charge.
 
 ---
 
