@@ -65,6 +65,48 @@ The last line shows the available CPU governors policies reasonably supposing th
 
 About the CPUs sets for Xperia 10 III, [this comment on github](https://github.com/sonyxperiadev/device-sony-lena/issues/20#issuecomment-1220483952) reveal that the `n = 6`. Moreover the among policies there is not `interactive` but `ondemand`. At the end of this section there is a description of the various governors here cited.
 
+These are three CPU governor policies for three different profile of usage: balanced-performance, balanced-conservative, low-power-mode.
+
+```
+# RAF: balanced-performance governor policy
+for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
+#   echo "interactive" >$i 2>/dev/null || echo "schedutil" >$i
+    echo "schedutil" >$i
+done
+mcetool \
+	--set-power-saving-mode=disabled \
+	--set-low-power-mode=disabled \
+	--set-ps-on-demand=enabled \
+	--set-forced-psm=disabled \
+	--set-psm-threshold=20
+```
+
+```
+# RAF: balanced-conservative governor policy
+for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
+    echo "conservative" >$i
+done
+mcetool \
+	--set-power-saving-mode=enabled \
+	--set-low-power-mode=disabled \
+	--set-ps-on-demand=enabled \
+	--set-forced-psm=disabled \
+	--set-psm-threshold=100
+```
+
+```
+# RAF: low-power-mode governor policy
+for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
+    echo "conservative" >$i
+done
+mcetool \
+	--set-power-saving-mode=enabled \
+	--set-low-power-mode=enabled \
+	--set-ps-on-demand=enabled \
+	--set-forced-psm=enabled \
+	--set-psm-threshold=100
+```
+
 ---
 
 ### Governors descriptions
