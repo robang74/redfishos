@@ -9,7 +9,8 @@ A longer page about power-saving dedicated to the Xperia 10 II and III is availa
 > > Presently there's only possible to automatically activate the power saving mode depending on the accu charge level (20%, 15%, 10%, 5%, off), or set manually until next time charger is connected.
 > > Note that from command line you can select any percentage value, e.g.
 > ```
-> mcetool --set-psm-threshold=100 --set-power-saving-mode=enabled ```
+> mcetool --set-psm-threshold=100 --set-power-saving-mode=enabled
+> ```
 
 In my opinion, this group of settings `{20%, 15%, 10%, 5%, off}` should be extended with two other values `{100%, 50%, 20%, 15%, 10%, 5%, off}` where `50%` indicates a strong propensity to save energy and `100%` always keeps the phone locked in energy-saving mode.
  
@@ -46,6 +47,21 @@ In this case, there are three different aspects that can be optimised:
 In particular, the second one seems to be the most work-intensive task of the two and also the least optimised at the moment.
  
 However, before starting about light sensor management, it will be important to clearly understand how the various settings are working because their descriptions, especially in some cases, are definitely not very useful in describing their effective role. This is the reason for the third point in the task list above.
+
+<sup>________</sup>
+
+**CPU governors**
+
+The Xperia 10 II has 4+4 CPUs while the Xperia 10 III has 2+6 CPUs and this difference have an impact in how the CPU governors are set. The first implication is that for the mark 2 the CPUs sets are {[0-3], [4-7]} while for mark3 {[0-1], [2-7]} or unlikely {[0-5], [6-7]} depending how the CPUs are mapped by the kernel. Therefore the first information we need to collect for which **n** happen the separation:
+
+```
+cfp="/sys/devices/system/cpu/cpufreq/policy"
+n=$(ls -1rd ${cpf}? | head -n1 | tr -cd '[0-9]');
+echo "CPUs sets separation is {[0-$((n-1))], [$n, 7]}"
+cat "${cfp}0/scaling_available_governors"
+```
+
+The last line shows the available CPU governors policies reasonably supposing that they are the same for the two CPUs sets.
 
 ---
 
