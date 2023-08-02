@@ -64,6 +64,14 @@ This is a script that sets some reasonable value for display auto-brightness and
 
 ### CPU governors
 
+The CPU governors subject has been faced in two different pages:
+
+* [battery-recharge-and-power-saving.md](https://github.com/robang74/redfishos/blob/main/forum/knowhow/battery-recharge-and-power-saving.md#cpu-governors) (this one)
+
+* [energy-saving-for-xperia-10-ii-and-iii.md](https://github.com/robang74/redfishos/blob/main/forum/todo/energy-saving-for-xperia-10-ii-and-iii.md#cpu-governors) (the other)
+
+<sup>________</sup>
+
 The Xperia 10 II has 4+4 CPUs while the Xperia 10 III has 2+6 CPUs and this difference have an impact in how the CPU governors are set. The first implication is that for the mark 2 the CPUs sets are {[0-3], [4-7]} while for mark3 {[0-1], [2-7]} or unlikely {[0-5], [6-7]} depending how the CPUs are mapped by the kernel. Therefore the first information we need to collect for which **n** happen the separation:
 
 ```
