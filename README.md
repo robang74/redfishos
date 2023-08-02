@@ -210,6 +210,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 * [SailFish OS porting](https://gitlab.com/sailfishos-porters-ci) - Gitlab page that contains several unofficial SFOS portings.
 * [Hello Volla repositories](https://github.com/HelloVolla) - A collection of 42 github repositories and mirrors for SailFish OS.
 * [Sony Xperia repositories](https://github.com/sonyxperiadev) - A collection of 212 github repositories about Sony Xperia devices.
+* [CPU governor manager for SFOS](https://github.com/robang74/zgovernor) - A mirror of a github project dedicated to a CPU power management.
 
 ---
 
