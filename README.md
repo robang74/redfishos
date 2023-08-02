@@ -209,6 +209,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 * [SailFish OS git mirrors](https://github.com/sailfishos-mirror) - A collection of 517 github repository mirrors for SailFish OS.
 * [SailFish OS porting](https://gitlab.com/sailfishos-porters-ci) - Gitlab page that contains several unofficial SFOS portings.
 * [Hello Volla repositories](https://github.com/HelloVolla) - A collection of 42 github repositories and mirrors for SailFish OS.
+* [Sony Xperia repositories](https://github.com/sonyxperiadev) - A collection of 212 github repositories about Sony Xperia devices.
 
 ---
 
