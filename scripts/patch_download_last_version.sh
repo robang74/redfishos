@@ -2,6 +2,7 @@
 ################################################################################
 #
 # Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#                     Released under GPLv2 license terms
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
