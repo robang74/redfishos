@@ -85,46 +85,30 @@ The last line shows the available CPU governors policies reasonably supposing th
 
 About the CPUs sets for Xperia 10 III, [this comment on github](https://github.com/sonyxperiadev/device-sony-lena/issues/20#issuecomment-1220483952) reveal that the `n = 6`. Moreover the among policies there is not `interactive` but `ondemand`. At the end of this section there is a description of the various governors here cited.
 
-These are three CPU governor policies for three different profile of usage: balanced-performance, balanced-conservative, low-power-mode.
+We can provide four CPU dynamic governor policies for four different profile of usage:
 
 ```
-# RAF: balanced-performance governor policy
+          $1                  $2            $3         $4        $5        $6        $7      $8
+1. ondemand-performance : schedutil   , performance, disabled, disabled, enabled, disabled,  20
+2. balanced-interactive : schedutil   , interactive, enabled , disabled, enabled, disabled, 100
+3. balanced-conservative: conservative, interactive, enabled , disabled, enabled, disabled, 100
+4. ondemand-power-saving: conservative, automatic  , enabled , enabled , enabled, enabled , 100
+```
+
+and apply them with a single script template like this:
+
+```
+echo Setting $1 governor policy
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
 #   echo "interactive" >$i 2>/dev/null || echo "schedutil" >$i
-    echo "schedutil" >$i
+    echo "$2" >$i
 done
-mcetool -S performance \
-	--set-power-saving-mode=disabled \
-	--set-low-power-mode=disabled \
-	--set-ps-on-demand=enabled \
-	--set-forced-psm=disabled \
-	--set-psm-threshold=20
-```
-
-```
-# RAF: balanced-conservative governor policy
-for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
-    echo "conservative" >$i
-done
-mcetool -S interactive \
-	--set-power-saving-mode=enabled \
-	--set-low-power-mode=disabled \
-	--set-ps-on-demand=enabled \
-	--set-forced-psm=disabled \
-	--set-psm-threshold=100
-```
-
-```
-# RAF: low-power-mode governor policy
-for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
-    echo "conservative" >$i
-done
-mcetool -S automatic \
-	--set-power-saving-mode=enabled \
-	--set-low-power-mode=enabled \
-	--set-ps-on-demand=enabled \
-	--set-forced-psm=enabled \
-	--set-psm-threshold=100
+mcetool -S $3 \
+	--set-power-saving-mode=$4 \
+	--set-low-power-mode=$5 \
+	--set-ps-on-demand=$6 \
+	--set-forced-psm=$7 \
+	--set-psm-threshold=$8
 ```
 
 ---
