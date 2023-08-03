@@ -32,6 +32,18 @@ This means that the UI does not use it for changing the thresholds and therefore
 
 <sup>________</sup>
 
+**Battery charging thresholds**
+
+```
+mcetool \
+	--set-forced-charging=disabled  \
+	--set-charging-enable-limit=95  \
+	--set-charging-disable-limit=90 \
+	--set-charging-mode=apply-thresholds
+```
+
+<sup>________</sup>
+
 **Screen brigthness**
 
 The other setting to operate on in order to save energy is screen brightness.
@@ -50,12 +62,12 @@ However, before starting about light sensor management, it will be important to 
 
 ```
 mcetool \
---set-brightness-fade-dim=1000 \
---set-brightness-fade-als=1000 \
---set-brightness-fade-blank=1000 \
---set-brightness-fade-unblank=150 \
---set-als-autobrightness=enabled \
---set-brightness-fade-def=150
+	--set-brightness-fade-dim=1000    \
+	--set-brightness-fade-als=1000    \
+	--set-brightness-fade-blank=1000  \
+	--set-brightness-fade-unblank=150 \
+	--set-als-autobrightness=enabled  \
+	--set-brightness-fade-def=150
 ```
 
 This is a script that sets some reasonable value for display auto-brightness and enables it.
@@ -172,8 +184,6 @@ grep mmc1 /sys/kernel/irq/*/actions
 systemctl restart systemd-udevd systemd-udevd-kernel.socket systemd-udevd-control.socket
 systemctl status systemd-udevd systemd-udevd-kernel.socket systemd-udevd-control.socket
 
-/usr/lib/systemd/systemd-udevd -D
-
 [root@Sueza11 ~]# cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_governors
 conservative powersave interactive performance schedutil
 [root@Sueza11 ~]# cat /sys/devices/system/cpu/cpufreq/policy4/scaling_available_governors
@@ -191,42 +201,4 @@ do echo on >$i; done
 sync; echo 3 > /proc/sys/vm/drop_caches
 
 gpstoggle | grep -E "location status: 1|power status: 1" | wc -l | grep 1 && gpstoggle location=0 power=0
-
-for i in /sys/devices/system/cpu/cpu[0-3]/cpufreq/scaling_governor; do echo "interactive" >$i; done
-
-for i in /sys/devices/system/cpu/cpu[4-7]/cpufreq/scaling_governor; do echo "conservative" >$i; done
-
-mcetool \
---set-power-saving-mode=enabled \
---set-low-power-mode=enabled \
---set-psm-threshold=100 \
---set-forced-psm=disabled \
---set-ps-on-demand=enabled
-
-mcetool \
---set-brightness-fade-dim=1000 \
---set-brightness-fade-als=1000 \
---set-brightness-fade-blank=1000 \
---set-brightness-fade-unblank=150 \
---set-brightness-fade-def=150 \
---set-als-autobrightness=enabled
-
-Super saving
-
-mcetool \
---set-power-saving-mode=enabled \
---set-low-power-mode=enabled \
---set-psm-threshold=100 \
---set-forced-psm=enabled \
---set-ps-on-demand=disabled
-
-for i in /sys/devices/system/cpu/cpu[0-7]/cpufreq/scaling_governor;
-do echo "performance" >$i; done
-
-mcetool \
---set-power-saving-mode=disabled \
---set-low-power-mode=disabled \
---set-psm-threshold=10 \
---set-forced-psm=disabled \
---set-ps-on-demand=enabled
 ```
