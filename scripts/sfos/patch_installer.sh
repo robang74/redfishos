@@ -1,8 +1,8 @@
 #!/bin/bash
 ################################################################################
 #
-# Copyright (C) 2023, Roberto A. Foglietta
-#     Contact: roberto.foglietta@gmail.com
+# Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+#                     Released under GPLv2 license terms
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.1
+# release: 0.0.3
 
 set -ue -o pipefail
 
@@ -36,20 +36,9 @@ robang74, sshd-publickey-login-only  , 0.0.3, tar.gz, none;
 robang74, x10ii-iii-udev-rules-fixing, 0.0.1, tar.gz, none;
 robang74, x10ii-iii-agps-config-emea , 0.2.2, tar.gz, ofono;
 robang74, dnsmasq-connman-integration, 0.0.8, tar.gz, dnsmasq connman;
+robang74, x10ii-iii-udev-rules-fixing, 0.0.2, tar.gz, systemd-udevd;
 "
 # prov  , name                       , vern , extn  , srvs   
-
-post_install_3NLr="
-systemctl daemon-reload && systemctl reload connman;
-nohup systemctl restart dnsmasq connman >/dev/null 2>&1 &
-sleep 5; fg && systemctl --no-pager status dnsmasq connman;
-"
-
-post_install_pRla="
-systemctl daemon-reload;
-nohup systemctl restart ofono >/dev/null 2>&1 &
-sleep 5; fg && systemctl --no-pager status ofono;
-"
 
 # preparation for the loop that will install the patches
 n=1; mkdir -p "$patch_dir/"; rm -f "$reload_path"
@@ -150,7 +139,7 @@ if [ -n "$reload_list" ]; then
 	echo "WARNING: WiFi tethering will not automatically raise up again"
 	echo "         You may be going to be disconnected, grab your phone"
 	echo
-	systemctl daemon-reload
+	systemctl --no-pager daemon-reload
 	for i in $reload_list; do
 		systemctl --no-pager reload $i ||:
 	done

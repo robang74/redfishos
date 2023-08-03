@@ -18,9 +18,9 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.1
+# release: 0.0.3
 
-set -ue -o pipefail
+set -mue -o pipefail
 
 arg="${1:-}"
 export force=no
@@ -35,9 +35,48 @@ elif [ "x$arg" = "x-h" -o "xarg" = "x--help" ]; then
 	exit 1
 fi
 
+# GLOBAL VARIABLES #############################################################
+
+export owc_url="https://coderus.openrepos.net/"
+
 export prj_name="$arg"
+export prj_url="${owc_url}/pm2/project/"
+export prj_path="/media/documents/"
+export prj_prov=""
+export prj_vern=""
+export prj_extn=""
+export prj_srvs=""
+
 export patch_list="/etc/patches.list"
-export patch_list="./patches.list" # RAF: just for test
+export patch_dir="/etc/patches.d"
+export patch_db="/etc/patches.db"
+
+export patch_name=""
+export patch_path=""
+
+export pkg_url=""
+export pkg_prov=""
+export pkg_name=""
+export pkg_vern=""
+export pkg_extn=""
+
+export hdr_strn=""
+export hdr_name=""
+export hdr_vern=""
+export hdr_srvs=""
+export hdr_prov=""
+export hdr_targ=""
+
+# TEST DEFINITIONS #############################################################
+#
+# prj_name="dnsmasq-connman-integration"
+# patch_dir="./patches.d"
+# patch_db="./patches.db"
+#
+################################################################################
+
+src_file_env "patch_dblock_functions"
+
 if [ -n  "$prj_name" ]; then
 	:
 elif [ -s "$patch_list" ]; then
@@ -64,43 +103,6 @@ else
 	exit 1
 fi
 
-# GLOBAL VARIABLES #############################################################
-
-export owc_url="https://coderus.openrepos.net/"
-
-export prj_url="${owc_url}/pm2/project/"
-export prj_path="/media/documents/"
-
-export pkg_url=""
-export pkg_prov=""
-export pkg_name=""
-export pkg_vern=""
-export pkg_extn=""
-
-export patch_name=""
-export patch_path=""
-export patch_dir="/etc/patches.d"
-export patch_db="/etc/patches.db"
-
-export hdr_strn=""
-export hdr_name=""
-export hdr_vern=""
-export hdr_srvs=""
-export hdr_prov=""
-export hdr_targ=""
-
-export prj_prov=""
-export prj_vern=""
-export prj_extn=""
-export prj_srvs=""
-
-# TEST DEFINITIONS #############################################################
-#
-# prj_name="dnsmasq-connman-integration"
-patch_dir="./patches.d"
-patch_db="./patches.db"
-
-src_file_env "patch_dblock_functions"
 
 # INTERNAL FUNCTIONS ###########################################################
 
@@ -230,7 +232,7 @@ rmdb_lock() {
 }
 
 mkdb_lock() {
-	local i pid cmdline tempfile=$(mktemp -p "${TMPDIR:-/tmp}" -t lock.XXXX)
+	local i pid cmdline tempfile=$(mktemp -p "${TMPDIR:-/tmp}" -t lock.XXXXXX)
 	test -e "$tempfile" && echo "$$" >"$tempfile"
 	
 	for i in $(seq 1 10); do
@@ -252,8 +254,9 @@ mkdb_lock() {
 			rmdb_lock
 		fi
 	done
-	echo "\nERROR: cannot lock the patches database, abort.\n"
+	echo "\nERROR: cannot lock the patches database, abort.\n" >&2
 	return 1
+	exit 1
 }
 
 # SCRIPT MAIN ##################################################################

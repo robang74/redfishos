@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.6
+# release: 0.0.7
 
 # WARNING NOTE
 #
@@ -40,8 +40,13 @@ if [ "$rfos" != "" ]; then ## pcos #############################################
 
 test -n "${2:-}" || exit 1
 
+rpm_list_0="
+busybox-symlinks-vi
+busybox-symlinks-bash
+"
+
 rpm_list_1="
-pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
+pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch bash
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 "
 
@@ -94,9 +99,12 @@ echo "=> Packages installation"
 echo
 
 if [ -n "$rpm_list_1" ]; then
-	rpm -qi busybox-symlinks-vi 2>&1 | grep -q "not installed" ||\
-		pkcon -yp remove busybox-symlinks-vi 2>&1 | grep -v Status
-	pkcon -yp install --allow-reinstall $(echo $rpm_list_1 $rpm_list_2) \
+    for i in $rpm_list_0; do
+        #RAF: no pipefail here
+        { rpm -qi $i 2>&1 ||:; } | grep -q "not installed" \
+            || pkcon -yp remove $i 2>&1 | grep -v Status
+    done
+	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
         2>&1 | grep -v Status | sed -e "s,^,   ,"
 fi
 
@@ -160,7 +168,7 @@ echo; afish getip
 if [ "x${1:-}" = "x--key-login" ]; then
 	set_key_login="yes"
 else
-	bsfish "echo 'root password-less access: OK'" 2>/dev/null \
+	bsfish "echo 'root password-less login: OK'" 2>/dev/null \
 		|| set_key_login="yes"
 fi
 
@@ -188,7 +196,7 @@ setup_name=$(basename $setup_file)
 echo
 echo '=> Script transfer'
 echo
-echo "pcos: $(md5sum $setup_file)"
+echo "pcos: $(cd $(dirname $setup_file); md5sum $setup_name | tr -s ' ')"
 
 if scp $setup_file root@$sfos_ipaddr:~ >/dev/null; then
 	sfish 'echo rfos: $(md5sum '$setup_name'); /bin/bash '$setup_name \
