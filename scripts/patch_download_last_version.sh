@@ -100,18 +100,7 @@ export prj_srvs=""
 patch_dir="./patches.d"
 patch_db="./patches.db"
 
-# LOCK FUNCTIONS ###############################################################
-#
-# RAF: just if flock is missing and moreover this prints customised messages
-#
-
-export lck_source="patch_dblock_functions.env"
-lck_source="$(dirname $0)/$lck_source"
-source "$lck_source" &&:
-if [ $? -ne 0 ]; then
-	echo -e "\nERROR: failed to source 'patch_dblock_functions.env'.\n" >&2
-	exit 1
-fi
+src_file_env "patch_dblock_functions"
 
 # INTERNAL FUNCTIONS ###########################################################
 

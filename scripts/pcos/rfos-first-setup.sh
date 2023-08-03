@@ -46,6 +46,8 @@ pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 "
 
+# ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
+
 #TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 rpm_list_2="gpstoggle"
 
@@ -135,13 +137,9 @@ bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
 spcmd=""
 set_key_login="no"
 
-# ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
-
 set -e
-source /usr/bin/rfos-script-functions.env
 src_file_env "sfos-ssh-connect"
 echo; afish getip
-set +e
 
 if [ "x${1:-}" = "x--key-login" ]; then
 	set_key_login="yes"
