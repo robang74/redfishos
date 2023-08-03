@@ -131,6 +131,18 @@ mcetool -S interactive \
 mcetool | grep -iE "power|ps" | grep -v "dbus" | sed -e "s,^,   ,"
 
 echo
+echo "=> Set battery charging thresholds"
+echo
+
+mcetool \
+	--set-forced-charging=disabled  \
+	--set-charging-enable-limit=95  \
+	--set-charging-disable-limit=90 \
+	--set-charging-mode=apply-thresholds
+
+mcetool | grep -i charging | sed -e "s,^,   ,"
+
+echo
 echo "=> Initial setup of a $ssu_status device completed."
 echo
 
