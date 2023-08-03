@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.5
+# release: 0.0.6
 
 # WARNING NOTE
 #
@@ -32,14 +32,13 @@
 #
 ################################################################################
 
-set -u -o pipefail
+set -u
+rfos_hostname="redfishos"
 
 rfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
 if [ "$rfos" != "" ]; then ## pcos #############################################
 
 test -n "${2:-}" || exit 1
-
-rfos_hostname="redfishos"
 
 rpm_list_1="
 pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
@@ -78,7 +77,7 @@ else
 	echo "   \_jolla store: not found, disabling some repositories..."
 	for i in $repo_list; do ssu disablerepo $i; done
 	ssu_status="Linux"
-    rpm_list_2=''
+    rpm_list_2=""
 fi
 echo; ssu repos
 
@@ -87,17 +86,18 @@ echo "=> Repository and packages update"
 echo "   \_this operation will take a minute, wait..."
 echo
 ssu updaterepos
-pkcon -yp refresh
-pkcon -yp update
+pkcon -yp refresh 2>&1 | grep -v Status | sed -e "s,^,   ,"
+pkcon -yp update  2>&1 | grep -v Status | sed -e "s,^,   ,"
 
 echo
 echo "=> Packages installation"
 echo
 
 if [ -n "$rpm_list_1" ]; then
-	rpm -qi busybox-symlinks-vi | grep -q "not installed$" ||\
-		pkcon -yp remove busybox-symlinks-vi
-	pkcon -yp install --allow-reinstall $(echo $rpm_list_1 $rpm_list_2)
+	rpm -qi busybox-symlinks-vi 2>&1 | grep -q "not installed" ||\
+		pkcon -yp remove busybox-symlinks-vi 2>&1 | grep -v Status
+	pkcon -yp install --allow-reinstall $(echo $rpm_list_1 $rpm_list_2) \
+        2>&1 | grep -v Status | sed -e "s,^,   ,"
 fi
 
 echo
@@ -112,12 +112,14 @@ mcetool \
 --set-als-autobrightness=enabled \
 --set-brightness-fade-def=150
 
+mcetool | grep -i brightness | sed -e "s,^,   ,"
+
 echo
-echo "=> Set balanced-conservative governor"
+echo "=> Set balanced-interactive governor"
 echo
 
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
-    echo "conservative" >$i
+    echo "schedutil" >$i
 done
 mcetool -S interactive \
 	--set-power-saving-mode=enabled \
@@ -125,6 +127,8 @@ mcetool -S interactive \
 	--set-ps-on-demand=enabled \
 	--set-forced-psm=disabled \
 	--set-psm-threshold=100
+
+mcetool | grep -iE "power|ps" | grep -v "dbus" | sed -e "s,^,   ,"
 
 echo
 echo "=> Initial setup of a $ssu_status device completed."
@@ -137,7 +141,7 @@ bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
 spcmd=""
 set_key_login="no"
 
-set -e
+set -em
 src_file_env "sfos-ssh-connect"
 echo; afish getip
 
@@ -157,7 +161,7 @@ if [ "$set_key_login" = "yes" ]; then
 		spcmd="sshpass -p '$passwd'"
 		passwd=""
 	fi
-	hostnm="defaultuser@$rfos_ipaddr"
+	hostnm="defaultuser@$sfos_ipaddr"
 	$spcmd ssh-copy-id -fi ~/.ssh/id_rsa.pub $hostnm
 	$spcmd ssh $hostnm devel-su install -Dpo root -g root \
 		-m 600 -t '~root/.ssh/ ~defaultuser/.ssh/auth*keys'
@@ -167,16 +171,16 @@ if [ "$set_key_login" = "yes" ]; then
 fi
 
 setup_file=$0
+setup_name=$(basename $setup_file)
 
 echo
 echo '=> Script transfer'
 echo
 echo "pcos: $(md5sum $setup_file)"
 
-if scp $setup_file root@$rfos_ipaddr:$setup_file >/dev/null; then
-	sfish "echo 'rfos: $(md5sum $setup_file)'; /bin/bash $setup_file" \
-" $(whoami) $(TZ=UTC date "+%s") $rfos_hostname;"
+if scp $setup_file root@$sfos_ipaddr:~ >/dev/null; then
+	sfish 'echo rfos: $(md5sum '$setup_name'); /bin/bash '$setup_name \
+        $(whoami) $(TZ=UTC date "+%s") $rfos_hostname
 fi
 
 fi #############################################################################
-

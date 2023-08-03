@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.3
+# release: 0.0.5
 
 set -ue -o pipefail
 
@@ -34,6 +34,7 @@ perror() {
 url="https://raw.githubusercontent.com/robang74/redfishos/main/scripts"
 
 src="
+pcos/pcos-rfos-suite-installer.sh
 patch_dblock_functions.env
 rfos-script-functions.env
 pcos/sfos-ssh-connect.env
@@ -46,10 +47,10 @@ dir=$HOME/bin
 mkdir -p $dir || perror "cannot create '$dir' folder, abort."
 
 for i in $src; do
-	rm -f $dst
 	dst=$dir/$(basename $i)
 	echo -n "Downloading $i..."
-	wget $url/$i -qO $dst || perror "cannot download $i, abort."
+	rm -f $dst
+    wget $url/$i -qO $dst || perror "cannot download $i, abort."
     echo " ok"
 	if echo $i | grep -q "\.sh$"; then
 		chmod a+x $dst || perror "cannot chmod +x $dst, abort."
@@ -58,6 +59,7 @@ for i in $src; do
 			echo "source $dst" >> "$HOME/.bashrc"
 	fi
 done
+grep -q "export -f src_file_env" "$HOME/.bashrc" ||\
 echo "export -f src_file_env" >> "$HOME/.bashrc"
 
 echo
@@ -66,5 +68,4 @@ echo "      folder    : $dir"
 echo "      enviroment: $HOME/.bashrc"
 echo "Please, (re)execute bash to load its enviroment."
 echo
-
 
