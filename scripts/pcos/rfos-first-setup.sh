@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7
+# release: 0.0.8
 
 # WARNING NOTE
 #
@@ -48,6 +48,7 @@ busybox-symlinks-bash
 rpm_list_1="
 pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch bash
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
+sailfish-utilities
 "
 
 # ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
