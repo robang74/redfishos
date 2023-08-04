@@ -18,11 +18,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.3
+# release: 0.0.5
 
 set -ue -o pipefail
 
-patch_dir="/etc/patches"
+patch_dir="/etc/patches.d"
 reload_path="$patch_dir/services-to-reload.list"
 
 patch_url='https://coderus.openrepos.net/media/documents'
@@ -76,6 +76,7 @@ echo "\_ patch saved in: $patch_dir"
 servs_path=$(echo "$patch_path" | sed s/.patch$/.servs/)
 echo $srvs > "$servs_path"
 
+brk=0
 for srv in $srvs; do
 	out=$(systemctl --no-pager status $srv 2>&1)
 	ret=$?
@@ -89,10 +90,12 @@ for srv in $srvs; do
 		else
 			echo "\_ system service not found: $srv"
 			echo "$out" | sed -e "s/^/   /"
+			brk=1
 			break 2
 		fi
 	fi
 done ||:
+test $brk -ne 0 && break #RAF: not indispensable, break 2 should work
 
 echo "\_ checking for an old patch"
 # test if the patch has been applied before and revert
