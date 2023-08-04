@@ -39,7 +39,7 @@ url="https://raw.githubusercontent.com/robang74/redfishos/$branch/scripts"
 
 src="
 pcos/pcos-rfos-suite-installer.sh
-patch_dblock_functions.env
+sfos/patch_dblock_functions.env
 rfos-script-functions.env
 pcos/sfos-ssh-connect.env
 pcos/fastboot_usb3fix.sh
