@@ -18,18 +18,20 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.5
+# release: 0.0.6
 
 set -ue -o pipefail
 
-patch_dir="/etc/patches.d"
-reload_path="$patch_dir/services-to-reload.list"
+export patch_db="/etc/patches.db"
+export patch_dir="/etc/patches.d"
+export patch_url="https://coderus.openrepos.net/media/documents"
+export patch_opts="-slEfp1 -r /dev/null --no-backup-if-mismatch -d/"
+export patch_link=""
 
-patch_url='https://coderus.openrepos.net/media/documents'
-patch_link='$patch_url/$prov-$name-$vern.$extn'
-patch_opts='-slEfp1 -r /dev/null --no-backup-if-mismatch -d/'
+export reload_path="$patch_dir/services-to-reload.list"
 
-patch_list="
+export patches_to_apply=""
+test "x${1:-}" == "x--all" && patches_to_apply="
 robang74, utilities-quick-fp-restart , 0.0.3, tar.gz, none;
 robang74, set-network-postroute      , 0.0.2, tar.gz, none;
 robang74, zram-swap-resize-script    , 0.0.9, tar.gz, none;
@@ -39,16 +41,30 @@ robang74, x10ii-iii-agps-config-emea , 0.2.2, tar.gz, ofono;
 robang74, dnsmasq-connman-integration, 0.1.1, tar.gz, dnsmasq connman;
 robang74, x10ii-iii-udev-rules-fixing, 0.0.2, tar.gz, systemd-udevd;
 "
-# prov  , name                       , vern , extn  , srvs   
+# prov  , name                       , vern , extn  , srvs
+
+if [ ! -n "$patches_to_apply" ]; then
+	if [ -n "${1:-}" ]; then
+		patch_downloader.sh "$@" || exit 1
+		patches_to_apply=$(grep ", *$1 *," $patch_db)
+	else
+		patches_to_apply=$(cat $patch_db)
+	fi
+fi
+
+if [ ! -n "$patches_to_apply" ]; then
+	echo ERROR; exit 1
+fi
 
 # preparation for the loop that will install the patches
 n=1; mkdir -p "$patch_dir/"; rm -f "$reload_path"
+
 # this loop install all the patches in the ordered list
 echo; while true; do ###########################################################
 
 err=1
 # retrieve the patch data from the list
-patch_strn=$(echo $patch_list | cut -d\; -f$n)
+patch_strn=$(echo $patches_to_apply | cut -d\; -f$n)
 # quit the loop after the last patch
 test -n "$patch_strn" || break;
 
@@ -60,6 +76,8 @@ name=$(echo $patch_strn | cut -d\, -f2 | tr -d ' '     ||:)
 vern=$(echo $patch_strn | cut -d\, -f3 | tr -d ' '     ||:)
 extn=$(echo $patch_strn | cut -d\, -f4 | tr -d ' '     ||:)
 srvs=$(echo $patch_strn | cut -d\, -f5 | grep -vw none ||:)
+
+patch_link="$patch_url/$prov-$name-$vern.$extn"
 link=$(eval echo $patch_link)
 
 patch_name="$prov-$name-$vern.patch"
@@ -127,6 +145,8 @@ if [ $err -ne 0 ]; then
 	echo
 	echo "WARNING: patch #$n failed to be applied to rootfs, skipped"
 	echo "         fix pre-requisites and then try to install again."
+else
+	: # RAF, TODO: update the patches database (lock is required)
 fi
 
 # move to the next patch
