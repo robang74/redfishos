@@ -18,20 +18,24 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.5
+# release: 0.0.6
 
 set -ue -o pipefail
 
-perror() {
-	if [ -n "${1:-}" ]; then
-		echo
-		echo "ERROR: $@"
-		echo
-	fi >&2
-	exit 1
-}
+if ! type errexit 2>&1 | head -n1 | grep -q "is a function"; then
+	errexit() {
+		if [ -n "${1:-}" ]; then
+			echo
+			echo "ERROR: $@"
+			echo
+		fi >&2
+		exit 1
+	}
+fi
 
-url="https://raw.githubusercontent.com/robang74/redfishos/main/scripts"
+branch="devel"
+branch="${1:-$branch}"
+url="https://raw.githubusercontent.com/robang74/redfishos/$branch/scripts"
 
 src="
 pcos/pcos-rfos-suite-installer.sh
