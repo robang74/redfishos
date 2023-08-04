@@ -38,4 +38,4 @@ url=$url/$sha/scripts/pcos/$fle
 wget $url -O - | bash
 ```
 
-If you like to use the last version of this script then replace the `sha` value with `main`.
+If you like to use the last version of this script then replace the `sha` value with `main` or `devel` if you dare.
