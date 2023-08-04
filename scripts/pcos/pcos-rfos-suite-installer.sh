@@ -48,16 +48,16 @@ pcos/rfos-first-setup.sh
 
 echo
 dir=$HOME/bin
-mkdir -p $dir || perror "cannot create '$dir' folder, abort."
+mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 
 for i in $src; do
 	dst=$dir/$(basename $i)
 	echo -n "Downloading $i..."
 	rm -f $dst
-    wget $url/$i -qO $dst || perror "cannot download $i, abort."
+    wget $url/$i -qO $dst || errexit "cannot download $i, abort."
     echo " ok"
 	if echo $i | grep -q "\.sh$"; then
-		chmod a+x $dst || perror "cannot chmod +x $dst, abort."
+		chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
 	else
 		grep -q "source $dst" "$HOME/.bashrc" ||\
 			echo "source $dst" >> "$HOME/.bashrc"
