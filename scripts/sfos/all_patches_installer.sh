@@ -30,12 +30,13 @@ patch_link='$patch_url/$prov-$name-$vern.$extn'
 patch_opts='-slEfp1 -r /dev/null --no-backup-if-mismatch -d/'
 
 patch_list="
+robang74, utilities-quick-fp-restart , 0.0.3, tar.gz, none;
 robang74, set-network-postroute      , 0.0.2, tar.gz, none;
 robang74, zram-swap-resize-script    , 0.0.9, tar.gz, none;
 robang74, sshd-publickey-login-only  , 0.0.3, tar.gz, none;
 robang74, x10ii-iii-udev-rules-fixing, 0.0.1, tar.gz, none;
 robang74, x10ii-iii-agps-config-emea , 0.2.2, tar.gz, ofono;
-robang74, dnsmasq-connman-integration, 0.0.8, tar.gz, dnsmasq connman;
+robang74, dnsmasq-connman-integration, 0.1.1, tar.gz, dnsmasq connman;
 robang74, x10ii-iii-udev-rules-fixing, 0.0.2, tar.gz, systemd-udevd;
 "
 # prov  , name                       , vern , extn  , srvs   
