@@ -68,7 +68,7 @@ branch="${1:-$branch}"
 url="https://raw.githubusercontent.com/robang74/redfishos/$branch/scripts"
 dir=$HOME/bin
 
-rfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
+rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
 src="
 sfos/patch_dblock_functions.env

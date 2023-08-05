@@ -35,7 +35,7 @@
 set -u
 rfos_hostname="redfishos"
 
-rfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
+rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
 
 test -n "${2:-}" || exit 1
