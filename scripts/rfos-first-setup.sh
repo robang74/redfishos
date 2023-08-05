@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.9
+# release: 0.1.0
 
 # WARNING NOTE
 #
@@ -33,6 +33,8 @@
 ################################################################################
 
 set -u
+
+rmme="" n=0 m=0
 rfos_hostname="redfishos"
 tref_filename="/etc/.time/.refernce"
 
@@ -59,25 +61,30 @@ xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 sailfish-utilities
 "
 
-# ofono ofono-binder-plugin ofono-modem-switcher-plugin ofono-vendor-qti-radio-plugin
-
 #TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
+#      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
+#      ofono-vendor-qti-radio-plugin
+
 rpm_list_2="gpstoggle"
 
 echo
 runby=${2:+pcos:$2}
 runby=${runby:-localhost}
 echo shell script execution by $runby
-echo ---------------------------------------
+echo "---------------------------------------"
+echo
+
+m=$((m+1))
 if [ -n "${1:-}" ]; then
 	echo "=> Updating date time from the pcos-host"
 	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
-	TZ=UTC date -s @"$1"
+	TZ=UTC date -s @"$1" >/dev/null
 	echo "\_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 	tref_dir=$(dirname "$tref_filename")
 	mkdir -p "$tref_dir"
 	echo "$1">"$tref_filename"
 	chmod a-w "$tref_filename" "$tref_dir"
+	n=$((n+1))
 else
 	echo "=> Printing date time from the localhost"
 	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
@@ -89,6 +96,44 @@ echo "=> Refresh library cache and set the hostname: $rfos_hostname"
 ldconfig
 hostname "$rfos_hostname"
 hostname  >/etc/hostname
+m=$((m+1))
+n=$((n+1))
+
+echo
+echo "=> Internet connection verification"
+icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
+echo "   \_Internet connectivity: $icst"
+
+echo
+echo "=> RFOS script suite install"
+m=$((m+1))
+
+if [ "$icst" = "OK" ]; then # w/ internet ######################################
+
+sha=devel
+fle=rfos-suite-installer.sh
+url=https://raw.githubusercontent.com/robang74/redfishos
+url=$url/$sha/scripts/$fle
+
+echo "   \_Starting the script {} wait..."
+rsst=/tmp/1stup.fifo; rm -f $rsst; mkfifo $rsst; {
+ 	set -mo pipefail
+	exec 2>/dev/null
+	{ wget $url -qO - || curl -sL $url; } | bash | grep . | sed -e "s,^,   | ,"
+	{ if [ $? -eq 0 ]; then echo OK; else echo KO; fi >$rsst; } &
+}  
+disown &>/dev/null
+echo "   \_Reading the fifo..."
+read sret < $rsst; rm -f $rsst
+echo "   \_Installation status: $sret"
+test "$sret" = "OK" && n=$((n+1))
+
+else # no internet #############################################################
+
+echo "   \_Installation status: skipped, no Internet"
+echo "   \_Alternative install: TODO"
+
+fi #############################################################################
 
 echo
 echo "=> Repository selection"
@@ -104,15 +149,22 @@ else
 	ssu_status="Linux"
     rpm_list_2=""
 fi
-echo; ssu repos
+echo; ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
+m=$((m+1))
+n=$((n+1))
 
 echo
 echo "=> Repository and packages update"
+m=$((m+2))
+
+if [ "$icst" = "OK" ]; then # w/ internet ######################################
+
 echo "   \_this operation will take a minute, wait..."
 echo
 ssu updaterepos
 pkcon -yp refresh 2>&1 | grep -v Status | sed -e "s,^,   ,"
 pkcon -yp update  2>&1 | grep -v Status | sed -e "s,^,   ,"
+n=$((n+1))
 
 echo
 echo "=> Packages installation"
@@ -127,6 +179,18 @@ if [ -n "$rpm_list_1" ]; then
 	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
         2>&1 | grep -v Status | sed -e "s,^,   ,"
 fi
+n=$((n+1))
+
+else # no internet #############################################################
+
+echo "=> Packages installation"
+echo "   \_Install status: skipped, no Internet"
+echo "   \_Alternative install: TODO"
+
+fi #############################################################################
+
+m=$((m+3))
+if ! which mcetool >/dev/null; then ##############################################
 
 echo
 echo "=> Enable auto-brightness"
@@ -141,6 +205,7 @@ mcetool \
 --set-brightness-fade-def=150
 
 mcetool | grep -i brightness | sed -e "s,^,   ,"
+n=$((n+1))
 
 echo
 echo "=> Set balanced-interactive governor"
@@ -157,6 +222,7 @@ mcetool -S interactive \
 	--set-psm-threshold=100
 
 mcetool | grep -iE "power|ps" | grep -v "dbus" | sed -e "s,^,   ,"
+n=$((n+1))
 
 echo
 echo "=> Set battery charging thresholds"
@@ -169,6 +235,21 @@ mcetool \
 	--set-charging-mode=apply-thresholds
 
 mcetool | grep -i charging | sed -e "s,^,   ,"
+n=$((n+1))
+
+else # no mce-tools installed ##################################################
+
+echo
+echo "=> Enable auto-brightness"
+echo "=> Set balanced-interactive governor"
+echo "=> Set battery charging thresholds"
+echo "   \_setting status: skipped, no mce-tools"
+
+fi #############################################################################
+
+if [ "$icst" = "OK" ]; then # w/ internet ######################################
+	:
+else # no internet #############################################################
 
 echo
 echo "=> Create $HOME/bin and replicate me there"
@@ -176,8 +257,11 @@ rmme="$0"
 mkdir -p $HOME/bin
 cp -arf $0 $HOME/bin 2>/dev/null || rmme=""
 
+fi #############################################################################
+
 echo
-echo "=> Initial setup of a $ssu_status device completed."
+echo "=> Initial setup of a $ssu_status mobile device completed."
+echo "   \_Task completed: $n of $m"
 echo
 
 rm -f "$rmme"; exit 0
