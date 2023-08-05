@@ -18,11 +18,23 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.6
+# release: 0.0.7
 
 set -ue -o pipefail
 
-if ! type errexit 2>&1 | head -n1 | grep -q "is a function"; then
+zadir=$(dirname $0 2>/dev/null ||:)
+source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
+
+# FUNTIONS DEFINITIOS ##########################################################
+
+if ! type isafunc 2>&1 | head -n1 | grep -q "is a function"; then
+	isafunc() {
+		test -n "${1:-}" || return 1
+		type $1 2>&1 | head -n1 | grep -q "is a function"
+	}
+fi
+
+if ! isafunc errexit; then
 	errexit() {
 		if [ -n "${1:-}" ]; then
 			echo
@@ -33,9 +45,25 @@ if ! type errexit 2>&1 | head -n1 | grep -q "is a function"; then
 	}
 fi
 
+if ! isafunc download; then
+	download() {
+		test -n "${2:-}" || return 1
+		if which wget >/dev/null; then
+			wget $1 -qO $2
+		elif which curl >/dev/null; then
+			curl -sL $1 >$2
+		else
+			return 1
+		fi
+	}
+fi
+
+# VARIABLES DEFINITIONS ########################################################
+
 branch="devel"
 branch="${1:-$branch}"
 url="https://raw.githubusercontent.com/robang74/redfishos/$branch/scripts"
+dir=$HOME/bin
 
 src="
 pcos/pcos-rfos-suite-installer.sh
@@ -46,16 +74,16 @@ pcos/fastboot_usb3fix.sh
 rfos-first-setup.sh
 "
 
-echo
-dir=$HOME/bin
-mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
+# MAIN CODE EXECUTION ##########################################################
 
+echo
+mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 for i in $src; do
 	dst=$dir/$(basename $i)
 	printf "Downloading from %s to %s: %-36s ..." \
 		${branch:0:6} ${dir/$HOME\//\~/} $i
 	rm -f $dst
-    wget $url/$i -qO $dst || errexit "cannot download $i, abort."
+    download $url/$i $dst || errexit "cannot download $i, abort."
     echo " ok"
 	if echo $i | grep -q "\.sh$"; then
 		chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
