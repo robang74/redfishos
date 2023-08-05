@@ -35,7 +35,7 @@ fle=rfos-suite-installer.sh
 sha=8d0610af6734089751d11b1db9dfbe0042213479 #sha=main
 url=https://raw.githubusercontent.com/robang74/redfishos
 url=$url/$sha/scripts/$fle
-wget $url -O - | bash
+{ wget $url -qO - || curl -sL $url; } | bash
 ```
 
 If you like to use the last version of this script then replace the `sha` value with `main` or `devel` if you dare.
