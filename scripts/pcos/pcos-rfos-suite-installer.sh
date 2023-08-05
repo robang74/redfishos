@@ -43,7 +43,7 @@ sfos/patch_dblock_functions.env
 rfos-script-functions.env
 pcos/sfos-ssh-connect.env
 pcos/fastboot_usb3fix.sh
-pcos/rfos-first-setup.sh
+rfos-first-setup.sh
 "
 
 echo

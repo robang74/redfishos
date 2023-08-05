@@ -8,7 +8,7 @@
 
 This script provides a *standard* system configuration immediately after the first boot, after the flashing procedure:
 
-* [pcos / rfos-first-setup.sh](rfos-first-setup.sh) - it is now available for testing by advanced end-user (reworked on 3rd Aug 2023).
+* [scripts / rfos-first-setup.sh](../rfos-first-setup.sh) - it is now available for testing by advanced end-user (reworked on 3rd Aug 2023).
 
 These are its dependencies:
 
@@ -16,7 +16,7 @@ These are its dependencies:
 
 * [pcos / sfos-ssh-connect.env](sfos-ssh-connect.env) - it is the bash environment required by the script above for SSH automatic connection.
 
-* [sfos-ssh-connect-env patch](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above. 
+* [patch / sfos-ssh-connect-env](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above.
 
 The *standard* term here means about a starting point from which it is supposed everyone wishes to debug and fix the SFOS is put on working for quick results comparison and their [reproducibility](https://www.ncbi.nlm.nih.gov/books/NBK547546/#_sec_ch3_2_). Plus, it adds those command-line tools like `pigz` and `rsync` that are useful in doing advanced root filesystem and users home folders backups.
 
@@ -26,7 +26,7 @@ The *standard* term here means about a starting point from which it is supposed 
 
 A script is provided to install in your `$HONE/bin`  all scripts that are ready to use with your GNU/Linux distribution (PCOS).
 
-* [RedFish OS suite installer for PCOS](scripts/pcos/pcos-rfos-suite-installer.sh)
+* [RedFish OS suite installer for PCOS](pcos-rfos-suite-installer.sh)
 
 The installation procedure is quite simple and can be done on-the-fly in this way:
 
