@@ -52,9 +52,9 @@ if ! isafunc download; then
 	download() {
 		test -n "${2:-}" || return 1
 		if which wget >/dev/null; then
-			wget $1 -qO $2
+			wget $1 -q  >$2; sync $2
 		elif which curl >/dev/null; then
-			curl -sL $1 >$2
+			curl -sL $1 >$2; sync $2
 		else
 			return 1
 		fi
@@ -75,6 +75,7 @@ src="
 sfos/patch_dblock_functions.env
 sfos/patch_installer.sh
 sfos/patch_downloader.sh
+sfos/setnet_postroute.sh
 rfos-script-functions.env
 rfos-suite-installer.sh
 rfos-first-setup.sh
@@ -95,7 +96,7 @@ echo
 mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 for i in $src; do
 	dst=$dir/$(basename $i)
-	printf "Downloading from %s to %s: %-36s ..." \
+	printf "Downloading from %s to %s: %-32s ..." \
 		${branch:0:6} ${dir/$HOME\//\~/} $i
 	rm -f $dst
     download $url/$i $dst || errexit "cannot download $i, abort."
