@@ -72,6 +72,9 @@ ldconfig
 hostname "$rfos_hostname"
 hostname  >/etc/hostname
 echo
+echo "=> Create $HOME/bin and replicate me there"
+mkdir -p bin && cp -arf $0 bin
+echo
 echo "=> Repository selection"
 echo "   \_this operation will take a minute, wait..."
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
@@ -155,6 +158,7 @@ echo
 echo "=> Initial setup of a $ssu_status device completed."
 echo
 
+rm -f $0; exit 0
 else ## pcos ###################################################################
 
 bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
