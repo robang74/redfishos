@@ -89,11 +89,7 @@ echo "=> Refresh library cache and set the hostname: $rfos_hostname"
 ldconfig
 hostname "$rfos_hostname"
 hostname  >/etc/hostname
-echo
-echo "=> Create $HOME/bin and replicate me there"
-rmme="$0"
-mkdir -p $HOME/bin
-cp -arf $0 $HOME/bin 2>/dev/null || rmme=""
+
 echo
 echo "=> Repository selection"
 echo "   \_this operation will take a minute, wait..."
@@ -173,6 +169,12 @@ mcetool \
 	--set-charging-mode=apply-thresholds
 
 mcetool | grep -i charging | sed -e "s,^,   ,"
+
+echo
+echo "=> Create $HOME/bin and replicate me there"
+rmme="$0"
+mkdir -p $HOME/bin
+cp -arf $0 $HOME/bin 2>/dev/null || rmme=""
 
 echo
 echo "=> Initial setup of a $ssu_status device completed."
