@@ -8,13 +8,16 @@
 
 This script provides a *standard* system configuration immediately after the first boot, after the flashing procedure:
 
-* [scripts / rfos-first-setup.sh](../rfos-first-setup.sh) - it is now available for testing by advanced end-user (reworked on 3rd Aug 2023).
+* [rfos-first-setup.sh](rfos-first-setup.sh) - it is now available for testing by advanced end-user (reworked on 5th Aug 2023).
+
+It has been designed to be functional even when the mobile device has not any Internet connection executing it from a GNU/Linux workstation.
+Hower, it works also running on the mobile device with some limitations which makes it useful for a 2nd time setup at user on-demand request.
 
 These are its dependencies:
 
-* [scripts / rfos-script-functions.env](../rfos-script-functions.env) - it is the canvas that will collect all the generic functions.
+* [rfos-script-functions.env](rfos-script-functions.env) - it is the canvas that will collect all the generic functions.
 
-* [pcos / sfos-ssh-connect.env](sfos-ssh-connect.env) - it is the bash environment required by the script above for SSH automatic connection.
+* [pcos / sfos-ssh-connect.env](pcos/sfos-ssh-connect.env) - it is the bash environment required by the script above for SSH automatic connection.
 
 * [patch / sfos-ssh-connect-env](https://coderus.openrepos.net/pm2/project/sfos-ssh-connect-env) - it is the script that enable the quick & safe password-less root-login via SSH, a system setup-up required by the environment above.
 
@@ -26,13 +29,13 @@ The *standard* term here means about a starting point from which it is supposed 
 
 A script is provided to install in your `$HONE/bin`  all scripts that are ready to use with your GNU/Linux distribution (PCOS).
 
-* [RedFish OS suite installer for PCOS](../rfos-suite-installer.sh)
+* [RedFish OS suite installer](rfos-suite-installer.sh) - it works for both mobile and workstation applying the correct configuration on the both systems.
 
 The installation procedure works for SFOS and PCOS both, it is quite simple and can be done on-the-fly in this way:
 
 ```
 fle=rfos-suite-installer.sh
-sha=8d0610af6734089751d11b1db9dfbe0042213479 #sha=main
+sha=8d0610af6734089751d11b1db9dfbe0042213479 #; sha=main
 url=https://raw.githubusercontent.com/robang74/redfishos
 url=$url/$sha/scripts/$fle
 { wget $url -qO - || curl -sL $url; } | bash
