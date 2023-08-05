@@ -56,16 +56,20 @@ busybox-symlinks-bash
 "
 
 rpm_list_1="
-pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch bash
+pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
-sailfish-utilities
+sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
+gnu-bash
 "
+
+rpm_list_2="gpstoggle"
 
 #TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
 #      ofono-vendor-qti-radio-plugin
 
-rpm_list_2="gpstoggle"
+filter="grep -Ev 'Status:|Percentage:|Results:'"
+filter="$filter | sed -e 's,^,\ \ \ ,' | uniq"
 
 echo
 runby=${2:+pcos:$2}
@@ -77,9 +81,9 @@ echo
 m=$((m+1))
 if [ -n "${1:-}" ]; then
 	echo "=> Updating date time from the pcos-host"
-	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+	echo "  \_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 	TZ=UTC date -s @"$1" >/dev/null
-	echo "\_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+	echo "  \_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 	tref_dir=$(dirname "$tref_filename")
 	if [ ! -s "$tref_filename" ]; then
 		mkdir -p "$tref_dir"
@@ -89,19 +93,19 @@ if [ -n "${1:-}" ]; then
 	n=$((n+1))
 else
 	echo "=> Printing date time from the localhost"
-	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+	echo "  \_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 fi
 
 if [ -n "${4:-}" ]; then
 	md5str=$(md5sum $0 | cut -d' ' -f1)
 	echo
 	echo "=> Checking the MD5sum of the two scripts"
-	echo "\_ remote: $4"
-	echo "\_ locale: $md5str"
+	echo "  \_ remote: $4"
+	echo "  \_ locale: $md5str"
 	if [ "$4" = "$md5str" ]; then
-		echo "\_ check : OK"
+		echo "  \_ check : OK"
 	else
-		echo "\_ check : KO"
+		echo "  \_ check : KO"
 		exit 1
 	fi
 fi
@@ -118,7 +122,7 @@ n=$((n+1))
 echo
 echo "=> Internet connection verification"
 icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
-echo "   \_ Internet connectivity: $icst"
+echo "  \_ Internet connectivity: $icst"
 
 echo
 echo "=> RFOS script suite install"
@@ -131,36 +135,36 @@ fle=rfos-suite-installer.sh
 url=https://raw.githubusercontent.com/robang74/redfishos
 url=$url/$sha/scripts/$fle
 
-echo "   \_ Starting the script {} wait..."
+echo "  \_ Starting the script {} wait..."
 rsst=/tmp/1stup.fifo; rm -f $rsst; mkfifo $rsst; {
  	set -mo pipefail
 	exec 2>/dev/null
-	{ wget $url -qO - || curl -sL $url; } | bash | grep . | sed -e "s,^,   | ,"
+	{ wget $url -qO - || curl -sL $url; } | bash | grep . | sed -e "s,^,  | ,"
 	{ if [ $? -eq 0 ]; then echo OK; else echo KO; fi >$rsst; } &
 }  
 disown &>/dev/null
-echo "   \_ Reading the fifo..."
+echo "  \_ Reading the fifo..."
 read sret < $rsst; rm -f $rsst
-echo "   \_ Installation status: $sret"
+echo "  \_ Installation status: $sret"
 test "$sret" = "OK" && n=$((n+1))
 
 else # no internet #############################################################
 
-echo "   \_ Installation status: skipped, no Internet"
-echo "   \_ Alternative install: TODO"
+echo "  \_ Installation status: skipped, no Internet"
+echo "  \_ Alternative install: TODO"
 
 fi #############################################################################
 
 echo
 echo "=> Repository selection"
-echo "   \_ This operation will take a minute, wait..."
+echo "  \_ This operation will take a minute, wait..."
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 if ssu repos | grep -q "[ -]* store ..."; then
-	echo "   \_ Jolla store: found, enabling all repositories..."
+	echo "  \_ Jolla store: found, enabling all repositories..."
 	for i in $repo_list; do ssu enablerepo $i; done
 	ssu_status="Jolla"
 else
-	echo "   \_ Jolla store: not found, disabling some repositories..."
+	echo "  \_ Jolla store: not found, disabling some repositories..."
 	for i in $repo_list; do ssu disablerepo $i; done
 	ssu_status="Linux"
     rpm_list_2=""
@@ -171,15 +175,16 @@ n=$((n+1))
 
 echo
 echo "=> Repository and packages update"
-m=$((m+2))
+m=$((m+3))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
-echo "   \_ This operation will take a minute, wait..."
+echo "  \_ This operation will take a minute, wait..."
 echo
-ssu updaterepos
-pkcon -yp refresh 2>&1 | grep -v Status | sed -e "s,^,   ,"
-pkcon -yp update  2>&1 | grep -v Status | sed -e "s,^,   ,"
+#ssu updaterepos
+zypper refresh  2>&1 | eval $filter
+#pkcon -yp refresh 2>&1 | eval $filter
+pkcon -yp update  2>&1 | eval $filter
 n=$((n+1))
 
 echo
@@ -190,18 +195,27 @@ if [ -n "$rpm_list_1" ]; then
     for i in $rpm_list_0; do
         #RAF: no pipefail here
         { rpm -qi $i 2>&1 ||:; } | grep -q "not installed" \
-            || pkcon -yp remove $i 2>&1 | grep -v Status
+            || pkcon -yp remove $i 2>&1 | eval $filter
     done
 	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
-        2>&1 | grep -v Status | sed -e "s,^,   ,"
+        2>&1 | eval $filter
+fi
+n=$((n+1))
+
+echo
+echo "=> Updating CA-trust, wait..."
+if update-ca-trust; then
+	echo "  \_ update-ca-trust: OK"
+else
+	echo "  \_ update-ca-trust: KO"
 fi
 n=$((n+1))
 
 else # no internet #############################################################
 
 echo "=> Packages installation"
-echo "   \_ Install status: skipped, no Internet"
-echo "   \_ Alternative install: TODO"
+echo "  \_ Install status: skipped, no Internet"
+echo "  \_ Alternative install: TODO"
 
 fi #############################################################################
 
@@ -259,7 +273,7 @@ echo
 echo "=> Enable auto-brightness"
 echo "=> Set balanced-interactive governor"
 echo "=> Set battery charging thresholds"
-echo "   \_ Setting status: skipped, no mce-tools"
+echo "  \_ Setting status: skipped, no mce-tools"
 
 fi #############################################################################
 
@@ -277,7 +291,7 @@ fi #############################################################################
 
 echo
 echo "=> Initial setup of a $ssu_status mobile device completed."
-echo "   \_ Task completed: $n of $m"
+echo "  \_ Task completed: $n of $m"
 echo
 
 rm -f "$rmme"; exit 0
