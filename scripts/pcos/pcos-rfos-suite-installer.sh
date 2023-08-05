@@ -52,7 +52,8 @@ mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 
 for i in $src; do
 	dst=$dir/$(basename $i)
-	echo -n "Downloading $i..."
+	printf "Downloading from %s to %s: %-36s ..." \
+		${branch:0:6} ${dir/$HOME\//\~/} $i
 	rm -f $dst
     wget $url/$i -qO $dst || errexit "cannot download $i, abort."
     echo " ok"
