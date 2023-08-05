@@ -243,17 +243,23 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
     **status**: ready for everybody, documents collection continues. 
 
-* 01.08.2023, [sysdebug and recovery tarballs](https://github.com/robang74/redfishos/blob/main/recovery/README.md)
+* 01.08.2023, [sysdebug and recovery tarballs](recovery/README.md)
 
     **description**: shell scripts that produce tarballs for debugging and recovering.
 
     **status**: ready for advanced users testing.
 
-* 03.08.2023, [first boot setup after flashing](https://github.com/robang74/redfishos/blob/main/scripts/pcos/README.md)
+* 03.08.2023, [first boot setup after flashing](scripts/README.md)
 
     **description**: shell scripts suite for the first boot setup after flashing.
 
-    **status**: ready for advanced users testing, quick installation script.
+    **status**: ready for advanced users adoption.
+
+* 05.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
+
+    **description**: the scripts suite has two distinct instances workstation and mobile device.
+
+    **status**: ready for advanced users testing, on-the-fly installation script.
 
 ---
 
