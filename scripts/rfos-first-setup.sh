@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.8
+# release: 0.0.9
 
 # WARNING NOTE
 #
@@ -34,11 +34,19 @@
 
 set -u
 rfos_hostname="redfishos"
+tref_filename="/etc/.time/.refernce"
 
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
 
-test -n "${2:-}" || exit 1
+if [ -s "$tref_filename" ]; then
+	:
+elif [ ! -n "${1:-}" ]; then
+	echo
+	echo "ERROR: file '$tref_filename' or data/time needed, abort."
+	echo
+	exit 1
+fi
 
 rpm_list_0="
 busybox-symlinks-vi
@@ -57,23 +65,35 @@ sailfish-utilities
 rpm_list_2="gpstoggle"
 
 echo
-echo shell script execution by pcos${1:+:$1}
+runby=${2:+pcos:$2}
+runby=${runby:-localhost}
+echo shell script execution by $runby
 echo ---------------------------------------
-echo "=> Updating date time from the host"
-echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
-TZ=UTC date -s @"$2"
-echo "\_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
-mkdir -p /etc/.time/
-touch /etc/.time/.refernce
-chmod a-w /etc/.time/.refernce
+if [ -n "${1:-}" ]; then
+	echo "=> Updating date time from the pcos-host"
+	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+	TZ=UTC date -s @"$1"
+	echo "\_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+	tref_dir=$(dirname "$tref_filename")
+	mkdir -p "$tref_dir"
+	echo "$1">"$tref_filename"
+	chmod a-w "$tref_filename" "$tref_dir"
+else
+	echo "=> Printing date time from the localhost"
+	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+fi
+
 echo
-echo "=> Refresh library cache and set the hostname: $3"
+rfos_hostname=${3:-$rfos_hostname}
+echo "=> Refresh library cache and set the hostname: $rfos_hostname"
 ldconfig
 hostname "$rfos_hostname"
 hostname  >/etc/hostname
 echo
 echo "=> Create $HOME/bin and replicate me there"
-mkdir -p bin && cp -arf $0 bin
+rmme="$0"
+mkdir -p $HOME/bin
+cp -arf $0 $HOME/bin 2>/dev/null || rmme=""
 echo
 echo "=> Repository selection"
 echo "   \_this operation will take a minute, wait..."
@@ -158,7 +178,7 @@ echo
 echo "=> Initial setup of a $ssu_status device completed."
 echo
 
-rm -f $0; exit 0
+rm -f "$rmme"; exit 0
 else ## pcos ###################################################################
 
 bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
@@ -205,7 +225,7 @@ echo "pcos: $(cd $(dirname $setup_file); md5sum $setup_name | tr -s ' ')"
 
 if scp $setup_file root@$sfos_ipaddr:~ >/dev/null; then
 	sfish 'echo rfos: $(md5sum '$setup_name'); /bin/bash '$setup_name \
-        $(whoami) $(TZ=UTC date "+%s") $rfos_hostname
+        $(TZ=UTC date "+%s") $(whoami) $rfos_hostname
 fi
 
 fi #############################################################################
