@@ -81,13 +81,29 @@ if [ -n "${1:-}" ]; then
 	TZ=UTC date -s @"$1" >/dev/null
 	echo "\_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 	tref_dir=$(dirname "$tref_filename")
-	mkdir -p "$tref_dir"
-	echo "$1">"$tref_filename"
-	chmod a-w "$tref_filename" "$tref_dir"
+	if [ ! -s "$tref_filename" ]; then
+		mkdir -p "$tref_dir"
+		echo "$1">"$tref_filename"
+		chmod a-w "$tref_filename" "$tref_dir"
+	fi
 	n=$((n+1))
 else
 	echo "=> Printing date time from the localhost"
 	echo "\_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
+fi
+
+if [ -n "${4:-}" ]; then
+	md5str=$(md5sum $0 | cut -d' ' -f1)
+	echo
+	echo "=> Checking the MD5sum of the two scripts"
+	echo "\_ remote: $4"
+	echo "\_ locale: $md5str"
+	if [ "$4" = "$md5str" ]; then
+		echo "\_ check : OK"
+	else
+		echo "\_ check : KO"
+		exit 1
+	fi
 fi
 
 echo
@@ -102,7 +118,7 @@ n=$((n+1))
 echo
 echo "=> Internet connection verification"
 icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
-echo "   \_Internet connectivity: $icst"
+echo "   \_ Internet connectivity: $icst"
 
 echo
 echo "=> RFOS script suite install"
@@ -115,7 +131,7 @@ fle=rfos-suite-installer.sh
 url=https://raw.githubusercontent.com/robang74/redfishos
 url=$url/$sha/scripts/$fle
 
-echo "   \_Starting the script {} wait..."
+echo "   \_ Starting the script {} wait..."
 rsst=/tmp/1stup.fifo; rm -f $rsst; mkfifo $rsst; {
  	set -mo pipefail
 	exec 2>/dev/null
@@ -123,28 +139,28 @@ rsst=/tmp/1stup.fifo; rm -f $rsst; mkfifo $rsst; {
 	{ if [ $? -eq 0 ]; then echo OK; else echo KO; fi >$rsst; } &
 }  
 disown &>/dev/null
-echo "   \_Reading the fifo..."
+echo "   \_ Reading the fifo..."
 read sret < $rsst; rm -f $rsst
-echo "   \_Installation status: $sret"
+echo "   \_ Installation status: $sret"
 test "$sret" = "OK" && n=$((n+1))
 
 else # no internet #############################################################
 
-echo "   \_Installation status: skipped, no Internet"
-echo "   \_Alternative install: TODO"
+echo "   \_ Installation status: skipped, no Internet"
+echo "   \_ Alternative install: TODO"
 
 fi #############################################################################
 
 echo
 echo "=> Repository selection"
-echo "   \_this operation will take a minute, wait..."
+echo "   \_ This operation will take a minute, wait..."
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 if ssu repos | grep -q "[ -]* store ..."; then
-	echo "   \_jolla store: found, enabling all repositories..."
+	echo "   \_ Jolla store: found, enabling all repositories..."
 	for i in $repo_list; do ssu enablerepo $i; done
 	ssu_status="Jolla"
 else
-	echo "   \_jolla store: not found, disabling some repositories..."
+	echo "   \_ Jolla store: not found, disabling some repositories..."
 	for i in $repo_list; do ssu disablerepo $i; done
 	ssu_status="Linux"
     rpm_list_2=""
@@ -159,7 +175,7 @@ m=$((m+2))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
-echo "   \_this operation will take a minute, wait..."
+echo "   \_ This operation will take a minute, wait..."
 echo
 ssu updaterepos
 pkcon -yp refresh 2>&1 | grep -v Status | sed -e "s,^,   ,"
@@ -184,13 +200,13 @@ n=$((n+1))
 else # no internet #############################################################
 
 echo "=> Packages installation"
-echo "   \_Install status: skipped, no Internet"
-echo "   \_Alternative install: TODO"
+echo "   \_ Install status: skipped, no Internet"
+echo "   \_ Alternative install: TODO"
 
 fi #############################################################################
 
 m=$((m+3))
-if ! which mcetool >/dev/null; then ##############################################
+if which mcetool >/dev/null; then ##############################################
 
 echo
 echo "=> Enable auto-brightness"
@@ -243,7 +259,7 @@ echo
 echo "=> Enable auto-brightness"
 echo "=> Set balanced-interactive governor"
 echo "=> Set battery charging thresholds"
-echo "   \_setting status: skipped, no mce-tools"
+echo "   \_ Setting status: skipped, no mce-tools"
 
 fi #############################################################################
 
@@ -261,7 +277,7 @@ fi #############################################################################
 
 echo
 echo "=> Initial setup of a $ssu_status mobile device completed."
-echo "   \_Task completed: $n of $m"
+echo "   \_ Task completed: $n of $m"
 echo
 
 rm -f "$rmme"; exit 0
@@ -315,13 +331,12 @@ if [ "$set_key_login" = "yes" ]; then
 fi
 
 echo
-echo '=> Script transfer'
-echo
-echo "pcos: $(cd $(dirname $setup_file); md5sum $setup_name | tr -s ' ')"
-
+echo '=> Script SSH transfer'
 if scp $setup_file root@$sfos_ipaddr:~ >/dev/null; then
-	sfish 'echo rfos: $(md5sum '$setup_name'); /bin/bash '$setup_name \
-        $(TZ=UTC date "+%s") $(whoami) $rfos_hostname
+	usrstr=$(whoami)
+	md5str=$(md5sum $setup_file | cut -d' ' -f1)
+	dttmsc=$(TZ=UTC date "+%s")
+	sfish /bin/bash $setup_name $dttmsc $usrstr $rfos_hostname $md5str
 fi
 
 fi #############################################################################
