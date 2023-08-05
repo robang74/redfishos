@@ -215,7 +215,17 @@ if [ "$set_key_login" = "yes" ]; then
 	      "echo 'root password-less access: OK'"
 fi
 
-setup_file=$0
+if [ "$(dirname $0)" = "." -a ! -e "$0" ]; then
+	setup_file=$(which $0)
+else
+	setup_file=$0
+fi
+if [ ! -e "$setup_file" ]; then
+	echo
+	echo "ERROR: file '$setup_file' not found, abort."
+	echo
+	exit 1
+fi
 setup_name=$(basename $setup_file)
 
 echo
