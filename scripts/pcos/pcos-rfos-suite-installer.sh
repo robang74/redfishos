@@ -28,6 +28,7 @@ source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
 # FUNTIONS DEFINITIOS ##########################################################
 
 if ! type isafunc 2>&1 | head -n1 | grep -q "is a function"; then
+	echo -e "\nfunction define isafunc()"
 	isafunc() {
 		test -n "${1:-}" || return 1
 		type $1 2>&1 | head -n1 | grep -q "is a function"
@@ -35,6 +36,7 @@ if ! type isafunc 2>&1 | head -n1 | grep -q "is a function"; then
 fi
 
 if ! isafunc errexit; then
+	echo "function define errexit()"
 	errexit() {
 		if [ -n "${1:-}" ]; then
 			echo
@@ -46,6 +48,7 @@ if ! isafunc errexit; then
 fi
 
 if ! isafunc download; then
+	echo "function define download()"
 	download() {
 		test -n "${2:-}" || return 1
 		if which wget >/dev/null; then
@@ -99,6 +102,9 @@ echo
 echo "DONE: scripts suite for RedFish OS, installed in"
 echo "      folder    : $dir"
 echo "      enviroment: $HOME/.bashrc"
-echo "Please, (re)execute bash to load its enviroment."
+echo
+echo "Please, (re)execute bash to load its enviroment, then"
+echo "      rfos-first-setup.sh"
+echo "to start the RedFish OS first boot setup procedure"
 echo
 
