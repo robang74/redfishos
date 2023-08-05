@@ -70,6 +70,7 @@ dir=$HOME/bin
 
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
+echo -e "\nScript running on mbile device"
 src="
 sfos/patch_dblock_functions.env
 sfos/patch_installer.sh
@@ -79,6 +80,7 @@ rfos-suite-installer.sh
 rfos-first-setup.sh
 "
 else ## pcos ###################################################################
+echo -e "\nScript running on a workstation"
 src="
 pcos/fastboot_usb3fix.sh
 pcos/sfos-ssh-connect.env
@@ -86,6 +88,7 @@ rfos-script-functions.env
 rfos-suite-installer.sh
 rfos-first-setup.sh
 "
+fi #############################################################################
 # MAIN CODE EXECUTION ##########################################################
 
 echo
