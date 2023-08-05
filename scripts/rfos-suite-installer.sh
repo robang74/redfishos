@@ -68,15 +68,24 @@ branch="${1:-$branch}"
 url="https://raw.githubusercontent.com/robang74/redfishos/$branch/scripts"
 dir=$HOME/bin
 
+rfos=$(cd /etc && egrep -i "sailfish|redfish" *-release mtab issue group passwd)
+if [ "$rfos" != "" ]; then ## rfos #############################################
 src="
-pcos/pcos-rfos-suite-installer.sh
 sfos/patch_dblock_functions.env
+sfos/patch_installer.sh
+sfos/patch_downloader.sh
 rfos-script-functions.env
-pcos/sfos-ssh-connect.env
-pcos/fastboot_usb3fix.sh
+rfos-suite-installer.sh
 rfos-first-setup.sh
 "
-
+else ## pcos ###################################################################
+src="
+pcos/fastboot_usb3fix.sh
+pcos/sfos-ssh-connect.env
+rfos-script-functions.env
+rfos-suite-installer.sh
+rfos-first-setup.sh
+"
 # MAIN CODE EXECUTION ##########################################################
 
 echo

@@ -26,15 +26,15 @@ The *standard* term here means about a starting point from which it is supposed 
 
 A script is provided to install in your `$HONE/bin`  all scripts that are ready to use with your GNU/Linux distribution (PCOS).
 
-* [RedFish OS suite installer for PCOS](pcos-rfos-suite-installer.sh)
+* [RedFish OS suite installer for PCOS](../rfos-suite-installer.sh)
 
-The installation procedure is quite simple and can be done on-the-fly in this way:
+The installation procedure works for SFOS and PCOS both, it is quite simple and can be done on-the-fly in this way:
 
 ```
-fle=pcos-rfos-suite-installer.sh
+fle=rfos-suite-installer.sh
 sha=8d0610af6734089751d11b1db9dfbe0042213479 #sha=main
 url=https://raw.githubusercontent.com/robang74/redfishos
-url=$url/$sha/scripts/pcos/$fle
+url=$url/$sha/scripts/$fle
 wget $url -O - | bash
 ```
 
