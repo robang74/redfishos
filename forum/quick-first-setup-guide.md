@@ -1,4 +1,4 @@
-## Quick First Setup Guide v1.1.0
+## Quick First Setup Guide v1.1.1
 
 This is the guide originally written for the SailFish OS community forum and reported here in Github .md format.
 
@@ -192,6 +192,17 @@ Follow these instructions to activate it in Settings:System -> Internet sharing:
 3. set Internet sharing: ON.
 
 In the future, you can also activate the WiFi hotspot/tethering from the top menu.
+
+> @smartiz wrote:
+> 
+> ```
+> devel-su
+> pkcon refresh
+> pkcon install usb-moded-connection-sharing-android-connman-config
+> systemctl restart usb-moded
+> ```
+
+As soon as you manage to login into a SSH connection or into a terminal, the above commands are suggested in order to deal with tethering problems and also about the wifi tethering `dhcpd` service.
 
 ---
 
