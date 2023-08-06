@@ -263,6 +263,12 @@ Please check the [same section](https://github.com/robang74/redfishos/tree/devel
 
     **status**: ready for advanced users testing, on-the-fly installation script.
 
+* 06.08.2023, [patch downloader and installer](scripts/README.md)
+
+  **description**: patch downloader and installer alpha-development completed
+
+  **status**: ready for advanced users testing, patch remover yet to do.
+
 ---
 
 ### Forum
