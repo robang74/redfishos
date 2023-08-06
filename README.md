@@ -217,6 +217,8 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ### News & updates
 
+Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
+
 * 26.05.2023, a second hand Sony Xperia 10 II arrived in excellent conditions.
 
 * 01.07.2023, a Jolla SFOS license bought to install the Android Support.
