@@ -131,20 +131,20 @@ err=1
 
 echo "=> Previous patch check: $patch_name"
 patch_prev_strn=$(grep ", *$patch_name *," $patch_db)
+patch_prev_path=""
 if patch_string_to_filename "$patch_prev_strn"; then
 	echo "  \_ previous patch: found"
 	echo "  |  $patch_prev_strn"
 	echo "  \_ checking for reversibility... "
-	if patch $patch_opts -R --dry-run < "$patch_path"; then
+	if patch $patch_opts -R --dry-run -i "$patch_path"; then
+		patch_prev_path=$patch_path
 		reversible="OK"
 	else
 		reversible="KO"
-	fi
+	fi >/dev/null 2>&1
 	echo "  \_ reversibility : $reversible"
-	patch_prev_path=$patch_path
 else
 	echo "  \_ previous patch: none"
-	patch_prev_path=""
 fi
 
 echo
@@ -160,7 +160,11 @@ if ! patch_string_to_filename "$patch_strn"; then
 fi
 if [ "$patch_path" = "$patch_prev_path" ]; then
 	echo "  \_ patch status: just applied in its version."
+	echo "$patch_prev_path"
+	echo "$patch_path"
 	err=0; continue
+else
+	echo "  \_ patch status: to apply."
 fi
 
 echo
