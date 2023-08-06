@@ -98,8 +98,7 @@ if [ ! -n "$patches_to_apply" ]; then
 fi
 echo
 echo "=> Using the patch list from '$plst':"
-echo
-echo "$patches_to_apply" | eval $filter_1
+echo "  \_ $plst: $patches_to_apply"
 
 # this loop install all the patches in the ordered list ########################
 n=1; mkdir -p "$patch_dir/"; rm -f "$reload_path" # preparation for the loop ###
@@ -142,8 +141,10 @@ if patch_string_to_filename "$patch_prev_strn"; then
 		reversible="KO"
 	fi
 	echo "  \_ reversibility : $reversible"
+	patch_prev_path=$patch_path
 else
 	echo "  \_ previous patch: none"
+	patch_prev_path=""
 fi
 
 echo
@@ -152,11 +153,16 @@ echo "  \_ patch name: $patch_name"
 patch_downloader.sh $patch_name 2>&1 | eval $filter_2
 echo "  \_ patch saved in: $patch_dir"
 patch_strn=$(grep ", *$patch_name *," $patch_db)
-echo "     $patch_strn"
+echo "  |  $patch_strn"
 
 if ! patch_string_to_filename "$patch_strn"; then
 	errexit "patch string  of '$patch_name' is void, abort."
 fi
+if [ "$patch_path" = "$patch_prev_path" ]; then
+	echo "  \_ patch status: just applied in its version."
+	err=0; continue
+fi
+
 echo
 echo "patch path: $patch_path"
 echo "bckup path: $bckup_path"
@@ -228,7 +234,7 @@ echo
 
 break; done ####################################################################
 
-reload_list=$(grep . "$reload_path")
+reload_list=$(cat "$reload_path" 2>/dev/null)
 if [ -n "$reload_list" ]; then
 	echo "=> Restarting system services"
 	echo "\_ to restart: "$reload_list
