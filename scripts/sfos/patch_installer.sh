@@ -163,13 +163,47 @@ if [ "$patch_path" = "$patch_prev_path" ]; then
 	echo "$patch_prev_path"
 	echo "$patch_path"
 	err=0; continue
+elif [ "$reversible" = "OK" ]; then
+	echo "  \_ patch status: new version to apply."
 else
-	echo "  \_ patch status: to apply."
+	echo "  \_ patch status: patch to apply."
 fi
 
 echo
 echo "patch path: $patch_path"
 echo "bckup path: $bckup_path"
+
+# This part cannt be interrupted # ******************************************* #
+set +e; stty -echoctl 2>/dev/null
+trap 'true' SIGINT EXIT
+
+echo
+echo "=> Applying the patch #$n..."
+reversed=""
+if [ "$reversible" = "OK" ]; then
+	echo "  \_ Reversing previous version patch..."
+	if patch $patch_opts -R -i "$patch_prev_path"; then
+		reversed="OK"
+	else
+		reversed="KO"
+	fi
+	echo "  \_ Reversing patch status: $reversed"
+fi
+
+stty +echoctl 2>/dev/null; set -e
+trap -- SIGINT EXIT # ******************************************************** #
+
+if true || [ "$reversed" = "KO" ]; then
+	errexit "patch #$n failed to apply because cannot be reversed.
+
+\t\tManual intervetion is needed, these are the working values: 
+
+\t\tpatch path: $(dirname  "$patch_path")
+\t\tpatch file: $(basename "$patch_path")
+\t\tpatch prev: $(basename "${patch_prev_path:-none}")
+\t\tpatch opts: $patch_opts
+"
+fi
 
 continue # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
