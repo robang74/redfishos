@@ -18,19 +18,41 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.6
+# release: 0.0.7
 
 set -ue -o pipefail
 
-export patch_db="/etc/patches.db"
-export patch_dir="/etc/patches.d"
-export patch_url="https://coderus.openrepos.net/media/documents"
-export patch_opts="-slEfp1 -r /dev/null --no-backup-if-mismatch -d/"
-export patch_link=""
+patch_string_to_filename() {
+	test -n "${1:-}" || return 1
 
-export reload_path="$patch_dir/services-to-reload.list"
+	# cast the patch data into useful variables
+	prov=$(echo $1 | cut -d\, -f1 | tr -d ' '     ||:)
+	name=$(echo $1 | cut -d\, -f2 | tr -d ' '     ||:)
+	vern=$(echo $1 | cut -d\, -f3 | tr -d ' '     ||:)
+	extn=$(echo $1 | cut -d\, -f4 | tr -d ' '     ||:)
+	srvs=$(echo $1 | cut -d\, -f5 | grep -vw none ||:)
 
-export patches_to_apply=""
+	patch_file="$prov-$name-$vern.patch"
+	patch_path="$patch_dir/$patch_file"
+	bckup_path=${patch_path%.patch}
+
+	return 0
+}
+
+patch_db="/etc/patches.db"
+patch_dir="/etc/patches.d"
+patch_lst="/etc/patches.list"
+patch_opts="-slEfp1 -r /dev/null --no-backup-if-mismatch -d/"
+
+patches_to_apply=""
+
+reload_path="$patch_dir/services-to-reload.list"
+
+filter_1="grep . | sed -e 's,^,\ \ \ ,' | uniq ||:"
+filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,' ||:"
+
+if false; then # OLD WAY TO DO #################################################
+
 test "x${1:-}" == "x--all" && patches_to_apply="
 robang74, utilities-quick-fp-restart , 0.0.3, tar.gz, none;
 robang74, set-network-postroute      , 0.0.2, tar.gz, none;
@@ -43,52 +65,103 @@ robang74, x10ii-iii-udev-rules-fixing, 0.0.2, tar.gz, systemd-udevd;
 "
 # prov  , name                       , vern , extn  , srvs
 
+else # NEW WAY TO DO ###########################################################
+
+test "x${1:-}" == "x--all" && patches_to_apply="
+utilities-quick-fp-restart
+set-network-postroute
+zram-swap-resize-script
+sshd-publickey-login-only
+x10ii-iii-udev-rules-fixing
+x10ii-iii-agps-config-emea
+dnsmasq-connman-integration
+x10ii-iii-udev-rules-fixing
+"
+
+fi #############################################################################
+
+plst="ERROR"
 if [ ! -n "$patches_to_apply" ]; then
 	if [ -n "${1:-}" ]; then
-		patch_downloader.sh "$@" || exit 1
-		patches_to_apply=$(grep ", *$1 *," $patch_db)
+		patches_to_apply="$@"
+		plst="args"
 	else
-		patches_to_apply=$(cat $patch_db)
+		patches_to_apply=$(cat $patch_lst)
+		plst="file"
 	fi
+else
+	plst="--all"
 fi
 
 if [ ! -n "$patches_to_apply" ]; then
-	echo ERROR; exit 1
+	errexit "no patches to apply found, abort."
 fi
+echo
+echo "=> Using the patch list from '$plst':"
+echo
+echo "$patches_to_apply" | eval $filter_1
 
-# preparation for the loop that will install the patches
-n=1; mkdir -p "$patch_dir/"; rm -f "$reload_path"
-
-# this loop install all the patches in the ordered list
+# this loop install all the patches in the ordered list ########################
+n=1; mkdir -p "$patch_dir/"; rm -f "$reload_path" # preparation for the loop ###
 echo; while true; do ###########################################################
 
+if false; then
+	err=1
+	# retrieve the patch data from the list
+	patch_strn=$(echo $patches_to_apply | cut -d\; -f$n)
+	# quit the loop after the last patch
+	test -n "$patch_strn" || break;
+
+	# cast the patch data into useful variables
+	prov=$(echo $patch_strn | cut -d\, -f1 | tr -d ' '     ||:)
+	name=$(echo $patch_strn | cut -d\, -f2 | tr -d ' '     ||:)
+	vern=$(echo $patch_strn | cut -d\, -f3 | tr -d ' '     ||:)
+	extn=$(echo $patch_strn | cut -d\, -f4 | tr -d ' '     ||:)
+	srvs=$(echo $patch_strn | cut -d\, -f5 | grep -vw none ||:)
+
+	patch_link="$patch_url/$prov-$name-$vern.$extn"
+	link=$(eval echo $patch_link)
+
+	patch_name="$prov-$name-$vern.patch"
+	patch_path="$patch_dir/$patch_name"
+fi
+
+for patch_name in $patches_to_apply; do # ======================================
+
 err=1
-# retrieve the patch data from the list
-patch_strn=$(echo $patches_to_apply | cut -d\; -f$n)
-# quit the loop after the last patch
-test -n "$patch_strn" || break;
 
-echo "=> Installing the patch #$n..."
+echo "=> Previous patch check: $patch_name"
+patch_prev_strn=$(grep ", *$patch_name *," $patch_db)
+if patch_string_to_filename "$patch_prev_strn"; then
+	echo "  \_ previous patch: found"
+	echo "  |  $patch_prev_strn"
+	echo "  \_ checking for reversibility... "
+	if patch $patch_opts -R --dry-run < "$patch_path"; then
+		reversible="OK"
+	else
+		reversible="KO"
+	fi
+	echo "  \_ reversibility : $reversible"
+else
+	echo "  \_ previous patch: none"
+fi
 
-# cast the patch data into useful variables
-prov=$(echo $patch_strn | cut -d\, -f1 | tr -d ' '     ||:)
-name=$(echo $patch_strn | cut -d\, -f2 | tr -d ' '     ||:)
-vern=$(echo $patch_strn | cut -d\, -f3 | tr -d ' '     ||:)
-extn=$(echo $patch_strn | cut -d\, -f4 | tr -d ' '     ||:)
-srvs=$(echo $patch_strn | cut -d\, -f5 | grep -vw none ||:)
+echo
+echo "=> Download the patch #$n..."
+echo "  \_ patch name: $patch_name"
+patch_downloader.sh $patch_name 2>&1 | eval $filter_2
+echo "  \_ patch saved in: $patch_dir"
+patch_strn=$(grep ", *$patch_name *," $patch_db)
+echo "     $patch_strn"
 
-patch_link="$patch_url/$prov-$name-$vern.$extn"
-link=$(eval echo $patch_link)
+if ! patch_string_to_filename "$patch_strn"; then
+	errexit "patch string  of '$patch_name' is void, abort."
+fi
+echo
+echo "patch path: $patch_path"
+echo "bckup path: $bckup_path"
 
-patch_name="$prov-$name-$vern.patch"
-patch_path="$patch_dir/$patch_name"
-
-echo "\_ patch name: $patch_name"
-while true; do # ===============================================================
-
-# download the patch and save it into the patches folder
-curl -sL $link | tar xz -O > "$patch_path" || break
-echo "\_ patch saved in: $patch_dir"
+continue # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 # save with the patch, the services that need to be restarted
 servs_path=$(echo "$patch_path" | sed s/.patch$/.servs/)
@@ -106,7 +179,7 @@ for srv in $srvs; do
 		if [ $? -eq 0 ]; then
 			echo "\_ system service installed: $srv"
 		else
-			echo "\_ system service not found: $srv"
+			echo "\_ system service not found: $srv"./patch_installer.sh
 			echo "$out" | sed -e "s/^/   /"
 			brk=1
 			break 2
@@ -139,7 +212,7 @@ else
 	patch -R $patch_opts < "$patch_path" ||:
 fi
 
-break; done # ==================================================================
+done # =========================================================================
 
 if [ $err -ne 0 ]; then
 	echo
@@ -153,7 +226,7 @@ fi
 n=$((n+1))
 echo
 
-done ###########################################################################
+break; done ####################################################################
 
 reload_list=$(grep . "$reload_path")
 if [ -n "$reload_list" ]; then
