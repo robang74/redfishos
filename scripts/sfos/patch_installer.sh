@@ -18,7 +18,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7
+#
+# TODO: create a back-up of the files before patching, date-time-Nprogressive
+#
+# release: 0.0.8
 
 set -ue -o pipefail
 
@@ -31,12 +34,27 @@ patch_string_to_filename() {
 	vern=$(echo $1 | cut -d\, -f3 | tr -d ' '     ||:)
 	extn=$(echo $1 | cut -d\, -f4 | tr -d ' '     ||:)
 	srvs=$(echo $1 | cut -d\, -f5 | grep -vw none ||:)
+	srvs=${srvs%;}
 
 	patch_file="$prov-$name-$vern.patch"
 	patch_path="$patch_dir/$patch_file"
 	bckup_path=${patch_path%.patch}
 
 	return 0
+}
+
+exit_for_manual_intervetion() {
+	stty +echoctl 2>/dev/null; trap - SIGINT EXIT
+	reload_list=$(cat "$reload_path" 2>/dev/null ||:)
+	errexit "patch #$n failed to apply because cannot be reversed.
+
+\tManual intervetion is needed, these are the working values: 
+
+ patch path: $(dirname  "$patch_path")
+ patch file: $(basename "$patch_path")
+ patch prev: $(basename "${patch_prev_path:-none}")
+ patch opts: $patch_opts
+ srv2reload: $(echo $reload_list)"
 }
 
 patch_db="/etc/patches.db"
@@ -50,6 +68,8 @@ reload_path="$patch_dir/services-to-reload.list"
 
 filter_1="grep . | sed -e 's,^,\ \ \ ,' | uniq ||:"
 filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,' ||:"
+filter_3="grep -Ev 'Status:|Percentage:|Results:'"
+filter_3="$filter_3 | $filter_2"
 
 if false; then # OLD WAY TO DO #################################################
 
@@ -100,36 +120,18 @@ echo
 echo "=> Using the patch list from '$plst':"
 echo "  \_ $plst: $patches_to_apply"
 
-# this loop install all the patches in the ordered list ########################
-n=1; mkdir -p "$patch_dir/"; rm -f "$reload_path" # preparation for the loop ###
-echo; while true; do ###########################################################
-
-if false; then
-	err=1
-	# retrieve the patch data from the list
-	patch_strn=$(echo $patches_to_apply | cut -d\; -f$n)
-	# quit the loop after the last patch
-	test -n "$patch_strn" || break;
-
-	# cast the patch data into useful variables
-	prov=$(echo $patch_strn | cut -d\, -f1 | tr -d ' '     ||:)
-	name=$(echo $patch_strn | cut -d\, -f2 | tr -d ' '     ||:)
-	vern=$(echo $patch_strn | cut -d\, -f3 | tr -d ' '     ||:)
-	extn=$(echo $patch_strn | cut -d\, -f4 | tr -d ' '     ||:)
-	srvs=$(echo $patch_strn | cut -d\, -f5 | grep -vw none ||:)
-
-	patch_link="$patch_url/$prov-$name-$vern.$extn"
-	link=$(eval echo $patch_link)
-
-	patch_name="$prov-$name-$vern.patch"
-	patch_path="$patch_dir/$patch_name"
+reload_list=$(cat "$reload_path" 2>/dev/null ||:)
+if true || [ -n "$reload_list" ]; then
+	echo
+	echo "WARNING: system services to restart found from a previous run"
+	echo "         collected and put in the current list of restarting." 
 fi
 
-for patch_name in $patches_to_apply; do # ======================================
+# this loop install all the patches in the ordered list #=======================
+n=1; mkdir -p "$patch_dir/"; for patch_name in $patches_to_apply; do # =========
 
-err=1
-
-echo "=> Previous patch check: $patch_name"
+echo
+echo "=> Previous patch #$n check: $patch_name"
 patch_prev_strn=$(grep ", *$patch_name *," $patch_db)
 patch_prev_path=""
 if patch_string_to_filename "$patch_prev_strn"; then
@@ -148,7 +150,7 @@ else
 fi
 
 echo
-echo "=> Download the patch #$n..."
+echo "=> Download the patch #$n last version..."
 echo "  \_ patch name: $patch_name"
 patch_downloader.sh $patch_name 2>&1 | eval $filter_2
 echo "  \_ patch saved in: $patch_dir"
@@ -160,10 +162,9 @@ if ! patch_string_to_filename "$patch_strn"; then
 fi
 if [ "$patch_path" = "$patch_prev_path" ]; then
 	echo "  \_ patch status: just applied in its version."
-	echo "$patch_prev_path"
-	echo "$patch_path"
-	err=0; continue
+	continue
 elif [ "$reversible" = "OK" ]; then
+	patch_new="$patch_path"
 	echo "  \_ patch status: new version to apply."
 else
 	echo "  \_ patch status: patch to apply."
@@ -173,12 +174,44 @@ echo
 echo "patch path: $patch_path"
 echo "bckup path: $bckup_path"
 
-# This part cannt be interrupted # ******************************************* #
-set +e; stty -echoctl 2>/dev/null
-trap 'true' SIGINT EXIT
+echo
+echo "=> System services check for patch #$n..."
+
+brk=0
+for srv in $srvs; do
+	systemctl --no-pager status $srv >/dev/null 2>&1
+	if [ $? -eq 4 ]; then
+# srv_file=$(echo $out | sed -ne "s/Unit \([^ ]*\)\.service .*/\\1/p")
+		echo "  \_ missing system service: $srv"
+		echo "  \_ searching, wait..."
+		out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
+		if [ $? -eq 0 ]; then
+			echo "  \_ system service installed: $srv"
+		else
+			echo "  \_ system service not found: $srv"
+			echo "$out" | eval $filter_3
+			brk=1
+			break
+		fi
+	fi
+done ||:
+if [ $brk -ne 0 ]; then
+	echo "  \_ system services check: failed, skip patch #$n."
+	continue
+fi
+
+if false; then
+# save with the patch, the services that need to be restarted
+servs_path=$(echo "$patch_path" | sed s/.patch$/.servs/)
+echo $srvs > "$servs_path"
+fi
 
 echo
-echo "=> Applying the patch #$n..."
+echo "=> Applying the patch #$n last version..."
+
+# This part cannt be interrupted # *********************************************
+set +e; stty -echoctl 2>/dev/null; trap 'true' SIGINT EXIT
+
 reversed=""
 if [ "$reversible" = "OK" ]; then
 	echo "  \_ Reversing previous version patch..."
@@ -190,75 +223,37 @@ if [ "$reversible" = "OK" ]; then
 	echo "  \_ Reversing patch status: $reversed"
 fi
 
-stty +echoctl 2>/dev/null; set -e
-trap -- SIGINT EXIT # ******************************************************** #
+if [ "$reversed" = "KO" ]; then exit_for_manual_intervetion; fi   #<- exit-point
 
-if true || [ "$reversed" = "KO" ]; then
-	errexit "patch #$n failed to apply because cannot be reversed.
-
-\t\tManual intervetion is needed, these are the working values: 
-
-\t\tpatch path: $(dirname  "$patch_path")
-\t\tpatch file: $(basename "$patch_path")
-\t\tpatch prev: $(basename "${patch_prev_path:-none}")
-\t\tpatch opts: $patch_opts
-"
-fi
-
-continue # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-# save with the patch, the services that need to be restarted
-servs_path=$(echo "$patch_path" | sed s/.patch$/.servs/)
-echo $srvs > "$servs_path"
-
-brk=0
-for srv in $srvs; do
-	out=$(systemctl --no-pager status $srv 2>&1)
-	ret=$?
-	if [ $ret -eq 4 ]; then
-# srv_file=$(echo $out | sed -ne "s/Unit \([^ ]*\)\.service .*/\\1/p")
-		echo "\_ missing system service: $srv"
-		echo "   searching, wait..."
-		out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
-		if [ $? -eq 0 ]; then
-			echo "\_ system service installed: $srv"
-		else
-			echo "\_ system service not found: $srv"./patch_installer.sh
-			echo "$out" | sed -e "s/^/   /"
-			brk=1
-			break 2
-		fi
-	fi
-done ||:
-test $brk -ne 0 && break #RAF: not indispensable, break 2 should work
-
-echo "\_ checking for an old patch"
-# test if the patch has been applied before and revert
-if patch $patch_opts -R --dry-run < "$patch_path"; then
-	echo "\_ reverting old patch from rootfs"
-	# forcely revert the patch that applied only partially
-	if patch -R $patch_opts < "$patch_path"; then
-		echo "\_ old patch reverted"
-	fi
-fi
-
-echo "\_ checking for apply patch"
+skip=0
+echo "  \_ Checking to apply patch..."
 # test if the patch can be applied as expected to be
-patch $patch_opts --dry-run < "$patch_path" || break
-
 # apply the patch may fail despite the dry run test
-if patch $patch_opts < "$patch_path"; then
-	echo "\_ patch applied to rootfs"
+# forcely revert the patch that applied only partially
+if ! patch $patch_opts --dry-run -i "$patch_path"; then
+	echo "  \_ In apply patch dry-run failed, skip."
+	skip=1
+elif patch $patch_opts -i "$patch_path"; then
+	echo "  \_ Patch #$n applied to rootfs"
 	echo $srvs >> "$reload_path"
-	err=0
 else
-	# forcely revert the patch that applied only partially
-	patch -R $patch_opts < "$patch_path" ||:
+	echo "  \_ Patch #$n failed to apply, reverting back..."
+	if patch -R $patch_opts -i "$patch_path"; then
+		echo "  \_ Patch #$n reverted back sucessfully."
+		skip=1
+	else
+		echo "  \_ Patch #$n revert back failed, abort."
+		exit_for_manual_intervetion                               #<- exit-point	
+	fi
 fi
 
+stty +echoctl 2>/dev/null; set -e; trap - SIGINT EXIT
+# ******************************************************************************
+# move to the next patch
+n=$((n+1))
 done # =========================================================================
 
-if [ $err -ne 0 ]; then
+if false && [ $err -ne 0 ]; then
 	echo
 	echo "WARNING: patch #$n failed to be applied to rootfs, skipped"
 	echo "         fix pre-requisites and then try to install again."
@@ -266,14 +261,13 @@ else
 	: # RAF, TODO: update the patches database (lock is required)
 fi
 
-# move to the next patch
-n=$((n+1))
+# This part cannt be interrupted # *********************************************
+set +e; stty -echoctl 2>/dev/null; trap 'true' SIGINT EXIT
+
 echo
-
-break; done ####################################################################
-
-reload_list=$(cat "$reload_path" 2>/dev/null)
+reload_list=$(cat "$reload_path" 2>/dev/null ||:)
 if [ -n "$reload_list" ]; then
+	rm -f "$reload_path"
 	echo "=> Restarting system services"
 	echo "\_ to restart: "$reload_list
 	echo
@@ -283,9 +277,8 @@ if [ -n "$reload_list" ]; then
 	systemctl --no-pager daemon-reload
 	for i in $reload_list; do
 		systemctl --no-pager reload $i ||:
-	done
+	done 2>/dev/null
 	systemctl --no-pager restart $reload_list
-	echo
 	echo "=> Check the restarted system services"
 	echo "\_ to check: "$reload_list
 	echo
@@ -294,5 +287,7 @@ if [ -n "$reload_list" ]; then
 			tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
 		echo
 	done
-	echo
 fi
+
+stty +echoctl 2>/dev/null; set -e; trap - SIGINT EXIT
+# ******************************************************************************
