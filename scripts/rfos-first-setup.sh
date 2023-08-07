@@ -68,8 +68,9 @@ rpm_list_2="gpstoggle"
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
 #      ofono-vendor-qti-radio-plugin
 
-filter="grep -Ev 'Status:|Percentage:|Results:'"
-filter="$filter | sed -e 's,^,\ \ \ ,' | uniq"
+filter_1="grep -Ev 'Status:|Percentage:|Results:'"
+filter_2="$filter_1 | sed -e 's,^,\ \ |\ \ ,' | uniq"
+filter_1="$filter_1 | sed -e 's,^,\ \ \ ,' | uniq"
 
 echo
 runby=${2:+pcos:$2}
@@ -112,11 +113,10 @@ fi
 
 echo
 rfos_hostname=${3:-$rfos_hostname}
-echo "=> Refresh library cache and set the hostname: $rfos_hostname"
+echo "=> Refresh library cache and set the hostname: $rfos_hostname"; m=$((m+1))
 ldconfig
 hostname "$rfos_hostname"
 hostname  >/etc/hostname
-m=$((m+1))
 n=$((n+1))
 
 echo
@@ -125,8 +125,7 @@ icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
 echo "  \_ Internet connectivity: $icst"
 
 echo
-echo "=> RFOS script suite install"
-m=$((m+1))
+echo "=> RFOS script suite install"; m=$((m+1))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
@@ -156,7 +155,7 @@ echo "  \_ Alternative install: TODO"
 fi #############################################################################
 
 echo
-echo "=> Repository selection"
+echo "=> Repository selection"; m=$((m+1))
 echo "  \_ This operation will take a minute, wait..."
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 if ssu repos | grep -q "[ -]* store ..."; then
@@ -169,22 +168,37 @@ else
 	ssu_status="Linux"
     rpm_list_2=""
 fi
-echo; ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
-m=$((m+1))
+
+source /etc/os-release
+url="https://repo.sailfishos.org/obs/sailfishos:/chum"
+url="${url}/${VERSION_ID}_$(uname -m)/"
+rpo="harbour-storeman-obs"
+echo "  \_ Adding $rpo repository, wait..."
+ssu addrepo $url $rpo
+
+echo
+ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
 n=$((n+1))
 
 echo
-echo "=> Repository and packages update"
-m=$((m+3))
+echo "=> Repository and packages update"; m=$((m+3))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
 echo "  \_ This operation will take a minute, wait..."
-echo
-#ssu updaterepos
-zypper refresh  2>&1 | eval $filter
-#pkcon -yp refresh 2>&1 | eval $filter
-pkcon -yp update  2>&1 | eval $filter
+ssu updaterepos
+if which zypper >/dev/null; then
+	zypper refresh 2>&1 | eval $filter_2
+else
+	pkcon -yp refresh 2>&1 | eval $filter_2
+fi
+pkcon -yp update 2>&1 | eval $filter_2
+if pkcon search dnsmasq | grep -qw "dnsmasq"; then
+	avail="available"
+else
+	avail="not available yet"
+fi
+echo "  \_ Repository $rpo: $avail"
 n=$((n+1))
 
 echo
@@ -195,10 +209,10 @@ if [ -n "$rpm_list_1" ]; then
     for i in $rpm_list_0; do
         #RAF: no pipefail here
         { rpm -qi $i 2>&1 ||:; } | grep -q "not installed" \
-            || pkcon -yp remove $i 2>&1 | eval $filter
+            || pkcon -yp remove $i 2>&1 | eval $filter_1
     done
 	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
-        2>&1 | eval $filter
+        2>&1 | eval $filter_1
 fi
 n=$((n+1))
 
@@ -257,6 +271,12 @@ n=$((n+1))
 echo
 echo "=> Set battery charging thresholds"
 echo
+
+# RAF: this should be refresh each boot
+echo 1 >/sys/class/power_supply/battery_ext/lrc_enable
+echo 95 >/sys/class/power_supply/battery_ext/lrc_socmax
+echo 90 >/sys/class/power_supply/battery_ext/lrc_socmin
+echo 1 >/sys/class/power_supply/battery/lrc_enable
 
 mcetool \
 	--set-forced-charging=disabled  \
