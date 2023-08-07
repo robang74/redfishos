@@ -19,12 +19,20 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.0
+# release: 0.1.1
 
-shn=$(cat /proc/$$/cmdline | tr '\0' '\n'  | grep -v busybox | head -n1)
-if [ -x "$shn" ]; then
-	shn=$(readlink -f "$shn")
-	shn=$(basename "$shn")
+if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
+	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
+	if [ -x "$shn" ]; then
+		shx=$(basename "$shn")
+		shn=$(readlink -f "$shn")
+		shn=$(basename "$shn")
+		if [ "$shn" = "busybox" ]; then
+			shn=$shx
+		fi
+	fi
+else
+	shn=$(get_this_shell_name)
 fi
 echo
 echo "Script running on shell: $shn"
