@@ -19,15 +19,15 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.9
+# release: 0.1.0
 
-shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | head -n1)
+shn=$(cat /proc/$$/cmdline | tr '\0' '\n'  | grep -v busybox | head -n1)
 if [ -x "$shn" ]; then
 	shn=$(readlink -f "$shn")
 	shn=$(basename "$shn")
 fi
-echo "runon shell: $shn"
 echo
+echo "Script running on shell: $shn"
 if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
 	:
 else
@@ -44,15 +44,19 @@ source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
 
 # FUNTIONS DEFINITIOS ##########################################################
 
+fd=0
 if ! type isafunc 2>&1 | head -n1 | grep -q "is a function"; then
+	test $fd -eq 0 && echo
 	echo "function define isafunc()"
 	isafunc() {
 		test -n "${1:-}" || return 1
 		type $1 2>&1 | head -n1 | grep -q "is a function"
 	}
+	fd=1
 fi
 
 if ! isafunc errexit; then
+	test $fd -eq 0 && echo
 	echo "function define errexit()"
 	errexit() {
 		if [ -n "${1:-}" ]; then
@@ -62,9 +66,11 @@ if ! isafunc errexit; then
 		fi >&2
 		exit 1
 	}
+	fd=1
 fi
 
 if ! isafunc download; then
+	test $fd -eq 0 && echo
 	echo "function define download()"
 	download() {
 		test -n "${2:-}" || return 1
@@ -76,7 +82,9 @@ if ! isafunc download; then
 			return 1
 		fi
 	}
+	fd=1
 fi
+test $fd -ne 0 && echo
 
 # VARIABLES DEFINITIONS ########################################################
 
@@ -87,7 +95,6 @@ dir=$HOME/bin
 
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
-echo
 echo "Script running on mbile device"
 src="
 sfos/patch_dblock_functions.env
@@ -99,7 +106,6 @@ rfos-suite-installer.sh
 rfos-first-setup.sh
 "
 else ## pcos ###################################################################
-echo
 echo "Script running on a workstation"
 src="
 pcos/fastboot_usb3fix.sh
