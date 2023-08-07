@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# bash or ash is required but sh for universal compatibility.
 ################################################################################
 #
 # Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
@@ -30,8 +31,36 @@
 # this script deal with this aspect enabling or disabling those repositories.
 #
 ################################################################################
-# release: 0.1.1
+# release: 0.1.3
 
+if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
+	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
+	if [ -x "$shn" ]; then
+		shx=$(basename "$shn")
+		shn=$(readlink -f "$shn")
+		shn=$(basename "$shn")
+		if [ "$shn" = "busybox" ]; then
+			shn=$shx
+		fi
+	fi
+else
+	shn=$(get_this_shell_name)
+fi
+echo
+echo "Script running on shell: $shn"
+echo
+if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
+	:
+elif [ "$shn" = "dash" ]; then
+    echo "ERROR: this script cannot run on dash, abort."
+    echo
+    exit 1
+else
+	echo "WARNING: this script requires bash or ash or dash and may not work."
+	echo
+fi >&2
+
+################################################################################
 set -u
 
 set_battery_lcr_params() {
@@ -82,16 +111,14 @@ rpm_list_3="cronie"
 
 filter_3="cut -d'[' -f1 | sed -e 's/No update candidate for \(.*\). The .*/'\
 'The update for \1 is already installed./'"
-#filter_3="cut -d'[' -f1 | sed -e 's,\. The ,.\nThe ,'"
 filter_1="grep -Ev 'Status:|Percentage:|Results:' | grep ."
 filter_2="$filter_1 | sed -e 's,^,\ \ |\ \ ,' | uniq"
 filter_1="$filter_1 | sed -e 's,^,\ \ \ ,' | uniq"
 filter_3="$filter_3 | $filter_2"
 
-echo
 runby=${2:+pcos:$2}
 runby=${runby:-localhost}
-echo shell script execution by $runby
+echo "Shell script execution by $runby"
 echo "---------------------------------------"
 echo
 
@@ -141,7 +168,7 @@ icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
 echo "  \_ Internet connectivity: $icst"
 
 echo
-echo "=> RFOS script suite install"; m=$((m+1))
+echo "=> RedFish OS script suite install"; m=$((m+1))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
@@ -150,18 +177,20 @@ fle=rfos-suite-installer.sh
 url=https://raw.githubusercontent.com/robang74/redfishos
 url=$url/$sha/scripts/$fle
 
-echo "  \_ Starting the script {} wait..."
-rsst=/tmp/1stup.fifo; rm -f $rsst; mkfifo $rsst; {
- 	set -mo pipefail
-	exec 2>/dev/null
-	{ wget $url -qO - || curl -sL $url; } | bash | grep . | sed -e "s,^,  | ,"
-	{ if [ $? -eq 0 ]; then echo OK; else echo KO; fi >$rsst; } &
-}  
-disown &>/dev/null
-echo "  \_ Reading the fifo..."
-read sret < $rsst; rm -f $rsst
+echo "  \_ Running the suite installer script, wait..."
+if curl -sL $url | bash; then
+	echo "$fle.OK" >&2
+else
+	echo "$fle.KO" >&2
+fi 2>/tmp/$fle.err | eval $filter_2
+
+if grep -q "$fle.OK" /tmp/$fle.err; then
+	sret="OK"
+	n=$((n+1))
+else
+	sret="KO"
+fi
 echo "  \_ Installation status: $sret"
-test "$sret" = "OK" && n=$((n+1))
 
 else # no internet #############################################################
 
@@ -191,7 +220,7 @@ url="https://repo.sailfishos.org/obs/sailfishos:/chum"
 url="${url}/${VERSION_ID}_${arch}/"
 rpo="harbour-storeman-obs"
 echo "  \_ Adding $rpo repository, wait..."
-ssu addrepo $url $rpo
+ssu addrepo $url $rpo 2>&1 | eval $filter_2
 
 cntos="CentOS/8-stream"
 centos_repo_1=$(echo $cntos/BaseOS | tr / -)
@@ -202,7 +231,8 @@ for i in $cntos/BaseOS $cntos/AppStream; do
 	ctrp=$(echo $i | tr / -)
 	ssu addrepo $url/$i/$arch/os/ $ctrp
 	ssu enablerepo $ctrp
-done
+done 2>&1 | eval $filter_2
+echo "  \_ Showing the repositories list:"
 
 echo
 ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
@@ -214,16 +244,17 @@ echo "=> Repository and packages update"; m=$((m+3))
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
 echo "  \_ This operation will take a minute, wait..."
-ssu updaterepos  2>&1 | eval $filter_2
+ssu updaterepos 2>&1 | eval $filter_2
 if ! which zypper >/dev/null; then
 	echo "  \_ Installing zypper, wait..."
 	pkcon -yp zypper --allow-reinstall 2>&1 | eval $filter_2
 fi
-zypper -t refresh | eval $filter_3
+zypper -t refresh 2>&1 | eval $filter_3
 
 if [ -n "$rpm_list_3" ]; then
 	zypper install $rpm_list_3 2>&1 | eval $filter_3
 fi
+n=$((n+1))
 
 if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 i="dnsmasq"
@@ -284,7 +315,7 @@ fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 n=$((n+1))
 
 echo
-echo "=> Updating CA-trust, wait..."
+echo "=> Updating CA-trust, wait..."; m=$((m+1))
 if update-ca-trust; then
 	echo "  \_ update-ca-trust: OK"
 else
@@ -307,11 +338,11 @@ echo
 echo "=> Enable auto-brightness"
 echo
 mcetool \
-	--set-brightness-fade-dim=1000 \
-	--set-brightness-fade-als=1000 \
-	--set-brightness-fade-blank=1000 \
+	--set-brightness-fade-dim=1000    \
+	--set-brightness-fade-als=1000    \
+	--set-brightness-fade-blank=1000  \
 	--set-brightness-fade-unblank=150 \
-	--set-als-autobrightness=enabled \
+	--set-als-autobrightness=enabled  \
 	--set-brightness-fade-def=150
 mcetool | grep -i brightness | sed -e "s,^,   ,"
 n=$((n+1))
@@ -324,9 +355,9 @@ for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
 done
 mcetool -S interactive \
 	--set-power-saving-mode=enabled \
-	--set-low-power-mode=disabled \
-	--set-ps-on-demand=enabled \
-	--set-forced-psm=disabled \
+	--set-low-power-mode=disabled   \
+	--set-ps-on-demand=enabled      \
+	--set-forced-psm=disabled       \
 	--set-psm-threshold=100
 mcetool | grep -iE "power|ps" | grep -v "dbus" | sed -e "s,^,   ,"
 n=$((n+1))
@@ -353,10 +384,9 @@ echo "  \_ Setting status: skipped, no mce-tools"
 
 fi #############################################################################
 
-m=$((m+1))
+echo
+echo "=> Activate the /etc/rc.local by crontab"; m=$((m+1))
 if which crontab >/dev/null; then
-	echo
-	echo "=> Activate the /etc/rc.local by crontab"
 	tmpfile=$(mktemp -p ${TMPDIR:-/tmp} -t crontab.XXXXXX)
 	crontab -l >$tmpfile 2>/dev/null
 	echo "@reboot test -x /etc/rc.local && /etc/rc.local" >>$tmpfile
@@ -372,6 +402,8 @@ if which crontab >/dev/null; then
 	fi
 	crontab -l | eval $filter_1
 	n=$((n+1))
+else
+	echo "  \_ Activation status: skipped, no crontab"
 fi
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
@@ -414,7 +446,7 @@ setup_name=$(basename $setup_file)
 
 set -em
 src_file_env "sfos-ssh-connect"
-echo; afish getip
+afish getip
 
 if [ "x${1:-}" = "x--key-login" ]; then
 	set_key_login="yes"
@@ -447,7 +479,7 @@ if scp $setup_file root@$sfos_ipaddr:~ >/dev/null; then
 	usrstr=$(whoami)
 	md5str=$(md5sum $setup_file | cut -d' ' -f1)
 	dttmsc=$(TZ=UTC date "+%s")
-	sfish /bin/bash $setup_name $dttmsc $usrstr $rfos_hostname $md5str
+	sfish /bin/ash $setup_name $dttmsc $usrstr $rfos_hostname $md5str
 fi
 
 fi #############################################################################
