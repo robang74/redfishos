@@ -62,13 +62,17 @@ sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
 gnu-bash
 "
 
-rpm_list_2="gpstoggle"
+rpm_list_2="
+gpstoggle harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
+"
+
+rpm_list_3="cronie"
 
 #TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
 #      ofono-vendor-qti-radio-plugin
 
-filter_1="grep -Ev 'Status:|Percentage:|Results:'"
+filter_1="grep -Ev 'Status:|Percentage:|Results:' | grep ."
 filter_2="$filter_1 | sed -e 's,^,\ \ |\ \ ,' | uniq"
 filter_1="$filter_1 | sed -e 's,^,\ \ \ ,' | uniq"
 
@@ -170,11 +174,23 @@ else
 fi
 
 source /etc/os-release
+arch=$(uname -m)
 url="https://repo.sailfishos.org/obs/sailfishos:/chum"
-url="${url}/${VERSION_ID}_$(uname -m)/"
+url="${url}/${VERSION_ID}_${arch}/"
 rpo="harbour-storeman-obs"
 echo "  \_ Adding $rpo repository, wait..."
 ssu addrepo $url $rpo
+
+cntos="CentOS/8-stream"
+centos_repo_1=$(echo $cntos/BaseOS | tr / -)
+centos_repo_2=$(echo $cntos/AppStream | tr / -)
+echo "  \_ Adding $cntos repositories, wait..."
+url="https://ftp.uni-bayreuth.de/linux"
+for i in $cntos/BaseOS $cntos/AppStream; do
+	ctrp=$(echo $i | tr / -)
+	ssu addrepo $url/$i/$arch/os/ $ctrp
+	ssu enablerepo $ctrp
+done
 
 echo
 ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
@@ -186,34 +202,78 @@ echo "=> Repository and packages update"; m=$((m+3))
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
 echo "  \_ This operation will take a minute, wait..."
-ssu updaterepos
-if which zypper >/dev/null; then
-	zypper refresh 2>&1 | eval $filter_2
-else
-	pkcon -yp refresh 2>&1 | eval $filter_2
+ssu updaterepos  2>&1 | eval $filter_2
+if ! which zypper >/dev/null; then
+	echo "  \_ Installing zypper, wait..."
+	pkcon -yp zypper --allow-reinstall 2>&1 | eval $filter_2
 fi
-pkcon -yp update 2>&1 | eval $filter_2
-if pkcon search dnsmasq | grep -qw "dnsmasq"; then
+zypper -t refresh | cut -d'[' -f1 | eval $filter_2
+
+if [ -n "$rpm_list_3" ]; then
+	zypper install $rpm_list_3 2>&1 | eval $filter_2
+fi
+
+if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+i="dnsmasq"
+if pkcon search $i | grep -q "$i.*$rpo"; then
 	avail="available"
 else
 	avail="not available yet"
 fi
 echo "  \_ Repository $rpo: $avail"
+
+i="cronie"
+if pkcon search $i | grep -qi "$i.*$centos_repo_1"; then
+	avail="enabled"
+else
+	avail="available but disabled"
+fi
+echo "  \_ Repository $centos_repo_1: $avail"
+
+i="bcc-tools"
+if pkcon search $i | grep -qi "$i.*$centos_repo_2"; then
+	avail="available"
+else
+	avail="available but disabled"
+fi
+echo "  \_ Repository $centos_repo_2: $avail"
+fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 n=$((n+1))
 
 echo
 echo "=> Packages installation"
 echo
 
+ssu disablerepo $centos_repo_1
+ssu disablerepo $centos_repo_2
+
+pkcon -yp refresh 2>&1 | eval $filter_1
+pkcon -yp update  2>&1 | eval $filter_1
+
+if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if [ -n "$rpm_list_1" ]; then
     for i in $rpm_list_0; do
         #RAF: no pipefail here
-        { rpm -qi $i 2>&1 ||:; } | grep -q "not installed" \
-            || pkcon -yp remove $i 2>&1 | eval $filter_1
+        if ! { rpm -qi $i 2>&1 ||:; } | grep -q "not installed"; then
+			pkcon -yp remove $i 2>&1 | eval $filter_1
+		fi
     done
 	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
-        2>&1 | eval $filter_1
+		2>&1 | eval $filter_1
 fi
+else # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [ -n "$rpm_list_1" ]; then
+    for i in $rpm_list_0; do
+        #RAF: no pipefail here
+        if ! { rpm -qi $i 2>&1 ||:; } | grep -q "not installed"; then
+			zypper -t remove $i 2>&1 | eval $filter_1
+		fi
+    done
+	zypper -t $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
+fi
+fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 n=$((n+1))
 
 echo
