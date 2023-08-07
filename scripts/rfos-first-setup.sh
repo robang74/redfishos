@@ -18,8 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.0
-
+#
 # WARNING NOTE
 #
 # These `adaptation0`, `aliendalvik`, `sailfish-eas` and `xt9` repositories are
@@ -31,8 +30,17 @@
 # this script deal with this aspect enabling or disabling those repositories.
 #
 ################################################################################
+# release: 0.1.1
 
 set -u
+
+set_battery_lcr_params() {
+	# RAF: this should be refresh each boot
+	echo 1 >/sys/class/power_supply/battery_ext/lrc_enable
+	echo 95 >/sys/class/power_supply/battery_ext/lrc_socmax
+	echo 90 >/sys/class/power_supply/battery_ext/lrc_socmin
+	echo 1 >/sys/class/power_supply/battery/lrc_enable
+}
 
 rmme="" n=0 m=0
 rfos_hostname="redfishos"
@@ -243,13 +251,10 @@ n=$((n+1))
 echo
 echo "=> Packages installation"
 echo
-
 ssu disablerepo $centos_repo_1
 ssu disablerepo $centos_repo_2
-
 pkcon -yp refresh 2>&1 | eval $filter_1
 pkcon -yp update  2>&1 | eval $filter_1
-
 if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if [ -n "$rpm_list_1" ]; then
     for i in $rpm_list_0; do
@@ -272,8 +277,6 @@ if [ -n "$rpm_list_1" ]; then
 	zypper -t $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
 fi
 fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 n=$((n+1))
 
 echo
@@ -299,22 +302,19 @@ if which mcetool >/dev/null; then ##############################################
 echo
 echo "=> Enable auto-brightness"
 echo
-
 mcetool \
---set-brightness-fade-dim=1000 \
---set-brightness-fade-als=1000 \
---set-brightness-fade-blank=1000 \
---set-brightness-fade-unblank=150 \
---set-als-autobrightness=enabled \
---set-brightness-fade-def=150
-
+	--set-brightness-fade-dim=1000 \
+	--set-brightness-fade-als=1000 \
+	--set-brightness-fade-blank=1000 \
+	--set-brightness-fade-unblank=150 \
+	--set-als-autobrightness=enabled \
+	--set-brightness-fade-def=150
 mcetool | grep -i brightness | sed -e "s,^,   ,"
 n=$((n+1))
 
 echo
 echo "=> Set balanced-interactive governor"
 echo
-
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
     echo "schedutil" >$i
 done
@@ -324,27 +324,19 @@ mcetool -S interactive \
 	--set-ps-on-demand=enabled \
 	--set-forced-psm=disabled \
 	--set-psm-threshold=100
-
 mcetool | grep -iE "power|ps" | grep -v "dbus" | sed -e "s,^,   ,"
 n=$((n+1))
 
 echo
 echo "=> Set battery charging thresholds"
 echo
-
-# RAF: this should be refresh each boot
-echo 1 >/sys/class/power_supply/battery_ext/lrc_enable
-echo 95 >/sys/class/power_supply/battery_ext/lrc_socmax
-echo 90 >/sys/class/power_supply/battery_ext/lrc_socmin
-echo 1 >/sys/class/power_supply/battery/lrc_enable
-
+set_battery_lcr_params
 mcetool \
 	--set-forced-charging=disabled  \
 	--set-charging-enable-limit=95  \
 	--set-charging-disable-limit=90 \
 	--set-charging-mode=apply-thresholds
-
-mcetool | grep -i charging | sed -e "s,^,   ,"
+mcetool | grep -i charging | eval $filter_1
 n=$((n+1))
 
 else # no mce-tools installed ##################################################
@@ -356,6 +348,27 @@ echo "=> Set battery charging thresholds"
 echo "  \_ Setting status: skipped, no mce-tools"
 
 fi #############################################################################
+
+m=$((m+1))
+if which crontab >/dev/null; then
+	echo
+	echo "=> Activate the /etc/rc.local by crontab"
+	tmpfile=$(mktemp -p ${TMPDIR:-/tmp} -t crontab.XXXXXX)
+	crontab -l >$tmpfile 2>/dev/null
+	echo "@reboot test -x /etc/rc.local && /etc/rc.local" >>$tmpfile
+	grep . $tmpfile | sort | uniq | crontab -
+	if [ ! -x /etc/rc.local ]; then
+		touch /etc/rc.local
+		chmod a+x /etc/rc.local
+	fi
+	f="set_battery_lcr_params"
+	if ! grep -q "$f" /etc/rc.local; then
+		type $f | grep -v "$f is a function" >> /etc/rc.local
+		echo $f >> /etc/rc.local
+	fi
+	crontab -l | eval $filter_1
+	n=$((n+1))
+fi
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 	:
