@@ -22,6 +22,8 @@
 
 set -ue -o pipefail
 
+
+
 zadir=$(dirname $0 2>/dev/null ||:)
 source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
 
