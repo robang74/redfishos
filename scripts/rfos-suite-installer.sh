@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# bash or ash or dash is required but sh for universal compatibility.
 ################################################################################
 #
 # Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
@@ -18,11 +19,25 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7 - patched x4
+# release: 0.0.9
 
-set -ue -o pipefail
+shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | head -n1)
+if [ -x "$shn" ]; then
+	shn=$(readlink -f "$shn")
+	shn=$(basename "$shn")
+fi
+echo "runon shell: $shn"
+echo
+if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
+	:
+else
+	echo
+	echo "WARNING: this script requires bash or ash or dash and may not work."
+	echo
+fi >&2
 
-
+################################################################################
+set -ue
 
 zadir=$(dirname $0 2>/dev/null ||:)
 source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
@@ -30,7 +45,7 @@ source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
 # FUNTIONS DEFINITIOS ##########################################################
 
 if ! type isafunc 2>&1 | head -n1 | grep -q "is a function"; then
-	echo -e "\nfunction define isafunc()"
+	echo "function define isafunc()"
 	isafunc() {
 		test -n "${1:-}" || return 1
 		type $1 2>&1 | head -n1 | grep -q "is a function"
@@ -54,7 +69,7 @@ if ! isafunc download; then
 	download() {
 		test -n "${2:-}" || return 1
 		if which wget >/dev/null; then
-			wget $1 -qO  $2; sync $2
+			wget $1 -qO - >$2; sync $2
 		elif which curl >/dev/null; then
 			curl -sL $1 >$2; sync $2
 		else
@@ -72,7 +87,8 @@ dir=$HOME/bin
 
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
-echo -e "\nScript running on mbile device"
+echo
+echo "Script running on mbile device"
 src="
 sfos/patch_dblock_functions.env
 sfos/patch_installer.sh
@@ -83,7 +99,8 @@ rfos-suite-installer.sh
 rfos-first-setup.sh
 "
 else ## pcos ###################################################################
-echo -e "\nScript running on a workstation"
+echo
+echo "Script running on a workstation"
 src="
 pcos/fastboot_usb3fix.sh
 pcos/sfos-ssh-connect.env
