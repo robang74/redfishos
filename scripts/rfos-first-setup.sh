@@ -67,7 +67,7 @@ rpm_list_1="
 pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
-gnu-bash
+gnu-bash sailfishos-chum-gui
 "
 
 rpm_list_2="
@@ -80,9 +80,13 @@ rpm_list_3="cronie"
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
 #      ofono-vendor-qti-radio-plugin
 
+filter_3="cut -d'[' -f1 | sed -e 's/No update candidate for \(.*\). The .*/'\
+'The update for \1 is already installed./'"
+#filter_3="cut -d'[' -f1 | sed -e 's,\. The ,.\nThe ,'"
 filter_1="grep -Ev 'Status:|Percentage:|Results:' | grep ."
 filter_2="$filter_1 | sed -e 's,^,\ \ |\ \ ,' | uniq"
 filter_1="$filter_1 | sed -e 's,^,\ \ \ ,' | uniq"
+filter_3="$filter_3 | $filter_2"
 
 echo
 runby=${2:+pcos:$2}
@@ -215,10 +219,10 @@ if ! which zypper >/dev/null; then
 	echo "  \_ Installing zypper, wait..."
 	pkcon -yp zypper --allow-reinstall 2>&1 | eval $filter_2
 fi
-zypper -t refresh | cut -d'[' -f1 | eval $filter_2
+zypper -t refresh | eval $filter_3
 
 if [ -n "$rpm_list_3" ]; then
-	zypper install $rpm_list_3 2>&1 | eval $filter_2
+	zypper install $rpm_list_3 2>&1 | eval $filter_3
 fi
 
 if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
