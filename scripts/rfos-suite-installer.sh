@@ -22,6 +22,8 @@
 
 set -ue -o pipefail
 
+
+
 zadir=$(dirname $0 2>/dev/null ||:)
 source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
 
@@ -52,7 +54,7 @@ if ! isafunc download; then
 	download() {
 		test -n "${2:-}" || return 1
 		if which wget >/dev/null; then
-			wget $1 -q  >$2; sync $2
+			wget $1 -qO  $2; sync $2
 		elif which curl >/dev/null; then
 			curl -sL $1 >$2; sync $2
 		else
