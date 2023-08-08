@@ -219,49 +219,14 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
 
-* 26.05.2023, a second hand Sony Xperia 10 II arrived in excellent conditions.
+* 08.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
+* 08.08.2023, [udhcpd tether config fixing patch](patches/udhcpd-tether-config-fixing/)
+* 08.08.2023, [system patches reworked and updated](patches/README.md)
+* 08.08.2023, [patch downloader and installer](scripts/README.md)
 
-* 01.07.2023, a Jolla SFOS license bought to install the Android Support.
+  **description**: patch downloader and installer integrated into the RFOS scripts suite + DHCP service fixed.
 
-* 12.07.2023, this repository has been created as a private project.
-
-* 13.07.2023, [github SFOS apps build](https://github.com/robang74/github-sfos-apps-build)
-
-    **description**: github action for building SailFish OS apps and other RPM packages.
-
-    **status**: ready for app developers, easy to deploy, with SDK 4.5.0.16 container mirror.
-
-* 21.07.2023, [busybox v1.36.1+git2-raf3 for SFOS](https://github.com/robang74/sailfish-os-busybox#readme)
-
-    **description**: full features static and dynamic linked busybox build RPMs correctly for all the architectures.
-
-    **status**: ready for advanced users testing.
-
-* 25.07.2023, this repository has been public and the RedFish OS project launched.
-
-* 31.07.2023, [all .md files: content review and reorganisation, v3](https://github.com/robang74/redfishos/commit/d28fae223e2be655e5adf46d986abd83d05cb26d)
-
-    **description**: review and reorganisation of all .md files collected since the beginning.
-
-    **status**: ready for everybody, documents collection continues. 
-
-* 01.08.2023, [sysdebug and recovery tarballs](recovery/README.md)
-
-    **description**: shell scripts that produce tarballs for debugging and recovering.
-
-    **status**: ready for advanced users testing.
-
-* 03.08.2023, [first boot setup after flashing](scripts/README.md)
-
-    **description**: shell scripts suite for the first boot setup after flashing.
-
-    **status**: ready for advanced users adoption.
-
-* 05.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
-
-    **description**: the scripts suite has two distinct instances workstation and mobile device.
-
-    **status**: ready for advanced users testing, on-the-fly installation script.
+  **status**: ready for advanced users adoption, add CentOS repositories, patch remover yet to do.
 
 * 06.08.2023, [patch downloader and installer](scripts/README.md)
 
@@ -269,14 +234,49 @@ Please check the [same section](https://github.com/robang74/redfishos/tree/devel
 
   **status**: ready for advanced users testing, patch remover yet to do.
 
-* 08.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
-* 08.08.2023, [udhcpd tether config fixing patch](patches/udhcpd-tether-config-fixing/description.txt)
-* 08.08.2023, [system patches reworked and updated](patches/README.md)
-* 08.08.2023, [patch downloader and installer](scripts/README.md)
+* 05.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
 
-  **description**: patch downloader and installer integrated into the RFOS scripts suite + DHCP service fixed.
+    **description**: the scripts suite has two distinct instances workstation and mobile device.
 
-  **status**: ready for advanced users adoption, add CentOS repositories, patch remover yet to do.
+    **status**: ready for advanced users testing, on-the-fly installation script.
+
+* 03.08.2023, [first boot setup after flashing](scripts/README.md)
+
+    **description**: shell scripts suite for the first boot setup after flashing.
+
+    **status**: ready for advanced users adoption.
+
+* 01.08.2023, [sysdebug and recovery tarballs](recovery/README.md)
+
+    **description**: shell scripts that produce tarballs for debugging and recovering.
+
+    **status**: ready for advanced users testing.
+
+* 31.07.2023, [all .md files: content review and reorganisation, v3](https://github.com/robang74/redfishos/commit/d28fae223e2be655e5adf46d986abd83d05cb26d)
+
+    **description**: review and reorganisation of all .md files collected since the beginning.
+
+    **status**: ready for everybody, documents collection continues. 
+
+* 25.07.2023, this repository has been public and the RedFish OS project launched.
+
+* 21.07.2023, [busybox v1.36.1+git2-raf3 for SFOS](https://github.com/robang74/sailfish-os-busybox#readme)
+
+    **description**: full features static and dynamic linked busybox build RPMs correctly for all the architectures.
+
+    **status**: ready for advanced users testing.
+
+* 13.07.2023, [github SFOS apps build](https://github.com/robang74/github-sfos-apps-build)
+
+    **description**: github action for building SailFish OS apps and other RPM packages.
+
+    **status**: ready for app developers, easy to deploy, with SDK 4.5.0.16 container mirror.
+
+* 12.07.2023, this repository has been created as a private project.
+
+* 01.07.2023, a Jolla SFOS license bought to install the Android Support.
+
+* 26.05.2023, a second hand Sony Xperia 10 II arrived in excellent conditions.
 
 ---
 
