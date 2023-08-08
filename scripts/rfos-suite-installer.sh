@@ -109,6 +109,7 @@ sfos/patch_dblock_functions.env
 sfos/patch_installer.sh
 sfos/patch_downloader.sh
 sfos/setnet_postroute.sh
+sfos/zram_swap_resize.sh
 rfos-script-functions.env
 rfos-suite-installer.sh
 rfos-first-setup.sh
