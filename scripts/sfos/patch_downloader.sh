@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.3
+# release: 0.0.3 - patched
 
 set -mue -o pipefail
 
@@ -189,7 +189,7 @@ get_hdr_params_from_patch() {
 get_pkg_params_from_patch() {
 	local tmp_strn
 	prj_name=${1:-$prj_name}
-	test -n "$prj_name" -a -n "$pkg_url" -a -n "$hdr_srvs" || return 1
+	test -n "$prj_name" -a -n "$pkg_url" || return 1
 	
 	tmp_strn=$(echo $pkg_url  | sed -e "s,${owc_url}/*${prj_path},,")
 	pkg_prov=$(echo $tmp_strn | cut -d- -f1)
