@@ -21,7 +21,7 @@
 #
 # TODO: create a back-up of the files before patching, date-time-Nprogressive
 #
-# release: 0.0.8
+# release: 0.0.8 - patched
 
 set -ue -o pipefail
 
@@ -132,7 +132,7 @@ n=1; mkdir -p "$patch_dir/"; for patch_name in $patches_to_apply; do # =========
 
 echo
 echo "=> Previous patch #$n check: $patch_name"
-patch_prev_strn=$(grep ", *$patch_name *," $patch_db)
+patch_prev_strn=$(grep ", *$patch_name *," $patch_db ||:)
 patch_prev_path=""
 if patch_string_to_filename "$patch_prev_strn"; then
 	echo "  \_ previous patch: found"
