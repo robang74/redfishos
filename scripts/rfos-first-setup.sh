@@ -96,7 +96,7 @@ rpm_list_1="
 pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
-gnu-bash sailfishos-chum-gui
+gnu-bash sailfishos-chum-gui patchmanager harbour-dool
 "
 
 rpm_list_2="
