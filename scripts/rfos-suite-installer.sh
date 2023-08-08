@@ -130,7 +130,7 @@ done
 echo
 echo "DONE: scripts suite for RedFish OS, installed in"
 echo "      folder    : $dir"
-echo "      enviroment: $HOME/.bashrc"
+echo "      enviroment: $envirm"
 echo
 echo "Please, (re)execute bash to load its enviroment, then"
 echo "      rfos-first-setup.sh"
