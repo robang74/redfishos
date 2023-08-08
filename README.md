@@ -265,9 +265,18 @@ Please check the [same section](https://github.com/robang74/redfishos/tree/devel
 
 * 06.08.2023, [patch downloader and installer](scripts/README.md)
 
-  **description**: patch downloader and installer alpha-development completed
+  **description**: patch downloader and installer alpha-development completed.
 
   **status**: ready for advanced users testing, patch remover yet to do.
+
+* 08.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
+* 08.08.2023, [udhcpd tether config fixing patch](patches/udhcpd-tether-config-fixing/description.txt)
+* 08.08.2023, [system patches reworked and updated](patches/README.md)
+* 08.08.2023, [patch downloader and installer](scripts/README.md)
+
+  **description**: patch downloader and installer integrated into the RFOS scripts suite + DHCP service fixed.
+
+  **status**: ready for advanced users adoption, add CentOS repositories, patch remover yet to do.
 
 ---
 
