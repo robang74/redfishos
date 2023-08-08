@@ -31,7 +31,7 @@
 # this script deal with this aspect enabling or disabling those repositories.
 #
 ################################################################################
-# release: 0.1.3
+# release: 0.1.4
 
 if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
 	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
@@ -407,17 +407,24 @@ else
 fi
 
 echo
-echo "=> System patches application..."; m=$((m+1))
+echo "=> System patches application, start"; m=$((m+1))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
+
+printline() { printf -- "$1%.0s" $(seq 1 80); printf "\n"; }
 
 export PATH=$HOME/bin:$PATH
 source $HOME/bin/rfos-script-functions.env
 if [ $? -eq 0 ]; then
+	printline '-'
 	if patch_installer.sh --all; then
 		n=$((n+1))
+		printline '-'
+		echo "=> System patches application, end"
 		echo "  \_ Install status: OK"
 	else
+		printline '-'
+		echo "=> System patches application, end"
 		echo "  \_ Install status: KO"
 	fi
 else
