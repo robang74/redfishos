@@ -103,7 +103,7 @@ rpm_list_2="
 gpstoggle harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 "
 
-rpm_list_3="cronie"
+rpm_list_3="cronie dnsmasq"
 
 #TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
@@ -406,10 +406,27 @@ else
 	echo "  \_ Activation status: skipped, no crontab"
 fi
 
+echo
+echo "=> System patches application..."; m=$((m+1))
+
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
-	:
+
+export PATH=$HOME/bin:$PATH
+source $HOME/bin/rfos-script-functions.env
+if [ $? -eq 0 ]; then
+	if patch_installer.sh --all; then
+		n=$((n+1))
+		echo "  \_ Install status: OK"
+	else
+		echo "  \_ Install status: KO"
+	fi
+else
+	echo "  \_ Install status: KO, no functions"
+fi
+
 else # no internet #############################################################
 
+echo "  \_ Install status: skipped, no Internet"
 echo
 echo "=> Create $HOME/bin and replicate me there"
 rmme="$0"
