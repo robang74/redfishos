@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.4
+# release: 0.0.5
 
 set -mue -o pipefail
 
@@ -30,8 +30,9 @@ if [ "x$arg" = "x--force" ]; then
 	force_opt="$arg"
 	force=yes
 	shift
-elif [ "x$arg" = "x-h" -o "xarg" = "x--help" ]; then
-	echo -e "\nUSAGE: $(basename $0) [--force] [project_name]\n" >&2;
+fi
+if [ "x$arg" = "x-h" -o "x$arg" = "x--help" -o -n "${2:-}" ]; then
+	echo -e "\nUSAGE: $(basename $0) [--force] <project_name>\n" >&2
 	exit 1
 fi
 
@@ -242,24 +243,25 @@ mkdb_lock() {
 		else
 			pid=$(cat "$lockfile")
 			if [ "$pid" = "$$" ]; then
-				echo "\nWARNING: multiple attempts to lock database.\n"
+				echo -e "\nWARNING: multiple attempts to lock database.\n"
 				return 0
 			fi >&2
 			cmdline=$(cat "/proc/$pid/cmdline" 2>/dev/null | tr '\0' ' ' ||:)
 			if [ -n "$pid" -a -n "$cmdline" ]; then
-				printf "\nERROR: patches database is locked by pid: %d." $pid
-				echo -e "\n"
+				echo -e "\nERROR: patches database is locked by pid: $pid.\n"
 				return 1
 			fi >&2
 			rmdb_lock
 		fi
 	done
-	echo "\nERROR: cannot lock the patches database, abort.\n" >&2
+	echo -e "\nERROR: cannot lock the patches database, abort.\n" >&2
 	return 1
 }
 
 # SCRIPT MAIN ##################################################################
 # set -x
+
+touch "$patch_db" "$patch_list"
 
 if [ "${force:-}" != "yes" ]; then
 	if get_prj_params_from_db; then
@@ -287,14 +289,16 @@ if check_patch_download_lastpkg \
    && print_pkg_params_string   \
 | tee "${patch_db}.new" | sed -ne "s/^\(..*\)/+ \\1/p" | grep . >&2
 then
-	echo "$prj_name" >> "$patch_list"                                \
-	&& echo "$(cat $patch_list | sort | uniq)" > "$patch_list"       \
-	&&( grep -ve "^${pkg_prov}, ${pkg_name}," "$patch_db";           \
-		cat "${patch_db}.new" ) | sort | uniq | grep . > "$patch_db" \
-	&& echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
-	ret=$?
+	ret=0
 else
 	ret=1
+fi
+if [ $ret -eq 0 -a -s "${patch_db}.new" ]; then
+	dbtext=$({ grep -v "$prj_name" "$patch_db"; cat "${patch_db}.new"; })
+	echo "$dbtext" | grep . | sort | uniq >"$patch_db"
+	lstext=$({ grep -v "$prj_name" "$patch_list"; echo "$prj_name"; })
+	echo "$lstext" | grep . | sort | uniq >"$patch_list"
+	echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
 fi
 rm -f "${patch_db}.new"
 
