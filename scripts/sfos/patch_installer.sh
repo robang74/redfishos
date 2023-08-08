@@ -25,6 +25,12 @@
 
 set -ue -o pipefail
 
+patch_unapplied_warning() {
+	echo
+	echo "WARNING: patch #$n failed to be applied to rootfs, skipped"
+	echo "         fix pre-requisites and then try to install again."
+}
+
 patch_string_to_filename() {
 	test -n "${1:-}" || return 1
 
@@ -121,7 +127,7 @@ echo "=> Using the patch list from '$plst':"
 echo "  \_ $plst: $patches_to_apply"
 
 reload_list=$(cat "$reload_path" 2>/dev/null ||:)
-if true || [ -n "$reload_list" ]; then
+if [ -n "$reload_list" ]; then
 	echo
 	echo "WARNING: system services to restart found from a previous run"
 	echo "         collected and put in the current list of restarting." 
@@ -134,6 +140,7 @@ echo
 echo "=> Previous patch #$n check: $patch_name"
 patch_prev_strn=$(grep ", *$patch_name *," $patch_db ||:)
 patch_prev_path=""
+reversible="none"
 if patch_string_to_filename "$patch_prev_strn"; then
 	echo "  \_ previous patch: found"
 	echo "  |  $patch_prev_strn"
@@ -152,7 +159,11 @@ fi
 echo
 echo "=> Download the patch #$n last version..."
 echo "  \_ patch name: $patch_name"
-patch_downloader.sh $patch_name 2>&1 | eval $filter_2
+if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_2; then
+	echo "  \_ patch discarded."
+	patch_unapplied_warning
+	continue
+fi
 echo "  \_ patch saved in: $patch_dir"
 patch_strn=$(grep ", *$patch_name *," $patch_db)
 echo "  |  $patch_strn"
@@ -161,7 +172,7 @@ if ! patch_string_to_filename "$patch_strn"; then
 	errexit "patch string  of '$patch_name' is void, abort."
 fi
 if [ "$patch_path" = "$patch_prev_path" ]; then
-	echo "  \_ patch status: just applied in its version."
+	echo "  \_ patch status: just applied in its last version."
 	continue
 elif [ "$reversible" = "OK" ]; then
 	patch_new="$patch_path"
@@ -197,6 +208,7 @@ for srv in $srvs; do
 done ||:
 if [ $brk -ne 0 ]; then
 	echo "  \_ system services check: failed, skip patch #$n."
+	patch_unapplied_warning
 	continue
 fi
 
@@ -252,14 +264,6 @@ stty +echoctl 2>/dev/null; set -e; trap - SIGINT EXIT
 # move to the next patch
 n=$((n+1))
 done # =========================================================================
-
-if false && [ $err -ne 0 ]; then
-	echo
-	echo "WARNING: patch #$n failed to be applied to rootfs, skipped"
-	echo "         fix pre-requisites and then try to install again."
-else
-	: # RAF, TODO: update the patches database (lock is required)
-fi
 
 # This part cannt be interrupted # *********************************************
 set +e; stty -echoctl 2>/dev/null; trap 'true' SIGINT EXIT
