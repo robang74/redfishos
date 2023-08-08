@@ -545,10 +545,10 @@ While distributing the system patches using the `Web Catalog` is also a good and
 For this purpose, adding a header to the patch is enough to cope with the most common cases.
  
 This is a testing patch that is going to go that way:
- 
+
 * https://coderus.openrepos.net/pm2/project/dnsmasq-connman-integration
- 
-Here is an example of such a header for testing purposes:
+
+Here is an example of such [header for testing](../../patches/patch_system_header.test.txt) purposes:
 
 <sub>
 
