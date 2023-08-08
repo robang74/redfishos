@@ -256,7 +256,6 @@ mkdb_lock() {
 	done
 	echo "\nERROR: cannot lock the patches database, abort.\n" >&2
 	return 1
-	exit 1
 }
 
 # SCRIPT MAIN ##################################################################
@@ -279,10 +278,9 @@ if [ "${force:-}" != "yes" ]; then
 	fi
 fi
 
-mkdb_lock || exit $?
+mkdb_lock || exit $? #==========================================================
 
 echo -e "\nINFO: downloading '$prj_name' last version...\n" >&2
-
 if check_patch_download_lastpkg \
    && get_hdr_params_from_patch \
    && get_pkg_params_from_patch \
@@ -294,12 +292,16 @@ then
 	&&( grep -ve "^${pkg_prov}, ${pkg_name}," "$patch_db";           \
 		cat "${patch_db}.new" ) | sort | uniq | grep . > "$patch_db" \
 	&& echo -e "\nDONE: patch '$prj_name' saved and registered.\n" >&2
-	rm -f "${patch_db}.new"
+	ret=$?
 else
-	false &&:
+	ret=1
 fi
-if [ $? -ne 0 ]; then
-	echo -e "ERROR: failed to elaborate '$prj_name' patch.\n" >&2
-fi
+rm -f "${patch_db}.new"
 
-rmdb_lock ||:
+rmdb_lock ||: #=================================================================
+
+if [ $ret -ne 0 ]; then
+	echo -e "\nERROR: failed to elaborate '$prj_name' patch.\n" >&2
+	exit 1
+fi
+exit 0
