@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.1
+# release: 0.1.2
 
 if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
 	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
