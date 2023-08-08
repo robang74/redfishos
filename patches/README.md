@@ -21,3 +21,13 @@ This is a list of patches developed to evaluate the potential of `Patch Manager`
 * **zram swap resize script**: [description](zram-swap-resize-script/description.txt), patch [v0.0.9](zram-swap-resize-script/0.0.9-unified_diff.patch) - Provides a shell script to resize the zRAM and to off-loading it to free memory from sleeping in background apps.
 
 For more information about `Patch Manager`, check out this [analysis](../forum/knowhow/system-patch-manager-p1.md) about its shortcomings and future improvements.
+
+## System patches
+
+In order to apply patches to the system a special header has been designed
+
+* [patch_system_header.prod.txt](patch_system_header.prod.txt)
+
+* [patch_system_header.test.txt](patch_system_header.test.txt)
+
+The second one is for testing only, while the first is a general example to use.
