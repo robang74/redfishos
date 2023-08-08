@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.5
+# release: 0.0.6
 
 set -mue -o pipefail
 

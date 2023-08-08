@@ -21,7 +21,7 @@
 #
 # TODO: create a back-up of the files before patching, date-time-Nprogressive
 #
-# release: 0.0.9
+# release: 0.1.0
 
 set -ue -o pipefail
 
