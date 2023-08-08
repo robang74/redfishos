@@ -95,14 +95,15 @@ robang74, x10ii-iii-udev-rules-fixing, 0.0.2, tar.gz, systemd-udevd;
 else # NEW WAY TO DO ###########################################################
 
 test "x${1:-}" == "x--all" && patches_to_apply="
-utilities-quick-fp-restart
 sshd-publickey-login-only
-x10ii-iii-udev-rules-fixing
+utilities-quick-fp-restart
 x10ii-iii-agps-config-emea
 x10ii-iii-udev-rules-fixing
 "
 
 fi #############################################################################
+
+export PATH=$HOME/bin:$PATH
 
 plst="ERROR"
 if [ ! -n "$patches_to_apply" ]; then
@@ -122,7 +123,9 @@ if [ ! -n "$patches_to_apply" ]; then
 fi
 echo
 echo "=> Using the patch list from '$plst':"
-echo "  \_ $plst: $patches_to_apply"
+echo "  \_ List of patches to apply:"
+echo
+echo "$patches_to_apply" | eval $filter_1
 
 reload_list=$(cat "$reload_path" 2>/dev/null ||:)
 if [ -n "$reload_list" ]; then
@@ -132,11 +135,12 @@ if [ -n "$reload_list" ]; then
 fi
 
 # this loop install all the patches in the ordered list #=======================
-n=1; mkdir -p "$patch_dir/"; for patch_name in $patches_to_apply; do # =========
+n=0; mkdir -p "$patch_dir/"; for patch_name in $patches_to_apply; do n=$((n+1))
 
 echo
 echo "=> Previous patch #$n check: $patch_name"
-patch_prev_strn=$(grep ", *$patch_name *," $patch_db ||:)
+touch "$patch_db"
+patch_prev_strn=$(grep ", *$patch_name *," "$patch_db" ||:)
 patch_prev_path=""
 reversible="none"
 if patch_string_to_filename "$patch_prev_strn"; then
@@ -159,16 +163,22 @@ echo "=> Download the patch #$n last version..."
 echo "  \_ patch name: $patch_name"
 if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_2; then
 	echo "  \_ patch discarded."
-	patch_unapplied_warning
+#	patch_unapplied_warning
 	continue
 fi
 echo "  \_ patch saved in: $patch_dir"
 patch_strn=$(grep ", *$patch_name *," $patch_db)
-echo "  |  $patch_strn"
-
 if ! patch_string_to_filename "$patch_strn"; then
 	errexit "patch string  of '$patch_name' is void, abort."
 fi
+if false; then
+mkdb_lock || exit $? #==========================================================
+dbtxt=$({ touch "$patch_db"; echo "$patch_strn";
+	grep -v "$patch_name" "$patch_db" ||:; } | sort | uniq)
+echo "$dbtxt" >"$patch_db"
+rmdb_lock ||: #=================================================================
+fi
+echo "  |  $patch_strn"
 if [ "$patch_path" = "$patch_prev_path" ]; then
 	echo "  \_ patch status: just applied in its last version."
 	continue
@@ -179,31 +189,36 @@ else
 	echo "  \_ patch status: patch to apply."
 fi
 
-echo
-echo "patch path: $patch_path"
-echo "bckup path: $bckup_path"
+#echo
+#echo "patch path: $patch_path"
+#echo "bckup path: $bckup_path"
 
 echo
 echo "=> System services check for patch #$n..."
 
 brk=0
-for srv in $srvs; do
-	systemctl --no-pager status $srv >/dev/null 2>&1
-	if [ $? -eq 4 ]; then
-# srv_file=$(echo $out | sed -ne "s/Unit \([^ ]*\)\.service .*/\\1/p")
-		echo "  \_ missing system service: $srv"
-		echo "  \_ searching, wait..."
-		out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
-		if [ $? -eq 0 ]; then
-			echo "  \_ system service installed: $srv"
-		else
-			echo "  \_ system service not found: $srv"
-			echo "$out" | eval $filter_3
-			brk=1
-			break
+srvs=$(printf ""$srvs)
+if [ -n "$srvs" ]; then
+	for srv in $srvs; do
+		systemctl --no-pager status $srv >/dev/null 2>&1
+		if [ $? -eq 4 ]; then
+	# srv_file=$(echo $out | sed -ne "s/Unit \([^ ]*\)\.service .*/\\1/p")
+			echo "  \_ missing system service: $srv"
+			echo "  \_ searching, wait..."
+			out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
+			if [ $? -eq 0 ]; then
+				echo "  \_ system service installed: $srv"
+			else
+				echo "  \_ system service not found: $srv"
+				echo "$out" | eval $filter_3
+				brk=1
+				break
+			fi
 		fi
-	fi
-done ||:
+	done ||:
+else
+	echo "  \_ system service: none"
+fi
 if [ $brk -ne 0 ]; then
 	echo "  \_ system services check: failed, skip patch #$n."
 	patch_unapplied_warning
