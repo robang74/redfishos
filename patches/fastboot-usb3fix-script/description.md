@@ -66,6 +66,8 @@ sys 0m9.674s
 == CHANGELOG ==
 
 0.0.3 - changed the license from MIT to GPLv2
+
 0.0.2 - find the connected smartphone and set its USB parameters (deleted)
+
 0.0.1 - first release (deleted)
 

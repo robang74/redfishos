@@ -33,12 +33,14 @@ TODO: check with iptables -t nat -S or iptables -nvL -t nat if the added iptable
 
 You might want to install permanently and here the instructions:
 
+```
 patch_vers=0.0.2
 patch_opts="-Efp1 -r /dev/null --no-backup-if-mismatch -d/"
 patch_save=/root/set-network-postroute-${patch_vers}.patch
 patch_link="https://t.ly/6YtGy"
 
-# curl -L $patch_link | tar xz -O | tee $patch_save | patch $patch_opts
+curl -L $patch_link | tar xz -O | tee $patch_save | patch $patch_opts
+```
 
 == CHANGELOG ==
 

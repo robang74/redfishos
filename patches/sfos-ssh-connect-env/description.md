@@ -37,7 +37,9 @@ extras:
 == CHANGELOG ==
 
 0.0.4 - license changed from MIT to GPLv2
-0.0.3 - extra commands without the underscore, more handy (deleted)
-0.0.2 - bugfixed the tfish() for telnet the recovery image (deleted)
-0.0.1 - first release (deleted)
 
+0.0.3 - extra commands without the underscore, more handy (deleted)
+
+0.0.2 - bugfixed the tfish() for telnet the recovery image (deleted)
+
+0.0.1 - first release (deleted)
