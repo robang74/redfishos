@@ -18,11 +18,9 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7
+# release: 0.0.7 - patched x2
 
 set -ue -o pipefail
-
-
 
 zadir=$(dirname $0 2>/dev/null ||:)
 source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
@@ -94,7 +92,13 @@ rfos-first-setup.sh
 fi #############################################################################
 # MAIN CODE EXECUTION ##########################################################
 
+shellrc="$HOME/.profile"
+bashrc="$HOME/.bashrc"
+
+blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1"; }
+
 echo
+blankline "$shellrc"
 mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 for i in $src; do
 	dst=$dir/$(basename $i)
@@ -110,8 +114,14 @@ for i in $src; do
 			echo "source $dst" >> "$HOME/.bashrc"
 	fi
 done
-grep -q "export -f src_file_env" "$HOME/.bashrc" ||\
-echo "export -f src_file_env" >> "$HOME/.bashrc"
+grep -q "export -f src_file_env" "$shellrc" ||\
+	echo "export -f src_file_env" >> "$shellrc"
+blankline "$shellrc" "$shellrc"
+
+blankline "$bashrc"
+grep -q "source $shellrc" "$bashrc" ||\
+	echo "source $shellrc" >> "$bashrc"
+blankline "$bashrc"
 
 echo
 echo "DONE: scripts suite for RedFish OS, installed in"
