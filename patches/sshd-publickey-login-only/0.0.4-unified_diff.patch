@@ -1,0 +1,62 @@
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+#\header #######################################################################
+#
+# target  : rfos
+# type    : system, patchmanager
+# provider: robang74
+# services: 
+# name    : sshd-publickey-login-only
+# version : 0.0.4
+#
+#/header #######################################################################
+---
+--- /etc/ssh/sshd_config	2023-06-24 07:26:55.995947184 +0200
++++ /etc/ssh/sshd_config	2023-06-24 07:26:55.983947001 +0200
+@@ -58,8 +58,8 @@ AuthorizedKeysFile	.ssh/authorized_keys
+ #IgnoreRhosts yes
+ 
+ # To disable tunneled clear text passwords, change to no here!
+-#PasswordAuthentication yes
+-#PermitEmptyPasswords no
++PasswordAuthentication no
++PermitEmptyPasswords no
+ 
+ # Change to no to disable s/key passwords
+ ChallengeResponseAuthentication no
+--- /etc/connman/firewall.d/00-devmode-firewall.conf.orig
++++ /etc/connman/firewall.d/00-devmode-firewall.conf
+@@ -1,15 +1,24 @@
+-[wifi]
+-
+ # In developer mode allow to connect over SSH over wifi
+ # with IPv4. With IPv6 SSH port is open because of the -m
+ # switch problems in connman iptables. The IPv6 rule for
+ # accepting SSH in WiFi is retained for future use.
+ 
+-IPv4.INPUT.RULES = -p tcp -m tcp --dport 22 -j ACCEPT
+-IPv6.INPUT.RULES = -p tcp -m tcp --dport 22 -j ACCEPT
++[wifi]
+ 
++IPv4.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 -j ACCEPT
++IPv6.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 -j ACCEPT
++
+ [ethernet]
+ 
+-# Similarly for ethernet allow SSH over it when connected.
+-IPv4.INPUT.RULES = -p tcp -m tcp --dport 22 -j ACCEPT
+-IPv6.INPUT.RULES = -p tcp -m tcp --dport 22 -j ACCEPT
++IPv4.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 -j ACCEPT
++IPv6.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 -j ACCEPT
++
++[tethering]
++
++IPv4.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 -j ACCEPT
++IPv6.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 -j ACCEPT
++
++[General]
++
++IPv4.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 ! -i rndis0 -j DROP ; -p tcp -m tcp --syn --match multiport --dports 22,2222 -i lo -j ACCEPT
++IPv6.INPUT.RULES = -p tcp -m tcp --syn --match multiport --dports 22,2222 ! -i rndis0 -j DROP ; -p tcp -m tcp --syn --match multiport --dports 22,2222 -i lo -j ACCEPT
