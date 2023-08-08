@@ -86,6 +86,7 @@ robang74, zram-swap-resize-script    , 0.0.9, tar.gz, none;
 robang74, sshd-publickey-login-only  , 0.0.3, tar.gz, none;
 robang74, x10ii-iii-udev-rules-fixing, 0.0.1, tar.gz, none;
 robang74, x10ii-iii-agps-config-emea , 0.2.2, tar.gz, ofono;
+robang74, udhcpd-tether-config-fixing, 0.0.1, tar.gz, udhcpd;
 robang74, dnsmasq-connman-integration, 0.1.1, tar.gz, dnsmasq connman;
 robang74, x10ii-iii-udev-rules-fixing, 0.0.2, tar.gz, systemd-udevd;
 "
@@ -95,12 +96,9 @@ else # NEW WAY TO DO ###########################################################
 
 test "x${1:-}" == "x--all" && patches_to_apply="
 utilities-quick-fp-restart
-set-network-postroute
-zram-swap-resize-script
 sshd-publickey-login-only
 x10ii-iii-udev-rules-fixing
 x10ii-iii-agps-config-emea
-dnsmasq-connman-integration
 x10ii-iii-udev-rules-fixing
 "
 
