@@ -1,0 +1,37 @@
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+#\header #######################################################################
+#
+# target  : rfos
+# type    : system, patchmanager
+# provider: robang74
+# services: udhcpd
+# name    : udhcpd-tether-config-fixing
+# version : 0.0.1
+#
+#/header #######################################################################
+---
+--- /usr/lib/systemd/system/udhcpd.service
++++ /usr/lib/systemd/system/udhcpd.service
+@@ -5,7 +5,7 @@
+ Conflicts=shutdown.target
+ 
+ [Service]
+-ExecStart=/usr/sbin/udhcpd -f
++ExecStart=/usr/sbin/udhcpd -f /etc/udhcpd.tether
+ # Sandboxing
+ CapabilityBoundingSet=CAP_DAC_READ_SEARCH CAP_NET_BIND_SERVICE CAP_NET_RAW
+ PrivateDevices=yes
+--- /dev/null
++++ /etc/udhcpd.tether
+@@ -0,0 +1,8 @@
++interface       tether
++start           172.28.172.2
++end             172.28.172.15
++max_leases      14 # = 15-2+1
++option dns      172.28.172.1
++option router   172.28.172.1
++option subnet   255.255.255.0
++option lease    86400
