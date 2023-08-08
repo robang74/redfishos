@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7 - patched x2
+# release: 0.0.7 - patched x3
 
 set -ue -o pipefail
 
@@ -92,36 +92,40 @@ rfos-first-setup.sh
 fi #############################################################################
 # MAIN CODE EXECUTION ##########################################################
 
-shellrc="$HOME/.profile"
-bashrc="$HOME/.bashrc"
+blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1" ||:; }
 
-blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1"; }
+hme=$(printf "$dir" | sed -e "s,$HOME/,~,")
+brn=$(printf "$branch" | head -c6)
+envirm=""
 
 echo
-blankline "$shellrc"
 mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 for i in $src; do
 	dst=$dir/$(basename $i)
-	printf "Downloading from %s to %s: %-32s ..." \
-		${branch:0:6} ${dir/$HOME\//\~/} $i
+	printf "Downloading from %s to %s: %-32s ..." $brn $hme $i
 	rm -f $dst
-    download $url/$i $dst || errexit "cannot download $i, abort."
-    echo " ok"
+	download $url/$i $dst || errexit "cannot download $i, abort."
+	echo " ok"
 	if echo $i | grep -q "\.sh$"; then
 		chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
-	else
-		grep -q "source $dst" "$HOME/.bashrc" ||\
-			echo "source $dst" >> "$HOME/.bashrc"
 	fi
 done
-grep -q "export -f src_file_env" "$shellrc" ||\
-	echo "export -f src_file_env" >> "$shellrc"
-blankline "$shellrc" "$shellrc"
 
-blankline "$bashrc"
-grep -q "source $shellrc" "$bashrc" ||\
-	echo "source $shellrc" >> "$bashrc"
-blankline "$bashrc"
+for shellrc in $HOME/.profile $HOME/.bashrc; do
+	blankline "$shellrc"
+	for i in $src; do
+		dst=$dir/$(basename $i)
+		if ! echo $i | grep -q "\.sh$"; then
+			grep -q "source $dst" "$shellrc" ||\
+				echo "source $dst" >> "$shellrc"
+		fi
+	done
+	grep -q "export -f src_file_env" "$shellrc" ||\
+		echo "export -f src_file_env" >> "$shellrc"
+	blankline "$shellrc" "$shellrc"
+	envirm="$shellrc ${envirm:-}"
+	grep -qE ".bashrc" $shellrc && break
+done
 
 echo
 echo "DONE: scripts suite for RedFish OS, installed in"
