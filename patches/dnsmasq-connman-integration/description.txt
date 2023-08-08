@@ -73,6 +73,8 @@ Available at this link: https://tinyurl.com/26lmx6sn
 
 == CHANGELOG ==
 
+0.1.2 - like v0.1.0 but with the system patch header.
+
 0.1.1 - like v0.1.0 but with a full system patch header for testing
 
 0.1.0 - like 0.0.9 but with the system patch header

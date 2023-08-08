@@ -1,0 +1,77 @@
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+#\header #######################################################################
+#
+# target  : rfos
+# type    : system
+# provider: robang74
+# services: dnsmasq connman
+# name    : dnsmasq-connman-integration
+# version : 0.1.2
+#
+#/header #######################################################################
+---
+--- /usr/lib/systemd/system/connman.service
++++ /usr/lib/systemd/system/connman.service
+@@ -3,9 +3,9 @@
+ DefaultDependencies=false
+ Conflicts=shutdown.target
+ Requires=dbus.socket oneshot-root.service
+-After=dbus.socket oneshot-root.service network-pre.target
++After=dbus.socket oneshot-root.service network-pre.target dnsmasq.target systemd-user-sessions.target
+ Before=network.target multi-user.target shutdown.target
+-Wants=network.target
++Wants=network.target dnsmasq.target
+ 
+ [Service]
+ Type=dbus
+@@ -13,7 +13,7 @@
+ Restart=always
+ EnvironmentFile=-/etc/sysconfig/connman
+ EnvironmentFile=-/var/lib/environment/connman/*.conf
+-ExecStart=/usr/sbin/connmand -n -W nl80211 --nobacktrace --noplugin=wifi $SYSCONF_ARGS $CONNMAN_ARGS
++ExecStart=/usr/sbin/connmand -n --nodnsproxy -W nl80211 --nobacktrace --noplugin=wifi $SYSCONF_ARGS $CONNMAN_ARGS
+ ExecReload=/usr/bin/dbus-send --system --print-reply --type=method_call --dest=net.connman / net.connman.Firewall.Reload
+ StandardOutput=null
+ 
+--- /usr/lib/systemd/system/dnsmasq.service
++++ /usr/lib/systemd/system/dnsmasq.service
+@@ -1,6 +1,7 @@
+ [Unit]
+ Description=DNS caching server.
+ After=network.target
++Before=connman.target
+ 
+ [Service]
+ ExecStart=/usr/sbin/dnsmasq -k
+--- /dev/null
++++ /etc/resolv.dnsmasq
+@@ -0,0 +1,4 @@
++nameserver 9.9.9.9
++nameserver 94.140.14.14
++nameserver 149.112.112.112
++nameserver 94.140.15.15
+--- /dev/null
++++ /etc/resolv.conf
+@@ -0,0 +1,2 @@
++search sailfishos.org.1 
++nameserver 127.0.0.1
+--- /dev/null
++++ /etc/dnsmasq.d/01-tethering-interfaces.conf
+@@ -0,0 +1,2 @@
++interface=tether
++interface=rndis0
+--- /dev/null
++++ /etc/dnsmasq.d/02-extra-large-dns-cache.conf
+@@ -0,0 +1 @@
++cache-size=1500
+--- /dev/null
++++ /etc/dnsmasq.d/03-fast-nameservers-list.conf
+@@ -0,0 +1 @@
++resolv-file=/etc/resolv.dnsmasq
+--- /dev/null
++++ /etc/dnsmasq.d/04-bind-interfaces-waydroid.conf
+@@ -0,0 +1 @@
++bind-dynamic

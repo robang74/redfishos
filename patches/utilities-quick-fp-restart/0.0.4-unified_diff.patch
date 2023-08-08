@@ -1,0 +1,25 @@
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+#\header #######################################################################
+#
+# target  : rfos
+# type    : system, patchmanager
+# provider: robang74
+# services: 
+# name    : utilities-quick-fp-restart
+# version : 0.0.4
+#
+#/header #######################################################################
+---
+--- /usr/share/sailfish-utilities/restart_fingerprint.sh
++++ /usr/share/sailfish-utilities/restart_fingerprint.sh
+@@ -14,5 +14,5 @@
+ }
+ 
+ service_do restart sailfish-fpd
+-sleep 3
+-service_do restart sailfish-fpd
++# sleep 3
++# service_do restart sailfish-fpd

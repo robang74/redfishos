@@ -63,6 +63,8 @@ Both taken indoors, the first with GPSinfo (native app) and the other with GPSte
 
 == CHANGELOG ==
 
+0.2.9 - like v0.2.2 but with the system patch header.
+
 0.2.2 - like v0.2.0 but with gps.conf miniaturised to the original size
 
 Because the WARNING #2 explained into the description, the gps.conf size has been reported to the original file one. In the source package you will find the gps.conf.sh used to miniaturise it and the gps.conf.full with all the comments that describes the various options. Follow the instructions given into description!

@@ -65,6 +65,10 @@ Then the ON/OFF iptables commands above will do the magic. The port 2222 has bee
 
 == CHANGELOG ==
 
+0.0.4 - like v0.0.3 but with the system patch header. 
+
+This is a hybrid patch, it can be applied to the system or by the Patch Manager
+
 0.0.3 - like v0.0.2 but with rules conformant to connman style + ethernet added
 
 Because connman inject the iptables rules when an interface goes up, I did not have the chance to test [wifi] and [ethernet] sections. However, because those sections were both present in the original file while the new rule associated to them is the same used for [tethering] which works then is reasonable that also those sections will work properly.
