@@ -77,6 +77,7 @@ rpms_install() {
 	local filter_4="sed -ne 's/<solvable \(.*\)>/\1/p'"
 	local filter_5="sed 's/$/;echo ${type:-} ${name:-} ${edition:-} installed/'"
 	local dname="${1:-all}" dvern="${2:+ v$2}" rlist="${3:-}" opts ret str cmd
+	local type name edition arch summary # because eval sovable defines these
 	shift 3
 
 #	echo
@@ -101,9 +102,54 @@ rpms_install() {
 	echo "  \_ Installation status: $str"
 }
 
-rmme="" n=0 m=0
+repos_check(){
+	local i avail
+	echo "  \_ Repositories refresh and check, wait..."
+
+	zypper $zopts refresh 2>&1 | eval $filter_3
+	test "x${1:-$rcmode}" = "x--refresh-only" && return 0
+
+	i="dnsmasq"; avail="enabled"
+	zypper se -r $rpo -xn $i 2>&1 | grep -qi " $i " \
+		|| avail="available but disabled"
+	echo "Repository $rpo: $avail" | eval $filter_b
+
+	i="cronie"; avail="enabled"
+	zypper se -r ${cntos}-baseos -xn $i 2>&1 | grep -qi " $i " \
+		|| avail="available but disabled"
+	echo "Repository ${cntos}-baseos: $avail" | eval $filter_b
+
+	i="bcc-tools"; avail="enabled"
+	zypper se -r ${cntos}-appstream -xn $i 2>&1 | grep -qi " $i " \
+		|| avail="available but disabled"
+	echo "Repository ${cntos}-appstream: $avail" | eval $filter_b
+}
+
+system_timedate_sync() {
+	test -n "$tserv" || return 1
+	which sntp >/dev/null || return 1
+
+	echo
+	m=$((m+1))
+	echo "=> $m. System time/date syncronisation"
+	echo
+	mkdir -p /var/lib/sntp
+	touch /var/lib/sntp/kod
+	sntp -4 $tserv 2>&1 | sed "s/ \($tserv\)/\n\\1/" | eval $filter_a
+	n=$((n+1))
+	sysdttm=1
+	tserv=""
+	return 0
+}
+
+printline() { printf -- "$1%.0s" $(seq 1 80); printf "\n"; }
+
+rmme="" n=0 m=0 sysdttm=0 rmtdttm=0
+rcmode="--refresh-only"
 rfos_hostname="redfishos"
 tref_filename="/etc/.time/.refernce"
+zopts="--no-color -nq"
+tserv="time.ien.it"
 
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
 if [ "$rfos" != "" ]; then ## rfos #############################################
@@ -131,7 +177,7 @@ rpm_list_1="
 pigz tcpdump bind-utils htop zypper zypper-aptitude rsync patch patchmanager
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
-sailfishos-chum-gui  harbour-dool binutils
+sailfishos-chum-gui harbour-dool binutils
 "
 
 rpm_list_2="
@@ -157,12 +203,12 @@ filter_3="$filter_d | $filter_2"
 runby=${2:+pcos:$2}
 runby=${runby:-localhost}
 echo "Shell script execution by $runby"
-echo "---------------------------------------"
+printline '-'
 echo
 
 m=$((m+1))
 if [ -n "${1:-}" ]; then
-	echo "=> Updating date time from the pcos-host"
+	echo "=> $m. Updating date time from the pcos-host"
 	echo "  \_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 	TZ=UTC date -s @"$1" >/dev/null
 	echo "  \_ updated date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
@@ -172,20 +218,24 @@ if [ -n "${1:-}" ]; then
 		echo "$1">"$tref_filename"
 		chmod a-w "$tref_filename" "$tref_dir"
 	fi
+	rmtdttm=1
+	sysdttm=1
 	n=$((n+1))
 else
-	echo "=> Printing date time from the localhost"
+	echo "=> $m. Printing date time from the localhost"
 	echo "  \_ current date/time: $(TZ=UTC date '+%F %H:%M:%S') UTC"
 fi
 
 if [ -n "${4:-}" ]; then
 	md5str=$(md5sum $0 | cut -d' ' -f1)
+	m=$((m+1))
 	echo
-	echo "=> Checking the MD5sum of the two scripts"
+	echo "=> $m. Checking the MD5sum of the two scripts"
 	echo "  \_ remote: $4"
 	echo "  \_ locale: $md5str"
 	if [ "$4" = "$md5str" ]; then
 		echo "  \_ check : OK"
+		n=$((n+1))
 	else
 		echo "  \_ check : KO"
 		exit 1
@@ -193,28 +243,33 @@ if [ -n "${4:-}" ]; then
 fi
 
 echo
+m=$((m+1))
 rfos_hostname=${3:-$rfos_hostname}
-echo "=> Refresh library cache and set the hostname: $rfos_hostname"; m=$((m+1))
+echo "=> $m. Refresh library cache and set the hostname: $rfos_hostname"
 ldconfig
 hostname "$rfos_hostname"
 hostname  >/etc/hostname
 n=$((n+1))
 
 echo
-echo "=> Internet connection verification"
+m=$((m+1))
+echo "=> $m. Internet connection verification"
 icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
 echo "  \_ Internet connectivity: $icst"
-
-echo
-echo "=> RedFish OS script suite install"; m=$((m+1))
+n=$((n+1))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
+
+system_timedate_sync ||:
 
 sha=devel
 fle=rfos-suite-installer.sh
 url=https://raw.githubusercontent.com/robang74/redfishos
 url=$url/$sha/scripts/$fle
 
+echo
+m=$((m+1))
+echo "=> $m. RedFish OS script suite install"
 echo "  \_ Running the suite installer script, wait..."
 if curl -sL $url | bash; then
 	echo "$fle.OK" >&2
@@ -232,14 +287,19 @@ echo "  \_ Installation status: $sret"
 
 else # no internet #############################################################
 
+echo
+m=$((m+1))
+echo "=> $m. RedFish OS script suite install"
 echo "  \_ Installation status: skipped, no Internet"
 echo "  \_ Alternative install: TODO"
 
 fi #############################################################################
 
 echo
-echo "=> Repositories selection and addition"; m=$((m+1))
+m=$((m+1))
+echo "=> $m. Repositories selection and addition"
 echo "  \_ This operation will take a minute, wait..."
+
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 if ssu repos | grep -q "[ -]* store ..."; then
 	echo "  \_ Jolla store: found, enabling all repositories..."
@@ -260,74 +320,54 @@ rpo="harbour-storeman-obs"
 echo "  \_ Adding $rpo repository, wait..."
 ssu addrepo $url $rpo 2>&1 | eval $filter_2
 
-cntos="CentOS/8-stream"
-centos_repo_1=$(echo $cntos/BaseOS | tr / - | tr [A-Z] [a-z])
-centos_repo_2=$(echo $cntos/AppStream | tr / - | tr [A-Z] [a-z])
+centos_repos=""
+cntos="Centos/8-stream"
+url="https://ftp.uni-bayreuth.de/linux" 			# backup
+url="https://www.nic.funet.fi/pub/Linux/INSTALL"	# current
 echo "  \_ Adding $cntos repositories, wait..."
-url="https://ftp.uni-bayreuth.de/linux"
 for i in $cntos/BaseOS $cntos/AppStream; do
 	ctrp=$(echo $i | tr / - | tr [A-Z] [a-z])
-	ssu addrepo $url/$i/$arch/os/ $ctrp
-	ssu enablerepo $ctrp
-done 2>&1 | eval $filter_2
+	ssu addrepo $url/$i/$arch/os/ $ctrp 2>&1 | eval $filter_2
+	ssu enablerepo $ctrp 2>&1 | eval $filter_2
+	centos_repos="$ctrp $centos_repos"
+done
+cntos=$(echo $cntos | tr / - | tr [A-Z] [a-z])
+ssu updaterepos 2>&1 | eval $filter_2
+repos_check
 echo "  \_ Showing the repositories list:"
-
 echo
 ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
 n=$((n+1))
 
-echo
-echo "=> System packages install and repositories disabling"; m=$((m+3))
-
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
-zopts="--no-color -nq"
-
+echo
+m=$((m+1))
+echo "=> $m. System packages install"
 echo "  \_ This operation will take a minute, wait..."
-ssu updaterepos 2>&1 | eval $filter_2
 if ! which zypper >/dev/null; then
 	echo "  \_ Installing zypper, wait..."
 	pkcon -py zypper --allow-reinstall 2>&1 | eval $filter_2
 fi
-zypper $zopts refresh 2>&1 | eval $filter_3
-
 if [ -n "$rpm_list_3" ]; then
 	rpms_install "" "" "" $rpm_list_3
-#	zypper $zopts install -y $rpm_list_3 2>&1 | eval $filter_3
 fi
 n=$((n+1))
 
-if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-i="dnsmasq"
-if pkcon search $i | grep -q "$i.*$rpo"; then
-	avail="available"
-else
-	avail="not available yet"
+if ! system_timedate_sync; then
+	if ! which sntp >/dev/null; then
+		echo
+		m=$((m+1))
+		echo "=> $m. System time/date syncronisation"
+		echo "  \_ System tool sntp is missing, skip."
+	fi
 fi
-echo "  \_ Repository $rpo: $avail"
-
-i="cronie"
-if pkcon search $i | grep -qi "$i.*$centos_repo_1"; then
-	avail="enabled"
-else
-	avail="available but disabled"
-fi
-echo "  \_ Repository $centos_repo_1: $avail"
-
-i="bcc-tools"
-if pkcon search $i | grep -qi "$i.*$centos_repo_2"; then
-	avail="available"
-else
-	avail="available but disabled"
-fi
-echo "  \_ Repository $centos_repo_2: $avail"
-fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-n=$((n+1))
 
 echo
-echo "=> Repositories refresh and packages update"
-ssu disablerepo $centos_repo_1
-ssu disablerepo $centos_repo_2
+m=$((m+1))
+echo "=> $m. Installed packages update"
+for i in $centos_repos; do ssu disablerepo $i; done
+repos_check
 if false; then
 	pkcon -yp refresh 2>&1 | eval $filter_1
 	pkcon -yp update  2>&1 | eval $filter_1
@@ -337,25 +377,11 @@ else
 fi
 str=KO; test $? -eq 0 && str=OK
 echo "  \_ Update status: $str"
+n=$((n+1))
 
 echo
-echo "=> Packages installation"
-
-if false; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-if [ -n "$rpm_list_1" ]; then
-    for i in $rpm_list_0; do
-        #RAF: no pipefail here
-        if ! { rpm -qi $i 2>&1 ||:; } | grep -q "not installed"; then
-			pkcon -yp remove $i 2>&1 | eval $filter_1
-		fi
-    done
-	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
-		2>&1 | eval $filter_1
-fi
-
-else # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+m=$((m+1))
+echo "=> $m. Application packages install"
 echo "  \_ Conflicting package removal"
 if [ -n "$rpm_list_0_add" ]; then
 	zypper $zopts remove -y $rpm_list_0_rmv 2>&1 | eval $filter_b
@@ -365,12 +391,11 @@ if [ -n "$rpm_list_1" ]; then
 #	zypper $zopts install -y $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
 	rpms_install "" "" "" $rpm_list_1 $rpm_list_2
 fi
-
-fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 n=$((n+1))
 
 echo
-echo "=> Updating CA-trust, wait..."; m=$((m+1))
+m=$((m+1))
+echo "=> $m. Updating CA-trust, wait..."
 if update-ca-trust; then
 	echo "  \_ update-ca-trust: OK"
 else
@@ -380,17 +405,26 @@ n=$((n+1))
 
 else # no internet #############################################################
 
-echo "=> Packages installation"
+echo
+m=$((m+1))
+echo "=> $m. System packages install"
+m=$((m+1))
+echo "=> $m. Installed packages update"
+m=$((m+1))
+echo "=> $m. Application packages install"
+m=$((m+1))
+echo "=> $m. Updating CA-trust, wait..."
 echo "  \_ Install status: skipped, no Internet"
 echo "  \_ Alternative install: TODO"
 
 fi #############################################################################
 
-m=$((m+3))
+
 if which mcetool >/dev/null; then ##############################################
 
 echo
-echo "=> Enable auto-brightness"
+m=$((m+1))
+echo "=> $m. Enable auto-brightness"
 echo
 mcetool \
 	--set-brightness-fade-dim=1000    \
@@ -403,7 +437,8 @@ mcetool | grep -i brightness | sed -e "s,^,   ,"
 n=$((n+1))
 
 echo
-echo "=> Set balanced-interactive governor"
+m=$((m+1))
+echo "=> $m. Set balanced-interactive governor"
 echo
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
     echo "schedutil" >$i
@@ -418,7 +453,8 @@ mcetool | grep -iE "power|ps" | grep -v "dbus" | sed -e "s,^,   ,"
 n=$((n+1))
 
 echo
-echo "=> Set battery charging thresholds"
+m=$((m+1))
+echo "=> $m. Set battery charging thresholds"
 echo
 set_battery_lcr_params
 mcetool \
@@ -432,15 +468,19 @@ n=$((n+1))
 else # no mce-tools installed ##################################################
 
 echo
-echo "=> Enable auto-brightness"
-echo "=> Set balanced-interactive governor"
-echo "=> Set battery charging thresholds"
+m=$((m+1))
+echo "=> $m. Enable auto-brightness"
+m=$((m+1))
+echo "=> $m. Set balanced-interactive governor"
+m=$((m+1))
+echo "=> $m. Set battery charging thresholds"
 echo "  \_ Setting status: skipped, no mce-tools"
 
 fi #############################################################################
 
 echo
-echo "=> Activate the /etc/rc.local by crontab"; m=$((m+1))
+m=$((m+1))
+echo "=> $m. Activate the /etc/rc.local by crontab"
 if which crontab >/dev/null; then
 	tmpfile=$(mktemp -p ${TMPDIR:-/tmp} -t crontab.XXXXXX)
 	crontab -l >$tmpfile 2>/dev/null
@@ -462,11 +502,10 @@ else
 fi
 
 echo
-echo "=> System patches application, start"; m=$((m+1))
+m=$((m+1))
+echo "=> $m. System patches application, start"
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
-
-printline() { printf -- "$1%.0s" $(seq 1 80); printf "\n"; }
 
 export PATH=$HOME/bin:$PATH
 source $HOME/bin/rfos-script-functions.env
@@ -475,11 +514,11 @@ if [ $? -eq 0 ]; then
 	if patch_installer.sh --all; then
 		n=$((n+1))
 		printline '-'
-		echo "=> System patches application, end"
+		echo "=> $m. System patches application, end"
 		echo "  \_ Install status: OK"
 	else
 		printline '-'
-		echo "=> System patches application, end"
+		echo "=> $m. System patches application, end"
 		echo "  \_ Install status: KO"
 	fi
 else
@@ -490,12 +529,14 @@ else # no internet #############################################################
 
 echo "  \_ Install status: skipped, no Internet"
 echo
-echo "=> Create $HOME/bin and replicate me there"
+echo "=> $m. Create $HOME/bin and replicate me there"
 rmme="$0"
 mkdir -p $HOME/bin
 cp -arf $0 $HOME/bin 2>/dev/null || rmme=""
 
 fi #############################################################################
+
+test "$rmtdttm" = "0" -a "$sysdttm" = "1" && n=$((n+1))
 
 echo
 echo "=> Initial setup of a $ssu_status mobile device completed."
