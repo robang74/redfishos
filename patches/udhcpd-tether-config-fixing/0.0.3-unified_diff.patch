@@ -1,0 +1,76 @@
+##
+## (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+##           released under MIT (tlo.mit.edu) license terms
+##
+#\header #######################################################################
+#
+# target  : rfos
+# type    : system, patchmanager
+# provider: robang74
+# services: udhcpd
+# name    : udhcpd-tether-config-fixing
+# version : 0.0.3
+#
+#/header #######################################################################
+---
+--- /dev/null
++++ /etc/udhcpd.tether
+@@ -0,0 +1,8 @@
++interface       tether
++start           172.28.172.2
++end             172.28.172.15
++max_leases      14 # = 15-2+1
++option dns      172.28.172.1
++option router   172.28.172.1
++option subnet   255.255.255.0
++option lease    86400
+--- /dev/null
++++ /etc/udhcpd.rndis0
+@@ -0,0 +1,8 @@
++interface       rndis0
++start           192.168.2.1
++end             192.168.2.14
++max_leases      14 # = 14-1+1
++option dns      192.168.2.15
++option router   192.168.2.15
++option subnet   255.255.255.0
++option lease    86400
+--- /etc/connman/firewall.d/10-allow-dhcp-firewall.conf
++++ /etc/connman/firewall.d/10-allow-dhcp-firewall.conf
+@@ -1,4 +1,4 @@
+-# Allow DHCP clients to work in all cases.
++# Allow DHCP clients and servers to work in all cases.
+ 
+ [General]
+ 
+@@ -7,7 +7,7 @@
+ # procedure. This issue may happen with some setups when the DHCP server
+ # re-transmits the ACK packet. Port 68 is used by connmand only when DHCP
+ # requests are in progress.
+-IPv4.INPUT.RULES = -p udp -m udp --sport 67 --dport 68 -j ACCEPT
++IPv4.INPUT.RULES = -p udp -m udp --sport 67 --dport 68 -j ACCEPT; -p udp -m udp --sport 68 --dport 67 -j ACCEPT
+ 
+ # Without this exception valid DHCPv6 responses may be dropped. It may be
+ # similar case as with IPv4 as the state of the packet is different in
+--- /usr/lib/systemd/system/udhcpd.service
++++ /usr/lib/systemd/system/udhcpd.service
+@@ -1,11 +1,17 @@
+ [Unit]
+-Description=udhcpcd DHCP server
++Description=udhcpd DHCP server on usb-moded interface
+ DefaultDependencies=no
+ After=local-fs.target
++#WantedBy=multi-user.target
+ Conflicts=shutdown.target
+ 
+ [Service]
+-ExecStart=/usr/sbin/udhcpd -f
++#ExecStartPre=/sbin/ifconfig rndis0 192.168.2.15/24 up
++ExecStartPre=/bin/sh -c "while ! /usr/sbin/ip -4 a | /bin/grep -q rndis0:; do /bin/sleep 1; done"
++ExecStart=/usr/sbin/udhcpd -f /etc/udhcpd.conf
++StartLimitBurst=12
++Restart=always
++RestartSec=5
+ # Sandboxing
+ CapabilityBoundingSet=CAP_DAC_READ_SEARCH CAP_NET_BIND_SERVICE CAP_NET_RAW
+ PrivateDevices=yes

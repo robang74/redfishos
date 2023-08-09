@@ -2,6 +2,8 @@ In some cases, the tethering via WiFi stops to deliver the DHCP service, and the
 
 == CHANGELOG ==
 
+0.0.3 - udhcpd.service restarts always and waits for the interface to come up. Using systemctl for re/start requires --no-block.
+
 0.0.2 - like v0.0.1 but includes the DHCP server rule for connman firewall configuration.
 
 0.0.1 - create the new /etc/udhcpd.tether and update accordingly the udhcpd service file.
