@@ -44,7 +44,11 @@ curl -L $patch_link | tar xz -O | tee $patch_save | patch $patch_opts
 
 == CHANGELOG ==
 
-0.0.2 - like v0.0.1 but without the iptables -t nat -F (BETA testing)
+0.0.4 - 0.0.4 - reworked, the patch is also a script, -r remove the rule
+
+0.0.3 - like v0.0.2 but with the patch length fixed
+
+0.0.2 - like v0.0.1 but without the iptables -t nat -F (broken, shorter length patch)
 
 This patch version does not interfere with the connman driven WiFi tethering and viceversa.
 
