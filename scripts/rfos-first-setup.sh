@@ -72,17 +72,18 @@ set_battery_lcr_params() {
 }
 
 rpms_install() {
-	test "$#" = "4" || return 1
-
-	local opts ret str cmd
+	test $# -ge 4 || return 1
+	
 	local filter_4="sed -ne 's/<solvable \(.*\)>/\1/p'"
-	local filter_5="sed 's/$/;echo $type $name $edition installed/'"
+	local filter_5="sed 's/$/;echo ${type:-} ${name:-} ${edition:-} installed/'"
+	local dname="${1:-all}" dvern="${2:+ v$2}" rlist="${3:-}" opts ret str cmd
+	shift 3
 
-	echo
-	echo "=> Packages installation..."
-	echo "  \_ Packages from $1 v$2 repositiries:"
-	opts=$(for i in $3; do echo "-r $i"; done)
-	output=$(zypper $zopts -x install $opts -y $4)
+#	echo
+#	echo "=> Packages installation..."
+	echo "  \_ Packages from ${dname}${dvern} repositiries:"
+	opts=$(for i in $rlist; do echo "-r $i"; done)
+	output=$(zypper $zopts -x install $opts -y "$@")
 	ret=$?
 	output=$(echo "$output" | eval "$filter_4")
 	if [ -n "$output" ]; then
@@ -91,9 +92,9 @@ rpms_install() {
 	fi
 
 	pkgs=$(echo "$output" | sed -ne 's/.*name="\([^"]*\)" .*/\1/p')
-	for i in $4; do
+	for i in "$@"; do
 		echo "$pkgs" | grep -qe "^$i$" ||\
-			echo "last version $i already installed" | eval "$filter_0"
+			echo "last version $i already installed" | eval "$filter_b"
 	done
 
 	str="KO"; test $ret -eq 0 && str="OK"
@@ -143,9 +144,9 @@ rpm_list_3="cronie dnsmasq sntp"
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
 #      ofono-vendor-qti-radio-plugin
 
-filter_a="sed -e 's,^,\ \ \ ,'"
-filter_b="sed -e 's,^,\ \ |\ \ ,'"
-filter_c="grep -Ev 'Status:|Percentage:|Results:' | grep ."
+filter_a="grep . | sed -e 's,^,\ \ \ ,'"
+filter_b="grep . | sed -e 's,^,\ \ |\ \ ,'"
+filter_c="grep -Ev 'Status:|Percentage:|Results:'"
 filter_d="cut -d'[' -f1 | sed -e 's/No update candidate for \(.*\). The .*/'\
 'The update for \1 is already installed./'"
 
@@ -237,7 +238,7 @@ echo "  \_ Alternative install: TODO"
 fi #############################################################################
 
 echo
-echo "=> Repository selection"; m=$((m+1))
+echo "=> Repositories selection and addition"; m=$((m+1))
 echo "  \_ This operation will take a minute, wait..."
 repo_list='adaptation0 aliendalvik sailfish-eas xt9'
 if ssu repos | grep -q "[ -]* store ..."; then
@@ -276,7 +277,7 @@ ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
 n=$((n+1))
 
 echo
-echo "=> Repository and packages update"; m=$((m+3))
+echo "=> System packages install and repositories disabling"; m=$((m+3))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
@@ -291,7 +292,8 @@ fi
 zypper $zopts refresh 2>&1 | eval $filter_3
 
 if [ -n "$rpm_list_3" ]; then
-	zypper $zopts install -y $rpm_list_3 2>&1 | eval $filter_3
+	rpms_install "" "" "" $rpm_list_3
+#	zypper $zopts install -y $rpm_list_3 2>&1 | eval $filter_3
 fi
 n=$((n+1))
 
@@ -323,12 +325,22 @@ fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 n=$((n+1))
 
 echo
-echo "=> Packages installation"
-echo
+echo "=> Repositories refresh and packages update"
 ssu disablerepo $centos_repo_1
 ssu disablerepo $centos_repo_2
-pkcon -yp refresh 2>&1 | eval $filter_1
-pkcon -yp update  2>&1 | eval $filter_1
+if false; then
+	pkcon -yp refresh 2>&1 | eval $filter_1
+	pkcon -yp update  2>&1 | eval $filter_1
+else
+	zypper $zopts refresh 2>&1 | eval $filter_a
+	zypper $zopts update  2>&1 | eval $filter_a
+fi
+str=KO; test $? -eq 0 && str=OK
+echo "  \_ Update status: $str"
+
+echo
+echo "=> Packages installation"
+
 if false; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 if [ -n "$rpm_list_1" ]; then
@@ -344,12 +356,14 @@ fi
 
 else # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+echo "  \_ Conflicting package removal"
 if [ -n "$rpm_list_0_add" ]; then
-	zypper $zopts remove -y $rpm_list_0_rmv 2>&1 | eval $filter_1
+	zypper $zopts remove -y $rpm_list_0_rmv 2>&1 | eval $filter_b
 	rpm_list_1="$rpm_list_0_add $rpm_list_1"
 fi
 if [ -n "$rpm_list_1" ]; then
-	zypper $zopts install -y $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
+#	zypper $zopts install -y $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
+	rpms_install "" "" "" $rpm_list_1 $rpm_list_2
 fi
 
 fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
