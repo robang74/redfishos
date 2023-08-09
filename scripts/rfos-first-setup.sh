@@ -71,6 +71,35 @@ set_battery_lcr_params() {
 	echo 1 >/sys/class/power_supply/battery/lrc_enable
 }
 
+rpms_install() {
+	test "$#" = "4" || return 1
+
+	local opts ret str cmd
+	local filter_4="sed -ne 's/<solvable \(.*\)>/\1/p'"
+	local filter_5="sed 's/$/;echo $type $name $edition installed/'"
+
+	echo
+	echo "=> Packages installation..."
+	echo "  \_ Packages from $1 v$2 repositiries:"
+	opts=$(for i in $3; do echo "-r $i"; done)
+	output=$(zypper $zopts -x install $opts -y $4)
+	ret=$?
+	output=$(echo "$output" | eval "$filter_4")
+	if [ -n "$output" ]; then
+		cmd=$(echo "$output" | eval "$filter_5")
+		eval "$cmd" | eval "$filter_b"
+	fi
+
+	pkgs=$(echo "$output" | sed -ne 's/.*name="\([^"]*\)" .*/\1/p')
+	for i in $4; do
+		echo "$pkgs" | grep -qe "^$i$" ||\
+			echo "last version $i already installed" | eval "$filter_0"
+	done
+
+	str="KO"; test $ret -eq 0 && str="OK"
+	echo "  \_ Installation status: $str"
+}
+
 rmme="" n=0 m=0
 rfos_hostname="redfishos"
 tref_filename="/etc/.time/.refernce"
@@ -87,34 +116,42 @@ elif [ ! -n "${1:-}" ]; then
 	exit 1
 fi
 
-rpm_list_0="
+rpm_list_0_rmv="
 busybox-symlinks-vi
 busybox-symlinks-bash
 "
 
+rpm_list_0_add="
+vim-minimal
+gnu-bash
+"
+
 rpm_list_1="
-pigz tcpdump bind-utils htop vim-minimal zypper zypper-aptitude rsync patch
+pigz tcpdump bind-utils htop zypper zypper-aptitude rsync patch patchmanager
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
-gnu-bash sailfishos-chum-gui patchmanager harbour-dool
+sailfishos-chum-gui  harbour-dool binutils
 "
 
 rpm_list_2="
 gpstoggle harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 "
 
-rpm_list_3="cronie dnsmasq"
+rpm_list_3="cronie dnsmasq sntp"
 
 #TODO: harbour-file-browser harbour-todolist harbour-qrclip harbour-gpsinfo
 #      ofono ofono-binder-plugin ofono-modem-switcher-plugin 
 #      ofono-vendor-qti-radio-plugin
 
-filter_3="cut -d'[' -f1 | sed -e 's/No update candidate for \(.*\). The .*/'\
+filter_a="sed -e 's,^,\ \ \ ,'"
+filter_b="sed -e 's,^,\ \ |\ \ ,'"
+filter_c="grep -Ev 'Status:|Percentage:|Results:' | grep ."
+filter_d="cut -d'[' -f1 | sed -e 's/No update candidate for \(.*\). The .*/'\
 'The update for \1 is already installed./'"
-filter_1="grep -Ev 'Status:|Percentage:|Results:' | grep ."
-filter_2="$filter_1 | sed -e 's,^,\ \ |\ \ ,' | uniq"
-filter_1="$filter_1 | sed -e 's,^,\ \ \ ,' | uniq"
-filter_3="$filter_3 | $filter_2"
+
+filter_1="$filter_c | $filter_a | uniq"
+filter_2="$filter_c | $filter_b | uniq"
+filter_3="$filter_d | $filter_2"
 
 runby=${2:+pcos:$2}
 runby=${runby:-localhost}
@@ -223,12 +260,12 @@ echo "  \_ Adding $rpo repository, wait..."
 ssu addrepo $url $rpo 2>&1 | eval $filter_2
 
 cntos="CentOS/8-stream"
-centos_repo_1=$(echo $cntos/BaseOS | tr / -)
-centos_repo_2=$(echo $cntos/AppStream | tr / -)
+centos_repo_1=$(echo $cntos/BaseOS | tr / - | tr [A-Z] [a-z])
+centos_repo_2=$(echo $cntos/AppStream | tr / - | tr [A-Z] [a-z])
 echo "  \_ Adding $cntos repositories, wait..."
 url="https://ftp.uni-bayreuth.de/linux"
 for i in $cntos/BaseOS $cntos/AppStream; do
-	ctrp=$(echo $i | tr / -)
+	ctrp=$(echo $i | tr / - | tr [A-Z] [a-z])
 	ssu addrepo $url/$i/$arch/os/ $ctrp
 	ssu enablerepo $ctrp
 done 2>&1 | eval $filter_2
@@ -243,16 +280,18 @@ echo "=> Repository and packages update"; m=$((m+3))
 
 if [ "$icst" = "OK" ]; then # w/ internet ######################################
 
+zopts="--no-color -nq"
+
 echo "  \_ This operation will take a minute, wait..."
 ssu updaterepos 2>&1 | eval $filter_2
 if ! which zypper >/dev/null; then
 	echo "  \_ Installing zypper, wait..."
-	pkcon -yp zypper --allow-reinstall 2>&1 | eval $filter_2
+	pkcon -py zypper --allow-reinstall 2>&1 | eval $filter_2
 fi
-zypper -t refresh 2>&1 | eval $filter_3
+zypper $zopts refresh 2>&1 | eval $filter_3
 
 if [ -n "$rpm_list_3" ]; then
-	zypper install $rpm_list_3 2>&1 | eval $filter_3
+	zypper $zopts install -y $rpm_list_3 2>&1 | eval $filter_3
 fi
 n=$((n+1))
 
@@ -290,7 +329,8 @@ ssu disablerepo $centos_repo_1
 ssu disablerepo $centos_repo_2
 pkcon -yp refresh 2>&1 | eval $filter_1
 pkcon -yp update  2>&1 | eval $filter_1
-if true; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if false; then # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 if [ -n "$rpm_list_1" ]; then
     for i in $rpm_list_0; do
         #RAF: no pipefail here
@@ -301,16 +341,17 @@ if [ -n "$rpm_list_1" ]; then
 	pkcon -yp install --allow-reinstall $rpm_list_1 $rpm_list_2 \
 		2>&1 | eval $filter_1
 fi
+
 else # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ -n "$rpm_list_1" ]; then
-    for i in $rpm_list_0; do
-        #RAF: no pipefail here
-        if ! { rpm -qi $i 2>&1 ||:; } | grep -q "not installed"; then
-			zypper -t remove $i 2>&1 | eval $filter_1
-		fi
-    done
-	zypper -t $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
+
+if [ -n "$rpm_list_0_add" ]; then
+	zypper $zopts remove -y $rpm_list_0_rmv 2>&1 | eval $filter_1
+	rpm_list_1="$rpm_list_0_add $rpm_list_1"
 fi
+if [ -n "$rpm_list_1" ]; then
+	zypper $zopts install -y $rpm_list_1 $rpm_list_2 2>&1 | eval $filter_1
+fi
+
 fi # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 n=$((n+1))
 
