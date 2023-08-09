@@ -30,8 +30,19 @@
 # be set as disabled by default. Until this fix will be implemented and provided
 # this script deal with this aspect enabling or disabling those repositories.
 #
+# TODO
+#
+# Repository to add in combination or in alternative a CentOS 8 stream
+#
+# https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/31/
+#	Everything/aarch64/os/ fedora-31-release-everything
+#	Modular/aarch64/os/ fedora-31-release-modular
+# https://archives.fedoraproject.org/pub/archive/fedora/linux/updates/31/
+#	Everything/aarch64/ fedora-31-updates-everything
+#	Modular/aarch64/ fedora-31-updates-modular
+#
 ################################################################################
-# release: 0.1.4
+# release: 0.1.5
 
 if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
 	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
