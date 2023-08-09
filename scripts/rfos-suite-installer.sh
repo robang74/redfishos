@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7 - patched x3
+# release: 0.0.7 - patched x4
 
 set -ue -o pipefail
 
@@ -124,7 +124,7 @@ for shellrc in $HOME/.profile $HOME/.bashrc; do
 		echo "export -f src_file_env" >> "$shellrc"
 	blankline "$shellrc" "$shellrc"
 	envirm="$shellrc ${envirm:-}"
-	grep -qE ".bashrc" $shellrc && break
+#	grep -qE ".bashrc" $shellrc && break
 done
 
 echo
