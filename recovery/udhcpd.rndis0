@@ -1,0 +1,8 @@
+interface       rndis0
+start           192.168.2.1
+end             192.168.2.14
+max_leases      14 # = 14-1+1
+option dns      192.168.2.15
+option router   192.168.2.15
+option subnet   255.255.255.0
+option lease    86400
