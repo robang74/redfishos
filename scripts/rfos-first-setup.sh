@@ -42,37 +42,11 @@
 #	Modular/aarch64/ fedora-31-updates-modular
 #
 ################################################################################
-# release: 0.1.5
+# release: 0.1.6
 
-if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
-	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
-	if [ -x "$shn" ]; then
-		shx=$(basename "$shn")
-		shn=$(readlink -f "$shn")
-		shn=$(basename "$shn")
-		if [ "$shn" = "busybox" ]; then
-			shn=$shx
-		fi
-	fi
-else
-	shn=$(get_this_shell_name)
-fi
-echo
-echo "Script running on shell: $shn"
-echo
-if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
-	:
-elif [ "$shn" = "dash" ]; then
-    echo "ERROR: this script cannot run on dash, abort."
-    echo
-    exit 1
-else
-	echo "WARNING: this script requires bash or ash or dash and may not work."
-	echo
-fi >&2
-
-################################################################################
 set -u
+
+# FUNTIONS DEFINITIONS #########################################################
 
 set_battery_lcr_params() {
 	# RAF: this should be refresh each boot
@@ -153,7 +127,57 @@ system_timedate_sync() {
 	return 0
 }
 
-printline() { printf -- "$1%.0s" $(seq 1 80); printf "\n"; }
+printline() { printf -- "${1:--}%.0s" $(seq 1 ${2:-80}); printf "\n"; }
+
+shellname() {
+	local shn shx
+	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
+	if [ -x "$shn" ]; then
+		shx=$(basename "$shn")
+		shn=$(readlink -f "$shn")
+		shn=$(basename "$shn")
+		if [ "$shn" = "busybox" ]; then
+			shn=$shx
+		fi
+	fi
+	echo $shn
+}
+
+# FUNCTIONS OVERLOAD ###########################################################
+#
+# RAF: this script also defines the functions environment, which can be broken
+#      for some reasons. Hence, it is not a good idea to source from outside but
+#      to keep everything running from this own script, which can be entirely
+#      downloaded and executed with a single wget/curl | b/ash command.
+#      Instead, for the same reason the local enviroment could be fixed by hands
+#      but this script functions can be still broken and ENVLOAD=1 saves us.
+#
+if [ ${ENVLOAD:-0} -eq 1 ]; then
+	zadir=$(dirname "$0"  ||:)
+	funcenv="rfos-script-functions.env"
+	source "${zadir:-.}/$funcenv" ||\
+		source "$HOME/bin/$funcenv" ||:
+fi 2>/dev/null
+
+# SHELL TEST ###################################################################
+
+shn=$(shellname)
+
+echo
+echo "Script running on shell: $shn"
+echo
+if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
+	:
+elif [ "$shn" = "dash" ]; then
+    echo "ERROR: this script cannot run on dash, abort."
+    echo
+    exit 1
+else
+	echo "WARNING: this script requires b/ash to run correctly."
+	echo
+fi >&2
+
+# VARIABLES DEFINITIONS ########################################################
 
 rmme="" n=0 m=0 sysdttm=0 rmtdttm=0
 rcmode="--refresh-only"
@@ -162,8 +186,10 @@ tref_filename="/etc/.time/.refernce"
 zopts="--no-color -nq"
 tserv="time.ien.it"
 
+# MAIN CODE EXECUTION ##########################################################
+
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
-if [ "$rfos" != "" ]; then ## rfos #############################################
+if [ "$rfos" != "" ]; then ## ########################################## rfos ##
 
 if [ -s "$tref_filename" ]; then
 	:
@@ -269,7 +295,7 @@ icst=KO; curl -sL https://google.com/404 >/dev/null 2>&1 && icst=OK
 echo "  \_ Internet connectivity: $icst"
 n=$((n+1))
 
-if [ "$icst" = "OK" ]; then # w/ internet ######################################
+if [ "$icst" = "OK" ]; then # ================================== # on internet #
 
 system_timedate_sync ||:
 
@@ -296,7 +322,7 @@ else
 fi
 echo "  \_ Installation status: $sret"
 
-else # no internet #############################################################
+else # ========================================================= # no internet #
 
 echo
 m=$((m+1))
@@ -304,7 +330,7 @@ echo "=> $m. RedFish OS script suite install"
 echo "  \_ Installation status: skipped, no Internet"
 echo "  \_ Alternative install: TODO"
 
-fi #############################################################################
+fi # ========================================================================= #
 
 echo
 m=$((m+1))
@@ -350,7 +376,7 @@ echo
 ssu repos 2>&1 | sed -e "s,^,   ," -e "s,\(.*\) ... .*,\\1,"
 n=$((n+1))
 
-if [ "$icst" = "OK" ]; then # w/ internet ######################################
+if [ "$icst" = "OK" ]; then # ================================== # on internet #
 
 echo
 m=$((m+1))
@@ -414,7 +440,7 @@ else
 fi
 n=$((n+1))
 
-else # no internet #############################################################
+else # ========================================================= # no internet #
 
 echo
 m=$((m+1))
@@ -428,10 +454,9 @@ echo "=> $m. Updating CA-trust, wait..."
 echo "  \_ Install status: skipped, no Internet"
 echo "  \_ Alternative install: TODO"
 
-fi #############################################################################
+fi # ========================================================================= #
 
-
-if which mcetool >/dev/null; then ##############################################
+if which mcetool >/dev/null; then # --------------------------- # w/ mce-tools #
 
 echo
 m=$((m+1))
@@ -476,7 +501,7 @@ mcetool \
 mcetool | grep -i charging | eval $filter_1
 n=$((n+1))
 
-else # no mce-tools installed ##################################################
+else # -------------------------------------------------------- # no mce-tools #
 
 echo
 m=$((m+1))
@@ -487,7 +512,7 @@ m=$((m+1))
 echo "=> $m. Set battery charging thresholds"
 echo "  \_ Setting status: skipped, no mce-tools"
 
-fi #############################################################################
+fi # ------------------------------------------------------------------------- #
 
 echo
 m=$((m+1))
@@ -516,7 +541,7 @@ echo
 m=$((m+1))
 echo "=> $m. System patches application, start"
 
-if [ "$icst" = "OK" ]; then # w/ internet ######################################
+if [ "$icst" = "OK" ]; then # ================================== # on internet #
 
 export PATH=$HOME/bin:$PATH
 source $HOME/bin/rfos-script-functions.env
@@ -536,7 +561,7 @@ else
 	echo "  \_ Install status: KO, no functions"
 fi
 
-else # no internet #############################################################
+else # ========================================================= # no internet #
 
 echo "  \_ Install status: skipped, no Internet"
 echo
@@ -545,7 +570,7 @@ rmme="$0"
 mkdir -p $HOME/bin
 cp -arf $0 $HOME/bin 2>/dev/null || rmme=""
 
-fi #############################################################################
+fi # ========================================================================= #
 
 test "$rmtdttm" = "0" -a "$sysdttm" = "1" && n=$((n+1))
 
@@ -555,7 +580,7 @@ echo "  \_ Task completed: $n of $m"
 echo
 
 rm -f "$rmme"; exit 0
-else ## pcos ###################################################################
+else ## ################################################################ pcos ##
 
 bsfish() { ssh_opts="$ssh_opts -o BatchMode=yes" sfish "$@"; }
 

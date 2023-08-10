@@ -19,9 +19,46 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.4
+# release: 0.1.5
 
-if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
+set -ue
+
+# FUNTIONS DEFINITIONS #########################################################
+
+isafunc() {
+	test -n "${1:-}" || return 1
+	type $1 2>&1 | head -n1 | grep -q "is a function"
+}
+
+errecho() {
+    if [ -n "${1:-}" ]; then
+        echo -e "\n ERROR: $@\n"
+    fi >&2
+    return 1
+}
+
+
+errexit() {
+	errecho "$@"
+	exit 1
+}
+
+
+download() {
+	test -n "${2:-}" || return 1
+	if which wget >/dev/null; then
+		wget $1 -qO - >$2; sync $2
+	elif which curl >/dev/null; then
+		curl -sL $1 >$2; sync $2
+	else
+		return 1
+	fi
+}
+
+blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1" ||:; }
+
+shellname() {
+	local shn shx
 	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
 	if [ -x "$shn" ]; then
 		shx=$(basename "$shn")
@@ -31,80 +68,50 @@ if ! type get_this_shell_name 2>&1 | head -n1 | grep -q "is a function"; then
 			shn=$shx
 		fi
 	fi
-else
-	shn=$(get_this_shell_name)
-fi
+	echo $shn
+}
+
+# FUNCTIONS OVERLOAD ###########################################################
+#
+# RAF: this script also defines the functions environment, which can be broken
+#      for some reasons. Hence, it is not a good idea to source from outside but
+#      to keep everything running from this own script, which can be entirely
+#      downloaded and executed with a single wget/curl | b/ash command.
+#      Instead, for the same reason the local enviroment could be fixed by hands
+#      but this script functions can be still broken and ENVLOAD=1 saves us.
+#
+if [ ${ENVLOAD:-0} -eq 1 ]; then
+	zadir=$(dirname "$0"  ||:)
+	funcenv="rfos-script-functions.env"
+	source "${zadir:-.}/$funcenv" ||\
+		source "$HOME/bin/$funcenv" ||:
+fi 2>/dev/null
+
+# SHELL TEST ###################################################################
+
+shn=$(shellname)
+
 echo
 echo "Script running on shell: $shn"
 if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
 	:
 else
 	echo
-	echo "WARNING: this script requires bash or ash or dash and may not work."
+	echo "WARNING: this script requires b/d/ash to run correctly."
 	echo
 fi >&2
-
-################################################################################
-set -ue
-
-zadir=$(dirname $0 2>/dev/null ||:)
-source "${zadir:-.}/rfos-script-functions.env" 2>/dev/null ||:
-
-# FUNTIONS DEFINITIOS ##########################################################
-
-fd=0
-if ! type isafunc 2>&1 | head -n1 | grep -q "is a function"; then
-	test $fd -eq 0 && echo
-	echo "function define isafunc()"
-	isafunc() {
-		test -n "${1:-}" || return 1
-		type $1 2>&1 | head -n1 | grep -q "is a function"
-	}
-	fd=1
-fi
-
-if ! isafunc errexit; then
-	test $fd -eq 0 && echo
-	echo "function define errexit()"
-	errexit() {
-		if [ -n "${1:-}" ]; then
-			echo
-			echo "ERROR: $@"
-			echo
-		fi >&2
-		exit 1
-	}
-	fd=1
-fi
-
-if ! isafunc download; then
-	test $fd -eq 0 && echo
-	echo "function define download()"
-	download() {
-		test -n "${2:-}" || return 1
-		if which wget >/dev/null; then
-			wget $1 -qO - >$2; sync $2
-		elif which curl >/dev/null; then
-			curl -sL $1 >$2; sync $2
-		else
-			return 1
-		fi
-	}
-	fd=1
-fi
-test $fd -ne 0 && echo
 
 # VARIABLES DEFINITIONS ########################################################
 
 branch="devel"
 branch="${1:-$branch}"
-url="https://raw.githubusercontent.com/robang74/redfishos/$branch/scripts"
+url="https://raw.githubusercontent.com/robang74/redfishos/$branch"
 dir=$HOME/bin
 
 rfos=$(cd /etc && egrep -i "[sail|red]fish" *-release issue group passwd ||:)
-if [ "$rfos" != "" ]; then ## rfos #############################################
-echo "Script running on mbile device"
-src="
+if [ "$rfos" != "" ]; then ## ------------------------------------------ rfos ##
+echo "Script running on mobile device"
+scripts_list="
 sfos/patch_dblock_functions.env
 sfos/patch_installer.sh
 sfos/patch_downloader.sh
@@ -114,19 +121,18 @@ rfos-script-functions.env
 rfos-suite-installer.sh
 rfos-first-setup.sh
 "
-else ## pcos ###################################################################
+else ## ---------------------------------------------------------------- pcos ##
 echo "Script running on a workstation"
-src="
+scripts_list="
 pcos/fastboot_usb3fix.sh
 pcos/sfos-ssh-connect.env
 rfos-script-functions.env
 rfos-suite-installer.sh
 rfos-first-setup.sh
 "
-fi #############################################################################
-# MAIN CODE EXECUTION ##########################################################
+fi ## ----------------------------------------------------------------------- ##
 
-blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1" ||:; }
+# MAIN CODE EXECUTION ##########################################################
 
 hme=$(printf "$dir" | sed -e "s,$HOME/,~,")
 brn=$(printf "$branch" | head -c6)
@@ -134,22 +140,22 @@ envirm=""
 
 echo
 mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
-for i in $src; do
+for i in $scripts_list; do
 	dst=$dir/$(basename $i)
 	printf "Downloading from %s to %s: %-32s ..." $brn $hme $i
 	rm -f $dst
-	download $url/$i $dst || errexit "cannot download $i, abort."
+	download $url/scripts/$i $dst || errexit "cannot download $i, abort."
 	echo " ok"
-	if echo $i | grep -q "\.sh$"; then
+	if echo "$i" | grep -q "\.sh$"; then
 		chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
 	fi
 done
 
 for shellrc in $HOME/.profile $HOME/.bashrc; do
 	blankline "$shellrc"
-	for i in $src; do
+	for i in $scripts_list; do
 		dst=$dir/$(basename $i)
-		if ! echo $i | grep -q "\.sh$"; then
+		if echo "$i" | grep -q "\.env$"; then
 			grep -q "source $dst" "$shellrc" ||\
 				echo "source $dst" >> "$shellrc"
 		fi
@@ -170,4 +176,3 @@ echo "Please, (re)execute bash to load its enviroment, then"
 echo "      rfos-first-setup.sh"
 echo "to start the RedFish OS first boot setup procedure"
 echo
-
