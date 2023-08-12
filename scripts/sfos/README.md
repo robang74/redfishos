@@ -9,7 +9,7 @@ The following shell scripts constitutes the base of the System Patch Manager Sui
 plus their depemdemcies:
 
 * [scripts / sfos / patch_dblock_functions.env](patch_dblock_functions.env)
-* [scripts / rfos-script-functions.env](../patch_dblock_functions.env)
+* [scripts / rfos-script-functions.env](../rfos-script-functions.env)
 
 The set of patches included in `--all` are just five for the moment:
 
