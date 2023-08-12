@@ -2,9 +2,9 @@
 
 The following shell scripts constitutes the base of the System Patch Manager Suite even if at the moment some of them requires `bash` as interpreter when `busybox ash` is the most reasonable target shell as far as the suite should be able to work also in recovery mode.
 
-* [scripts / sfos / patch_downloader.sh](patch_downloader.sh) [ --all | patch_name ]
-* [scripts / sfos / patch_installer.sh](patch_installer.sh) [ --all | patch_name ]
-* [scripts / sfos / patch_remover.sh](patch_remover.sh) [ --all | patch_name ]
+* [scripts / sfos / patch_downloader.sh](patch_downloader.sh) [--force] <project_name>
+* [scripts / sfos / patch_installer.sh](patch_installer.sh) <[ --all | patch_name ]>
+* [scripts / sfos / patch_remover.sh](patch_remover.sh) <[ --all | patch_name ]>
 
 plus their depemdemcies:
 
