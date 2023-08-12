@@ -10,7 +10,7 @@
 # target  : rfos
 # type    : system
 # provider: robang74
-# services: dnsmasq connman
+# services: connman -dnsmasq
 # name    : dnsmasq-connman-integration
 # version : x.y.z
 #

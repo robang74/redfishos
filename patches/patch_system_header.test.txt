@@ -9,7 +9,7 @@
 #
 # type: system
 # target: rfos
-# services: dnsmasq connman
+# services: connman -dnsmasq # minus means that removal disable and stop service
 #
 ## optional fields using tabs instead of spaces just for test ##################
 #
@@ -20,7 +20,7 @@
 ## a repetition, a variant and an unrecognised fields just for test ############
 #
 # name      : dnsmasq-connman-integration-not-fit # this should raise a warning
-# services	: dnsmasq, connman;
+# services	: connman, -dnsmasq;
 # string    : "hello world"
 #
 #/header #######################################################################
