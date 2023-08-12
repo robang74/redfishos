@@ -73,6 +73,8 @@ Then the ON/OFF iptables commands above will do the magic. The port 2222 has bee
 
 #### CHANGELOG ####
 
+0.0.5 - like v0.0.4 but with connman in services because the iptables rules for firewalling the SSH daemon on some interfaces.
+
 0.0.4 - like v0.0.3 but with the system patch header. 
 
 This is a hybrid patch, it can be applied to the system or by the Patch Manager
