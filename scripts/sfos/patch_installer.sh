@@ -42,12 +42,13 @@ patch_string_to_filename() {
 	test -n "${1:-}" || return 1
 
 	# cast the patch data into useful variables
-	prov=$(echo $1 | cut -d\, -f1 | tr -d ' '     ||:)
-	name=$(echo $1 | cut -d\, -f2 | tr -d ' '     ||:)
-	vern=$(echo $1 | cut -d\, -f3 | tr -d ' '     ||:)
-	extn=$(echo $1 | cut -d\, -f4 | tr -d ' '     ||:)
-	srvs=$(echo $1 | cut -d\, -f5 | grep -vw none ||:)
-	srvs=${srvs%;}
+	strn=$(echo $1    | cut -d\; -f1)
+	prov=$(echo $strn | cut -d\, -f1  | tr  -d ' '    ||:)
+	name=$(echo $strn | cut -d\, -f2  | tr  -d ' '    ||:)
+	vern=$(echo $strn | cut -d\, -f3  | tr  -d ' '    ||:)
+	extn=$(echo $strn | cut -d\, -f4  | tr  -d ' '    ||:)
+	srvs=$(echo $strn | cut -d\, -f5- | grep -vw none ||:)
+	srvs=$(echo $srvs | cut -d\# -f1)
 
 	patch_file="$prov-$name-$vern.patch"
 	patch_path="$patch_dir/$patch_file"
@@ -70,7 +71,7 @@ exit_for_manual_intervetion() {
  patch file: $(basename "$patch_path")
  patch revr: $(basename "${patch_reverse:-none}")
  patch prev: $(basename "${patch_prev_path:-none}")
- srv2reload: $(echo $servs_list)"
+ srv2reload: $(echo ${servs_list:-none})"
 }
 
 do_patch() {
@@ -87,14 +88,12 @@ reversible_check() {
 	if do_patch -R --dry-run -i "$1" >/dev/null; then
 		reversible="OK"
 		patch_reverse=$1
-		echo "  \_ Reversibility : $reversible"
-		return 0
 	else
 		reversible="KO"
 		patch_reverse=""
-		echo "  \_ Reversibility : $reversible"
 	fi
-	return 1
+	echo "  \_ Reversibility : $reversible"
+	test "$reversible" = "OK"
 }
 
 applicable_check() {
@@ -102,21 +101,17 @@ applicable_check() {
 	if do_patch --dry-run -i "$1" >/dev/null; then
 		applicable="OK"
 		patch_applicable=$1
-		echo "  \_ Applycability : $applicable"
-		echo "  \_ Patch is not installed."
-		return 0
 	else
 		applicable="KO"
 		patch_applicable=""
-		echo "  \_ Applycability : $applicable"
-		echo "  \_ Patch is not applicable."
 	fi
-	return 1
+	echo "  \_ Applicability : $applicable"
+	test "$applicable" = "OK"
 }
 
 read_patch_string() {
 	touch "$patch_db"
-	grep ", *$patch_name *," "$patch_db" | cut -d'#' -f1
+	grep ", *$patch_name *," "$patch_db"
 	return 0
 }
 
@@ -189,7 +184,7 @@ patch_prev_path=""
 reversible="none"
 if patch_string_to_filename "$patch_prev_strn"; then
 	echo "  \_ previous patch: found"
-	echo "  |  $patch_prev_strn" | cut -d'#' -f1
+	echo "  |  $patch_prev_strn"
 	if reversible_check "$patch_path"; then
 		patch_prev_path=$patch_reverse
 	fi
@@ -204,33 +199,26 @@ if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_4; then
 	echo "  \_ patch discarded."
 	continue
 fi
-#echo "  \_ patch saved in: $patch_dir"
 patch_strn=$(read_patch_string)
 if ! patch_string_to_filename "$patch_strn"; then
 	errexit "patch string  of '$patch_name' is void, abort."
 fi
-#echo "  |  $patch_strn" | cut -d'#' -f1
 
 if [ "$patch_path" = "$patch_prev_path" ]; then
 	echo "  \_ Patch status: just applied in its last version."
 	continue
-elif [ "$reversible" = "OK" ]; then
-	verstrn="last"
-	echo "  \_ Patch status: new version to apply."
 else
-	verstrn="current"
-	echo "  \_ Patch status: patch to apply."
+	echo "  \_ Patch status: last version to apply."
 fi
 
 echo
 echo "=> System services check for patch #$n..."
 
 brk=0
-srvs=$(printf ""$srvs)
-if [ -n "$srvs" ]; then
+if [ -n "${srvs:-}" ]; then
 	for srv in $srvs; do
-		systemctl --no-pager status $srv >/dev/null 2>&1
-		if [ $? -eq 4 ]; then
+		ret=0; systemctl --no-pager status $srv >/dev/null 2>&1 || ret=$?
+		if [ $ret -eq 4 ]; then
 			echo "  \_ missing system service: $srv"
 			echo "  \_ searching, wait..."
 			out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
@@ -243,9 +231,9 @@ if [ -n "$srvs" ]; then
 				break
 			fi
 		fi
-	done ||:
+	done
 else
-	echo "  \_ system service: none"
+	echo "  \_ system services: none"
 fi
 if [ $brk -ne 0 ]; then
 	echo "  \_ system services check: failed, skip patch #$n."
@@ -253,25 +241,24 @@ if [ $brk -ne 0 ]; then
 	continue
 fi
 
-echo
-verstr="last"
-echo "=> Applying the patch #$n $verstr version..."
-
 # This part cannot be interrupted # ********************************************
 set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 
-if [ -n "${patch_reverse:-1}" ]; then
-	echo "  \_ Reversing $verstr version patch..."
+echo
+echo "=> Applying the patch #$n last version..."
+if [ -n "$patch_prev_path" ]; then
+	verstr="previous"
 else
-	echo "  \_ Trying to reverse last version patch..."
-	if reversible_check "$patch_path"; then
-		if do_patch -R -i "$patch_reverse";	then
-			reversed="OK"
-		else
-			reversed="KO"
-		fi
-		echo "  \_ Reversing patch status: $reversed"
+	verstr="last"
+fi
+echo "  \_ Reversing $verstr version patch..."
+if reversible_check "${patch_prev_path:-$patch_path}"; then
+	if do_patch -R -i "${patch_prev_path:-$patch_path}"; then
+		reversed="OK"
+	else
+		reversed="KO"
 	fi
+	echo "  \_ Reversing patch status: $reversed"
 fi
 
 skip=0
@@ -329,13 +316,16 @@ if [ -n "${servs_list:-}" ]; then
 	done
 	rm -f "$reload_path"
 	$sctlcmd reload $restart_list 2>/dev/null ||:
-	$sctlcmd enable $restart_list
+	$sctlcmd enable $restart_list 2>&1 | eval $filter_1 ||:
+	echo
 	$sctlcmd restart $restart_list
 	echo "=> Check the restarted system services"
 	echo "\_ to check: "$servs_list
 	echo
-	$sctlcmd status $restart_list 2>&1 |\
-		tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
+	for i in $restart_list; do
+		$sctlcmd status $i 2>&1 |\
+				tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
+	done
 	echo
 fi
 
