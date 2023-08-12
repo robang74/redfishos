@@ -2,7 +2,7 @@
 
 This is a list of patches developed to evaluate the potential of `Patch Manager` and how it works.
 
-* **dnsmasq connman integration**: [description](dnsmasq-connman-integration/description.md), patch [v0.1.2](dnsmasq-connman-integration/0.1.2-unified_diff.patch) (system)
+* **dnsmasq connman integration**: [description](dnsmasq-connman-integration/description.md), patch [v0.1.4](dnsmasq-connman-integration/0.1.4-unified_diff.patch) (system)
 
     The dnsmasq conflicts with connman because both have their own business with port 53 and /etc/resolv.conf. Therefore, a full integration between these two services is required. 
   
@@ -10,7 +10,7 @@ This is a list of patches developed to evaluate the potential of `Patch Manager`
 
     Provides a script for laptop/PC which aims to solve the USB problems during the flashing procedure.
   
-* **set network postroute**: [description](set-network-postroute/description.md), patch [v0.0.2](set-network-postroute/0.0.2-unified_diff.patch) (sfos)
+* **set network postroute**: [description](set-network-postroute/description.md), patch [v0.0.4](set-network-postroute/0.0.4-unified_diff.patch) (sfos)
 
     Provides a shell script for configuring the developer mode for tethering the internet connection.
   
@@ -22,7 +22,7 @@ This is a list of patches developed to evaluate the potential of `Patch Manager`
 
     Provides a system configuration that allows a safe root login via SSH without using any password.
 
-* **udhcpd tether config fixing**: [description](udhcpd-tether-config-fixing/description.md), patch [v0.0.2](udhcpd-tether-config-fixing/0.0.2-unified_diff.patch) (system)
+* **udhcpd tether config fixing**: [description](udhcpd-tether-config-fixing/description.md), patch [v0.0.3](udhcpd-tether-config-fixing/0.0.3-unified_diff.patch) (system)
 
     Creates /etc/udhcpd.tether and update accordingly the udhcpd service file to provide DHCP service.
 
