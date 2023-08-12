@@ -326,10 +326,10 @@ if [ -n "${servs_list:-}" ]; then
 	disown &>/dev/null
 	
 	echo
-	echo "WARNING: WiFi tethering will not automatically raise up again"
-	echo "         You may be going to be disconnected, grab your phone"	
+	echo "WARNING: the connection will not automatically raise up again"
 	echo
-	echo "=> Restarted system services, $(date +%s)..."
+	dttm=$(date +"%Y-%m-%d %H:%M:%S")
+	echo "=> Restarted system services, ${dttm}..."
 	printf "  \_ Press a key after the connection will be manually restored."
 	read
 	while IFS= read -r line; do
@@ -338,7 +338,8 @@ if [ -n "${servs_list:-}" ]; then
 	rm -f /tmp/spm.fifo
 	
 	echo
-	echo "=> Checking the restarted system services, $(date +%s)..."
+	dttm=$(date +"%Y-%m-%d %H:%M:%S")
+	echo "=> Checking the restarted system services, ${dttm}..."
 	echo "  \_ To check:" $servs_list
 	echo
 	for i in $servs_list; do

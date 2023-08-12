@@ -130,6 +130,7 @@ filter_1="grep . | sed -e 's,^,\ \ \ ,'"
 filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,'"
 filter_3="grep -Ev 'Status:|Percentage:|Results:'"
 filter_3="$filter_3 | $filter_2"
+filter_4="sed -e 's/^+ //' | $filter_2"
 filter_5="tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'"
 filter_5="$filter_5 | $filter_1"
 
@@ -290,9 +291,9 @@ if [ -n "${servs_list:-}" ]; then
 
 	echo
 	echo "WARNING: the connection will not automatically raise up again"
-	echo "         You may be going to be disconnected, grab your phone"	
 	echo
-	echo "=> Restarted system services, $(date +%s)..."
+	dttm=$(date +"%Y-%m-%d %H:%M:%S")
+	echo "=> Restarted system services, ${dttm}..."
 	printf "  \_ Press a key after the connection will be manually restored."
 	read
 	while IFS= read -r line; do
@@ -301,7 +302,8 @@ if [ -n "${servs_list:-}" ]; then
 	rm -f /tmp/spm.fifo
 	
 	echo
-	echo "=> Checking the restarted system services, $(date +%s)..."
+	dttm=$(date +"%Y-%m-%d %H:%M:%S")
+	echo "=> Checking the restarted system services, ${dttm}..."
 	echo "  \_ To check:" $servs_list
 	echo
 	for i in $servs_list; do
