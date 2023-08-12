@@ -32,7 +32,7 @@ filename=$(ls -1 /vendor/etc/fstab.pdx20?)
 power_saving_state() {
     pwsvstate=$(mcetool | sed -ne \
       "s,^Power saving mode: *\([endisabl]*\) .*,\\1,p")
-    echo "Power saving mode: $pwsvstate" 
+    echo "Power saving mode: $pwsvstate"
 }
 
 power_saving_toggle() {
@@ -41,7 +41,7 @@ power_saving_toggle() {
         mcetool --set-power-saving-mode=enabled
         power_saving_state
     elif [ "$1" = "enabled" ]; then
-	echo "Disabling power state..."
+    echo "Disabling power state..."
         mcetool --set-power-saving-mode=disabled
         power_saving_state
     else
@@ -54,8 +54,8 @@ power_saving_toggle() {
 mcetool_check() {
     if ! which mcetool >/dev/null; then
         echo -e "\nThis script whish to have mce-tools installed"
-	echo    "because swapoff will fail with power saving enabled."
-	echo    "You can disable power saving manually or you can"
+    echo    "because swapoff will fail with power saving enabled."
+    echo    "You can disable power saving manually or you can"
         echo    "accept to reboot the device to complete the resize"
         echo    "or you can install with pkcon install -y mce-tools"
         echo -e "\nPress ENTER to continue or CTRL-C to abort."
@@ -106,9 +106,9 @@ swapusage() {
 zram_swap_resize() {
     mb=$((${1:-1024} + 0))
     zramsize=$((mb*1024*1024))
-    
+
     zram_swap_change $zramsize || resized=no
-	
+
     echo -e "\nThe zram size at the next boot is set in $filename by this line"
     sed -i "s|\(^"$blockname".*size\)=[0-9]*,max|\\1="$((mb*1024*1024))",max|" \
         $filename
@@ -134,8 +134,8 @@ sysmon_update() {
 ### MAIN SCRIPT SECTION ########################################################
 
 swapuse=$(swapusage | awk '{ print $2 }')
-printf "\nCurrent $(basename $blockname) swap size: %s Mb" $swapuse   
-printf "\nCurrent swapiness index: %d%%\n\n" $(cat /proc/sys/vm/swappiness)               
+printf "\nCurrent $(basename $blockname) swap size: %s Mb" $swapuse
+printf "\nCurrent swapiness index: %d%%\n\n" $(cat /proc/sys/vm/swappiness)
 
 mcetool_check
 power_saving_state

@@ -29,14 +29,14 @@ fi
 
 
 if [ "x${1:-}" = "x-r" ]; then
-	echo
-	echo "=> Removing the nating rule"
-	rmvrule=1
-	shift
+    echo
+    echo "=> Removing the nating rule"
+    rmvrule=1
+    shift
 else
-	echo
-	echo "=> Adding the nating rule"
-	rmvrule=0
+    echo
+    echo "=> Adding the nating rule"
+    rmvrule=0
 fi
 
 # functions ####################################################################
@@ -62,9 +62,9 @@ echo
 echo "=> Search for the default route"
 outrt=$(route -n | sed -ne "/^0.0.0.0 .* $outif/p" | tr -s ' ')
 if [ -n "$outrt" ] ; then
-	res=""
+    res=""
 else
-	res="NOT"
+    res="NOT"
 fi
 echo "  \_ interface $outif is ${res:+$res }the default gateway"
 echo

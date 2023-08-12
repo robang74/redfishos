@@ -26,8 +26,8 @@ set -ue
 # FUNTIONS DEFINITIONS #########################################################
 
 isafunc() {
-	test -n "${1:-}" || return 1
-	type $1 2>&1 | head -n1 | grep -q "is a function"
+    test -n "${1:-}" || return 1
+    type $1 2>&1 | head -n1 | grep -q "is a function"
 }
 
 errecho() {
@@ -39,36 +39,36 @@ errecho() {
 
 
 errexit() {
-	errecho "$@"
-	exit 1
+    errecho "$@"
+    exit 1
 }
 
 
 download() {
-	test -n "${2:-}" || return 1
-	if which wget >/dev/null; then
-		wget $1 -qO - >$2; sync $2
-	elif which curl >/dev/null; then
-		curl -sL $1 >$2; sync $2
-	else
-		return 1
-	fi
+    test -n "${2:-}" || return 1
+    if which wget >/dev/null; then
+        wget $1 -qO - >$2; sync $2
+    elif which curl >/dev/null; then
+        curl -sL $1 >$2; sync $2
+    else
+        return 1
+    fi
 }
 
 blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1" ||:; }
 
 shellname() {
-	local shn shx
-	shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
-	if [ -x "$shn" ]; then
-		shx=$(basename "$shn")
-		shn=$(readlink -f "$shn")
-		shn=$(basename "$shn")
-		if [ "$shn" = "busybox" ]; then
-			shn=$shx
-		fi
-	fi
-	echo $shn
+    local shn shx
+    shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
+    if [ -x "$shn" ]; then
+        shx=$(basename "$shn")
+        shn=$(readlink -f "$shn")
+        shn=$(basename "$shn")
+        if [ "$shn" = "busybox" ]; then
+            shn=$shx
+        fi
+    fi
+    echo $shn
 }
 
 # FUNCTIONS OVERLOAD ###########################################################
@@ -81,10 +81,10 @@ shellname() {
 #      but this script functions can be still broken and ENVLOAD=1 saves us.
 #
 if [ ${ENVLOAD:-0} -eq 1 ]; then
-	zadir=$(dirname "$0"  ||:)
-	funcenv="rfos-script-functions.env"
-	source "${zadir:-.}/$funcenv" ||\
-		source "$HOME/bin/$funcenv" ||:
+    zadir=$(dirname "$0"  ||:)
+    funcenv="rfos-script-functions.env"
+    source "${zadir:-.}/$funcenv" ||\
+        source "$HOME/bin/$funcenv" ||:
 fi 2>/dev/null
 
 # SHELL TEST ###################################################################
@@ -94,11 +94,11 @@ shn=$(shellname)
 echo
 echo "Script running on shell: $shn"
 if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
-	:
+    :
 else
-	echo
-	echo "WARNING: this script requires b/d/ash to run correctly."
-	echo
+    echo
+    echo "WARNING: this script requires b/d/ash to run correctly."
+    echo
 fi >&2
 
 # VARIABLES DEFINITIONS ########################################################
@@ -141,30 +141,30 @@ envirm=""
 echo
 mkdir -p $dir || errexit "cannot create '$dir' folder, abort."
 for i in $scripts_list; do
-	dst=$dir/$(basename $i)
-	printf "Downloading from %s to %s: %-32s ..." $brn $hme $i
-	rm -f $dst
-	download $url/scripts/$i $dst || errexit "cannot download $i, abort."
-	echo " ok"
-	if echo "$i" | grep -q "\.sh$"; then
-		chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
-	fi
+    dst=$dir/$(basename $i)
+    printf "Downloading from %s to %s: %-32s ..." $brn $hme $i
+    rm -f $dst
+    download $url/scripts/$i $dst || errexit "cannot download $i, abort."
+    echo " ok"
+    if echo "$i" | grep -q "\.sh$"; then
+        chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
+    fi
 done
 
 for shellrc in $HOME/.profile $HOME/.bashrc; do
-	blankline "$shellrc"
-	for i in $scripts_list; do
-		dst=$dir/$(basename $i)
-		if echo "$i" | grep -q "\.env$"; then
-			grep -q "source $dst" "$shellrc" ||\
-				echo "source $dst" >> "$shellrc"
-		fi
-	done
-	grep -q "export -f src_file_env" "$shellrc" ||\
-		echo "export -f src_file_env" >> "$shellrc"
-	blankline "$shellrc" "$shellrc"
-	envirm="$shellrc ${envirm:-}"
-#	grep -qE ".bashrc" $shellrc && break
+    blankline "$shellrc"
+    for i in $scripts_list; do
+        dst=$dir/$(basename $i)
+        if echo "$i" | grep -q "\.env$"; then
+            grep -q "source $dst" "$shellrc" ||\
+                echo "source $dst" >> "$shellrc"
+        fi
+    done
+    grep -q "export -f src_file_env" "$shellrc" ||\
+        echo "export -f src_file_env" >> "$shellrc"
+    blankline "$shellrc" "$shellrc"
+    envirm="$shellrc ${envirm:-}"
+#    grep -qE ".bashrc" $shellrc && break
 done
 
 echo
