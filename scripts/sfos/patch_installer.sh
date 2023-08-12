@@ -23,7 +23,7 @@
 #
 # release: 0.1.2
 
-set -ue -o pipefail
+set -mue -o pipefail
 
 trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' ERR EXIT
 
@@ -61,16 +61,16 @@ exit_for_manual_intervetion() {
 	trap - SIGINT EXIT ||:
 	stty +echoctl 2>/dev/null ||:
 	servs_list=$(cat "$reload_path" 2>/dev/null ||:)
-	errexit "patch #$n failed to apply because cannot be $1.
+	errexit "patch #$n cannot be reversed automatically.
 
 \tManual intervetion is needed, these are the working values:
 
- patch path: $(dirname  "$patch_path")
+ patch path: $(dirname  $patch_path)
  patch name: $patch_name
  patch opts: $patch_opts
- patch file: $(basename "$patch_path")
- patch revr: $(basename "${patch_reverse:-none}")
- patch prev: $(basename "${patch_prev_path:-none}")
+ patch file: $(basename $patch_path)
+ patch revr: $(basename ${patch_reverse:-none})
+ patch prev: $(basename ${patch_prev_path:-none})
  srv2reload: $(echo ${servs_list:-none})"
 }
 
@@ -131,6 +131,8 @@ filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,'"
 filter_3="grep -Ev 'Status:|Percentage:|Results:'"
 filter_3="$filter_3 | $filter_2"
 filter_4="sed -e 's/^+ //' | $filter_2"
+filter_5="tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'"
+filter_5="$filter_5 | $filter_1"
 
 test "x${1:-}" == "x--all" && patches_to_apply="
 sshd-publickey-login-only
@@ -164,7 +166,7 @@ echo
 echo "=> Using the patch list from '$plst':"
 echo "  \_ List of patches to apply:"
 echo
-echo "$patches_to_apply" | eval $filter_1
+echo "$patches_to_apply" | eval "$filter_1"
 
 servs_list=$(cat "$reload_path" 2>/dev/null ||:)
 if [ -n "$servs_list" ]; then
@@ -179,24 +181,23 @@ n=0; mkdir -p "$patch_dir/"; for patch_name in $patches_to_apply; do n=$((n+1))
 echo
 echo "=> Previous patch #$n check: $patch_name"
 
-patch_prev_strn=$(read_patch_string)
 patch_prev_path=""
-reversible="none"
+patch_prev_strn=$(read_patch_string)
 if patch_string_to_filename "$patch_prev_strn"; then
-	echo "  \_ previous patch: found"
+	echo "  \_ Previous patch: found"
 	echo "  |  $patch_prev_strn"
 	if reversible_check "$patch_path"; then
 		patch_prev_path=$patch_reverse
 	fi
 else
-	echo "  \_ previous patch: none"
+	echo "  \_ Previous patch: none"
 fi
 
 echo
 echo "=> Download the patch #$n last version..."
-echo "  \_ patch name: $patch_name"
-if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_4; then
-	echo "  \_ patch discarded."
+echo "  \_ Patch name: $patch_name"
+if ! patch_downloader.sh $patch_name 2>&1 | eval "$filter_4"; then
+	echo "  \_ Patch discarded."
 	continue
 fi
 patch_strn=$(read_patch_string)
@@ -221,20 +222,18 @@ if [ -n "${srvs:-}" ]; then
 		if [ $ret -eq 4 ]; then
 			echo "  \_ missing system service: $srv"
 			echo "  \_ searching, wait..."
-			out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
-			if [ $? -eq 0 ]; then
+			if out=$(pkcon install -yp --allow-reinstall $srv 2>&1); then
 				echo "  \_ system service installed: $srv"
 			else
 				echo "  \_ system service not found: $srv"
-				echo "$out" | eval $filter_3 ||:
+				echo "$out" | eval "$filter_3" ||:
 				brk=1
 				break
 			fi
 		fi
 	done
-else
-	echo "  \_ system services: none"
 fi
+echo "  \_ system services: ${srvs:-none}"
 if [ $brk -ne 0 ]; then
 	echo "  \_ system services check: failed, skip patch #$n."
 	patch_unapplied_warning
@@ -298,13 +297,11 @@ set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 echo
 sctlcmd="systemctl --no-pager"
 servs_list=$(cat "$reload_path" 2>/dev/null ||:)
+rm -f "$reload_path"
+
 if [ -n "${servs_list:-}" ]; then
 	echo "=> Restarting system services"
-	echo "\_ to restart: "$servs_list
-	echo
-	echo "WARNING: WiFi tethering will not automatically raise up again"
-	echo "         You may be going to be disconnected, grab your phone"
-	echo
+	echo "  \_ To restart:" $servs_list
 	$sctlcmd daemon-reload
 	for i in $servs_list; do
 		if [ "x${i:0:1}" = "x-" ]; then
@@ -314,17 +311,39 @@ if [ -n "${servs_list:-}" ]; then
 		fi
 		restart_list="${restart_list:-} $s"
 	done
-	rm -f "$reload_path"
-	$sctlcmd reload $restart_list 2>/dev/null ||:
-	$sctlcmd enable $restart_list 2>&1 | eval $filter_1 ||:
-	echo
-	$sctlcmd restart $restart_list
-	echo "=> Check the restarted system services"
-	echo "\_ to check: "$servs_list
-	echo
 	for i in $restart_list; do
-		$sctlcmd status $i 2>&1 |\
-				tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
+		$sctlcmd reload $i
+		$sctlcmd enable $i
+	done >/dev/null 2>&1 ||:
+	echo "  \_ Reload completed"
+	
+	mkfifo /tmp/spm.fifo
+	{ 2>/dev/null
+		sleep 1
+		$sctlcmd restart $restart_list >/dev/null
+		echo -e "  \_ Restart done, ret:$?" >/tmp/spm.fifo
+	} &
+	disown &>/dev/null
+	
+	echo
+	echo "WARNING: WiFi tethering will not automatically raise up again"
+	echo "         You may be going to be disconnected, grab your phone"	
+	echo
+	echo "=> Restarted system services, $(date +%s)..."
+	printf "  \_ Press a key after the connection will be manually restored."
+	read
+	while IFS= read -r line; do
+		echo "$line"
+	done </tmp/spm.fifo
+	rm -f /tmp/spm.fifo
+	
+	echo
+	echo "=> Checking the restarted system services, $(date +%s)..."
+	echo "  \_ To check:" $servs_list
+	echo
+	for i in $servs_list; do
+		s="$i"; test "x${i:0:1}" = "x-" && s="${i:1}"
+		$sctlcmd status $s 2>&1 | eval "$filter_5" ||:
 	done
 	echo
 fi

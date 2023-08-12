@@ -23,7 +23,7 @@
 #
 # release: 0.1.2
 
-set -ue -o pipefail
+set -mue -o pipefail
 
 trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' ERR EXIT
 
@@ -42,12 +42,13 @@ patch_string_to_filename() {
 	test -n "${1:-}" || return 1
 
 	# cast the patch data into useful variables
-	prov=$(echo $1 | cut -d\, -f1 | tr -d ' '     ||:)
-	name=$(echo $1 | cut -d\, -f2 | tr -d ' '     ||:)
-	vern=$(echo $1 | cut -d\, -f3 | tr -d ' '     ||:)
-	extn=$(echo $1 | cut -d\, -f4 | tr -d ' '     ||:)
-	srvs=$(echo $1 | cut -d\, -f5 | grep -vw none ||:)
-	srvs=${srvs%;}
+	strn=$(echo $1    | cut -d\; -f1)
+	prov=$(echo $strn | cut -d\, -f1  | tr  -d ' '    ||:)
+	name=$(echo $strn | cut -d\, -f2  | tr  -d ' '    ||:)
+	vern=$(echo $strn | cut -d\, -f3  | tr  -d ' '    ||:)
+	extn=$(echo $strn | cut -d\, -f4  | tr  -d ' '    ||:)
+	srvs=$(echo $strn | cut -d\, -f5- | grep -vw none ||:)
+	srvs=$(echo $srvs | cut -d\# -f1)
 
 	patch_file="$prov-$name-$vern.patch"
 	patch_path="$patch_dir/$patch_file"
@@ -64,13 +65,13 @@ exit_for_manual_intervetion() {
 
 \tManual intervetion is needed, these are the working values:
 
- patch path: $(dirname  "$patch_path")
+ patch path: $(dirname  $patch_path)
  patch name: $patch_name
  patch opts: $patch_opts
- patch file: $(basename "$patch_path")
- patch revr: $(basename "${patch_reverse:-none}")
- patch prev: $(basename "${patch_prev_path:-none}")
- srv2reload: $(echo $servs_list)"
+ patch file: $(basename $patch_path)
+ patch revr: $(basename ${patch_reverse:-none})
+ patch prev: $(basename ${patch_prev_path:-none})
+ srv2reload: $(echo ${servs_list:-none})"
 }
 
 do_patch() {
@@ -83,18 +84,16 @@ do_patch() {
 }
 
 reversible_check() {
-	echo "  \_ Checking for reversibility... "
+	echo "  \_ Checking for reversibility..."
 	if do_patch -R --dry-run -i "$1" >/dev/null; then
 		reversible="OK"
 		patch_reverse=$1
-		echo "  \_ Reversibility : $reversible"
-		return 0
 	else
 		reversible="KO"
 		patch_reverse=""
-		echo "  \_ Reversibility : $reversible"
 	fi
-	return 1
+	echo "  \_ Reversibility : $reversible"
+	test "$reversible" = "OK"
 }
 
 applicable_check() {
@@ -102,20 +101,17 @@ applicable_check() {
 	if do_patch --dry-run -i "$1" >/dev/null; then
 		applicable="OK"
 		patch_applicable=$1
-		echo "  \_ Applycability : $applicable"
-		echo "  \_ Patch is not installed, skip"
-		return 0
 	else
 		applicable="KO"
 		patch_applicable=""
-		echo "  \_ Applycability : $applicable"
 	fi
-	return 1
+	echo "  \_ Applicability : $applicable"
+	test "$applicable" = "OK"
 }
 
 read_patch_string() {
 	touch "$patch_db"
-	grep ", *$patch_name *," "$patch_db" | cut -d'#' -f1
+	grep ", *$patch_name *," "$patch_db"
 	return 0
 }
 
@@ -134,6 +130,8 @@ filter_1="grep . | sed -e 's,^,\ \ \ ,'"
 filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,'"
 filter_3="grep -Ev 'Status:|Percentage:|Results:'"
 filter_3="$filter_3 | $filter_2"
+filter_5="tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'"
+filter_5="$filter_5 | $filter_1"
 
 test "x${1:-}" == "x--all" && patches_to_apply="
 sshd-publickey-login-only
@@ -167,7 +165,7 @@ echo
 echo "=> Using the patch list from '$plst':"
 echo "  \_ List of patches to apply:"
 echo
-echo "$patches_to_apply" | eval $filter_1
+echo "$patches_to_apply" | eval "$filter_1"
 
 servs_list=$(cat "$reload_path" 2>/dev/null ||:)
 if [ -n "$servs_list" ]; then
@@ -183,10 +181,10 @@ echo
 echo "=> Previous patch #$n check: $patch_name"
 
 patch_prev_path=""
-patch_prev_strn=$(read_patch_string ||:)
+patch_prev_strn=$(read_patch_string)
 if patch_string_to_filename "$patch_prev_strn"; then
 	echo "  \_ Previous patch: found"
-	echo "  |  $patch_prev_strn" | cut -d'#' -f1
+	echo "  |  $patch_prev_strn"
 	if applicable_check "$patch_path"; then
 		continue
 	elif reversible_check "$patch_path"; then
@@ -204,14 +202,14 @@ else
 	echo
 	echo "=> Download the patch #$n last version..."
 	echo "  \_ Patch name: $patch_name"
-	if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_2; then
+	if ! patch_downloader.sh $patch_name 2>&1 | eval "$filter_2"; then
 		echo "  \_ Patch discarded."
 			exit_for_manual_intervetion
 	fi
 #	echo "  \_ Patch saved in: $patch_dir"
 	patch_strn=$(read_patch_string)
 	if ! patch_string_to_filename "$patch_strn"; then
-		errexit "Patch string  of '$patch_name' is void, abort."
+		errexit "patch string  of '$patch_name' is void, abort."
 	fi
 	echo "  | $patch_strn" | cut -d'#' -f1
 
@@ -226,19 +224,23 @@ else
 	fi
 fi
 
-echo
-echo "=> Reversing patch #$n in $verstr version..."
-
 # This part cannot be interrupted # ********************************************
 set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 
+echo
+echo "=> Reversing patch #$n in $verstr version..."
+
 reversed="KO"
 if [ -n "$patch_reverse" ]; then
-	echo "  \_ Reversing $verstr version patch..."
+	echo "  \_ Reversing $verstr version patch..."tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
 	if do_patch -R -i "$patch_reverse"; then
 		reversed="OK"
+		echo "  \_ Reversing patch status: $reversed"
+		echo "  \_ Services scheduled to restart: $srvs"
+		echo $srvs >> "$reload_path"
+	else
+		echo "  \_ Reversing patch status: $reversed"
 	fi
-	echo "  \_ Reversing patch status: $reversed"
 fi
 if [ "$reversed" != "OK" ]; then
 	exit_for_manual_intervetion                                   #<- exit-point	
@@ -255,32 +257,57 @@ set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 echo
 sctlcmd="systemctl --no-pager"
 servs_list=$(cat "$reload_path" 2>/dev/null ||:)
+rm -f "$reload_path"
+
 if [ -n "${servs_list:-}" ]; then
 	echo "=> Restarting system services"
-	echo "\_ to restart: "$servs_list
-	echo
-	echo "WARNING: WiFi tethering will not automatically raise up again"
-	echo "         You may be going to be disconnected, grab your phone"
-	echo
+	echo "  \_ To restart: "$servs_list
 	$sctlcmd daemon-reload
 	for i in $servs_list; do
 		if [ "x${i:0:1}" = "x-" ]; then
 			s=${i:1}
-			$sctlcmd disable $s
-			$sctlcmd stop $s
-		else
+			$sctlcmd disable $s 2>/dev/null
+			echo "  |  service disabled: $s"
+			$sctlcmd stop $s 2>/dev/null
 			s=""
+		else
+			s="$i"
 		fi
 		restart_list="${restart_list:-} $s"
 	done
-	rm -f "$reload_path"
-	$sctlcmd reload $restart_list 2>/dev/null ||:
-	$sctlcmd restart $restart_list
-	echo "=> Check the restarted system services"
-	echo "\_ to check: "$servs_list
+	for i in $restart_list; do
+		$sctlcmd reload $i
+	done >/dev/null 2>&1 ||:
+	echo "  \_ Reload completed"
+	
+	mkfifo /tmp/spm.fifo
+	{ 2>/dev/null
+		sleep 1
+		$sctlcmd restart $restart_list >/dev/null
+		echo -e "  \_ Restart done, ret:$?" >/tmp/spm.fifo
+	} &
+	disown &>/dev/null
+
 	echo
-	$sctlcmd status $restart_list 2>&1 |\
-		tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
+	echo "WARNING: the connection will not automatically raise up again"
+	echo "         You may be going to be disconnected, grab your phone"	
+	echo
+	echo "=> Restarted system services, $(date +%s)..."
+	printf "  \_ Press a key after the connection will be manually restored."
+	read
+	while IFS= read -r line; do
+		echo "$line"
+	done </tmp/spm.fifo
+	rm -f /tmp/spm.fifo
+	
+	echo
+	echo "=> Checking the restarted system services, $(date +%s)..."
+	echo "  \_ To check:" $servs_list
+	echo
+	for i in $servs_list; do
+		s="$i"; test "x${i:0:1}" = "x-" && s="${i:1}"
+		$sctlcmd status $s 2>&1 | eval "$filter_5" ||:
+	done
 	echo
 fi
 
