@@ -60,7 +60,7 @@ exit_for_manual_intervetion() {
 	trap - SIGINT EXIT ||:
 	stty +echoctl 2>/dev/null ||:
 	servs_list=$(cat "$reload_path" 2>/dev/null ||:)
-	errexit "patch #$n failed to apply because cannot be $1.
+	errexit "patch #$n cannot be reversed automatically.
 
 \tManual intervetion is needed, these are the working values:
 
@@ -83,7 +83,7 @@ do_patch() {
 }
 
 reversible_check() {
-	echo "  \_ Checking for reversibility..."
+	echo "  \_ Checking for reversibility... "
 	if do_patch -R --dry-run -i "$1" >/dev/null; then
 		reversible="OK"
 		patch_reverse=$1
@@ -103,13 +103,12 @@ applicable_check() {
 		applicable="OK"
 		patch_applicable=$1
 		echo "  \_ Applycability : $applicable"
-		echo "  \_ Patch is not installed."
+		echo "  \_ Patch is not installed, skip"
 		return 0
 	else
 		applicable="KO"
 		patch_applicable=""
 		echo "  \_ Applycability : $applicable"
-		echo "  \_ Patch is not applicable."
 	fi
 	return 1
 }
@@ -135,7 +134,6 @@ filter_1="grep . | sed -e 's,^,\ \ \ ,'"
 filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,'"
 filter_3="grep -Ev 'Status:|Percentage:|Results:'"
 filter_3="$filter_3 | $filter_2"
-filter_4="sed -e 's/^+ //' | $filter_2"
 
 test "x${1:-}" == "x--all" && patches_to_apply="
 sshd-publickey-login-only
@@ -184,120 +182,66 @@ n=0; mkdir -p "$patch_dir/"; for patch_name in $patches_to_apply; do n=$((n+1))
 echo
 echo "=> Previous patch #$n check: $patch_name"
 
-patch_prev_strn=$(read_patch_string)
 patch_prev_path=""
-reversible="none"
+patch_prev_strn=$(read_patch_string ||:)
 if patch_string_to_filename "$patch_prev_strn"; then
-	echo "  \_ previous patch: found"
+	echo "  \_ Previous patch: found"
 	echo "  |  $patch_prev_strn" | cut -d'#' -f1
-	if reversible_check "$patch_path"; then
+	if applicable_check "$patch_path"; then
+		continue
+	elif reversible_check "$patch_path"; then
 		patch_prev_path=$patch_reverse
 	fi
 else
-	echo "  \_ previous patch: none"
+	echo "  \_ Previous patch: none"
 fi
 
-echo
-echo "=> Download the patch #$n last version..."
-echo "  \_ patch name: $patch_name"
-if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_4; then
-	echo "  \_ patch discarded."
-	continue
-fi
-#echo "  \_ patch saved in: $patch_dir"
-patch_strn=$(read_patch_string)
-if ! patch_string_to_filename "$patch_strn"; then
-	errexit "patch string  of '$patch_name' is void, abort."
-fi
-#echo "  |  $patch_strn" | cut -d'#' -f1
-
-if [ "$patch_path" = "$patch_prev_path" ]; then
-	echo "  \_ Patch status: just applied in its last version."
-	continue
-elif [ "$reversible" = "OK" ]; then
-	verstrn="last"
-	echo "  \_ Patch status: new version to apply."
+if [ -n "${patch_reverse:-}" ]; then
+	verstr="current"
+	echo "  \_ Patch to reverse: $verstr version found."
 else
-	verstrn="current"
-	echo "  \_ Patch status: patch to apply."
+	verstr="last"
+	echo
+	echo "=> Download the patch #$n last version..."
+	echo "  \_ Patch name: $patch_name"
+	if ! patch_downloader.sh $patch_name 2>&1 | eval $filter_2; then
+		echo "  \_ Patch discarded."
+			exit_for_manual_intervetion
+	fi
+#	echo "  \_ Patch saved in: $patch_dir"
+	patch_strn=$(read_patch_string)
+	if ! patch_string_to_filename "$patch_strn"; then
+		errexit "Patch string  of '$patch_name' is void, abort."
+	fi
+	echo "  | $patch_strn" | cut -d'#' -f1
+
+	if [ "$patch_path" = "$patch_prev_path" ]; then
+			exit_for_manual_intervetion
+	fi
+
+	if applicable_check "$patch_path"; then
+		continue
+	elif reversible_check "$patch_path"; then
+		:
+	fi
 fi
 
 echo
-echo "=> System services check for patch #$n..."
-
-brk=0
-srvs=$(printf ""$srvs)
-if [ -n "$srvs" ]; then
-	for srv in $srvs; do
-		systemctl --no-pager status $srv >/dev/null 2>&1
-		if [ $? -eq 4 ]; then
-			echo "  \_ missing system service: $srv"
-			echo "  \_ searching, wait..."
-			out=$(pkcon install -yp --allow-reinstall $srv 2>&1)
-			if [ $? -eq 0 ]; then
-				echo "  \_ system service installed: $srv"
-			else
-				echo "  \_ system service not found: $srv"
-				echo "$out" | eval $filter_3 ||:
-				brk=1
-				break
-			fi
-		fi
-	done ||:
-else
-	echo "  \_ system service: none"
-fi
-if [ $brk -ne 0 ]; then
-	echo "  \_ system services check: failed, skip patch #$n."
-	patch_unapplied_warning
-	continue
-fi
-
-echo
-verstr="last"
-echo "=> Applying the patch #$n $verstr version..."
+echo "=> Reversing patch #$n in $verstr version..."
 
 # This part cannot be interrupted # ********************************************
 set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 
-if [ -n "${patch_reverse:-1}" ]; then
+reversed="KO"
+if [ -n "$patch_reverse" ]; then
 	echo "  \_ Reversing $verstr version patch..."
-else
-	echo "  \_ Trying to reverse last version patch..."
-	if reversible_check "$patch_path"; then
-		if do_patch -R -i "$patch_reverse";	then
-			reversed="OK"
-		else
-			reversed="KO"
-		fi
-		echo "  \_ Reversing patch status: $reversed"
+	if do_patch -R -i "$patch_reverse"; then
+		reversed="OK"
 	fi
+	echo "  \_ Reversing patch status: $reversed"
 fi
-
-skip=0
-# test if the patch can be applied as expected to be
-# apply the patch may fail despite the dry run test
-# forcely revert the patch that applied only partially
-if ! applicable_check "$patch_path"; then
-	echo "  \_ In applying patch the dry run failed, skip."
-	skip=1
-elif do_patch -i "$patch_path"; then
-	echo "  \_ Patch #$n applied to rootfs"
-	echo "  \_ Services scheduled to restart: $srvs"
-	echo $srvs >> "$reload_path"
-else
-	echo "  \_ Patch #$n failed to apply, reverting back..."
-	if do_patch -R -i "$patch_path"; then
-		echo "  \_ Patch #$n reverted back sucessfully."
-		skip=1
-	else
-		echo "  \_ Patch #$n revert back failed, abort."
-		exit_for_manual_intervetion "reversed"                    #<- exit-point	
-	fi
-fi
-
-if [ $skip -eq 1 ]; then
-	exit_for_manual_intervetion "applied"
+if [ "$reversed" != "OK" ]; then
+	exit_for_manual_intervetion                                   #<- exit-point	
 fi
 
 stty +echoctl 2>/dev/null ||:; set -e; trap - SIGINT EXIT
@@ -322,14 +266,15 @@ if [ -n "${servs_list:-}" ]; then
 	for i in $servs_list; do
 		if [ "x${i:0:1}" = "x-" ]; then
 			s=${i:1}
+			$sctlcmd disable $s
+			$sctlcmd stop $s
 		else
-			s="$i"
+			s=""
 		fi
 		restart_list="${restart_list:-} $s"
 	done
 	rm -f "$reload_path"
 	$sctlcmd reload $restart_list 2>/dev/null ||:
-	$sctlcmd enable $restart_list
 	$sctlcmd restart $restart_list
 	echo "=> Check the restarted system services"
 	echo "\_ to check: "$servs_list

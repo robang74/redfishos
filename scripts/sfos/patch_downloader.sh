@@ -68,12 +68,6 @@ export hdr_srvs=""
 export hdr_prov=""
 export hdr_targ=""
 
-# TEST DEFINITIONS #############################################################
-#
-# prj_name="dnsmasq-connman-integration"
-# patch_dir="./patches.d"
-# patch_db="./patches.db"
-#
 ################################################################################
 
 src_file_env "patch_dblock_functions"
@@ -104,7 +98,6 @@ else
 	exit 1
 fi
 
-
 # INTERNAL FUNCTIONS ###########################################################
 
 _patch_get_header() {
@@ -115,7 +108,7 @@ _patch_get_header() {
 		hlns=$(grep -nE "^#[\\header|/header]" "$flnm" | cut -d: -f1 | sort -rn)
 		test $(echo $hlns | wc -w) -ne 2 && break
 
-		hcmd=$(echo $hlns | sed -e "s,\([0-9]*\) \([0-9]*\),"\
+		hcmd=$(echo $hlns | cut -d '#' -f1 | sed -e "s,\([0-9]*\) \([0-9]*\),"\
 "head -n\\1 "$flnm" | tail -n\$((\\1-\\2+1)),")
 		eval $hcmd | tr [A-Z] [a-z]
 		break
@@ -152,10 +145,16 @@ _get_hdr_strn_field() {
 	test -n "${1:-}" || return 1
 	echo "$hdr_strn" \
 		| sed -ne "s/#[[:blank:]]*$1[[:blank:]]*:[[:blank:]]*\(.*\)/\\1/p" \
-		| tail -n1 | tr -s [:blank:] ' ' | tr -d '[,;]' | grep .
+		| tail -n1 | tr -s [:blank:] ' ' | tr -d '[,;]' | cut -d'#' -f1 | grep .
 }
 
 # SCRIPT FUNCTION ##############################################################
+
+read_patch_string() {
+	touch "$patch_db"
+	grep ", *$patch_name *," "$patch_db" | cut -d'#' -f1
+	return 0
+}
 
 check_patch_download_lastpkg() {
 	prj_name="${1:-$prj_name}"
@@ -183,8 +182,8 @@ get_hdr_params_from_patch() {
 	test -n "$hdr_strn" || return 1
 	hdr_name=$(_get_hdr_strn_field "name")
 	hdr_vern=$(_get_hdr_strn_field "version")
-	hdr_srvs=$(_get_hdr_strn_field "services")
 	hdr_prov=$(_get_hdr_strn_field "provider")
+	hdr_srvs=$(_get_hdr_strn_field "services" ||:)
 }
 
 get_pkg_params_from_patch() {
@@ -211,7 +210,7 @@ print_pkg_params_string() {
 get_prj_params_from_db() {
 	prj_name=${1:-$prj_name}
 	test -n "$prj_name" -a -s "$patch_db" || return 1
-	local prj_strn=$(grep -w "$prj_name" "$patch_db" | cut -d ';' -f1)
+	local prj_strn=$(read_patch_string)
 	test -n "$prj_strn" || return 1
 	
 	# cast the patch data into useful variables
