@@ -73,6 +73,12 @@ Available at this link: https://tinyurl.com/26lmx6sn
 
 == CHANGELOG ==
 
+0.1.4 - like v0.1.0 but with the system patch header with '-dnsmasq' and does not patch `/etc/dnsmasq.conf`.
+
+The minus in front of the service name stops and disables the service at the patch removal time.
+
+0.1.3 - deleted.
+
 0.1.2 - like v0.1.0 but with the system patch header.
 
 0.1.1 - like v0.1.0 but with a full system patch header for testing
