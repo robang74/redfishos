@@ -42,7 +42,7 @@
 #    Modular/aarch64/ fedora-31-updates-modular
 #
 ################################################################################
-# release: 0.1.6
+# release: 0.1.7
 
 set -u
 
@@ -212,7 +212,7 @@ rpm_list_1="
 pigz tcpdump bind-utils htop zypper zypper-aptitude rsync patch patchmanager
 xz mce-tools sailfish-filemanager sailfish-filemanager-l10n-all-translations
 sailfish-utilities usb-moded-connection-sharing-android-connman-config strace
-sailfishos-chum-gui harbour-dool binutils
+sailfishos-chum-gui harbour-dool binutils parallel-shell-completion parallel
 "
 
 rpm_list_2="
