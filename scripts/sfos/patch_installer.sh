@@ -22,7 +22,7 @@
 #
 # TODO: create a back-up of the files before patching, date-time-Nprogressive
 #
-# release: 0.1.3
+# release: 0.1.4
 
 set -mue #-o pipefail
 
@@ -35,9 +35,9 @@ export PATH=$HOME/bin:$PATH
 
 # FUNTIONS DEFINITIONS #########################################################
 
-patch_unapplied_warning() {
+patch_broken_warning() {
     echo
-    echo "WARNING: patch #$n failed to be applied to rootfs, skipped"
+    echo "WARNING: patch #$n failed to be $past_action to rootfs, skipped"
     echo "         patch: $patch_name $vern"
     echo "         fix pre-requisites and then try to install again."
 }
@@ -80,9 +80,9 @@ exit_for_manual_intervention() {
 
 do_patch() {
     if patch $patch_opts "$@" 2>&1; then
-    	return 0
+        return 0
     else
-    	return 1
+        return 1
     fi | eval "$filter_2" ||:
 }
 
@@ -137,7 +137,7 @@ filter_5="$filter_5 | $filter_1"
 
 patches_to_apply=""
 test "x${1:-}" == "x--all" \
-	&& patches_to_apply="
+    && patches_to_apply="
 sshd-publickey-login-only
 utilities-quick-fp-restart
 x10ii-iii-agps-config-emea
@@ -213,9 +213,10 @@ if patch_string_to_filename "$patch_prev_strn"; then
     if applicable_check "$patch_path"; then
         patch_prev_path=$patch_applicable
     elif reversible_check "$patch_path"; then
+        patch_broken_warning
         skip=1; break
     else
-    	echo "  \_ Current patch: broken"
+        echo "  \_ Current patch: broken"
     fi
 else
     echo "  \_ Current patch: none"
@@ -234,28 +235,33 @@ echo "  \_ Patch name: $patch_name"
 
 # RAF: this because -o pipefail is not available and set -e is set for debug ###
 if output=$(patch_downloader.sh $patch_name 2>&1);
-	then ret=0; else ret=$?; fi
+    then ret=0; else ret=$?; fi
 echo "$output" | eval "$filter_4" ||:
 if [ $ret -ne 0 ]; then                  # -o pipefail alternative ends here ###
-	if [ -n "$patch_prev_strn" ]; then
+    if [ -n "$patch_prev_strn" ]; then
         echo "  \_ Using local patch."
-    	exit_for_manual_intervention
+        exit_for_manual_intervention
     else
         echo "  \_ Patch unavailable: skip."
-    	skip=1; break
+        patch_broken_warning
+        skip=1; break
     fi
 else
-	patch_strn=$(read_patch_string)
-	if ! patch_string_to_filename "$patch_strn"; then
-		errexit "patch string  of '$patch_name' is void, abort."
-	fi
+    patch_strn=$(read_patch_string)
+    if ! patch_string_to_filename "$patch_strn"; then
+        echo "  \_ Patch void: skip."
+        patch_broken_warning
+        skip=1; break
+    fi
 fi
 
 if [ "$patch_path" = "$patch_prev_path" ]; then
-    exit_for_manual_intervention
+    patch_broken_warning
+    skip=1; break
 fi
 
 if reversible_check "$patch_path"; then
+    patch_broken_warning
     skip=1; break
 fi
 
@@ -284,7 +290,7 @@ fi
 echo "  \_ system services: ${srvs:-none}"
 if [ $brk -ne 0 ]; then
     echo "  \_ system services check: failed, skip patch #$n."
-    patch_unapplied_warning
+    patch_broken_warning
     continue
 fi
 
@@ -292,27 +298,30 @@ fi
 set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 
 echo
-echo "=> Applying the patch #$n in $verstr version..."
+echo "=> Proceeding to $verb_action the patch #$n in $verstr version..."
 
-# test if the patch can be applied as expected to be
-# apply the patch may fail despite the dry run test
-# forcely revert the patch that applied only partially
+# Test if the patch can be applied as expected to be
+# applied. When patch fails despite the dry run test
+# forcely revert the patch that applied partially.
+action="KO"
 if ! applicable_check "$patch_path"; then
-    echo "  \_ Applying patch: the dry run failed, skip."
-    exit_for_manual_intervention                                  #<- exit-point
+    echo "  \_ Patch #$n $past_action the dry run failed, skip."
 elif do_patch -i "$patch_path"; then
-    echo "  \_ Patch #$n applied to rootfs"
+    echo "  \_ Patch #$n $past_action in rootfs"
     echo "  \_ Services scheduled to restart: $srvs"
     echo $srvs >> "$reload_path"
+    action="OK"
 else
-    echo "  \_ Patch #$n failed to apply, reverting back..."
+    echo "  \_ Patch #$n $verb_action failed, undoing the action..."
     if do_patch -R -i "$patch_path"; then
-        echo "  \_ Patch #$n reverted back sucessfully."
-        continue
+        echo "  \_ Patch #$n reverted back sucessfully, skip."
     elif ! applicable_check "$patch_path"; then
-        echo "  \_ Patch #$n reverse back failed, abort."
-        exit_for_manual_intervention "reversed"                   #<- exit-point
+        echo "  \_ Patch #$n $verb_action failed, abort."
+        exit_for_manual_intervention                              #<- exit-point
     fi
+fi
+if [ "$action" != "OK" ]; then
+    patch_broken_warning
 fi
 
 stty +echoctl 2>/dev/null ||:; set -e; trap - SIGINT EXIT
@@ -324,14 +333,14 @@ done # =========================================================================
 set +e; stty -echoctl 2>/dev/null ||:; trap 'true' SIGINT EXIT
 
 service_switcher() {
-	test -n "${1:-}" || return 1 
-	if [ "x$2" = "x-" ]; then
-		echo "  |  Service disable:" $1
-		$sctlcmd disable $1;
-	else
-		echo "  |  Service enable:" $1
-		$sctlcmd enable $1;
-	fi
+    test -n "${1:-}" || return 1
+    if [ "x$2" = "x-" ]; then
+        echo "  |  Service disable:" $1
+        $sctlcmd disable $1;
+    else
+        echo "  |  Service enable:" $1
+        $sctlcmd enable $1;
+    fi
 }
 
 echo
@@ -344,11 +353,11 @@ if [ -n "${servs_list:-}" ]; then
     echo "  \_ To restart: "$servs_list
     $sctlcmd daemon-reload
     for i in $servs_list; do
-	    s="$i"
-	    m="${i:0:1}"
-	    if [ "x$m" = "x-" ]; then
-	    	s="${i:1}"
-	    fi
+        s="$i"
+        m="${i:0:1}"
+        if [ "x$m" = "x-" ]; then
+            s="${i:1}"
+        fi
         $sctlcmd reload $s
         service_switcher $s '+'
     done 2>/dev/null ||:
