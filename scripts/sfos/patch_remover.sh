@@ -22,11 +22,14 @@
 #
 # TODO: create a back-up of the files before patching, date-time-Nprogressive
 #
+# TODO: https://raw.githubusercontent.com/brgl/busybox/master/shell/cttyhack.c
+#
 # release: 0.1.4
 
-set -mue #-o pipefail
+set -emu
 
-trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' ERR EXIT
+errsig="ERR"; trap true ERR 2>/dev/null || errsig=""
+trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' $errsig EXIT
 
 src_file_env "rfos-script-functions"
 src_file_env "patch_dblock_functions"
@@ -105,8 +108,10 @@ applicable_check() {
 }
 
 read_patch_string() {
+    mkdb_lock || return 1
     touch "$patch_db"
     grep ", *$patch_name *," "$patch_db"
+    rmdb_lock ||:
     return 0 # RAF: we do not care about finding or not, we check it later
 }
 
@@ -130,6 +135,7 @@ patch_lst="/etc/patches.list"
 patch_opts="-slEfp1 -r /dev/null --no-backup-if-mismatch -d/"
 
 reload_path="$patch_dir/services-to-reload.list"
+lockfile="${patch_db}.lck"
 
 filter_1="grep . | sed -e 's,^,\ \ \ ,'"
 filter_2="grep . | sed -e 's,^,\ \ \|\ \ ,'"

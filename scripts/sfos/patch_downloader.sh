@@ -19,11 +19,15 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.7
+#
+# TODO: https://raw.githubusercontent.com/brgl/busybox/master/shell/cttyhack.c
+#
+# release: 0.0.8
 
-set -mue #-o pipefail
+set -emu
 
-trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' ERR EXIT
+errsig="ERR"; trap true ERR 2>/dev/null || errsig=""
+trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' $errsig EXIT
 
 src_file_env "rfos-script-functions"
 src_file_env "patch_dblock_functions"
@@ -245,43 +249,6 @@ get_prj_params_from_db() {
     prj_vern=$(echo $prj_strn | cut -d\, -f3 | tr -d ' '     )
     prj_extn=$(echo $prj_strn | cut -d\, -f4 | tr -d ' '     )
     prj_srvs=$(echo $prj_strn | cut -d\, -f5 | grep -vw none )
-}
-
-# LOCK FUNCTIONS ###############################################################
-#
-# RAF: just if flock is missing and moreover this prints customised messages
-#
-
-
-
-rmdb_lock() {
-    rm -f "$(readlink -f $lockfile)" "$lockfile"
-}
-
-mkdb_lock() {
-    local i pid cmdline tempfile=$(mktemp -p "${TMPDIR:-/tmp}" -t lock.XXXXXX)
-    test -e "$tempfile" && echo "$$" >"$tempfile"
-
-    for i in $(seq 1 10); do
-        if test -s "$tempfile" \
-        && ln -s "$tempfile" "$lockfile" 2>/dev/null; then
-            return 0
-        else
-            pid=$(cat "$lockfile")
-            if [ "$pid" = "$$" ]; then
-                echo -e "\nWARNING: multiple attempts to lock database.\n"
-                return 0
-            fi >&2
-            cmdline=$(cat "/proc/$pid/cmdline" 2>/dev/null | tr '\0' ' ' ||:)
-            if [ -n "$pid" -a -n "$cmdline" ]; then
-                echo -e "\nERROR: patches database is locked by pid: $pid.\n"
-                return 1
-            fi >&2
-            rmdb_lock
-        fi
-    done
-    echo -e "\nERROR: cannot lock the patches database, abort.\n" >&2
-    return 1
 }
 
 # SCRIPT MAIN ##################################################################
