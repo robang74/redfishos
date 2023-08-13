@@ -78,14 +78,6 @@ exit_for_manual_intervention() {
  srv2reload: $(echo ${servs_list:-none})"
 }
 
-do_patch() {
-    if patch $patch_opts "$@" 2>&1; then
-        return 0
-    else
-        return 1
-    fi | eval "$filter_2" ||:
-}
-
 reversible_check() {
     echo "  \_ Checking for reversibility..."
     if do_patch -R --dry-run -i "$1"; then
@@ -116,6 +108,18 @@ read_patch_string() {
     touch "$patch_db"
     grep ", *$patch_name *," "$patch_db"
     return 0 # RAF: we do not care about finding or not, we check it later
+}
+
+output_filter() {
+    local output="" ret=0
+    if output=$(eval "$1" 2>&1)
+        then :; else ret=$?; fi
+    echo "$output" | eval "$2" ||:
+    return $ret
+}
+
+do_patch() {
+    output_filter "patch $patch_opts $*" "$filter_2"
 }
 
 # VARIABLES DEFINITIONS ########################################################
@@ -150,7 +154,7 @@ dnsmasq-connman-integration
 shn=$(shellname)
 
 echo
-echo "Script running on shell: $shn"
+echo "Script $(basename $0) running on shell: $shn"
 echo
 if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
     :
@@ -181,7 +185,7 @@ fi
 if [ ! -n "$patches_to_apply" ]; then
     errexit "no patches to apply found, abort."
 fi
-echo
+
 echo "=> Using the patch list from '$plst':"
 echo "  \_ List of patches to apply:"
 echo
@@ -213,7 +217,7 @@ if patch_string_to_filename "$patch_prev_strn"; then
     if reversible_check "$patch_path"; then
         patch_prev_path=$patch_reversible
     elif applicable_check "$patch_path"; then
-        patch_broken_warning
+        echo "  \_ Current patch: not applied"
         skip=1; break
     else
         echo "  \_ Current patch: broken"
@@ -276,7 +280,7 @@ echo "=> Proceeding to $verb_action the patch #$n in $verstr version..."
 # reversed. When patch fails despite the dry run test
 # forcely apply the patch that reversed partially.
 action="KO"
-if ! removable_check "$patch_path"; then
+if ! reversible_check "$patch_path"; then
     echo "  \_ Patch #$n $past_action the dry run failed, skip."
 elif do_patch -R -i "$patch_path"; then
     echo "  \_ Patch #$n $past_action in rootfs"
@@ -287,7 +291,7 @@ else
     echo "  \_ Patch #$n $verb_action failed, undoing the action..."
     if do_patch -i "$patch_path"; then
         echo "  \_ Patch #$n reverted back sucessfully, skip."
-    elif ! removable_check "$patch_path"; then
+    elif ! reversible_check "$patch_path"; then
         echo "  \_ Patch #$n $verb_action failed, abort."
         exit_for_manual_intervention                          #<- exit-point
     fi
@@ -308,10 +312,12 @@ service_switcher() {
     test -n "${1:-}" || return 1
     if [ "x$2" = "x-" ]; then
         echo "  |  Service disable:" $1
-        $sctlcmd disable $1;
+        $sctlcmd disable $1
+        $sctlcmd stop $1
     else
         echo "  |  Service enable:" $1
-        $sctlcmd enable $1;
+        restart_list="${restart_list:-} $1"
+        $sctlcmd enable $1
     fi
 }
 
@@ -334,7 +340,10 @@ if [ -n "${servs_list:-}" ]; then
         service_switcher $s $m
     done 2>/dev/null ||:
     echo "  \_ Reload completed"
+fi
 
+if [ -n "${restart_list:-}" ]; then
+    rm  -f /tmp/spm.fifo
     mkfifo /tmp/spm.fifo
     { 2>/dev/null
         sleep 1
