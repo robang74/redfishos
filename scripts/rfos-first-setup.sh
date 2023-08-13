@@ -65,8 +65,6 @@ rpms_install() {
     local type name edition arch summary # because eval sovable defines these
     shift 3
 
-#    echo
-#    echo "=> Packages installation..."
     echo "  \_ Packages from ${dname}${dvern} repositiries:"
     opts=$(for i in $rlist; do echo "-r $i"; done)
     output=$(zypper $zopts -x install $opts -y "$@")
