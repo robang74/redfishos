@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.6
+# release: 0.1.7
 
 set -ue
 
@@ -173,10 +173,12 @@ echo "      folder    : $dir"
 echo "      enviroment: $envirm"
 
 devprfl=/usr/libexec/openssh/load_developer_profile
-if ! grep -q '. ~/.profile' "$devprfl"; then
-    echo '. ~/.profile' >>"$devprfl"
-    echo "      enviroment: $devprfl"
-fi 2>/dev/null
+if [ -e "$devprfl" ]; then
+	if ! grep -q '. ~/.profile' "$devprfl"; then
+		echo '. ~/.profile' >>"$devprfl"
+	fi 2>/dev/null
+	echo "      enviroment: $devprfl"
+fi
 
 echo
 echo "Please, (re)execute bash to load its enviroment, then"

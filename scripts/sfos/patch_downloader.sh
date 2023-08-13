@@ -176,7 +176,8 @@ _get_hdr_strn_field() {
     test -n "${1:-}" || return 1
     echo "$hdr_strn" \
         | sed -ne "s/#[[:blank:]]*$1[[:blank:]]*:[[:blank:]]*\(.*\)/\\1/p" \
-        | tail -n1 | tr -s [:blank:] ' ' | tr -d '[,;]' | cut -d'#' -f1 | grep .
+        | tail -n1 | tr -s [:blank:] ' ' | tr -d '[,;]' | cut -d'#' -f1 \
+        | sed -e "s/^ *//" -e "s/ *$//" | grep .
 }
 
 # SCRIPT FUNCTION ##############################################################
@@ -215,6 +216,7 @@ get_hdr_params_from_patch() {
     hdr_vern=$(_get_hdr_strn_field "version")
     hdr_prov=$(_get_hdr_strn_field "provider")
     hdr_srvs=$(_get_hdr_strn_field "services" ||:)
+    hdr_srvs=${hdr_srvs:-none}
 }
 
 get_pkg_params_from_patch() {
