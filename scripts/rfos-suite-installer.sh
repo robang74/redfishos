@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.5
+# release: 0.1.6
 
 set -ue
 
@@ -160,17 +160,24 @@ for shellrc in $HOME/.profile $HOME/.bashrc; do
                 echo "source $dst" >> "$shellrc"
         fi
     done
-    grep -q "export -f src_file_env" "$shellrc" ||\
-        echo "export -f src_file_env" >> "$shellrc"
-    blankline "$shellrc" "$shellrc"
+    echo $shellrc | grep -q "bashrc" && \
+        grep -q "export -f src_file_env" "$shellrc" ||\
+            echo "export -f src_file_env" >> "$shellrc"
+    blankline "$shellrc"
     envirm="$shellrc ${envirm:-}"
-#    grep -qE ".bashrc" $shellrc && break
 done
 
 echo
 echo "DONE: scripts suite for RedFish OS, installed in"
 echo "      folder    : $dir"
 echo "      enviroment: $envirm"
+
+devprfl=/usr/libexec/openssh/load_developer_profile
+if ! grep -q '. ~/.profile' "$devprfl"; then
+    echo '. ~/.profile' >>"$devprfl"
+    echo "      enviroment: $devprfl"
+fi 2>/dev/null
+
 echo
 echo "Please, (re)execute bash to load its enviroment, then"
 echo "      rfos-first-setup.sh"
