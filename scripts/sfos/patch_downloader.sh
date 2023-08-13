@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# bash or ash is required but sh for universal compatibility.
 ################################################################################
 #
 # Copyright (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
@@ -18,13 +19,22 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.6
+# release: 0.0.7
 
-set -mue -o pipefail
+set -mue #-o pipefail
+
+trap 'echo -e "\nError occurred ($?) on $LINENO\n" >&2' ERR EXIT
+
+src_file_env "rfos-script-functions"
+src_file_env "patch_dblock_functions"
+
+export PATH=$HOME/bin:$PATH
+
+# FUNTIONS DEFINITIONS #########################################################
 
 arg="${1:-}"
-export force=no
-export force_opt=""
+force=no
+force_opt=""
 if [ "x$arg" = "x--force" ]; then
     arg="${2:-}"
     force_opt="$arg"
@@ -38,39 +48,56 @@ fi
 
 # GLOBAL VARIABLES #############################################################
 
-export owc_url="https://coderus.openrepos.net/"
+owc_url="https://coderus.openrepos.net/"
 
-export prj_name="$arg"
-export prj_url="${owc_url}/pm2/project/"
-export prj_path="/media/documents/"
-export prj_prov=""
-export prj_vern=""
-export prj_extn=""
-export prj_srvs=""
+prj_name="$arg"
+prj_url="${owc_url}/pm2/project/"
+prj_path="/media/documents/"
+prj_prov=""
+prj_vern=""
+prj_extn=""
+prj_srvs=""
 
-export patch_list="/etc/patches.list"
-export patch_dir="/etc/patches.d"
-export patch_db="/etc/patches.db"
+patch_list="/etc/patches.list"
+patch_dir="/etc/patches.d"
+patch_db="/etc/patches.db"
+lockfile="${patch_db}.lck"
 
-export patch_name=""
-export patch_path=""
+patch_name=""
+patch_path=""
 
-export pkg_url=""
-export pkg_prov=""
-export pkg_name=""
-export pkg_vern=""
-export pkg_extn=""
+pkg_url=""
+pkg_prov=""
+pkg_name=""
+pkg_vern=""
+pkg_extn=""
 
-export hdr_strn=""
-export hdr_name=""
-export hdr_vern=""
-export hdr_srvs=""
-export hdr_prov=""
-export hdr_targ=""
+hdr_strn=""
+hdr_name=""
+hdr_vern=""
+hdr_srvs=""
+hdr_prov=""
+hdr_targ=""
+
+# SHELL TEST ###################################################################
+
+shn=$(shellname)
+
+echo
+echo "Script running on shell: $shn"
+echo
+if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
+    :
+elif [ "$shn" = "dash" ]; then
+    echo "ERROR: this script cannot run on dash, abort."
+    echo
+    exit 1
+else
+    echo "WARNING: this script requires b/ash to run correctly."
+    echo
+fi >&2
 
 ################################################################################
-
-src_file_env "patch_dblock_functions"
 
 if [ -n  "$prj_name" ]; then
     :
@@ -225,7 +252,7 @@ get_prj_params_from_db() {
 # RAF: just if flock is missing and moreover this prints customised messages
 #
 
-export lockfile="${1:-${patch_db}.lck}"
+
 
 rmdb_lock() {
     rm -f "$(readlink -f $lockfile)" "$lockfile"
