@@ -351,7 +351,7 @@ source /etc/os-release
 arch=$(uname -m)
 url="https://repo.sailfishos.org/obs/sailfishos:/chum"
 url="${url}/${VERSION_ID}_${arch}/"
-rpo="harbour-storeman-obs"
+rpo="sailfishos-chum"
 echo "  \_ Adding $rpo repository, wait..."
 ssu addrepo $url $rpo 2>&1 | eval $filter_2
 
