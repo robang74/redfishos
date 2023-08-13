@@ -233,7 +233,7 @@ echo "=> Reversing patch #$n in $verstr version..."
 
 reversed="KO"
 if [ -n "$patch_reverse" ]; then
-    echo "  \_ Reversing $verstr version patch..."tr '\n' '^' | cut -d'^' -f1,3 | tr '^' '\n'
+    echo "  \_ Reversing $verstr version patch..."
     if do_patch -R -i "$patch_reverse"; then
         reversed="OK"
         echo "  \_ Reversing patch status: $reversed"
