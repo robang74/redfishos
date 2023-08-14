@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.1
+# release: 0.0.2
 
 set -eu
 
@@ -26,52 +26,99 @@ src_file_env "sfos-ssh-connect"
 
 # VARIABLES DEFINITIONS ########################################################
 
-v=""
-if [ "x${1:-}" = "x-v" ]; then
-    v="v"; shift
-fi
+usage() {
+    echo
+    echo "USAGE: $(basename $0) [ [-v] /home/defaultuser | -h ]"
+    echo
+    exit 0
+}
 
-date_time=$(date +%F-%H-%M-%S)
-userdir=${1:-/home/defaultuser}
+while [ -n "${1:-}" ]; do
+    if [ "${1:0:1}" = "/" ]; then
+        userdir="$1"
+        shift
+        continue
+    fi
+    case $1 in
+    -h|--help)
+        usage
+        ;;
+    -v)
+        v="v"
+        ;;
+     *)
+        usage
+        ;;
+    esac
+    shift
+done
+
+userdir=${userdir:-/home/defaultuser}
+
+#date_time=$(date +"%F-%H-%M-%S")
+date_time=$(date +"%Y%m%d%H%M%S")
 prl_opts="--pipe --recend '' --keep-order --block-size 16M"
 tar_opts="--numeric-owner -p"
 excl_list="
 .cache cache cache2 vungle_cache diskcache-v4 .mozilla/storage
 $userdir/Pictures/Default $userdir/Videos/Default $userdir/.tmp
-" #$userdir/.ssh
-for i in $excl_list; do tar_opts="$tar_opts --exclude '$i/*'"; done
+"
 
-if [ "x${userdir:0:1}" != "x/" ]; then
-    echo
-    echo "USAGE: $(basename $0) [ /home/defaultuser ]"
-    echo
-fi
+for i in $excl_list; do tar_opts="$tar_opts --exclude '$i/*'"; done
 
 tarball="backup-$(basename ${userdir})-${date_time}.tar.gz"
 
 # MAIN CODE EXECUTION ##########################################################
 
-afish getip
-sshcmd="ssh root@$sfos_ipaddr"
+mob_data_check_cmd="
+    { ifconfig rmnet_data1; ifconfig rmnet_data2; } | grep 'inet6* addr'
+"
+
+while true; do
+    afish getip
+    sshcmd="ssh root@$sfos_ipaddr"
+    echo
+    printf "=> Check mobile data connection on device..."
+    if $sshcmd "$mob_data_check_cmd" | grep -q 'inet6* addr'; then
+        echo " active"
+        echo
+        echo "WARNING: please, deactive mobile data on the samrtphone"
+        echo "         back-up should be use the USB connection, only"
+        echo
+        echo "         Press ENTER to retry or CTRL-C to stop"
+        sleep 1
+        read
+    else
+        echo " ok"
+        break
+    fi
+done
 
 echo
-echo "Creating $tarball by SSH/cat..."
+echo "=> Creating home user backup by SSH/cat..."
+echo "  \_ archive: $tarball"
+#echo "  \_ exclusions lists: $excl_list"
 
-$sshcmd "time tar ${v}c $tar_opts ${userdir:1}/ -C / | pigz -4Ric" |\
-    dd bs=1M iflag=fullblock of=$tarball 2>&1 |\
-        sed -ne "s,\(.* copied\),\n\\1,p"
+{
+    time $sshcmd \
+        "tar ${v:-}c $tar_opts ${userdir:1}/ -C / | pigz -4Ric" |\
+            dd bs=1M iflag=fullblock of=$tarball
+} 2>&1 | grep -v "tar: removing leading" | grep -E "real|copied" | tr '\t' ' '\
+    | sed -e "s/.* bytes (\(.*\), .*)\(.*\)/transfer speed: \\1\\2/" -e \
+        "s/real /execution time: /" | sed -e "s,^,  |  ,"
+echo "  \_ creation: completed"
 
 echo
-printf "Syncing archive file to local storage..."
+printf "=> Syncing archive file to local storage..."
 sync $tarball
 echo " OK"
 
 echo
-printf "Checking archive file for integrity..."
+printf "=> Checking archive file for integrity..."
 if tar tzf $tarball >/dev/null; then
     echo " OK"
     echo
-    echo "Size in KB:" $(du -ks $tarball)
+    echo "Size in MB:" $(du -ms $tarball)
     echo
     exit 0
 else
