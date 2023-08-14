@@ -219,11 +219,17 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
 
+* 14.08.2023, [user and system backup suite](scripts/pcos)
+
+  **description**: the user and system backup suite is ready but the restore counterpart is not, yet
+
+  **status**: ready for advanced users testing.
+
 * 12.08.2023, [system patch manager suite](scripts/sfos)
 
   **description**: the system patch manager scripts suite in its basic features has been completed.
 
-  **status**: ready for advanced users testing, in particular about the Patch Manager role overlapping.
+  **status**: ready for advanced users usage, in particular about the Patch Manager role overlapping.
 
 * 08.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
 * 08.08.2023, [udhcpd tether config fixing patch](patches/udhcpd-tether-config-fixing/)
