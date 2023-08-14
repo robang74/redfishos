@@ -160,6 +160,9 @@ for shellrc in $HOME/.profile $HOME/.bashrc; do
                 echo "source $dst" >> "$shellrc"
         fi
     done
+    if ! grep -qe "export PATH=.*:$HOME/bin" "$shellrc"; then
+        echo 'export PATH=$PATH':$HOME/bin >> "$shellrc"
+    fi
     echo $shellrc | grep -q "bashrc" && \
         grep -q "export -f src_file_env" "$shellrc" ||\
             echo "export -f src_file_env" >> "$shellrc"
@@ -172,12 +175,12 @@ echo "DONE: scripts suite for RedFish OS, installed in"
 echo "      folder    : $dir"
 echo "      enviroment: $envirm"
 
-devprfl=/usr/libexec/openssh/load_developer_profile
+devprfl="/usr/libexec/openssh/load_developer_profile"
 if [ -e "$devprfl" ]; then
-	if ! grep -q '. ~/.profile' "$devprfl"; then
-		echo '. ~/.profile' >>"$devprfl"
-	fi 2>/dev/null
-	echo "      enviroment: $devprfl"
+    if ! grep -q '. ~/.profile' "$devprfl"; then
+        echo '. ~/.profile' >>"$devprfl"
+    fi 2>/dev/null
+    echo "      enviroment: $devprfl"
 fi
 
 echo
