@@ -100,6 +100,8 @@ iptrulechk() { iptables -t nat -S | grep -qE -- "$iptbl_opts"; }
 iptruleadd() { iptables -t nat -I POSTROUTING 1 $iptbl_opts; }
 iptruledel() { iptables -t nat -D POSTROUTING $iptbl_opts; }
 
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
 if [ $rmvrule -eq 1 ]; then
     iptruledel 2>/dev/null ||:
     ret=0 # can fail, it is ok
