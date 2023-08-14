@@ -92,19 +92,21 @@ fi
 echo "  \_ interface $outif is ${res:+$res }the default gateway"
 echo
 echo "   $outrt"
-echo
 
 # iptables #####################################################################
 
 iptrulechk() { iptables -t nat -S | grep -qE -- "$iptbl_opts"; }
 iptruleadd() { iptables -t nat -I POSTROUTING 1 $iptbl_opts; }
-iptruledel() { iptables -t nat -D POSTROUTING $iptbl_opts; }
+iptruledel() { iptables -t nat -D POSTROUTING   $iptbl_opts; }
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
+echo "   $(iptrulechk && echo p || echo a): $iptbl_opts"
+echo
+
+ret=0
 if [ $rmvrule -eq 1 ]; then
-    iptruledel 2>/dev/null ||:
-    ret=0 # can fail, it is ok
+    iptruledel 2>/dev/null ||: # can fail, it is ok
 elif [ $swcrule -eq 1 ]; then
     if iptrulechk; then
         iptruledel; ret=$?
