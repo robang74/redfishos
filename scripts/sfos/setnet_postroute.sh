@@ -50,7 +50,14 @@ fi
 # functions ####################################################################
 
 getip() { ifconfig $1 | sed -ne "s/ *inet addr:\([0-9\.]*\).*/\\1/p"; }
-getnet() { echo $(getip $1 | cut -d. -f-$2).0/$(($2*8)); }
+
+getnet() {
+    local ip=$(getip $1)
+    test -n "$ip" || return 1
+    ip=$(echo $ip | cut -d. -f-$2)
+    echo $ip.0/$(($2*8))
+}
+
 do_for_interfaces() {
     local i cmd="$1"; shift
     for i in "$@"; do
@@ -63,8 +70,16 @@ do_for_interfaces() {
 # parameters ###################################################################
 set -u
 
+netin=$(getnet rndis0 3)
 outif=$(do_for_interfaces 'echo $i; break' vpn0 rmnet_data1 rmnet_data2)
-iptbl_opts="-s $(getnet rndis0 3) -o $outif -j MASQUERADE"
+iptbl_opts="-s $netin -o $outif -j MASQUERADE"
+
+if [ ! -n "$netin" -o ! -n "$outif" ]; then
+    echo
+    echo "ERROR: interfaces not all found, abort."
+    echo
+    exit 1
+fi >&2
 
 echo
 echo "=> Search for the default route"
