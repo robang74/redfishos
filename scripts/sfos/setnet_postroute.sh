@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.4
+# release: 0.0.6
 
 if [ "$(whoami)" != "root" ]; then
     echo "This script should be executed by root"
@@ -30,13 +30,21 @@ fi
 
 if [ "x${1:-}" = "x-r" ]; then
     echo
-    echo "=> Removing the nating rule"
+    echo "=> Removing the USB:rndis0 nating rule"
     rmvrule=1
     shift
 else
     echo
-    echo "=> Adding the nating rule"
+    echo "=> Adding the USB:rndis0 nating rule"
     rmvrule=0
+fi
+
+swcrule=0
+if [ "x${1:-}" = "x-s" ]; then
+    echo
+    echo "=> Switching the USB:rndis0 nating rule"
+    swcrule=1
+    shift
 fi
 
 # functions ####################################################################
@@ -73,14 +81,23 @@ echo
 
 # iptables #####################################################################
 
+iptrulechk() { iptables -t nat -S | grep -qE -- "$iptbl_opts"; }
+iptruleadd() { iptables -t nat -I POSTROUTING 1 $iptbl_opts; }
+iptruledel() { iptables -t nat -D POSTROUTING $iptbl_opts; }
+
 if [ $rmvrule -eq 1 ]; then
-    iptables -t nat -D POSTROUTING $iptbl_opts 2>/dev/null
-    ret=$? # can fail, it is ok
-else
-    iptables -t nat -S | grep -qE -- "$iptbl_opts" ||\
-        iptables -t nat -I POSTROUTING 1 $iptbl_opts
-    ret=$? # shall not fail
+    iptruledel 2>/dev/null ||:
+    ret=0 # can fail, it is ok
+elif [ $swcrule -eq 1 ]; then
+    if iptrulechk; then
+        iptruledel; ret=$?
+    else
+        iptruleadd; ret=$?
+    fi
+elif ! iptrulechk; then
+    iptruleadd; ret=$?
 fi
+
 echo "=> Active nating rules:"
 echo
 iptables -t nat -S | sed -e "s/^/  /"
