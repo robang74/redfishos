@@ -30,29 +30,32 @@ isafunc() {
     type $1 2>&1 | head -n1 | grep -q "is a function"
 }
 
-errecho() {
-    if [ -n "${1:-}" ]; then
-        echo -e "\n ERROR: $@\n"
-    fi >&2
-    return 1
-}
-
-
 errexit() {
-    errecho "$@"
+    if [ -n "${1:-}" ]; then
+        echo
+        echo "ERROR: $@"
+        echo
+    fi >&2
     exit 1
 }
-
 
 download() {
     test -n "${2:-}" || return 1
     if which wget >/dev/null; then
-        wget $1 -qO - >$2; sync $2
+        wget $1 -qO - >$2.tmp
     elif which curl >/dev/null; then
-        curl -sL $1 >$2; sync $2
+        curl -sL $1 >$2.tmp
     else
         return 1
     fi
+    if [ $? -eq 0 -a -s $2.tmp ]; then
+        mv -f $2.tmp $2
+        sync $2
+    else
+        rm -f $2.tmp
+        return 1
+      fi
+      return 0
 }
 
 blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1" ||:; }
@@ -144,7 +147,10 @@ for i in $scripts_list; do
     dst=$dir/$(basename $i)
     printf "Downloading from %s to %s: %-32s ..." $brn $hme $i
     rm -f $dst
-    download $url/scripts/$i $dst || errexit "cannot download $i, abort."
+    if ! download $url/scripts/$i $dst; then
+         echo " ko"
+         errexit "cannot download $i, abort."
+    fi
     echo " ok"
     if echo "$i" | grep -q "\.sh$"; then
         chmod a+x $dst || errexit "cannot chmod +x $dst, abort."
