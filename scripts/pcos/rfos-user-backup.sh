@@ -28,7 +28,7 @@ src_file_env "sfos-ssh-connect"
 
 v=""
 if [ "x${1:-}" = "x-v" ]; then
-	v="v"; shift
+    v="v"; shift
 fi
 
 date_time=$(date +%F-%H-%M-%S)
@@ -42,9 +42,9 @@ $userdir/Pictures/Default $userdir/Videos/Default $userdir/.tmp
 for i in $excl_list; do tar_opts="$tar_opts --exclude '$i/*'"; done
 
 if [ "x${userdir:0:1}" != "x/" ]; then
-	echo
-	echo "USAGE: $(basename $0) [ /home/defaultuser ]"
-	echo
+    echo
+    echo "USAGE: $(basename $0) [ /home/defaultuser ]"
+    echo
 fi
 
 tarball="backup-$(basename ${userdir})-${date_time}.tar.gz"
@@ -58,8 +58,8 @@ echo
 echo "Creating $tarball by SSH/cat..."
 
 $sshcmd "time tar ${v}c $tar_opts ${userdir:1}/ -C / | pigz -4Ric" |\
-	dd bs=1M iflag=fullblock of=$tarball 2>&1 |\
-		sed -ne "s,\(.* copied\),\n\\1,p"
+    dd bs=1M iflag=fullblock of=$tarball 2>&1 |\
+        sed -ne "s,\(.* copied\),\n\\1,p"
 
 echo
 printf "Syncing archive file to local storage..."
@@ -69,15 +69,15 @@ echo " OK"
 echo
 printf "Checking archive file for integrity..."
 if tar tzf $tarball >/dev/null; then
-	echo " OK"
-	echo
-	echo "Size in KB:" $(du -ks $tarball)
-	echo
-	exit 0
+    echo " OK"
+    echo
+    echo "Size in KB:" $(du -ks $tarball)
+    echo
+    exit 0
 else
-	rm -f "$tarball"
-	echo " KO"
-	echo
+    rm -f "$tarball"
+    echo " KO"
+    echo
 fi
 exit 1
 
