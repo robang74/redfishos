@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.2
+# release: 0.0.3
 
 set -eu
 
@@ -39,7 +39,7 @@ excl_list_3="/usr/share/themes /usr/share/man /usr/share/sailfish-tutorial
 
 usage() {
     echo
-    echo "USAGE: $(basename $0) [ -v | -h ] [ -1 | -2 | -3 ] "
+    echo "USAGE: $(basename $0) [ -v | -h ] [ -0 | -1 | -2 | -3 ] "
     echo
     exit 0
 }
@@ -49,15 +49,19 @@ while [ -n "${1:-}" ]; do
         -h|--help)
             usage
             ;;
-        -1)
+        -0) lvl=$1
+            excl_list_strn=""
+            excl_list="/tmp"
+            ;;
+        -1) lvl=$1
             excl_list_strn="0"
             excl_list=${excl_list_0}
             ;;
-        -2)
+        -2) lvl=$1
             excl_list_strn="0 1"
             excl_list="${excl_list_0} ${excl_list_1}"
             ;;
-        -3)
+        -3) lvl=$1
             excl_list_strn="0 1 2"
             excl_list="${excl_list_0} ${excl_list_1} ${excl_list_2}"
             ;;
@@ -71,14 +75,15 @@ while [ -n "${1:-}" ]; do
     shift
 done
 
-if [ ! -n "$excl_list_strn" ]; then
+if [ ! -n "${excl_list:-}" ]; then
+    lvl=3
     excl_list_strn="0 1 2 3"
     excl_list="${excl_list_0} ${excl_list_1} ${excl_list_2} ${excl_list_3}"
 fi
 
 for i in $excl_list; do find_opts="$find_opts ! -path $i/\*"; done
 
-tarball="backup-rootfs-${date_time}.tar.gz"
+tarball="backup-rootfs${lvl}-${date_time}.tar.gz"
 
 # MAIN CODE EXECUTION ##########################################################
 
@@ -109,7 +114,7 @@ done
 echo
 echo "=> Creating backup by SSH/cat in one minute..."
 echo "  \_ archive: $tarball"
-echo "  \_ exclusions lists: $excl_list_strn"
+echo "  \_ exclusions lists: ${excl_list_strn:-(path:$excl_list)}"
 
 {
     time $sshcmd \
