@@ -221,9 +221,9 @@ Please check the [same section](https://github.com/robang74/redfishos/tree/devel
 
 * 15.08.2023, [user and system backup suite](scripts/pcos)
 
-  **description**: the user and system backup suite is ready with also the restore counterpart.
+  **description**: this shell scripts running on the laptop/PC provide backup and restore capabilities by SSH via USB.
 
-  **status**: ready for advanced users adoption.
+  **status**: ready for advanced users adoption, full root filesystem backup in 1 minute.
 
 * 12.08.2023, [system patch manager suite](scripts/sfos)
 
