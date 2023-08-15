@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.3
+# release: 0.0.4
 
 set -eu
 
@@ -30,37 +30,39 @@ src_file_env "sfos-ssh-connect"
 date_time=$(date +"%Y%m%d%H%M%S")
 find_opts="-xdev ! -type d" # likely -print0 but tar has not --null
 tar_opts="--numeric-owner -p"
-excl_list_0="/tmp /var/tmp /usr/tmp /var/cache /home /root"
-excl_list_1="/usr/lib/locale /vendor /apex /odm /boot"
-excl_list_2="/usr/libexec/droid-hybris"
-excl_list_3="/usr/share/themes /usr/share/man /usr/share/sailfish-tutorial
+
+excl_list_1="/tmp /var/tmp /usr/tmp /var/cache /home /root"
+excl_list_2="/usr/lib/locale /vendor /apex /odm /boot"
+excl_list_3="/usr/libexec/droid-hybris"
+excl_list_4="/usr/share/themes /usr/share/man /usr/share/sailfish-tutorial
 /usr/share/locale /usr/share/ambience /usr/share/fonts /usr/share/translations
 /usr/share/sounds /usr/share/licenses"
 
 usage() {
     echo
-    echo "USAGE: $(basename $0) [ -v | -h ] [ -0 | -1 | -2 | -3 ] "
+    echo "USAGE: excl_list='...' $(basename $0) [ -v | -h ] [ -0 | ... | -4 ]"
     echo
     exit 0
 }
 
 while [ -n "${1:-}" ]; do
     case $1 in
-        -0) lvl=$1
-            excl_list_strn=""
-            excl_list="/tmp"
+        -0) lvl="$1"
             ;;
-        -1) lvl=$1
-            excl_list_strn="0"
-            excl_list=${excl_list_0}
+        -1) lvl="$1"
+            excl_list_strn="1"
+            excl_list="${excl_list:-} ${excl_list_1}"
             ;;
-        -2) lvl=$1
-            excl_list_strn="0 1"
-            excl_list="${excl_list_0} ${excl_list_1}"
+        -2) lvl="$1"
+            excl_list_strn="1 2"
+            excl_list="${excl_list:-} ${excl_list_1} ${excl_list_2}"
             ;;
-        -3) lvl=$1
-            excl_list_strn="0 1 2"
-            excl_list="${excl_list_0} ${excl_list_1} ${excl_list_2}"
+        -3) lvl="$1"
+            excl_list_strn="1 2 3"
+            excl_list="${excl_list:-} ${excl_list_1} 
+            	${excl_list_2} ${excl_list_3}"
+            ;;
+        -4) true
             ;;
         -v)
             v="v"
@@ -72,10 +74,11 @@ while [ -n "${1:-}" ]; do
     shift
 done
 
-if [ ! -n "${excl_list:-}" ]; then
-    lvl=3
-    excl_list_strn="0 1 2 3"
-    excl_list="${excl_list_0} ${excl_list_1} ${excl_list_2} ${excl_list_3}"
+if [ ! -n "${lvl:-}" ]; then
+    lvl="-4"
+    excl_list_strn="1 2 3 4"
+    excl_list="${excl_list:-} ${excl_list_1} ${excl_list_2} 
+    	${excl_list_3} ${excl_list_4}"
 fi
 
 for i in $excl_list; do find_opts="$find_opts ! -path $i/\*"; done
@@ -111,7 +114,7 @@ done
 echo
 echo "=> Creating backup by SSH/cat in one minute..."
 echo "  \_ archive: $tarball"
-echo "  \_ exclusions lists: ${excl_list_strn:-(path:$excl_list)}"
+echo "  \_ exclusions lists: ${excl_list_strn:-none}"
 
 {
     time $sshcmd \
