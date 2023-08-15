@@ -66,7 +66,7 @@ patch_string_to_filename() {
 
 exit_for_manual_intervention() {
     trap - SIGINT EXIT ||:
-    stty +echoctl 2>/dev/null ||:
+    stty echoctl 2>/dev/null ||:
     servs_list=$(cat "$reload_path" 2>/dev/null ||:)
     errexit "patch #$n cannot be $past_action automatically.
 
@@ -306,7 +306,7 @@ if [ "$action" != "OK" ]; then
     patch_broken_warning
 fi
 
-stty +echoctl 2>/dev/null ||:; set -e; trap - SIGINT EXIT
+stty echoctl 2>/dev/null ||:; set -e; trap - SIGINT EXIT
 # ******************************************************************************
 # move to the next patch
 done # =========================================================================
@@ -382,5 +382,5 @@ if [ -n "${restart_list:-}" ]; then
     echo
 fi
 
-stty +echoctl 2>/dev/null ||:; set -e; trap - SIGINT EXIT
+stty echoctl 2>/dev/null ||:; set -e; trap - SIGINT EXIT
 # ******************************************************************************
