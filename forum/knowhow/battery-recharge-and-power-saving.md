@@ -157,7 +157,7 @@ For those end-users that wish to use a SFOS smartphone just as a mere smartphone
 
 ---
 
-**OFF-LINE NOTES**
+## OFF-LINE NOTES
 
 ```
 [  +0.000108] OOM killer enabled.
