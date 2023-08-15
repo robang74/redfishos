@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.1
+# release: 0.0.2
 
 set -eu
 
@@ -64,29 +64,7 @@ test -n "$tarball" || exit 1
 
 # MAIN CODE EXECUTION ##########################################################
 
-mob_data_check_cmd="
-    { ifconfig rmnet_data1; ifconfig rmnet_data2; } | grep 'inet6* addr'
-"
-
-while true; do
-    afish getip
-    sshcmd="ssh root@$sfos_ipaddr"
-    echo
-    printf "=> Check mobile data connection on device..."
-    if $sshcmd "$mob_data_check_cmd" | grep -q 'inet6* addr'; then
-        echo " active"
-        echo
-        echo "WARNING: please, deactive mobile data on the samrtphone"
-        echo "         restore should be use the USB connection, only"
-        echo
-        echo "         Press ENTER to retry or CTRL-C to stop"
-        sleep 1
-        read
-    else
-        echo " ok"
-        break
-    fi
-done
+ask_to_stop_mobile_data
 
 echo
 echo "=> Restoring backup by SSH/cat..."
@@ -99,7 +77,7 @@ dd_opts="bs=1M iflag=fullblock"
 
 {
     time dd if=$tarball ${v:-${stprg:-}} $dd_opts |\
-        $sshcmd "pigz -dc | tar ${v:-}x -C /"
+        ssh $ssh_opts root@$sfos_ipaddr "pigz -dc | tar ${v:-}x -C /"
 } 2>&1 | grep -v "tar: removing leading" | grep -E "real|copied" | tr '\t' ' '\
      | sed -e "s/.* bytes (\(.*\), .*)\(.*\)/transfer speed: \\1\\2/" -e \
          "s/real /execution time: /" | sed -e "s,^,  |  ,"
