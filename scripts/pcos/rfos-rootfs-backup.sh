@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.4
+# release: 0.0.5
 
 set -eu
 
@@ -45,41 +45,38 @@ usage() {
     exit 0
 }
 
-while [ -n "${1:-}" ]; do
-    case $1 in
-        -0) lvl="$1"
-            ;;
-        -1) lvl="$1"
-            excl_list_strn="1"
-            excl_list="${excl_list:-} ${excl_list_1}"
-            ;;
-        -2) lvl="$1"
-            excl_list_strn="1 2"
-            excl_list="${excl_list:-} ${excl_list_1} ${excl_list_2}"
-            ;;
-        -3) lvl="$1"
-            excl_list_strn="1 2 3"
-            excl_list="${excl_list:-} ${excl_list_1} 
-            	${excl_list_2} ${excl_list_3}"
-            ;;
-        -4) true
-            ;;
-        -v)
-            v="v"
-            ;;
-        -h|--help|*)
-            usage
-            ;;
-    esac
-    shift
+while true; do
+    while [ -n "${1:-}" ]; do
+        case $1 in
+            -4) excl_list_strn="4 ${excl_list_strn:-}"
+                excl_list="${excl_list:-} ${excl_list_4}"
+                ;;&
+        -[3-4]) excl_list_strn="3 ${excl_list_strn:-}"
+                excl_list="${excl_list:-} ${excl_list_3}"
+                ;;&
+        -[2-4]) excl_list_strn="2 ${excl_list_strn:-}"
+                excl_list="${excl_list:-} ${excl_list_2}"
+                ;;&
+        -[1-4]) excl_list_strn="1 ${excl_list_strn:-}"
+                excl_list="${excl_list:-} ${excl_list_1}"
+                ;;&
+        -[0-4]) lvl="$1"
+                ;;
+            -v)
+                v="v"
+                ;;
+            -h|--help|*)
+                usage
+                ;;
+        esac
+        shift
+    done
+    if [ -n "${lvl:-}" ]; then
+        break
+    else
+        set -- -4
+    fi
 done
-
-if [ ! -n "${lvl:-}" ]; then
-    lvl="-4"
-    excl_list_strn="1 2 3 4"
-    excl_list="${excl_list:-} ${excl_list_1} ${excl_list_2} 
-    	${excl_list_3} ${excl_list_4}"
-fi
 
 for i in $excl_list; do find_opts="$find_opts ! -path $i/\*"; done
 
