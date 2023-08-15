@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.2
+# release: 0.0.1
 
 set -eu
 
@@ -28,14 +28,22 @@ src_file_env "sfos-ssh-connect"
 
 usage() {
     echo
-    echo "USAGE: $(basename $0) [ [-v] /home/defaultuser | -h ]"
+    echo "USAGE: $(basename $0) [ -v | -h ] tarball [ /remote/folder ]"
     echo
     exit 0
 }
 
 while [ -n "${1:-}" ]; do
+    if [ -e "$1" ]; then
+        tarball="$1"
+        shift
+        continue
+    fi
     if [ "${1:0:1}" = "/" ]; then
-        userdir="$1"
+        if [ ! -n "$tarball" ]; then
+            usage
+        fi
+        remdir="$1"
         shift
         continue
     fi
@@ -50,20 +58,9 @@ while [ -n "${1:-}" ]; do
     shift
 done
 
-userdir=${userdir:-/home/defaultuser}
+remdir=${remdir:-/}
 
-#date_time=$(date +"%F-%H-%M-%S")
-date_time=$(date +"%Y%m%d%H%M%S")
-prl_opts="--pipe --recend '' --keep-order --block-size 16M"
-tar_opts="--numeric-owner -p"
-excl_list="
-.cache cache cache2 vungle_cache diskcache-v4 .mozilla/storage
-$userdir/Pictures/Default $userdir/Videos/Default $userdir/.tmp
-"
-
-for i in $excl_list; do tar_opts="$tar_opts --exclude '$i/*'"; done
-
-tarball="backup-$(basename ${userdir})-${date_time}.tar.gz"
+test -n "$tarball" || exit 1
 
 # MAIN CODE EXECUTION ##########################################################
 
@@ -80,7 +77,7 @@ while true; do
         echo " active"
         echo
         echo "WARNING: please, deactive mobile data on the samrtphone"
-        echo "         back-up should be use the USB connection, only"
+        echo "         restore should be use the USB connection, only"
         echo
         echo "         Press ENTER to retry or CTRL-C to stop"
         sleep 1
@@ -92,36 +89,19 @@ while true; do
 done
 
 echo
-echo "=> Creating home user backup by SSH/cat..."
+echo "=> Restoring backup by SSH/cat..."
 echo "  \_ archive: $tarball"
-#echo "  \_ exclusions lists: $excl_list"
+echo "  \_ remote target folder: ${remdir:-/}"
+
+remdir=${remdir:-/}
+dd_opts="bs=1M iflag=fullblock"
+#dd --help 2>&1 | grep -q progress && stprg="status=progress"
 
 {
-    time $sshcmd \
-        "tar ${v:-}c $tar_opts ${userdir:1}/ -C / | pigz -4Ric" |\
-            dd bs=1M iflag=fullblock of=$tarball
+    time dd if=$tarball ${v:-${stprg:-}} $dd_opts |\
+        $sshcmd "pigz -dc | tar ${v:-}x -C /"
 } 2>&1 | grep -v "tar: removing leading" | grep -E "real|copied" | tr '\t' ' '\
-    | sed -e "s/.* bytes (\(.*\), .*)\(.*\)/transfer speed: \\1\\2/" -e \
-        "s/real /execution time: /" | sed -e "s,^,  |  ,"
-echo "  \_ creation: completed"
-
+     | sed -e "s/.* bytes (\(.*\), .*)\(.*\)/transfer speed: \\1\\2/" -e \
+         "s/real /execution time: /" | sed -e "s,^,  |  ,"
+echo "  \_ restore: completed"
 echo
-printf "=> Syncing archive file to local storage..."
-sync $tarball
-echo " OK"
-
-echo
-printf "=> Checking archive file for integrity..."
-if tar tzf $tarball >/dev/null; then
-    echo " OK"
-    echo
-    echo "Size in MB:" $(du -ms $tarball)
-    echo
-    exit 0
-else
-    rm -f "$tarball"
-    echo " KO"
-    echo
-fi
-exit 1
-

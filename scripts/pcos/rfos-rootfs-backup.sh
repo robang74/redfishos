@@ -46,9 +46,6 @@ usage() {
 
 while [ -n "${1:-}" ]; do
     case $1 in
-        -h|--help)
-            usage
-            ;;
         -0) lvl=$1
             excl_list_strn=""
             excl_list="/tmp"
@@ -68,7 +65,7 @@ while [ -n "${1:-}" ]; do
         -v)
             v="v"
             ;;
-         *)
+        -h|--help|*)
             usage
             ;;
     esac
