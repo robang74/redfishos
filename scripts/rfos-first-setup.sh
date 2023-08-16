@@ -42,7 +42,7 @@
 #    Modular/aarch64/ fedora-31-updates-modular
 #
 ################################################################################
-# release: 0.1.8
+# release: 0.1.9
 
 set -u
 
@@ -137,8 +137,14 @@ system_timedate_sync() {
 printline() { printf -- "${1:--}%.0s" $(seq 1 ${2:-80}); printf "\n"; }
 
 shellname() {
-    local shn shx
+    local shn shx m
     shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
+    m=$(printf "%c" "$shn")
+    if [ "x$m" = "x-" ]; then
+        shn=$(printf "%s" "$shn" | cut -d- -f2-)
+    else
+        m=""
+    fi
     if [ -x "$shn" ]; then
         shx=$(basename "$shn")
         shn=$(readlink -f "$shn")
@@ -147,7 +153,29 @@ shellname() {
             shn=$shx
         fi
     fi
-    echo $shn
+    echo $m$shn
+}
+
+check_running_shell() {
+    local shn=$(shellname) m
+    echo "Script ${1:+$1 }running on shell: $shn"
+    if printf "%c" "$shn" | grep -q '-'; then
+        shn=$(printf "%s" "$shn" | cut -d- -f2-)
+    fi
+    if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
+        if [ "$shn" = "${2:-}" ]; then
+            echo
+            echo "ERROR: this script cannot run on $2, abort."
+            echo
+            exit 1
+        fi >&2
+    else
+    (>&2 # RAF: this flush the stderr because the exit of the child process
+        echo
+        echo "WARNING: this script requires b/d/ash to run correctly."
+        echo
+    )
+    fi
 }
 
 # FUNCTIONS OVERLOAD ###########################################################
@@ -168,21 +196,8 @@ fi 2>/dev/null
 
 # SHELL TEST ###################################################################
 
-shn=$(shellname)
-
 echo
-echo "Script running on shell: $shn"
-echo
-if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
-    :
-elif [ "$shn" = "dash" ]; then
-    echo "ERROR: this script cannot run on dash, abort."
-echo
-    exit 1
-else
-    echo "WARNING: this script requires b/ash to run correctly."
-    echo
-fi >&2
+check_running_shell
 
 # VARIABLES DEFINITIONS ########################################################
 
