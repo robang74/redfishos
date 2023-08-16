@@ -42,7 +42,7 @@
 #    Modular/aarch64/ fedora-31-updates-modular
 #
 ################################################################################
-# release: 0.1.7
+# release: 0.1.8
 
 set -u
 
@@ -54,6 +54,15 @@ set_battery_lcr_params() {
     echo 95 >/sys/class/power_supply/battery_ext/lrc_socmax
     echo 90 >/sys/class/power_supply/battery_ext/lrc_socmin
     echo 1 >/sys/class/power_supply/battery/lrc_enable
+    echo $(cat /sys/class/power_supply/battery*/lrc_*)
+}
+
+set_flashdisk_power_on() {
+    local list i
+    # RAF, TODO: the external SD/MMC should not be influenced by this
+    list=$(find /sys/block/mmcblk0/ /sys/block/mmcblk0rpmb/ -name control)
+    for i in $(echo "$list" | grep "power/control"); do echo on >$i; done
+    echo "$list" | grep "power/control" | wc -l
 }
 
 rpms_install() {
@@ -144,7 +153,7 @@ shellname() {
 # FUNCTIONS OVERLOAD ###########################################################
 #
 # RAF: this script also defines the functions environment, which can be broken
-#      for some reasons. Hence, it is not a good idea to source from outside but
+#      for some reasons. Hence, it is not a good idea to source from outside but
 #      to keep everything running from this own script, which can be entirely
 #      downloaded and executed with a single wget/curl | b/ash command.
 #      Instead, for the same reason the local enviroment could be fixed by hands
@@ -168,7 +177,7 @@ if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
     :
 elif [ "$shn" = "dash" ]; then
     echo "ERROR: this script cannot run on dash, abort."
-    echo
+echo
     exit 1
 else
     echo "WARNING: this script requires b/ash to run correctly."
@@ -489,8 +498,7 @@ n=$((n+1))
 echo
 m=$((m+1))
 echo "=> $m. Set battery charging thresholds"
-echo
-set_battery_lcr_params
+echo "  \_ Kernel lcr settings: $(set_battery_lcr_params)"
 mcetool \
     --set-forced-charging=disabled  \
     --set-charging-enable-limit=95  \
@@ -506,28 +514,49 @@ m=$((m+1))
 echo "=> $m. Enable auto-brightness"
 m=$((m+1))
 echo "=> $m. Set balanced-interactive governor"
+echo "  \_ Setting status: skipped, no mce-tools"
+
+echo
 m=$((m+1))
 echo "=> $m. Set battery charging thresholds"
-echo "  \_ Setting status: skipped, no mce-tools"
+echo "  \_ kernel lcr settings: $(set_battery_lcr_params)"
+echo "  \_ Setting status: kernel only, no mce-tools"
+n=$((n+1))
 
 fi # ------------------------------------------------------------------------- #
 
 echo
 m=$((m+1))
+echo "=> $m. Set internal flashdisk power on"
+echo "  \_ Number of devices set: $(set_flashdisk_power_on)"
+n=$((n+1))
+
+echo
+m=$((m+1))
 echo "=> $m. Activate the /etc/rc.local by crontab"
+if [ -e /bin/vi -a ! -e /usr/bin/vi ]; then
+    ln -sf /bin/vi /usr/bin/vi
+fi
 if which crontab >/dev/null; then
     tmpfile=$(mktemp -p ${TMPDIR:-/tmp} -t crontab.XXXXXX)
     crontab -l >$tmpfile 2>/dev/null
-    echo "@reboot test -x /etc/rc.local && /etc/rc.local" >>$tmpfile
+    echo "@reboot /usr/bin/test -x /etc/rc.local && /etc/rc.local" >>$tmpfile
     grep . $tmpfile | sort | uniq | crontab -
     if [ ! -x /etc/rc.local ]; then
         touch /etc/rc.local
         chmod a+x /etc/rc.local
     fi
-    f="set_battery_lcr_params"
-    if ! grep -q "$f" /etc/rc.local; then
-        type $f | grep -v "$f is a function" >> /etc/rc.local
-        echo $f >> /etc/rc.local
+    for f in set_battery_lcr_params set_flashdisk_power_on; do
+        if ! grep -q "$f" /etc/rc.local; then
+            type $f | grep -v "$f is a function" >> /etc/rc.local
+            echo $f >> /etc/rc.local
+        fi
+    fi
+    if ! grep -q "PATH=" /etc/rc.local; then
+        path=$(for i in /usr/local /usr /; do
+            echo ${i}bin:${i}sbin; done | tr '\n' :)
+        txt=$(echo "PATH=$path"; cat /etc/rc.local)
+        echo "$txt" >/etc/rc.local
     fi
     crontab -l | eval $filter_1
     n=$((n+1))
