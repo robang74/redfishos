@@ -22,7 +22,7 @@
 #
 # TODO: https://raw.githubusercontent.com/brgl/busybox/master/shell/cttyhack.c
 #
-# release: 0.0.8
+# release: 0.0.9
 
 set -emu
 
@@ -85,21 +85,8 @@ hdr_targ=""
 
 # SHELL TEST ###################################################################
 
-shn=$(shellname)
-
 echo
-echo "Script running on shell: $shn"
-echo
-if [ "$shn" = "bash" -o "$shn" = "ash" ]; then
-    :
-elif [ "$shn" = "dash" ]; then
-    echo "ERROR: this script cannot run on dash, abort."
-    echo
-    exit 1
-else
-    echo "WARNING: this script requires b/ash to run correctly."
-    echo
-fi >&2
+check_running_shell "$(basename $0)" "dash"
 
 ################################################################################
 
