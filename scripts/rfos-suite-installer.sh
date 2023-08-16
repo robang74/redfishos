@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.7
+# release: 0.1.8
 
 set -ue
 
@@ -61,8 +61,14 @@ download() {
 blankline() { touch "$1" && tail -n1 "$1" | grep -q . && echo >> "$1" ||:; }
 
 shellname() {
-    local shn shx
+    local shn shx m
     shn=$(cat /proc/$$/cmdline | tr '\0' '\n' | grep -v busybox | head -n1)
+    m=$(printf "%c" "$shn")
+    if [ "x$m" = "x-" ]; then
+        shn=$(printf "%s" "$shn" | cut -d- -f2-)
+    else
+        m=""
+    fi
     if [ -x "$shn" ]; then
         shx=$(basename "$shn")
         shn=$(readlink -f "$shn")
@@ -71,7 +77,29 @@ shellname() {
             shn=$shx
         fi
     fi
-    echo $shn
+    echo $m$shn
+}
+
+check_running_shell() {
+    local shn=$(shellname) m
+    echo "Script ${1:+$1 }running on shell: $shn"
+    if printf "%c" "$shn" | grep -q '-'; then
+        shn=$(printf "%s" "$shn" | cut -d- -f2-)
+    fi
+    if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
+        if [ "$shn" = "${2:-}" ]; then
+            echo
+            echo "ERROR: this script cannot run on $2, abort."
+            echo
+            exit 1
+        fi >&2
+    else
+    (>&2 # RAF: this flush the stderr because the exit of the child process
+        echo
+        echo "WARNING: this script requires b/d/ash to run correctly."
+        echo
+    )
+    fi
 }
 
 # FUNCTIONS OVERLOAD ###########################################################
@@ -92,17 +120,8 @@ fi 2>/dev/null
 
 # SHELL TEST ###################################################################
 
-shn=$(shellname)
-
 echo
-echo "Script running on shell: $shn"
-if [ "$shn" = "dash" -o "$shn" = "bash" -o "$shn" = "ash" ]; then
-    :
-else
-    echo
-    echo "WARNING: this script requires b/d/ash to run correctly."
-    echo
-fi >&2
+check_running_shell
 
 # VARIABLES DEFINITIONS ########################################################
 
