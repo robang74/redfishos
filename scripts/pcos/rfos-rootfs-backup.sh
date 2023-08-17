@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.6
+# release: 0.0.8
 
 set -eu
 
@@ -39,14 +39,21 @@ excl_list_4="/usr/share/themes /usr/share/man /usr/share/sailfish-tutorial
 /usr/share/sounds /usr/share/licenses"
 
 usage() {
-    echo
-    echo "USAGE: excl_list='...' $(basename $0) [ -v | -h ] [ -0 | ... | -4 ]"
-    echo
+    cat <<'EOF'
+
+USAGE: excl_list='...' $(basename $0) [-v|-h] [-0|...|-4] [/rootfs]
+
+EOF
     exit 0
 }
 
 while true; do
     while [ -n "${1:-}" ]; do
+        if [ "${1:0:1}" = "/" ]; then
+            rmtdir="$1"
+            shift
+            continue
+        fi
         case $1 in
             -4) excl_list_strn="4 ${excl_list_strn:-}"
                 excl_list="${excl_list:-} ${excl_list_4}"
@@ -78,9 +85,11 @@ while true; do
     fi
 done
 
-for i in $excl_list; do find_opts="$find_opts ! -path $i/\*"; done
+for i in ${excl_list:-}; do find_opts="$find_opts ! -path $i/\*"; done
 
 tarball="backup-rootfs${lvl}-${date_time}.tar.gz"
+
+rmtdir=${rmtdir:-/}
 
 # MAIN CODE EXECUTION ##########################################################
 
@@ -89,11 +98,17 @@ ask_to_stop_mobile_data
 echo
 echo "=> Creating backup by SSH/cat in one minute..."
 echo "  \_ archive: $tarball"
+echo "  \_ remote source folder: $rmtdir"
 echo "  \_ exclusions lists: ${excl_list_strn:-none}"
 
+sshcmd="ssh -q $ssh_opts"
+if [ "$sfos_ipaddr" = "$sfos_ip_addr_r" ]; then
+    sshcmd="sshpass -p recovery $sshcmd"
+fi
+
 {
-    time ssh $ssh_opts root@$sfos_ipaddr \
-        "find / $find_opts | tar ${v:-}c $tar_opts -T - | pigz -4Ric" |\
+    time $sshcmd root@$sfos_ipaddr "cd '$rmtdir' && " \
+        "find . $find_opts | tar ${v:-}c $tar_opts -T - | pigz -4Ric" |\
             dd bs=1M iflag=fullblock of=$tarball
 } 2>&1 | grep -v "tar: removing leading" | grep -E "real|copied" | tr '\t' ' '\
     | sed -e "s/.* bytes (\(.*\), .*)\(.*\)/transfer speed: \\1\\2/" -e \

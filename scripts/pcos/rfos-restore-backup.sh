@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.2
+# release: 0.0.4
 
 set -eu
 
@@ -28,7 +28,7 @@ src_file_env "sfos-ssh-connect"
 
 usage() {
     echo
-    echo "USAGE: $(basename $0) [ -v | -h ] tarball [ /remote/folder ]"
+    echo "USAGE: $(basename $0) [ -v | -h ] tarball [ /rootfs ]"
     echo
     exit 0
 }
@@ -43,7 +43,7 @@ while [ -n "${1:-}" ]; do
         if [ ! -n "$tarball" ]; then
             usage
         fi
-        remdir="$1"
+        rmtdir="$1"
         shift
         continue
     fi
@@ -58,7 +58,7 @@ while [ -n "${1:-}" ]; do
     shift
 done
 
-remdir=${remdir:-/}
+rmtdir=${rmtdir:-/}
 
 test -n "$tarball" || exit 1
 
@@ -69,15 +69,17 @@ ask_to_stop_mobile_data
 echo
 echo "=> Restoring backup by SSH/cat..."
 echo "  \_ archive: $tarball"
-echo "  \_ remote target folder: ${remdir:-/}"
+echo "  \_ remote target folder: $rmtdir"
 
-remdir=${remdir:-/}
-dd_opts="bs=1M iflag=fullblock"
-#dd --help 2>&1 | grep -q progress && stprg="status=progress"
+sshcmd="ssh -q $ssh_opts"
+if [ "$sfos_ipaddr" = "$sfos_ip_addr_r" ]; then
+    sshcmd="sshpass -p recovery $sshcmd"
+fi
 
-{
-    time dd if=$tarball ${v:-${stprg:-}} $dd_opts |\
-        ssh $ssh_opts root@$sfos_ipaddr "pigz -dc | tar ${v:-}x -C /"
+ddcmd="dd if=$tarball ${v:-${stprg:-}} bs=1M iflag=fullblock"
+
+{ time $ddcmd | $sshcmd root@$sfos_ipaddr \
+     "pigz -dc | tar ${v:-}x -C '$rmtdir'; sync"
 } 2>&1 | grep -v "tar: removing leading" | grep -E "real|copied" | tr '\t' ' '\
      | sed -e "s/.* bytes (\(.*\), .*)\(.*\)/transfer speed: \\1\\2/" -e \
          "s/real /execution time: /" | sed -e "s,^,  |  ,"
