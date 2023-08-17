@@ -1,10 +1,13 @@
 #!/bin/sh
-
+################################################################################
+#
 # Generic ramdisk init process for booting a device. Based Marko Saukko's
-# initrd for Galaxy Note GT-i9250.
+# initrd for Galaxy Note GT-i9250. Reworked by RAF.
 #
 # Copyright (C) 2014 Jolla Ltd.
 # Copyright (C) 2012 Marko Saukko
+# Copyright (C) 2023 Roberto A. Foglietta
+#     Contact: roberto.foglietta@gmail.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,12 +19,12 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-
-# IRC: Sage @ #mer & #nemomobile @ Freenode
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+################################################################################
+# release: 0.0.8
 
 # Location of the device init script, if not set, few defaults are tried.
 INITBIN=/sbin/preinit

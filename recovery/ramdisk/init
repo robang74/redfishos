@@ -1,8 +1,8 @@
 #!/bin/sh
-##############################################################################€
+################################################################################
 #
 # Generic ramdisk init process for booting a device. Based Marko Saukko's
-# initrd for Galaxy Note GT-i9250. RAF reworked
+# initrd for Galaxy Note GT-i9250. Reworked by RAF.
 #
 # Copyright (C) 2014 Jolla Ltd.
 # Copyright (C) 2012 Marko Saukko
@@ -19,24 +19,24 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# IRC: Sage @ #mer & #nemomobile @ Freenode
-#
-###############################################################################
-# release: 0.0.7
+################################################################################
+# release: 0.0.8
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
-###############################################################################
-
-ANDROID_USB="/sys/class/android_usb/android0"
-GADGET_DIR="/config/usb_gadget/g1"
-USB_FUNCTIONS="rndis"
 LOCAL_IP="10.42.66.66"
+LOCAL_BR="10.42.66.255"
+USB_IP="192.168.2.15"
+USB_BR="192.168.2.255"
+GADGET_DIR="/config/usb_gadget/g1"
+ANDROID_USB="/sys/class/android_usb/android0"
+USB_FUNCTIONS="rndis"
+
+################################################################################
 
 write()
 {
@@ -51,8 +51,8 @@ usb_setup_configfs() {
     write $GADGET_DIR/idProduct                  "0x0A06"
     mkdir $GADGET_DIR/strings/0x409
     write $GADGET_DIR/strings/0x409/serialnumber "$1"
-    write $GADGET_DIR/strings/0x409/manufacturer "robang74"
-    write $GADGET_DIR/strings/0x409/product      "usblink"
+    write $GADGET_DIR/strings/0x409/manufacturer "Jolla"
+    write $GADGET_DIR/strings/0x409/product      "Recovery"
 
     if echo $USB_FUNCTIONS | grep -q "rndis"; then
         mkdir $GADGET_DIR/functions/rndis.rndis0
@@ -81,8 +81,8 @@ usb_setup_android_usb() {
     write $ANDROID_USB/enable          0
     write $ANDROID_USB/idVendor        2931
     write $ANDROID_USB/idProduct       0A06
-    write $ANDROID_USB/iManufacturer   "robang74"
-    write $ANDROID_USB/iProduct        "usblink"
+    write $ANDROID_USB/iManufacturer   "Jolla"
+    write $ANDROID_USB/iProduct        "Recovery"
     write $ANDROID_USB/iSerial         "$1"
     write $ANDROID_USB/functions       $USB_FUNCTIONS
     write $ANDROID_USB/enable          1
@@ -97,9 +97,9 @@ usb_setup() {
     fi
 }
 
-###############################################################################
+################################################################################
 
-/sbin/busybox-static --install -s
+busybox-static --install -s
 
 echo "Doing mounts... "
 mount /dev
@@ -113,7 +113,7 @@ mount -t configfs none /config
 ##echo /bin/mdev >/proc/sys/kernel/hotplug
 
 echo "Setting USB gadget..." 
-usb_setup "rfos45021" 
+usb_setup "Jolla Debug setting up"
 
 for i in 0 1 2 3 4 5 6 7 8 9; do
     dmesg | grep -q configfs-gadget && break
@@ -121,11 +121,11 @@ for i in 0 1 2 3 4 5 6 7 8 9; do
 done
 
 if dmesg | grep -q configfs-gadget; then
-	echo "initrd: USB connection found at $i° attempt" > /dev/kmesg
+	echo "initrd: USB connection found at $i° attempt" > /dev/kmsg
     . /init.hr
 else
-	echo "initrd: USB connection NOT found, boot mode" > /dev/kmesg
-    #echo >/proc/sys/kernel/hotplug
+	echo "initrd: USB connection NOT found, boot mode" > /dev/kmsg
+##  echo >/proc/sys/kernel/hotplug
     umount /config
     . /init.hb
 fi
