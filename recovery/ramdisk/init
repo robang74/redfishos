@@ -27,16 +27,16 @@
 # IRC: Sage @ #mer & #nemomobile @ Freenode
 #
 ###############################################################################
-# release: 0.0.6
+# release: 0.0.7
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
 ###############################################################################
 
-ANDROID_USB=/sys/class/android_usb/android0
-GADGET_DIR=/config/usb_gadget
-USB_FUNCTIONS=rndis
-LOCAL_IP=10.42.66.66
+ANDROID_USB="/sys/class/android_usb/android0"
+GADGET_DIR="/config/usb_gadget/g1"
+USB_FUNCTIONS="rndis"
+LOCAL_IP="10.42.66.66"
 
 write()
 {
@@ -45,30 +45,30 @@ write()
 
 # This sets up the USB with whatever USB_FUNCTIONS are set to via configfs
 usb_setup_configfs() {
-    G_USB_ISERIAL=$GADGET_DIR/g1/strings/0x409/serialnumber
-    mkdir $GADGET_DIR/g1
-    write $GADGET_DIR/g1/idVendor                   "0x2931"
-    write $GADGET_DIR/g1/idProduct                  "0x0A06"
-    mkdir $GADGET_DIR/g1/strings/0x409
-    write $GADGET_DIR/g1/strings/0x409/serialnumber "$1"
-    write $GADGET_DIR/g1/strings/0x409/manufacturer "robang74"
-    write $GADGET_DIR/g1/strings/0x409/product      "usblink"
+    G_USB_ISERIAL=$GADGET_DIR/strings/0x409/serialnumber
+    mkdir $GADGET_DIR
+    write $GADGET_DIR/idVendor                   "0x2931"
+    write $GADGET_DIR/idProduct                  "0x0A06"
+    mkdir $GADGET_DIR/strings/0x409
+    write $GADGET_DIR/strings/0x409/serialnumber "$1"
+    write $GADGET_DIR/strings/0x409/manufacturer "robang74"
+    write $GADGET_DIR/strings/0x409/product      "usblink"
 
     if echo $USB_FUNCTIONS | grep -q "rndis"; then
-        mkdir $GADGET_DIR/g1/functions/rndis.rndis0
-        mkdir $GADGET_DIR/g1/functions/rndis_bam.rndis
+        mkdir $GADGET_DIR/functions/rndis.rndis0
+        mkdir $GADGET_DIR/functions/rndis_bam.rndis
     fi
 
-    mkdir $GADGET_DIR/g1/configs/c.1
-    mkdir $GADGET_DIR/g1/configs/c.1/strings/0x409
-    write $GADGET_DIR/g1/configs/c.1/strings/0x409/configuration "$USB_FUNCTIONS"
+    mkdir $GADGET_DIR/configs/c.1
+    mkdir $GADGET_DIR/configs/c.1/strings/0x409
+    write $GADGET_DIR/configs/c.1/strings/0x409/configuration "$USB_FUNCTIONS"
 
     if echo $USB_FUNCTIONS | grep -q "rndis"; then
-        ln -s $GADGET_DIR/g1/functions/rndis.rndis0 $GADGET_DIR/g1/configs/c.1
-        ln -s $GADGET_DIR/g1/functions/rndis_bam.rndis $GADGET_DIR/g1/configs/c.1
+        ln -s $GADGET_DIR/functions/rndis.rndis0 $GADGET_DIR/configs/c.1
+        ln -s $GADGET_DIR/functions/rndis_bam.rndis $GADGET_DIR/configs/c.1
     fi
 
-    echo "$(ls /sys/class/udc)" > $GADGET_DIR/g1/UDC
+    echo "$(ls -1 /sys/class/udc)" > $GADGET_DIR/UDC
 }
 
 # This sets up the USB with whatever USB_FUNCTIONS are set to via android_usb
@@ -121,9 +121,11 @@ for i in 0 1 2 3 4 5 6 7 8 9; do
 done
 
 if dmesg | grep -q configfs-gadget; then
+	echo "initrd: USB connection found at $i° attempt" > /dev/kmesg
     . /init.hr
 else
-    echo >/proc/sys/kernel/hotplug
+	echo "initrd: USB connection NOT found, boot mode" > /dev/kmesg
+    #echo >/proc/sys/kernel/hotplug
     umount /config
     . /init.hb
 fi
