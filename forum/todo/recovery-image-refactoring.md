@@ -1,4 +1,4 @@
-## Recovery image refactoring
+## The recovery image refactoring
 
 The goal is to have a recovery boot mode always available on-demand at users request or automatically when the system is badly bricked:
 
