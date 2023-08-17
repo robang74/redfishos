@@ -1,5 +1,5 @@
 #!/bin/sh
-##############################################################################€
+################################################################################
 #
 # Generic ramdisk init process for booting a device. Based Marko Saukko's
 # initrd for Galaxy Note GT-i9250. RAF reworked
@@ -24,8 +24,19 @@
 # Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
-###############################################################################
-# release: 0.0.1
+################################################################################
+# release: 0.0.2
+
+GADGET_DIR="/config/usb_gadget/g1"
+ANDROID_USB="/sys/class/android_usb/android0"
+USB_FUNCTIONS="rndis"
+
+################################################################################
+
+write()
+{
+    echo -n "$2" > "$1"
+}
 
 # This sets up the USB with whatever USB_FUNCTIONS are set to via configfs
 usb_setup_configfs() {
@@ -35,8 +46,8 @@ usb_setup_configfs() {
     write $GADGET_DIR/idProduct                  "0x0A06"
     mkdir $GADGET_DIR/strings/0x409
     write $GADGET_DIR/strings/0x409/serialnumber "$1"
-    write $GADGET_DIR/strings/0x409/manufacturer "robang74"
-    write $GADGET_DIR/strings/0x409/product      "usblink"
+    write $GADGET_DIR/strings/0x409/manufacturer "Jolla" # "robang74"
+    write $GADGET_DIR/strings/0x409/product      "Recovery" # "usblink"
 
     if echo $USB_FUNCTIONS | grep -q "rndis"; then
         mkdir $GADGET_DIR/functions/rndis.rndis0
@@ -65,11 +76,23 @@ usb_setup_android_usb() {
     write $ANDROID_USB/enable          0
     write $ANDROID_USB/idVendor        2931
     write $ANDROID_USB/idProduct       0A06
-    write $ANDROID_USB/iManufacturer   "robang74"
-    write $ANDROID_USB/iProduct        "usblink"
+    write $ANDROID_USB/iManufacturer   "Jolla" # "robang74"
+    write $ANDROID_USB/iProduct        "Recovery" # "usblink"
     write $ANDROID_USB/iSerial         "$1"
     write $ANDROID_USB/functions       $USB_FUNCTIONS
     write $ANDROID_USB/enable          1
 }
 
-usb_setup "redfishos"
+
+# This determines which USB setup method is going to be used
+usb_setup() {
+    if [ -f $ANDROID_USB/enable ]; then
+        usb_setup_android_usb $1
+    else
+        usb_setup_configfs $1
+    fi
+}
+
+################################################################################
+
+usb_setup "Jolla Debug setting up" # "redfishos"

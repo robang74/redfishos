@@ -30,13 +30,11 @@ export PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
 LOCAL_IP="10.42.66.66"
 LOCAL_BR="10.42.66.255"
+
 USB_IP="192.168.2.15"
 USB_BR="192.168.2.255"
-GADGET_DIR="/config/usb_gadget/g1"
-ANDROID_USB="/sys/class/android_usb/android0"
-USB_FUNCTIONS="rndis"
 
-################################################################################
+if false; then #################################################################
 
 write()
 {
@@ -97,11 +95,11 @@ usb_setup() {
     fi
 }
 
-################################################################################
+fi #############################################################################
 
 busybox-static --install -s
 
-echo "Doing mounts... "
+echo "Doing mount config and all..."
 mount /dev
 mkdir /dev/pts /dev/shm
 mount -a
@@ -112,8 +110,8 @@ mount -t configfs none /config
 #mdev -s -f
 ##echo /bin/mdev >/proc/sys/kernel/hotplug
 
-echo "Setting USB gadget..."
-usb_setup "Jolla Debug setting up"
+echo "USB config setting..."
+. /init.usb
 
 for i in 0 1 2 3 4 5 6 7 8 9; do
     dmesg | grep -q configfs-gadget && break
@@ -121,7 +119,7 @@ for i in 0 1 2 3 4 5 6 7 8 9; do
 done
 
 if dmesg | grep -q configfs-gadget; then
-    echo "initrd: USB connection found at $i° attempt" > /dev/kmsg
+    echo "initrd: USB connection found at $i' attempt" > /dev/kmsg
     . /init.hr
 else
     echo "initrd: USB connection NOT found, boot mode" > /dev/kmsg

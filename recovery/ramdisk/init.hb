@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.8
+# release: 0.0.9
 
 # Location of the device init script, if not set, few defaults are tried.
 INITBIN=/sbin/preinit
@@ -43,21 +43,6 @@ fail()
     echo "initrd: $1" > /dev/kmsg
     reboot2 recovery
 }
-
-if false; then #################################################################
-mkdir -p /proc
-mount -t proc proc /proc
-
-mkdir -p /sys
-mount -t sysfs sys /sys
-
-mkdir -p /dev
-mount -t devtmpfs devtmpfs /dev
-
-# Some filesystem tools may need mtab to work
-cat /proc/mounts > /etc/mtab
-
-fi #############################################################################
 
 echo "initrd: Starting ramdisk.." > /dev/kmsg
 
@@ -94,11 +79,11 @@ echo "V" > /dev/watchdog
 
 # umount everything before doing switch root as the init process
 # is responsible of doing these inside the final boot env.
-umount -l /dev
-umount -l /sys
-umount -l /proc
-umount -l -a R
+#
+# RAF,TODO: mount move/rbind would be even a better solution.
+umount -l -a -R
 umount -l -a
+umount -a -R
 umount -a
 
 if false; then #################################################################
@@ -112,5 +97,5 @@ fi #############################################################################
 echo "initrd: Switching to rootfs at ${ROOTMNTDIR},"\
 " with init ${INITBIN}" > ${ROOTMNTDIR}/dev/kmsg
 
-# usage: switch_root <newrootdir> <init> <args to init>
+# usage: switch_root <newrootdir> <init> [args]
 exec switch_root ${ROOTMNTDIR} ${INITBIN}
