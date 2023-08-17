@@ -46,8 +46,8 @@ usb_setup_configfs() {
     write $GADGET_DIR/idProduct                  "0x0A06"
     mkdir $GADGET_DIR/strings/0x409
     write $GADGET_DIR/strings/0x409/serialnumber "$1"
-    write $GADGET_DIR/strings/0x409/manufacturer "Jolla" # "robang74"
-    write $GADGET_DIR/strings/0x409/product      "Recovery" # "usblink"
+    write $GADGET_DIR/strings/0x409/manufacturer "robang74"
+    write $GADGET_DIR/strings/0x409/product      "recovery"
 
     if echo $USB_FUNCTIONS | grep -q "rndis"; then
         mkdir $GADGET_DIR/functions/rndis.rndis0
@@ -76,8 +76,8 @@ usb_setup_android_usb() {
     write $ANDROID_USB/enable          0
     write $ANDROID_USB/idVendor        2931
     write $ANDROID_USB/idProduct       0A06
-    write $ANDROID_USB/iManufacturer   "Jolla" # "robang74"
-    write $ANDROID_USB/iProduct        "Recovery" # "usblink"
+    write $ANDROID_USB/iManufacturer   "robang74"
+    write $ANDROID_USB/iProduct        "recovery"
     write $ANDROID_USB/iSerial         "$1"
     write $ANDROID_USB/functions       $USB_FUNCTIONS
     write $ANDROID_USB/enable          1
@@ -95,4 +95,4 @@ usb_setup() {
 
 ################################################################################
 
-usb_setup "Jolla Debug setting up" # "redfishos"
+usb_setup "redfishos"

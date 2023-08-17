@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.8
+# release: 0.0.9
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
@@ -97,7 +97,8 @@ usb_setup() {
 
 fi #############################################################################
 
-busybox-static --install -s
+/sbin/busybox-static --install -s
+/sbin/ldconfig
 
 echo "Doing mount config and all..."
 mount /dev

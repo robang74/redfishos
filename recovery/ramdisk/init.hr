@@ -84,7 +84,7 @@ udhcpd
 
 usb_info "recovery: telnet on $USB_IFACE $LOCAL_IP running udhcpd"
 #yamui -t "recovery: connect USB cable and telnet to $LOCAL_IP" &
-yamui ip-$LOCAL_IP.png &
+yamui ip-$LOCAL_IP &
 
 # Remove recovery-menu lock if the /var/run is not on tmpfs.
 remove_lock
