@@ -110,7 +110,7 @@ mount -t configfs none /config
 
 echo "Running mdev..."
 mdev -s -f
-echo /bin/mdev >/proc/sys/kernel/hotplug
+#echo /bin/mdev >/proc/sys/kernel/hotplug
 
 echo "Setting USB gadget..." 
 usb_setup "rfos45021" 
