@@ -17,7 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.3
+# release: 0.0.4
 
 usbver="${1:-}"
 if [ "$usbver" = "2" ]; then
@@ -112,7 +112,7 @@ fi
 
 exit 0
 --- /dev/null
-+++ /usr/bin/fastboot_usb3fix.sh
++++ /usr/bin/fastboot-usb3fix.sh
 @@ -0,0 +1,113 @@
 +#!/bin/bash
 +################################################################################
@@ -133,7 +133,7 @@ exit 0
 +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 +#
 +################################################################################
-+# release: 0.0.3
++# release: 0.0.4
 +
 +usbver="${1:-}"
 +if [ "$usbver" = "2" ]; then

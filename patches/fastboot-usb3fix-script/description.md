@@ -12,15 +12,15 @@ On my USB v3.x-only sleeping ports laptop, it solved the problem completely.
 
 A way is to download the tarball archive and extract the content and rename it, with a single line command execution:
 
-$ curl -L https://t.ly/D3hg9 | tar xvz && mv -f unified_diff.patch fastboot_usb3fix.sh
+$ curl -L https://t.ly/D3hg9 | tar xvz && mv -f unified_diff.patch fastboot-usb3fix.sh
 
 The patch can be applied in the traditional way or it can also be executed directly because the patch header contains the shell script.
 
 == USAGE ==
 
-sudo ./fastboot_usb3fix.sh 2
+sudo ./fastboot-usb3fix.sh 2
 sudo /bin/bash flash.sh --force
-sudo ./fastboot_usb3fix.sh 3
+sudo ./fastboot-usb3fix.sh 3
 
 Check the USB PROBLEMS section in the Quick Start Guide:
 
@@ -30,7 +30,7 @@ Check the USB PROBLEMS section in the Quick Start Guide:
 
 Five seconds to set the USB v2.0-only mode and 3 minutes to flash the Xperia 10 II smartphone on a laptop USB v3.x-only (xhcii_pci):
 
-root@pcos# time ./fastboot_usb3fix.sh 2
+root@pcos# time ./fastboot-usb3fix.sh 2
 
 Sony Ericsson Mobile USB2 mode
 USB devices unbinding...

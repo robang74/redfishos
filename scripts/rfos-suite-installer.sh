@@ -146,7 +146,7 @@ rfos-first-setup.sh
 else ## ---------------------------------------------------------------- pcos ##
 echo "Script running on a workstation"
 scripts_list="
-pcos/fastboot_usb3fix.sh
+pcos/fastboot-usb3fix.sh
 pcos/sfos-ssh-connect.env
 rfos-script-functions.env
 rfos-suite-installer.sh

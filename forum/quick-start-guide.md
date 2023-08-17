@@ -51,9 +51,9 @@ It is a script delivered by `Patch Manager` but it is for your laptop/`PC` not f
 The script will unbind all the `USB` devices connected to the `xhci_pci` kernel driver, set the communication standard to `USB` v2.0 with an always-on powering policy, and then bind all the devices back.
 
 ```
-sudo ./fastboot_usb3fix.sh 2
+sudo ./fastboot-usb3fix.sh 2
 sudo /bin/bash flash.sh #--force
-sudo ./fastboot_usb3fix.sh 3
+sudo ./fastboot-usb3fix.sh 3
 ```
 
 The last command is `3` because you want to return to the `USB` v3.x communication standard due to its speed and performance improvements over `USB` v2.0.
