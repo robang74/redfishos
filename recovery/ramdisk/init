@@ -27,7 +27,7 @@
 # IRC: Sage @ #mer & #nemomobile @ Freenode
 #
 ###############################################################################
-# release: 0.0.4
+# release: 0.0.5
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
@@ -99,18 +99,17 @@ usb_setup() {
 
 ###############################################################################
 
-ln -sf /sbin/busybox-static /bin/busybox
 /sbin/busybox-static --install -s
 
 echo "Doing mounts... "
 mount /dev
 mkdir /dev/pts /dev/shm
 mount -a
-#mount -t configfs none /config
 cat /proc/mounts >/etc/mtab
+mount -t configfs none /config
 
 echo "Running mdev..."
-mdev -s
+mdev -s -f
 echo /bin/mdev >/proc/sys/kernel/hotplug
 
 echo "Setting USB gadget..." 
@@ -125,9 +124,6 @@ if dmesg | grep -q configfs-gadget; then
     . /init.hr
 else
     echo >/proc/sys/kernel/hotplug
-    killall mdev
-    sleep 1
-    killall -9 mdev
-#   umount /config
+    umount /config
     . /init.hb
 fi

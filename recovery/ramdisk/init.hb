@@ -41,7 +41,7 @@ fail()
 	reboot2 recovery
 }
 
-if false; then
+if false; then #################################################################
 mkdir -p /proc
 mount -t proc proc /proc
 
@@ -50,14 +50,13 @@ mount -t sysfs sys /sys
 
 mkdir -p /dev
 mount -t devtmpfs devtmpfs /dev
-fi
 
-echo "initrd: Starting ramdisk.." > /dev/kmsg
-
-if false; then
 # Some filesystem tools may need mtab to work
 cat /proc/mounts > /etc/mtab
-fi
+
+fi #############################################################################
+
+echo "initrd: Starting ramdisk.." > /dev/kmsg
 
 mkdir -p $ROOTMNTDIR
 
@@ -87,6 +86,9 @@ else
 	fail "Unable to find init process from rootfs."
 fi
 
+# Reset watchdog timer
+echo "V" > /dev/watchdog
+
 # umount everything before doing switch root as the init process
 # is responsible of doing these inside the final boot env.
 umount -l /dev
@@ -96,15 +98,16 @@ umount -l -a R
 umount -l -a
 umount -a
 
+if false; then #################################################################
 # Old preinit ( < 1.0.4.* Sailfish releases) does not mount /dev so let's mount
 # it here.
 mkdir -p ${ROOTMNTDIR}/dev
 mount -t devtmpfs devtmpfs ${ROOTMNTDIR}/dev
+mkdir -p ${ROOTMNTDIR}/pts ${ROOTMNTDIR}/shm
+fi #############################################################################
 
-echo "initrd: Switching to rootfs at ${ROOTMNTDIR}, with init ${INITBIN}" > ${ROOTMNTDIR}/dev/kmsg
-
-# Reset watchdog timer
-echo "V" > /dev/watchdog
+echo "initrd: Switching to rootfs at ${ROOTMNTDIR},"\
+" with init ${INITBIN}" > ${ROOTMNTDIR}/dev/kmsg
 
 # usage: switch_root <newrootdir> <init> <args to init>
 exec switch_root ${ROOTMNTDIR} ${INITBIN}

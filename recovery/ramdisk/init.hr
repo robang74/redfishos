@@ -1,5 +1,5 @@
 #!/bin/sh
-###############################################################################
+################################################################################
 #
 # This file is part of Jolla recovery console
 #
@@ -20,9 +20,9 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-###############################################################################
+################################################################################
 
-if false; then ################################################################
+if false; then #################################################################
 
 export PATH=/sbin:/bin:/usr/bin:/usr/sbin
 ANDROID_USB=/sys/class/android_usb/android0
@@ -89,7 +89,7 @@ usb_setup() {
     fi
 }
 
-fi ############################################################################
+fi #############################################################################
 
 usb_info() {
     # make sure USB is settled
@@ -103,20 +103,16 @@ set -o allexport
 . /usr/bin/recovery-functions.sh
 set +o allexport
 
-if false; then ################################################################
+if false; then #################################################################
 
 echo "Doing mounts... "
 mount /dev
-mkdir /dev/pts
+mkdir -p /dev/pts /dev/shm
 mount -a
 cat /proc/mounts > /etc/mtab
 
-fi ############################################################################
-
 mkdir -p /config
 mount -t configfs none /config
-
-if false; then ################################################################
 
 #Run mdev
 echo "Running mdev..."
@@ -127,7 +123,7 @@ echo /bin/mdev > /proc/sys/kernel/hotplug
 
 usb_setup "Jolla Debug setting up"
 
-fi ############################################################################
+fi #############################################################################
 
 # Minimize power consumption by lowering display brightness to minimum
 write $DISPLAY_BRIGHTNESS_PATH $DISPLAY_BRIGHTNESS
@@ -150,6 +146,8 @@ sed -i "s/@IFACE@/$USB_IFACE/g" /etc/udhcpd.conf
 udhcpd
 
 echo V > /dev/watchdog
+
+yes recovery | passwd root
 
 usb_info "Jolla Debug telnet on $USB_IFACE $LOCAL_IP - also running udhcpd"
 yamui -n 1 -t "RECOVERY: Connect USB cable and open telnet to address $LOCAL_IP" &

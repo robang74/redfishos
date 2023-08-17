@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 ##############################################################################
 #
 # Generic ramdisk init process for booting a device. Based Marko Saukko's

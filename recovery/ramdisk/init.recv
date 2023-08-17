@@ -1,4 +1,4 @@
-#!/bin/ash 
+#!/bin/sh
 ##############################################################################
 #
 # This file is part of Jolla recovery console, RAF reworked
