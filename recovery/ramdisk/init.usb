@@ -1,0 +1,75 @@
+#!/bin/sh
+##############################################################################€
+#
+# Generic ramdisk init process for booting a device. Based Marko Saukko's
+# initrd for Galaxy Note GT-i9250. RAF reworked
+#
+# Copyright (C) 2014 Jolla Ltd.
+# Copyright (C) 2012 Marko Saukko
+# Copyright (C) 2023 Roberto A. Foglietta
+#     Contact: roberto.foglietta@gmail.com
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+#
+###############################################################################
+# release: 0.0.1
+
+# This sets up the USB with whatever USB_FUNCTIONS are set to via configfs
+usb_setup_configfs() {
+    G_USB_ISERIAL=$GADGET_DIR/strings/0x409/serialnumber
+    mkdir $GADGET_DIR
+    write $GADGET_DIR/idVendor                   "0x2931"
+    write $GADGET_DIR/idProduct                  "0x0A06"
+    mkdir $GADGET_DIR/strings/0x409
+    write $GADGET_DIR/strings/0x409/serialnumber "$1"
+    write $GADGET_DIR/strings/0x409/manufacturer "robang74"
+    write $GADGET_DIR/strings/0x409/product      "usblink"
+
+    if echo $USB_FUNCTIONS | grep -q "rndis"; then
+        mkdir $GADGET_DIR/functions/rndis.rndis0
+        mkdir $GADGET_DIR/functions/rndis_bam.rndis
+    fi
+
+    mkdir $GADGET_DIR/configs/c.1
+    mkdir $GADGET_DIR/configs/c.1/strings/0x409
+    write $GADGET_DIR/configs/c.1/strings/0x409/configuration "$USB_FUNCTIONS"
+
+    if echo $USB_FUNCTIONS | grep -q "rndis"; then
+        ln -s $GADGET_DIR/functions/rndis.rndis0 $GADGET_DIR/configs/c.1
+        ln -s $GADGET_DIR/functions/rndis_bam.rndis $GADGET_DIR/configs/c.1
+    fi
+
+    echo "$(ls -1 /sys/class/udc)" > $GADGET_DIR/UDC
+}
+
+# This sets up the USB with whatever USB_FUNCTIONS are set to via android_usb
+usb_setup_android_usb() {
+    G_USB_ISERIAL=$ANDROID_USB/iSerial
+    write $ANDROID_USB/enable          0
+    write $ANDROID_USB/functions       ""
+    write $ANDROID_USB/enable          1
+    usleep 500000 # 0.5 delay to attempt to remove rndis function
+    write $ANDROID_USB/enable          0
+    write $ANDROID_USB/idVendor        2931
+    write $ANDROID_USB/idProduct       0A06
+    write $ANDROID_USB/iManufacturer   "robang74"
+    write $ANDROID_USB/iProduct        "usblink"
+    write $ANDROID_USB/iSerial         "$1"
+    write $ANDROID_USB/functions       $USB_FUNCTIONS
+    write $ANDROID_USB/enable          1
+}
+
+usb_setup "redfishos"
