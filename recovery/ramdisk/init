@@ -40,7 +40,7 @@ USB_FUNCTIONS="rndis"
 
 write()
 {
-	echo -n "$2" > "$1"
+    echo -n "$2" > "$1"
 }
 
 # This sets up the USB with whatever USB_FUNCTIONS are set to via configfs
@@ -112,7 +112,7 @@ mount -t configfs none /config
 #mdev -s -f
 ##echo /bin/mdev >/proc/sys/kernel/hotplug
 
-echo "Setting USB gadget..." 
+echo "Setting USB gadget..."
 usb_setup "Jolla Debug setting up"
 
 for i in 0 1 2 3 4 5 6 7 8 9; do
@@ -121,10 +121,10 @@ for i in 0 1 2 3 4 5 6 7 8 9; do
 done
 
 if dmesg | grep -q configfs-gadget; then
-	echo "initrd: USB connection found at $i° attempt" > /dev/kmsg
+    echo "initrd: USB connection found at $i° attempt" > /dev/kmsg
     . /init.hr
 else
-	echo "initrd: USB connection NOT found, boot mode" > /dev/kmsg
+    echo "initrd: USB connection NOT found, boot mode" > /dev/kmsg
 ##  echo >/proc/sys/kernel/hotplug
     umount /config
     . /init.hb

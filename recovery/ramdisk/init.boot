@@ -44,25 +44,25 @@ MNTSCRIPT="/sbin/root-mount"
 
 fail()
 {
-	echo "initrd: Failed" > /dev/kmsg
-	echo "initrd: $1" > /dev/kmsg
-	reboot2 recovery
+    echo "initrd: Failed" > /dev/kmsg
+    echo "initrd: $1" > /dev/kmsg
+    reboot2 recovery
 }
 
 if ! mount | grep -q "on /proc "; then
-	mkdir -p /proc
-	mount -t proc proc /proc
+    mkdir -p /proc
+    mount -t proc proc /proc
 fi
 
 if ! mount | grep -q "on /sys "; then
-	mkdir -p /sys
-	mount -t sysfs sys /sys
+    mkdir -p /sys
+    mount -t sysfs sys /sys
 fi
 
 if ! mount | grep -q "on /dev "; then
-	mkdir -p /dev
-	mount -t devtmpfs devtmpfs /dev
-	mkdir -p /dev/pts
+    mkdir -p /dev
+    mount -t devtmpfs devtmpfs /dev
+    mkdir -p /dev/pts
 fi
 
 # Some filesystem tools may need mtab to work
@@ -74,28 +74,28 @@ mkdir -p $ROOTMNTDIR
 
 # Mount the root filesystem
 if [ -e $MNTSCRIPT ]; then
-	$MNTSCRIPT $ROOTMNTDIR
-	if [ $? -eq 0 ]; then
-		echo "initrd: Mounting root succeeded" > /dev/kmsg
-	else
-		fail "Mouting root failed"
-	fi
+    $MNTSCRIPT $ROOTMNTDIR
+    if [ $? -eq 0 ]; then
+        echo "initrd: Mounting root succeeded" > /dev/kmsg
+    else
+        fail "Mouting root failed"
+    fi
 else
-	fail "$MNTSCRIPT does not exist, cannot mount root!"
+    fail "$MNTSCRIPT does not exist, cannot mount root!"
 fi
 
 echo "initrd: Searching for init process..." > /dev/kmsg
 
 if [ -n $INITBIN ] || [ -e $ROOTMNTDIR/$INITBIN ]; then
-	echo "initrd: Found $INITBIN" > /dev/kmsg
+    echo "initrd: Found $INITBIN" > /dev/kmsg
 elif [ -e ${ROOTMNTDIR}/usr/sbin/init ]; then
-	INITBIN="/usr/sbin/init"
+    INITBIN="/usr/sbin/init"
 elif [ -e ${ROOTMNTDIR}/sbin/init ]; then
-	INITBIN="/sbin/init"
+    INITBIN="/sbin/init"
 elif [ -e ${ROOTMNTDIR}/init ]; then
-	INITBIN="/init"
+    INITBIN="/init"
 else
-	fail "Unable to find init process from rootfs."
+    fail "Unable to find init process from rootfs."
 fi
 
 # umount everything before doing switch root as the init process
