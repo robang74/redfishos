@@ -28,7 +28,7 @@ src_file_env "sfos-ssh-connect"
 
 usage() {
     echo
-    echo "USAGE: $(basename $0) [ [-v] /home/defaultuser | -h ]"
+    echo "USAGE: $(basename $0) [ -h | -v ] [ /home/defaultuser ]"
     echo
     exit 0
 }

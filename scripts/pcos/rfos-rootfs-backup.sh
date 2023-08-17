@@ -41,7 +41,7 @@ excl_list_4="/usr/share/themes /usr/share/man /usr/share/sailfish-tutorial
 usage() {
     cat <<'EOF'
 
-USAGE: excl_list='...' $(basename $0) [-v|-h] [-0|...|-4] [/rootfs]
+USAGE: excl_list='...' $(basename $0) [ -v | -h ] [- 0|...|-4 ] [ /rootfs ]
 
 EOF
     exit 0
