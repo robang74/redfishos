@@ -27,7 +27,7 @@
 # IRC: Sage @ #mer & #nemomobile @ Freenode
 #
 ###############################################################################
-# release: 0.0.5
+# release: 0.0.6
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
@@ -108,9 +108,9 @@ mount -a
 cat /proc/mounts >/etc/mtab
 mount -t configfs none /config
 
-echo "Running mdev..."
-mdev -s -f
-#echo /bin/mdev >/proc/sys/kernel/hotplug
+#echo "Running mdev..."
+#mdev -s -f
+##echo /bin/mdev >/proc/sys/kernel/hotplug
 
 echo "Setting USB gadget..." 
 usb_setup "rfos45021" 
