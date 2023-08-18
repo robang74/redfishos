@@ -6,9 +6,8 @@
 #
 ################################################################################
 
-initscripts=$(ls -1 recovery/ramdisk/init* | grep -Ev .orig ||:)
-
-filelist="$(ls -1 scripts/*.{sh,env} scripts/*os/*.{sh,env}) $initscripts"
+filelist=$(ls -1 scripts/*.{sh,env} scripts/*os/*.{sh,env} recovery/*.{sh,env})
+filelist="$filelist $(ls -1 recovery/ramdisk/init* | grep -Ev .orig ||:)"
 
 stat="do"
 
