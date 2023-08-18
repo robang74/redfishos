@@ -38,7 +38,7 @@ for i in $rpm_list_1; do wget -c $url_1/$i; done
 fi #============================================================================
 
 for i in $rpm_list_1; do
-	rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
+    rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
 done; echo
 
 bin_excl=""
@@ -46,9 +46,9 @@ bin_excl=""
 usr_excl="man locale licenses"
 
 sudo tar cvzf ../$tgz --exclude="usr/lib/.build-id" --exclude="usr/share/doc" \
-	$(for i in $usr_excl; do echo --exclude="usr/share/$i"; done;
-	  for i in $bin_excl; do echo --exclude={,usr/}*bin/$i; done;) \
-	--exclude="usr/sbin/dns*" $(find ./ ! -name \*.rpm -maxdepth 1|cut -d/ -f2-)
+    $(for i in $usr_excl; do echo --exclude="usr/share/$i"; done;
+      for i in $bin_excl; do echo --exclude={,usr/}*bin/$i; done;) \
+    --exclude="usr/sbin/dns*" $(find ./ ! -name \*.rpm -maxdepth 1|cut -d/ -f2-)
 cd ..
 
 sudo chown -R $USER.$USER $tgz
@@ -57,17 +57,17 @@ echo; du -ks $tgz | tr '\t' ' '
 if [ "x$1" = "x--ssh-test" ]; then shift #======================================
 
 pcos_source_env() {
-	local srcfile="$(dirname $0)/$1.env"
-	if [ ! -r "$srcfile" ]; then
-		srcfile="/usr/bin/$1.env"
-	fi
-	if [ ! -r "$srcfile" ]; then
-		echo
-		echo "ERROR: $1.env not found, abort."
-		echo
-		return 1
-	fi >&2
-	source $1.env
+    local srcfile="$(dirname $0)/$1.env"
+    if [ ! -r "$srcfile" ]; then
+        srcfile="/usr/bin/$1.env"
+    fi
+    if [ ! -r "$srcfile" ]; then
+        echo
+        echo "ERROR: $1.env not found, abort."
+        echo
+        return 1
+    fi >&2
+    source $1.env
 }
 
 pcos_source_env do_ssh_ldd_test_utils
@@ -84,11 +84,11 @@ sfish 'cd /tmp; rm -rf tb; mkdir -p tb; tar xzf '$tgz' -C tb; export'\
 ' xargs ldd; } 2>&1 | egrep ":|found" | grep -v "warning:"' >$tmpf
 
 if grep -q "found" $tmpf; then
-	echo -e "\nldd check: KO\n"
-	cat $tmpf
-	echo
+    echo -e "\nldd check: KO\n"
+    cat $tmpf
+    echo
 else
-	echo -e "\nldd check: OK\n"
+    echo -e "\nldd check: OK\n"
 fi
 rm -f $tmpf
 

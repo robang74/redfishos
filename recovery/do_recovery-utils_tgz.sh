@@ -30,8 +30,8 @@ for i in $rpm_list; do wget -c $url/$i; done
 
 fi #============================================================================
 
-for i in $rpm_list; do 
-	rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
+for i in $rpm_list; do
+    rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
 done; echo
 
 bin_excl="
@@ -43,9 +43,9 @@ lib_escl="libopcodes"
 
 cd usr/bin; sudo ln -sf unpigz pigz; cd - >/dev/null
 sudo tar cvzf ../$tgz --exclude="usr/lib" --exclude="usr/share" \
-	$(for i in $lib_excl; do echo --exclude={,usr/}lib*/$i*; done; \
-	  for i in $bin_excl; do echo --exclude={,usr/}*bin/$i; done;) \
-	$(find ./ ! -name \*.rpm -maxdepth 1|cut -d/ -f2-)
+    $(for i in $lib_excl; do echo --exclude={,usr/}lib*/$i*; done; \
+      for i in $bin_excl; do echo --exclude={,usr/}*bin/$i; done;) \
+    $(find ./ ! -name \*.rpm -maxdepth 1|cut -d/ -f2-)
 cd ..
 
 sudo chown -R $USER.$USER $tgz
@@ -54,17 +54,17 @@ echo; du -ks $tgz | tr '\t' ' '
 if [ "x$1" = "x--ssh-test" ]; then shift #======================================
 
 pcos_source_env() {
-	local srcfile="$(dirname $0)/$1.env"
-	if [ ! -r "$srcfile" ]; then
-		srcfile="/usr/bin/$1.env"
-	fi
-	if [ ! -r "$srcfile" ]; then
-		echo
-		echo "ERROR: $1.env not found, abort."
-		echo
-		return 1
-	fi >&2
-	source $1.env
+    local srcfile="$(dirname $0)/$1.env"
+    if [ ! -r "$srcfile" ]; then
+        srcfile="/usr/bin/$1.env"
+    fi
+    if [ ! -r "$srcfile" ]; then
+        echo
+        echo "ERROR: $1.env not found, abort."
+        echo
+        return 1
+    fi >&2
+    source $1.env
 }
 
 pcos_source_env do_ssh_ldd_test_utils
