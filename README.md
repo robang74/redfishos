@@ -219,6 +219,12 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
 
+* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk#README.md) 
+
+  **description**: this boot image check for a USB data connection with a Laptop/PC for deciding about going for the recovery or normal boot mode
+
+  **status**: ready for advanced users adoption, supports restore and backup shell scripts suite.
+
 * 15.08.2023, [user and system backup suite](scripts/pcos)
 
   **description**: this shell scripts running on the laptop/PC provide backup and restore capabilities by SSH via USB.
