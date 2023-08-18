@@ -1,10 +1,6 @@
-> # :warning: WARNING 
+> ## :warning: WARNING 
 > 
-> The scripts in `recovery` folder are still in alpha or beta testing. Do not use it if you are sure about what you are doing.
-> 
-> Here below are a couple of exceptions to this general rule: the scripts to generate the `recovery` and `sysdebug` archives.
-> 
-> However, these two archives installed in the root filesystem can brick your system. Hence, you have been warned.
+> The scripts in `recovery` folder are still in beta testing. Do not use them unless you are sure about what you are doing. Here below are a couple of exceptions to this general rule: the scripts for generating the `recovery`, `sysdebug` and `extralibs` archives, which are quite well tested. However, the three archives that they produce, installed in the SFOS root filesystem, can potentially brick your system. Hence, you have been warned.
 
 ---
 
