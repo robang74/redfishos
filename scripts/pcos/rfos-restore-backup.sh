@@ -28,20 +28,24 @@ src_file_env "sfos-ssh-connect"
 
 usage() {
     echo
-    echo "USAGE: $(basename $0) [ -v | -h ] tarball [ /rootfs ]"
+    echo "USAGE: $(basename $0) [ -v | -h ] tarball.gz [ /rootfs ]"
     echo
-    exit 0
+    exit ${1:-0}
 }
 
 while [ -n "${1:-}" ]; do
-    if [ -e "$1" ]; then
+    if [ -e "$1" -a ! -n "${tarball:-}" ]; then
+        if ! file "$1" | grep -q "gzip compressed data"; then
+            printf "\nERROR: tarball is not gzip compressed data, abort.\n\n" >&2
+            exit 1
+        fi
         tarball="$1"
         shift
         continue
     fi
     if [ "${1:0:1}" = "/" ]; then
         if [ ! -n "$tarball" ]; then
-            usage
+            usage 1
         fi
         rmtdir="$1"
         shift
@@ -60,7 +64,7 @@ done
 
 rmtdir=${rmtdir:-/}
 
-test -n "$tarball" || exit 1
+test -n "${tarball:-}" || usage 1
 
 # MAIN CODE EXECUTION ##########################################################
 
