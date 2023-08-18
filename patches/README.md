@@ -44,7 +44,9 @@ This is a list of patches developed to evaluate the potential of `Patch Manager`
 
 For more information about `Patch Manager`, check out this [analysis](../forum/knowhow/system-patch-manager-p1.md) about its shortcomings and future improvements.
 
-## System patches
+---
+
+## System patches header
 
 In order to apply patches to the system a special header has been designed
 
