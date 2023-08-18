@@ -4,6 +4,7 @@
 #           Released under the GPLv2 license terms.
 #
 ################################################################################
+# release: 0.0.1
 
 tar_dir="etc bin usr var"
 name="recovery-utils"
