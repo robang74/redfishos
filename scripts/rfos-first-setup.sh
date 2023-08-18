@@ -538,6 +538,15 @@ echo "  \_ kernel lcr settings: $(set_battery_lcr_params)"
 echo "  \_ Setting status: kernel only, no mce-tools"
 n=$((n+1))
 
+echo
+m=$((m+1))
+echo "=> $m. Set schedutil CPUs governor"
+echo
+for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
+    echo "schedutil" >$i
+done
+n=$((n+1))
+
 fi # ------------------------------------------------------------------------- #
 
 echo
