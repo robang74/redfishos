@@ -93,6 +93,6 @@ The `--ssh-test` enables shell script code which copy and test via SSH the tarba
 
 Most - but not all - the command-line binaries included into these tarballs can be replaced by those available into the full features busybox statically linked available at the link here below:
 
-* [sailfish-os-busybox 1.36.1-git2-raf3 all-arch .zip archive](https://github.com/robang74/sailfish-os-busybox/suites/14532585331/artifacts/822197317)
+* [sailfish-os-busybox 1.36.1-git2-raf3 all-arch .zip archive](https://github.com/robang74/sailfish-os-busybox/actions/runs/5649829805)
 
 Before installing any of the RPM package contained in that .zip archive read [this page](https://github.com/robang74/sailfish-os-busybox#readme).
