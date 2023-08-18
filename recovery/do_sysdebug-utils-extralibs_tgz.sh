@@ -15,12 +15,15 @@ url_1="http://mirror.centos.org/centos/8-stream/BaseOS/aarch64/os/Packages/"
 rpm_list_1="
 libcap-2.48-4.el8.aarch64.rpm
 glibc-2.28-228.el8.aarch64.rpm
+libpcap-1.9.1-5.el8.aarch64.rpm
 libselinux-2.9-8.el8.aarch64.rpm
 openssl-libs-1.1.1k-9.el8.aarch64.rpm
 bzip2-libs-1.0.6-26.el8.aarch64.rpm
+libibverbs-46.0-1.el8.1.aarch64.rpm
 libxml2-2.9.7-16.el8.aarch64.rpm
 libzstd-1.4.4-1.el8.aarch64.rpm
 libgcc-8.5.0-20.el8.aarch64.rpm
+libnl3-3.7.0-1.el8.aarch64.rpm
 pcre2-10.32-3.el8.aarch64.rpm
 "
 
