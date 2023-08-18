@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.8
+# release: 0.1.9
 
 set -ue
 
@@ -148,6 +148,9 @@ echo "Script running on a workstation"
 scripts_list="
 pcos/fastboot-usb3fix.sh
 pcos/sfos-ssh-connect.env
+pcos/rfos-restore-backup.sh
+pcos/rfos-rootfs-backup.sh
+pcos/rfos-user-backup.sh
 rfos-script-functions.env
 rfos-suite-installer.sh
 rfos-first-setup.sh
