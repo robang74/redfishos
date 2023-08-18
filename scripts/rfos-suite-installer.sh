@@ -125,7 +125,7 @@ check_running_shell
 
 # VARIABLES DEFINITIONS ########################################################
 
-branch="devel"
+branch="main"
 branch="${1:-$branch}"
 url="https://raw.githubusercontent.com/robang74/redfishos/$branch"
 dir=$HOME/bin
