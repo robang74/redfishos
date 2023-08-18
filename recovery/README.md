@@ -57,7 +57,7 @@ The script that downloads and creates the `sysdebug` tarball is here:
 
 * [do_sysdebug-utils_tgz.sh](do_sysdebug-utils_tgz.sh)
 
-The created tarball size is about 7.2Mb. Therefore, it is not included in this repository.
+The created tarball size is about 7.2 MB. Therefore, it is not included in this repository.
 
 Moreover, due to its nature, it is not immediate - at the moment - to deploy somewhere else than the root filesystem:
 
@@ -66,6 +66,10 @@ tar -k xvzf $PWD/sysdebug-utils.tar.gz -C /
 ```
 
 The `-k` avoids overwriting the original files, but it is supposed that they were not in place if you need this tarball.
+
+* [do_sysdebug-utils-extralibs_tgz.sh](do_sysdebug-utils-extralibs_tgz.sh)
+
+The `sysdebug` package can be installed also in the recovery image via SSH. In such a case, it requires extra libraries and the script above provide to create the related package. Its compressed size is a mear 6.1 MB.
 
 <sup>________</sup>
 
