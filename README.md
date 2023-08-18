@@ -219,7 +219,7 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
 
-* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk#README.md) 
+* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk#readme) 
 
   **description**: this boot image check for a USB data connection with a Laptop/PC for deciding about going for the recovery or normal boot mode
 
