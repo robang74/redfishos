@@ -14,7 +14,7 @@ The new recovery image is less than 1Mb bigger than the original while the boot 
 21068 rfos-boot-image.img
 ```
 
-This recovery image has plenty of details fine-tuned¹, and includes an [image to display](https://raw.githubusercontent.com/robang74/redfishos/devel/forum/todo/recovery-telnet-phonescreen.jpeg) properly the IP address telnet message plus it goes into recovery mode if the smartphone is connected to a laptop/PC USB but not if it is connected to a power source. Otherwise, it boots normally.
+This recovery image has plenty of details fine-tuned¹, and includes an [image to display](../../forum/todo/recovery-telnet-phonescreen.jpeg) properly the IP address telnet message plus it goes into recovery mode if the smartphone is connected to a laptop/PC USB but not if it is connected to a power source. Otherwise, it boots normally.
 
 The most interesting feature is that I can build-up that image and flash both `boot_a`, `boot_b` in just two seconds. The trick? I use the SSH to flash the partitions: the recovery image can update itself.
 
@@ -26,15 +26,32 @@ The final outcome is that you will connect your smartphone to your laptop/PC and
 
 ---
 
-In the [recovery image refactoring](../../forum/todo/recovery-image-refactoring.md) page was highlighted some shortcomings about the recovery image which instead, it rappresents a great opportunity to do much more than a rare-events fallback but an ordinary tool for system mainteinance.
+### A supervising firmware
 
-![](https://raw.githubusercontent.com/robang74/redfishos/devel/forum/todo/recovery-telnet-phonescreen.jpeg)
+In the [recovery image refactoring](../../forum/todo/recovery-image-refactoring.md) page was highlighted some shortcomings about the SailFish OS recovery image which properly reworked, instead, it rappresents a great opportunity to do much more stuff than a rare-events fallback minimal system but an ordinary tool for system mainteinance.
 
-Obviously, having a full suite of scripts that can run on `busybox ash` with no adaptation or a little of adaptation, make this image even more intriguing.
+![](https://raw.githubusercontent.com/robang74/redfishos/main/forum/todo/recovery-telnet-phonescreen.jpeg)
+
+Obviously, having a full suite of scripts that can run on `busybox ash` with no adaptation or a little of adaptation, make this image even more intriguing. On the long-term, we can see it as a supervising firmware composed by three main components: a monolithic Linux kernel dedicatd for a specific device, a full-features statically linked busybox and a minimal graphical interface like [yamui](https://github.com/robang74/yamui).
+
+---
+
+### A system configurations manager
+
+The 1.2 is the combination of the 1.1 and 1.3 because when we have a recovery image always available that can run in RAM and manage filesystems and partitions, backups, and restores, applying a system patch is just a matter of keeping a local database of them and their backup. It is just a matter of perspective: 
+
+- patch manager runs on SFOS and applies volatile patches on SFOS mainly for UI or system services like SSH which do not specifically require a reboot, or connman (in particular about firewalling rules), which require a SFOS utilities restart.
+
+- system patch manager can run on the recovery image and therefore can safely handle any system patch before the SFOS boot or after its end of work.
+
+You can object that a system patch manager, which is a set of shell scripts, forces the end-users to cope with a console, SSH, telnet, etc. but I never wrote that. I wrote that being able to operate with a bare minimum running system like shell scripts is a **must** for a system patch manager³. I never wrote that end-users should cope with a console but suggested that they use their laptop/PC browser.
 
 ---
 
 **Notes**
 
-¹ Among those details, there is also the `telnet` menu item `4) Perform file system check` that is doing its duty properly now.
-² Rather than establishing an autonomous connection to the internet, much more practical and easier is leveraging the GNU/Linux laptop/PC as a proxy in such a way that the recovery image can have an Internet connection using the one available on the workstation, which seems more appropriate after all.
+1. Among those details, there is also the `telnet` menu item `4) Perform file system check` that is doing its duty properly now.
+
+2. Rather than establishing an autonomous connection to the internet, much more practical and easier is leveraging the GNU/Linux laptop/PC as a proxy in such a way that the recovery image can have an Internet connection using the one available on the workstation, which seems more appropriate after all.
+
+3. or a system configuration manager that can develop (or integrate) a IoT fleet manager as soon as the recovery image is able to access an Internet connection independently, which can be a technical challenge for a software/service company but not for vendors like Sony or Qualcomm. Again, it is just a matter of perspective.
