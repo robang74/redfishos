@@ -50,6 +50,8 @@ You can object that a system patch manager, which is a set of shell scripts, for
 
 Before being a tool available for end-user, it can be a fundamental tool for an embedded system architect that wishes to evolve the SailFish OS helped by an assisting tool that can provide backup and retore within a minute.
 
+*After all, Rome has not been built during a night, but block by block with a plan in mind.*
+
 ---
 
 **Notes**
