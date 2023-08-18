@@ -42,7 +42,7 @@
 #    Modular/aarch64/ fedora-31-updates-modular
 #
 ################################################################################
-# release: 0.1.9
+# release: 0.2.0
 
 set -u
 
@@ -61,8 +61,14 @@ set_flashdisk_power_on() {
     local list i
     # RAF, TODO: the external SD/MMC should not be influenced by this
     list=$(find /sys/block/mmcblk0/ /sys/block/mmcblk0rpmb/ -name control)
-    for i in $(echo "$list" | grep "power/control"); do echo on >$i; done
+    for i in $(echo "$list" | grep "power/control"); do echo ${1:-on} >$i; done
     echo "$list" | grep "power/control" | wc -l
+}
+
+set_cpus_governor_policy() {
+    for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
+         echo "${1:-schedutil}" >$i
+    done
 }
 
 rpms_install() {
@@ -498,9 +504,7 @@ echo
 m=$((m+1))
 echo "=> $m. Set balanced-interactive governor"
 echo
-for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
-    echo "schedutil" >$i
-done
+set_cpus_governor_policy
 mcetool -S interactive \
     --set-power-saving-mode=enabled \
     --set-low-power-mode=disabled   \
@@ -542,9 +546,7 @@ echo
 m=$((m+1))
 echo "=> $m. Set schedutil CPUs governor"
 echo
-for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
-    echo "schedutil" >$i
-done
+set_cpus_governor_policy
 n=$((n+1))
 
 fi # ------------------------------------------------------------------------- #
