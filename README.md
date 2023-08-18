@@ -1,7 +1,9 @@
 # RedFish OS
 
 ```diff
+
 + Refactoring SailFish OS while it is running on a Sony Xperia 10 II
+
 ```
 
 > :warning: **Warning**
@@ -36,8 +38,10 @@ As much as you are interested in this project, you can concretely support a spec
 
 Roberto Foglietta is the document-id real persona name behind on-line `Roberto A. Foglietta` authorship brand, usually presented as:
 
-```
+```bash
+
 (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
+
 ```
 
 in the files headers, in the Change Logs, in the documents authorship or referal sections, on the websites footers, etc.
@@ -152,7 +156,7 @@ Few components in the SailFish OS are proprietary, and the package downloaded fr
 Some other proprietary software and vendor firmwares came from Sony Open Device AOSP. Instead, the boot images are compositions of binaries from open source and software libre projects only. Therefore, the boot images can be freely redistributed as long as those redistributing them fulfil the FOSS licence obligations related to those binaries.
 
 > :information_source: **Note**
-> 
+> 
 > In case you wish to redistribute the SFOS images, the alternative to fulfilling those obligations by yourself is to link to this page, whose aim is to collect all those FOSS contributions. However, you have to check for yourself if this list of resources is complete and updated with respect to the boot image that you wish to distribute. Usually, it is not unless you have paid for it.
 
 ---
@@ -219,26 +223,26 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
 
-* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk#readme) 
+* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk#the-recovery-ramdisk) 
 
   **description**: this boot image check for a USB data connection with a Laptop/PC for deciding about going for the recovery or normal boot mode
 
   **status**: ready for advanced users adoption, supports restore and backup shell scripts suite.
 
-* 15.08.2023, [user and system backup suite](scripts/pcos)
+* 15.08.2023, [user and system backup suite](scripts/pcos#the-users-and-system-backup-suite)
 
   **description**: this shell scripts running on the laptop/PC provide backup and restore capabilities by SSH via USB.
 
   **status**: ready for advanced users adoption, full root filesystem backup in 1 minute.
 
-* 12.08.2023, [system patch manager suite](scripts/sfos)
+* 12.08.2023, [system patch manager suite](scripts/sfos#system-patch-manager-suite)
 
   **description**: the system patch manager scripts suite in its basic features has been completed.
 
   **status**: ready for advanced users usage, in particular about the Patch Manager role overlapping.
 
 * 08.08.2023, [RedFish OS suite installation](scripts/README.md#installation)
-* 08.08.2023, [udhcpd tether config fixing patch](patches/udhcpd-tether-config-fixing/)
+* 08.08.2023, [udhcpd tether config fixing patch](patches/udhcpd-tether-config-fixing/description.md)
 * 08.08.2023, [system patches reworked and updated](patches/README.md)
 * 08.08.2023, [patch downloader and installer](scripts/README.md)
 
