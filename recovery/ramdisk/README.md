@@ -7,11 +7,11 @@ This folder contains - by now - just a few scripts about the early `init` proces
 - [init.hr](init.hr) - this is the script for the recovery mode if a USB connection is found.
 - [init.hb](init.hb) - this is the script for the normal boot mode otherwise.
 
-The new recovery image is less than 1Mb bigger than the original, while the boot partition is 64 MB. There is a lot of space that is still available for future expansions, and the [system debug package](../#about-sysdebug-package) is about 14 MB (compressed size because also the boot image is compressed in the same way) with its extra library fro the recovery image. The following sizes are shown in KB instead:
+The new recovery image is less than 2Mb bigger than the original, including the [recovery utils package](../#about-recovery-package) command line tools and its extra dependencies, while the boot partition is 64 MB. Hence, there is a lot of space that is still available for future expansions, and the [system debug package](../#about-sysdebug-package) is about 14 MB (compressed size because also the boot image is compressed in the same way) with its extra library for the recovery image. The following sizes are shown in KB instead:
 
 ```
 20616 hybris-recovery.img
-21068 rfos-boot-image.img
+22436 rfos-boot-image.img
 ```
 
 This recovery image is plenty of fine-tuned¹ details, and includes an [image to display](../../forum/todo/recovery-telnet-phonescreen.jpeg) properly the IP address telnet message. Plus, it automatically goes into recovery mode when the smartphone is connected to a laptop/PC USB, but not if it is connected to a power source. Otherwise, it boots normally. Therefore, it can be the default and the only boot image.
