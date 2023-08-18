@@ -48,7 +48,7 @@ About the first stage of the SailFish OS [refactoring](../../#about-sfos-refacto
 
 You can object that a system patch manager, which is a set of shell scripts, forces the end-users to cope with a console, SSH, telnet, etc. but I never wrote that. I wrote that being able to operate with a bare minimum running system like shell scripts is a **must** for a system patch manager³. I never wrote that end-users should cope with a console but suggested that they use their laptop/PC browser which is not something immediate to develop but feasible in a reasonable terms.
 
-*After all, Rome has not been built during a night, but block by block with a plan in mind.*
+Before being a tool available for end-user, it can be a fundamental tool for an embedded system architect that wishes to evolve the SailFish OS helped by a assisting tool that can provide backup and retore within a minute.
 
 *After all, Rome has not been built during a night, but block by block with a plan in mind.*
 
