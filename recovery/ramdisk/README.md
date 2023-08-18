@@ -2,16 +2,16 @@
 
 This folder contains - by now - just few scripts about early `init` process which are part of a broader recovery image rework
 
-- [init](init)
-- [init.hb](init.hb)
-- [init.hr](init.hr)
-- [init.usb](init.usb)
+- [init](init) - this is the first script that runs after the kernel
+- [init.usb](init.usb) - this is the script that configure the USB gadget
+- [init.hr](init.hr) - this is the script for the recovery mode if a USB connection is found
+- [init.hb](init.hb) - this is the script for the normal boot mode, otherwise
 
-The new recovery image is less than 1Mb bigger than the original while the boot partition is 64 Mb. There is a lot of space which is still available for future expansions and the system debug package is about 20 Mb uncompressed.
+The new recovery image is less than 1Mb bigger than the original while the boot partition is 64 Mb. There is a lot of space which is still available for future expansions and the system debug package is about 20 Mb uncompressed. The following sizes are shown in Kb:
 
 ```
 20616 hybris-recovery.img
-21068 mynewimage.img
+21068 rfos-boot-image.img
 ```
 
 This recovery image has plenty of details fine-tuned¹, and includes an [image to display](https://raw.githubusercontent.com/robang74/redfishos/devel/forum/todo/recovery-telnet-phonescreen.jpeg) properly the IP address telnet message plus it goes into recovery mode if the smartphone is connected to a laptop/PC USB but not if it is connected to a power source. Otherwise, it boots normally.
@@ -22,7 +22,7 @@ Obviously, it can also deliver a restore of a previous backup for any partition,
 
 The tools that have a good chance to collect dust in the future are: fastboot, Emma, XperiFirm, etc. - the day the recovery image will be able to establish a LTE or a WLAN connection², it can potentially do the entire SFOS {installation, recovery, restore, mainteinance, debugging, etc.} by remote also in live with someone else if properly authorized by an one-time RSA key. 
 
-The final outcome is that you will connect your smartphone to your laptop/PC and ask for a reboot. Soon after, the smartphone will enter recovery mode, and potentially, with your browser, you can manage the entire system, including flashing partitions (**guess how**).
+The final outcome is that you will connect your smartphone to your laptop/PC and ask for a reboot. Soon after, the smartphone will enter recovery mode, and potentially, with your browser, you can manage the entire system, including flashing partitions.
 
 ---
 
@@ -34,7 +34,7 @@ Obviously, having a full suite of scripts that can run on `busybox ash` with no 
 
 ---
 
-**notes**
+**Notes**
 
 ¹ Among those details, there is also the `telnet` menu item `4) Perform file system check` that is doing its duty properly now.
 ² Rather than establishing an autonomous connection to the internet, much more practical and easier is leveraging the GNU/Linux laptop/PC as a proxy in such a way that the recovery image can have an Internet connection using the one available on the workstation, which seems more appropriate after all.
