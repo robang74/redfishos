@@ -134,6 +134,28 @@ mcetool -S $3 \
 	--set-psm-threshold=$8
 ```
 
+The **Conservative** governor can be fine-tuned at run-time by changing these parameters:
+
+```
+grep . /sys/devices/system/cpu/cpu0/cpufreq/conservative/*
+/sys/devices/system/cpu/cpu0/cpufreq/conservative/down_threshold:20
+/sys/devices/system/cpu/cpu0/cpufreq/conservative/freq_step:5
+/sys/devices/system/cpu/cpu0/cpufreq/conservative/ignore_nice_load:0
+/sys/devices/system/cpu/cpu0/cpufreq/conservative/sampling_down_factor:1
+/sys/devices/system/cpu/cpu0/cpufreq/conservative/sampling_rate:2000
+/sys/devices/system/cpu/cpu0/cpufreq/conservative/up_threshold:80
+
+grep . /sys/devices/system/cpu/cpu0/cpufreq/scaling_m*_freq
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq:1804800
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq:300000
+
+grep . /sys/devices/system/cpu/cpu$n/cpufreq/scaling_m*_freq
+/sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq:2016000
+/sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq:300000
+```
+
+but this task requires a root-privileged userland application capable of monitoring and foresighting the CPUs loads.
+
 ---
 
 ### Governors descriptions
@@ -168,7 +190,9 @@ For those end-users that wish to use a SFOS smartphone just as a mere smartphone
 
 ---
 
-## OFF-LINE NOTES
+#### OFF-LINE NOTES
+
+Some copy-and-paste text from the console while I was investigating the issue. Reported here just for contextual memory trigger.
 
 ```
 [  +0.000108] OOM killer enabled.
