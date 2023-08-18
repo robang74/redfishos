@@ -1,9 +1,9 @@
 # RedFish OS
 
 ```diff
-
+ 
 + Refactoring SailFish OS while it is running on a Sony Xperia 10 II
-
+ 
 ```
 
 > :warning: **Warning**
@@ -221,9 +221,9 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 ### News & updates
 
-Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list
+Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list. The following is about those development that are push in `main` for the users.
 
-* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk#the-recovery-ramdisk) 
+* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk/README.md) 
 
   **description**: this boot image check for a USB data connection with a Laptop/PC for deciding about going for the recovery or normal boot mode
 
