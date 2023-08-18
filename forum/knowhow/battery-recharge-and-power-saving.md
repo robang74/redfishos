@@ -93,6 +93,17 @@ echo "CPUs sets separation is {[0-$((n-1))], [$n, 7]}"
 cat "${cfp}0/scaling_available_governors"
 ```
 
+Fortunately, this division is cabled into the kernel and can be read directly from `/proc` in this way:
+
+```
+cat /sys/devices/system/cpu/cpu0/cpufreq/affected_cpus 
+0 1 2 3
+let n=$(rev /sys/devices/system/cpu/cpu0/cpufreq/affected_cpus | head -c1)+1; echo $n
+4
+cat /sys/devices/system/cpu/cpu$n/cpufreq/affected_cpus 
+4 5 6 7
+```
+
 The last line shows the available CPU governors policies reasonably supposing that they are the same for the two CPUs sets. For the Xperia 10 II these policies are: `conservative`, `powersave`, `interactive`, `performance`, `schedutil`. 
 
 About the CPUs sets for Xperia 10 III, [this comment on github](https://github.com/sonyxperiadev/device-sony-lena/issues/20#issuecomment-1220483952) reveal that the `n = 6`. Moreover the among policies there is not `interactive` but `ondemand`. At the end of this section there is a description of the various governors here cited.
