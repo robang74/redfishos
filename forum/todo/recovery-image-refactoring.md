@@ -223,7 +223,7 @@ These two commits have been developed in 2h 20m. The code is completely untested
 
 I have uploaded to the git repository the script that prints the banner and creates the related PBM and PNG images:
 
-* https://github.com/robang74/yamui/blob/master/banner/print_banner.env
+* [print-banner.sh](../../recovery/print-banner.sh)
 
 This script has been modified since the last tested version, and it might fail to run properly. It is just a proof-of-concept by now.
 
