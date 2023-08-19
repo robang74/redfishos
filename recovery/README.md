@@ -69,7 +69,7 @@ The `-k` avoids overwriting the original files, but it is supposed that they wer
 
 * [do_sysdebug-utils-extralibs_tgz.sh](do_sysdebug-utils-extralibs_tgz.sh)
 
-The `sysdebug` package can be installed also in the recovery image via SSH. In such a case, it requires extra libraries and the script above provide to create the related package. Its compressed size is a mear 6.1 MB.
+The `sysdebug` package can be installed also in the [recovery image](ramdisk#readme) via SSH. In such a case, it requires extra libraries and the script above provide to create the related package. Its compressed size is a mear 6.1 MB.
 
 <sup>________</sup>
 
