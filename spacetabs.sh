@@ -18,16 +18,3 @@ while [ "$stat" != "${curr:-1}" ]; do
 	done
 	curr=$(stat -c +%Y $filelist)
 done
-
-{ return 0 || exit 0; } 2>&1 | dd of=/dev/null status=none;
-###############################################################################
-
-for i in {1..80}; do
-    sed -i "s/ $//g" "$@" scripts/*.{sh,env} scripts/*os/*.{sh,env} \
-        $initscripts || break
-done
-
-for i in {1..80}; do
-    sed -i "s/\t/    /g" "$@" scripts/*.{sh,env} scripts/*os/*.{sh,env} \
-        $initscripts || break
-done
