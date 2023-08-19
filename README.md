@@ -223,13 +223,13 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list. The following is about those development that are push in `main` for the users.
 
-* 19.08.2023, [RedFish OS logo and animation](logo/#readme)
+* 19.08.2023, [RedFish OS logo and animation](logo#redfish-os-logo)
 
   **description**:  the RedFish OS logo has been created and added to the recovery image with animations.
 
   **status**: ready for advanced users adoption, telnet recovery menu has been reworked.
 
-* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk/#readme) 
+* 18.08.2023, [RedFish OS recovery image](recovery/ramdisk/#the-recovery-ramdisk) 
 
   **description**: this boot image check for a USB data connection with a Laptop/PC for deciding about going for the recovery or normal boot mode
 
@@ -330,6 +330,7 @@ Some files, documents, software, or firmware components can make an exception to
 
 * Vendor's proprietary blobs for Sony Xperia 10 II ([github repository fork](https://github.com/robang74/proprietary_vendor_sony_pdx201))
 * Jolla's copyright backup documentation ([Jolla folder](https://github.com/robang74/redfishos/tree/main/Jolla#about-jolla-folder))
+* RedFish OS which is all rights reserved and a trademark ([logo folder](https://github.com/robang74/redfishos/blob/devel/logo#redfish-os-logo))
 
 For further information or requests about licensing and how to obtain a fork suitable for your own business, please write to the project maintainer and copyleft owner:
 
