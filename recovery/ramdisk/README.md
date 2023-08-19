@@ -32,8 +32,6 @@ The final outcome is that we will connect our smartphone to our laptop/PC and as
 
 In the [recovery image refactoring](../../forum/todo/recovery-image-refactoring.md) page, it was highlighted some shortcomings about the SailFish OS recovery image that was properly reworked. Instead, it rappresents a great opportunity to do much more stuff than a rare-events fallback minimal system but an ordinary tool for system mainteinance.
 
-![](https://raw.githubusercontent.com/robang74/redfishos/main/forum/todo/recovery-telnet-phonescreen.jpeg)
-
 Obviously, having a full suite of scripts that can run on `busybox ash` with no adaptation or a little adaptation makes this image even more intriguing. In the long term, we can see it as a supervising firmware composed of three main components: a monolithic Linux kernel dedicated to a specific device, a full-features statically linked busybox and a minimal graphical interface like [yamui](https://github.com/robang74/yamui).
 
 ---
@@ -51,6 +49,18 @@ You can object that a system patch manager, which is a set of shell scripts, for
 Before being a tool available for end-user, it can be a fundamental tool for an embedded system architect that wishes to evolve the SailFish OS helped by an assisting tool that can provide backup and retore within a minute.
 
 *After all, Rome has not been built during a night, but block by block with a plan in mind.*
+
+---
+
+### Managing the display in recovery mode
+
+This is the message displayed to invite the user to connect via `telnet` to the recovery menu:
+
+| image generated with gimp on the pc | image generated on-the-fly |
+| ----------------------------------- | -------------------------- |
+| <img src="../../forum/todo/recovery-telnet-phonescreen.jpeg" width="357px" height="500px"> | <img src="../smartphone-rfos-banner.jpg" width="357px" height="500px"> |
+
+Until the IPv4 address `10.42.66.66` for telnet changes, the banner image should not be created, but it is included in the recovery image. However, the banner script will continue to be useful when `yamui` will be able to support the font-size multiplicator and multi-line text displaying. In the meantime, the banner script can generate a new image in 1.5 seconds, while the USB data link detection requires about 2 seconds. Therefore, even in the worst case, it does not add any extra delay.
 
 ---
 
