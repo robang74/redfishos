@@ -84,7 +84,8 @@ udhcpd
 
 usb_info "recovery: telnet on $USB_IFACE $LOCAL_IP running udhcpd"
 #yamui -t "recovery: connect USB cable and telnet to $LOCAL_IP" &
-yamui ip-$LOCAL_IP &
+{ while [ ! -s /res/images/ip-$LOCAL_IP.png ]; do
+    usleep 500000; done; yamui ip-$LOCAL_IP; } &
 
 # Remove recovery-menu lock if the /var/run is not on tmpfs.
 remove_lock
@@ -92,8 +93,9 @@ remove_lock
 echo "Starting telnetd..."
 telnetd -l/usr/bin/recovery-menu &
 
-#echo "Starting yamui-screensaverd..."
-#/usr/bin/yamui-screensaverd &
+# RAF, TODO: what is for this?
+echo "Starting yamui-screensaverd..."
+/usr/bin/yamui-screensaverd &
 
 # RAF, TODO: check why this line
 while true; do sleep 86400; done
