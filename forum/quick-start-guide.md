@@ -1,4 +1,4 @@
-## Quick Start Guide v1.7.5
+## Quick Start Guide v1.7.5.1
 
 This is the guide originally written for the SailFish OS community forum and reported here in Github .md format.
 
@@ -277,8 +277,9 @@ The `Patch Manager` is not an application without an icon but adds a voice in th
 
 `Patch Manager` in `Web Catalog`:
 
-* [sailfish utilities quick fingerprint service restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart)  (patch³)
+* [quick fingerprint service restart](https://coderus.openrepos.net/pm2/project/utilities-quick-fp-restart) (patch³)
 * [x10ii-iii-agps-config-emea](https://coderus.openrepos.net/pm2/project/x10ii-iii-agps-config-emea) (patch³, cfr. the `A-GPS` indoor section)
+* [notification-preview-high-cpu-usage](https://coderus.openrepos.net/pm2/project/sailfishos-notification-preview-high-cpu-usage-patch) (patch³)
 
 ----
 
