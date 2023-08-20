@@ -4,7 +4,11 @@
 #           Released under the GPLv2 license terms.
 #
 ################################################################################
-# release: 0.0.1
+# release: 0.0.2
+
+set -e
+
+# VARIABLES DEFINITION #########################################################
 
 tar_dir="etc bin usr var"
 name="sysdebug-utils"
@@ -58,7 +62,9 @@ stress-ng-0.15.00-1.el8.aarch64.rpm
 Judy-1.0.5-18.module_el8.5.0+728+80681c81.aarch64.rpm
 "
 
-set -e
+# PACKAGES PROVIDING ###########################################################
+
+echo "This script requires the root priviledges"
 mkdir -p $dir && cd $dir && sudo rm -rf $tar_dir
 
 if [ "x$1" = "x--no-download" ]; then shift
@@ -79,6 +85,8 @@ fi #============================================================================
 for i in $rpm_list_1 $rpm_list_2 $rpm_list_3 $rpm_list_4 $rpm_list_5; do
     rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
 done; echo
+
+# PACKAGES MANAGEMENT ##########################################################
 
 bin_excl="
 nsupdate arpaname mmdblookup dnstap-read named-compilezone ddns-confgen
