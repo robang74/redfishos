@@ -52,11 +52,8 @@ echo /bin/mdev > /proc/sys/kernel/hotplug
 fi #############################################################################
 
 if [ -n "$DISPLAY_BRIGHTNESS_PATH" -a -n "$DISPLAY_BRIGHTNESS" ]; then
-    # Minimize power consumption by lowering display brightness to minimum
-    write $DISPLAY_BRIGHTNESS_PATH $DISPLAY_BRIGHTNESS
+    write $DISPLAY_BRIGHTNESS_PATH $((DISPLAY_BRIGHTNESS / 2))
 fi
-
-#usb_setup "SFOS RECOVERY"
 
 ip link set usb0 up
 ip link set rndis0 up
@@ -90,7 +87,7 @@ usb_info "recovery: telnet on $USB_IFACE $LOCAL_IP running udhcpd"
 remove_lock
 
 echo "Starting telnetd..."
-telnetd -l/usr/bin/recovery-menu.sh &
+telnetd -K -l /usr/bin/recovery-menu.sh
 
 # RAF, TODO: what is for this?
 echo "Starting yamui-screensaverd..."

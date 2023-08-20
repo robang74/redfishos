@@ -35,7 +35,7 @@ ROOTMNTDIR="/rootfs"
 # With MNTSCRIPT, you can use your own mounting script and bypass the default
 # root mounting. The script should take $ROOTMNTDIR as parameter
 # for where to mount the root.
-MNTSCRIPT="/sbin/root-mount"
+MNTSCRIPT="/sbin/root-mount.sh"
 
 fail()
 {

@@ -41,6 +41,8 @@ pause() { usleep $((500000*${1:-1})); }
 /sbin/busybox-static --install -s
 /sbin/ldconfig
 
+hostname $(cat /etc/hostname 2>/dev/null || echo recovery)
+
 echo "Doing mount config and all..."
 mount /dev
 mkdir /dev/pts /dev/shm
@@ -48,11 +50,11 @@ mount -a
 cat /proc/mounts >/etc/mtab
 mount -t configfs none /config
 
-powerkey-handler.sh start
-
 yamui -a 1000 $(for i in $(seq 1 8); do echo rfos-anim-circles-16c-2x$i; done) &
 
 print-banner.sh $LOCAL_IP >/dev/null &
+
+powerkey-handler.sh start
 
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
      echo "conservative" >$i
