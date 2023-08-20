@@ -46,10 +46,20 @@ This is the animation which is displayed after the Sony logo until the system is
 
 ---
 
-### Telnet banner
+### The telnet banner
 
 This is the use of the RFOS logo in combination with the telnet IPv4 informative banner:
 
 <img src="../recovery/ramdisk/res/images/ip-10.42.66.66.png" width="256px" height="256px">
 
 The script to print the banner and creating its related PNG image is available [here](r../ecovery/print-banner.sh).
+
+---
+
+### The boot timeing
+
+Here in 1:1 video on youtube the 20s reboot sequence:
+
+* https://youtu.be/j8iWLmYSx5I
+
+In the video the red dots seem orange but they are red.
