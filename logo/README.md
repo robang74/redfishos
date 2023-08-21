@@ -63,10 +63,16 @@ The script to print the banner and creating its related PNG image is available [
 
 ---
 
-### The boot timeing
+### The boot timing
 
 Here in 1:1 video on youtube the 20s reboot sequence:
 
 * https://youtu.be/j8iWLmYSx5I
 
 In the video the red dots seem orange but they are red.
+
+---
+
+### The recovery menu on telnet
+
+<img src="../recovery/recovery-menu-on-telnet.png" width="405px" height="616px">
