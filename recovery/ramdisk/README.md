@@ -12,6 +12,7 @@ The new recovery image is less than 2Mb bigger than the original, including the 
 ```
 20616 hybris-recovery.img
 22436 rfos-boot-image.img
+23516 rfos-boot-image.img with dd_rescue, parted and their dependencies
 ```
 
 This recovery image is plenty of fine-tuned¹ details, and includes an [image to display](../../forum/todo/recovery-telnet-phonescreen.jpeg) properly the IP address telnet message. Plus, it automatically goes into recovery mode when the smartphone is connected to a laptop/PC USB, but not if it is connected to a power source. Otherwise, it boots normally. Therefore, it can be the default and the only boot image.
@@ -61,6 +62,12 @@ This is the message displayed to invite the user to connect via `telnet` to the 
 | <img src="../../forum/todo/recovery-telnet-phonescreen.jpeg" width="357px" height="500px"> | <img src="../smartphone-rfos-banner.jpg" width="357px" height="500px"> |
 
 Until the IPv4 address `10.42.66.66` for telnet changes, the banner image should not be created, but it is included in the recovery image. However, the banner script will continue to be useful when `yamui` will be able to support the font-size multiplicator and multi-line text displaying. In the meantime, the banner script can generate a new image in 1.5 seconds, while the USB data link detection requires about 2 seconds. Therefore, even in the worst case, it does not add any extra delay.
+
+---
+
+### The recovery menu on telnet
+
+<img src="../recovery-menu-on-telnet.png" width="405px" height="616px">
 
 ---
 
