@@ -31,9 +31,12 @@ dd_rescue-1.99.12-3.el8.aarch64.rpm
 url_3="http://mirror.centos.org/centos/8-stream/BaseOS/aarch64/os/Packages/"
 rpm_list_3="
 parted-3.2-39.el8.aarch64.rpm
+gdisk-1.0.3-11.el8.aarch64.rpm
 libsepol-2.9-3.el8.aarch64.rpm
 readline-7.0-10.el8.aarch64.rpm
+libgcc-8.5.0-20.el8.aarch64.rpm
 libselinux-2.9-8.el8.aarch64.rpm
+libstdc++-8.5.0-20.el8.aarch64.rpm
 ncurses-libs-6.1-9.20180224.el8.aarch64.rpm
 "
 
