@@ -10,7 +10,7 @@ To create this package, `aarch64` binaries and libraries from `Centos 8` and `Fe
 
 This below is the list of the main binaries, while some others, which are their helpers, have been not reported:
 
-* `dd_rescue`, `dd_rhelp`, `rsyc`, `parted`, `patch`, `pigz`
+* `dd_rescue`, `dd_rhelp`, `rsyc`, `parted`, `patch`, `pigz`, `cgdisk`, `gdisk`, `sgdisk`, `fixparts` 
 
 Just the essential utilities packaged into a gzip tarball to explode directly on the root filesystem:
 
@@ -32,7 +32,7 @@ The script that downloads and creates this tarball is here:
 
 * [do_recovery-utils_tgz.sh](do_recovery-utils_tgz.sh)
 
-The created package is less than 1.8 MB. What is missing is `strings` because its dependency will have brought this package to a size of 1.5Mb while a 2x faster 16Kb version of `strings` can be compiled from [this source](strings.c) presented in the busybox developers m-list in [this thread](https://lists.busybox.net/pipermail/busybox/2023-July/090396.html).
+The created package is less than 2.8 MB. What is missing is `strings` because its dependency will have brought this package to a size of 1.5Mb while a 2x faster 16Kb version of `strings` can be compiled from [this source](strings.c) presented in the busybox developers m-list in [this thread](https://lists.busybox.net/pipermail/busybox/2023-July/090396.html).
 
 ---
 
