@@ -2,7 +2,7 @@
 ################################################################################
 #
 # Generic ramdisk init process for booting a device. Based Marko Saukko's
-# initrd for Galaxy Note GT-i9250. RAF reworked
+# initrd for Galaxy Note GT-i9250. Reworked by Roberto A. Foglietta.
 #
 # Copyright (C) 2014 Jolla Ltd.
 # Copyright (C) 2012 Marko Saukko
@@ -25,7 +25,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 ################################################################################
-# release: 0.0.2
+# release: 0.0.3
 
 GADGET_DIR="/config/usb_gadget/g1"
 ANDROID_USB="/sys/class/android_usb/android0"

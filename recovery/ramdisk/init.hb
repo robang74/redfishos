@@ -2,7 +2,7 @@
 ################################################################################
 #
 # Generic ramdisk init process for booting a device. Based Marko Saukko's
-# initrd for Galaxy Note GT-i9250. Reworked by RAF.
+# initrd for Galaxy Note GT-i9250. Reworked by Roberto A. Foglietta.
 #
 # Copyright (C) 2014 Jolla Ltd.
 # Copyright (C) 2012 Marko Saukko
@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.0.9
+# release: 0.1.0
 
 # Location of the device init script, if not set, few defaults are tried.
 INITBIN=/sbin/preinit

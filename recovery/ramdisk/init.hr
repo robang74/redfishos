@@ -1,7 +1,8 @@
 #!/bin/sh
 ################################################################################
 #
-# This file is part of Jolla recovery console. Reworked by RAF.
+# Generic ramdisk init process for booting a device. Based Marko Saukko's
+# initrd for Galaxy Note GT-i9250. Reworked by Roberto A. Foglietta.
 #
 # Copyright (C) 2013-2015 Jolla Ltd.
 #     Originally written by Andrea Bernabei
@@ -24,21 +25,12 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.0
+# release: 0.1.1
 
 usb_info() {
     echo "############ usb_info: $1 ##############"
     write $G_USB_ISERIAL "$1"
 }
-
-set -o allexport
-if [ -s /etc/sysconfig/display ]; then
-    . /etc/sysconfig/display
-fi
-if [ -s /usr/bin/recovery-functions.env ]; then
-    . /usr/bin/recovery-functions.env
-fi
-set +o allexport
 
 if false; then #################################################################
 
@@ -50,6 +42,12 @@ mdev -s
 echo /bin/mdev > /proc/sys/kernel/hotplug
 
 fi #############################################################################
+
+set -o allexport
+if [ -s /etc/sysconfig/display ]; then
+    . /etc/sysconfig/display
+fi
+set +o allexport
 
 if [ -n "$DISPLAY_BRIGHTNESS_PATH" -a -n "$DISPLAY_BRIGHTNESS" ]; then
     write $DISPLAY_BRIGHTNESS_PATH $((DISPLAY_BRIGHTNESS / 2))
@@ -77,11 +75,9 @@ sed -i "s/@IFACE@/$USB_IFACE/g" /etc/udhcpd.conf
 udhcpd
 
 usb_info "recovery: telnet on $USB_IFACE $LOCAL_IP running udhcpd"
+
 #yamui -t "recovery: connect USB cable and telnet to $LOCAL_IP" &
-{
-  while [ ! -s /res/images/ip-$LOCAL_IP.png ]; do pause; done;
-  killall yamui && killall -9 yamui; yamui ip-$LOCAL_IP;
-} &
+yamui_banner_logo init
 
 # Remove recovery-menu lock if the /var/run is not on tmpfs.
 remove_lock

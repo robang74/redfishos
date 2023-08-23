@@ -2,7 +2,7 @@
 ################################################################################
 #
 # Generic ramdisk init process for booting a device. Based Marko Saukko's
-# initrd for Galaxy Note GT-i9250. Reworked by RAF.
+# initrd for Galaxy Note GT-i9250. Reworked by Roberto A. Foglietta.
 #
 # Copyright (C) 2014 Jolla Ltd.
 # Copyright (C) 2012 Marko Saukko
@@ -24,9 +24,16 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.4
+# release: 0.1.5
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+
+/sbin/busybox-static --install -s
+/sbin/ldconfig
+
+set -o allexport
+. /usr/bin/recovery-functions.env
+set +o allexport
 
 LOCAL_IP="10.42.66.66"
 LOCAL_BR="10.42.66.255"
@@ -34,12 +41,7 @@ LOCAL_BR="10.42.66.255"
 USB_IP="192.168.2.15"
 USB_BR="192.168.2.255"
 
-pause() { usleep $((500000*${1:-1})); }
-
 ################################################################################
-
-/sbin/busybox-static --install -s
-/sbin/ldconfig
 
 hostname $(cat /etc/hostname 2>/dev/null || echo recovery)
 
@@ -50,7 +52,7 @@ mount -a
 cat /proc/mounts >/etc/mtab
 mount -t configfs none /config
 
-yamui -a 1000 $(for i in $(seq 1 8); do echo rfos-anim-circles-16c-2x$i; done) &
+yamui_animation
 
 print-banner.sh $LOCAL_IP >/dev/null &
 
@@ -79,7 +81,7 @@ if dmesg | grep -q configfs-gadget; then
     . /init.hr
 else
     echo "initrd: USB connection NOT found, boot mode" > /dev/kmsg
-    killall yamui && killall -9 yamui
+	proc_kill yamui
 ##  echo >/proc/sys/kernel/hotplug
     umount /config
     . /init.hb
