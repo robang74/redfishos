@@ -29,6 +29,23 @@ libzstd-1.4.4-1.el8.aarch64.rpm
 libgcc-8.5.0-20.el8.aarch64.rpm
 libnl3-3.7.0-1.el8.aarch64.rpm
 pcre2-10.32-3.el8.aarch64.rpm
+zlib-1.2.11-25.el8.aarch64.rpm
+libblkid-2.32.1-42.el8.aarch64.rpm
+libcom_err-1.45.6-5.el8.aarch64.rpm
+device-mapper-event-libs-1.02.181-9.el8.aarch64.rpm
+device-mapper-libs-1.02.181-9.el8.aarch64.rpm
+xz-libs-5.2.4-4.el8.aarch64.rpm
+pam-1.3.1-27.el8.aarch64.rpm
+libpng-1.6.34-5.el8.aarch64.rpm
+popt-1.18-1.el8.aarch64.rpm
+libuuid-2.32.1-42.el8.aarch64.rpm
+libpwquality-1.4.4-6.el8.aarch64.rpm
+cracklib-2.9.6-15.el8.aarch64.rpm
+"
+
+url_2="http://mirror.centos.org/centos/8-stream/AppStream/aarch64/os/Packages/"
+rpm_list_2="
+libdrm-2.4.115-2.el8.aarch64.rpm
 "
 
 # PACKAGES PROVIDING ###########################################################
@@ -41,9 +58,11 @@ else #==========================================================================
 
 for i in $rpm_list_1; do wget -c $url_1/$i; done
 
+for i in $rpm_list_2; do wget -c $url_2/$i; done
+
 fi #============================================================================
 
-for i in $rpm_list_1; do
+for i in $rpm_list_1 $rpm_list_2; do
     rpm2cpio $(basename $i) | sudo cpio -idmu -R root.root
 done; echo
 

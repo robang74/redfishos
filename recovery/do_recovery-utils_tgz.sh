@@ -39,6 +39,10 @@ libgcc-8.5.0-20.el8.aarch64.rpm
 libselinux-2.9-8.el8.aarch64.rpm
 libstdc++-8.5.0-20.el8.aarch64.rpm
 ncurses-libs-6.1-9.20180224.el8.aarch64.rpm
+util-linux-2.32.1-42.el8.aarch64.rpm
+glibc-common-2.28-234.el8.aarch64.rpm
+glibc-2.28-234.el8.aarch64.rpm
+glib2-2.56.4-161.el8.aarch64.rpm
 systemd-libs-239-76.el8.aarch64.rpm
 libaio-0.3.112-1.el8.aarch64.rpm
 pcre2-10.32-3.el8.aarch64.rpm
@@ -49,8 +53,11 @@ libmount-2.32.1-42.el8.aarch64.rpm
 libgcrypt-1.8.5-7.el8.aarch64.rpm
 libgpg-error-1.31-1.el8.aarch64.rpm
 e2fsprogs-1.45.6-5.el8.aarch64.rpm
+e2fsprogs-libs-1.45.6-5.el8.aarch64.rpm
 openssh-server-8.0p1-17.el8.aarch64.rpm
 cryptsetup-2.3.7-5.el8.aarch64.rpm
+cryptsetup-libs-2.3.7-5.el8.aarch64.rpm
+cryptsetup-reencrypt-2.3.7-7.el8.aarch64.rpm
 openssh-clients-8.0p1-17.el8.aarch64.rpm
 audit-libs-3.0.7-5.el8.aarch64.rpm
 libcap-ng-0.7.11-1.el8.aarch64.rpm
