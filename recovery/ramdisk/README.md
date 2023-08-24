@@ -3,17 +3,34 @@
 This folder contains - by now - just a few scripts about the early `init` process that are part of a broader recovery image rework.
 
 - [init](init) - this is the first script that runs after the kernel.
-- [init.usb](init.usb) - this is the script that configures the USB gadget.
-- [init.hr](init.hr) - this is the script for the recovery mode if a USB connection is found.
-- [init.hb](init.hb) - this is the script for the normal boot mode otherwise.
+    - [init.usb](init.usb) - this is the script that configures the USB gadget.
+    - [init.hr](init.hr) - this is the script for the recovery mode if a USB connection is found.
+    - [init.hb](init.hb) - this is the script for the normal boot mode otherwise.
 
-The new recovery image is less than 2Mb bigger than the original, including the [recovery utils package](../#about-recovery-package) command line tools and its extra dependencies, while the boot partition is 64 MB. Hence, there is a lot of space that is still available for future expansions, and the [system debug package](../#about-sysdebug-package) is about 14 MB (compressed size because also the boot image is compressed in the same way) with its extra library for the recovery image. The following sizes are shown in KB instead:
+The recovery multi-mode boot image is less than 8Mb bigger than the original:
 
-```
-20616 hybris-recovery.img
-22436 rfos-boot-image.img
-23516 rfos-boot-image.img with dd_rescue, parted and their dependencies
-```
+* `hybris-recovery.img` - 20.6 MB, original from SailFish OS
+* `rfos-boot-image.img` - 28.3 MB, refactored multi-mode boot image
+    * with [busybox 1.36.1](https://github.com/robang74/sailfish-os-busybox), [yamu 1.2.1](https://github.com/robang74/yamui), [hw-ramdisk 1.1.2](https://github.com/robang74/hw-ramdisk) and [json-c 0.15](https://github.com/robang74/json-c) compiled from sources
+    * with new binaries: dd_rescue, parted, pigz, stdbuf, dd, cgdisk, gdisk, sgdisk and fixparts
+    * with the related dependencies and libraries from CentOS
+
+Two are the reasons for the bigger size: new binaries added and having replace every binary and library in the original image with the counterpart from `CentOS 8 Stream` apart for four specific packages that instead have been recompiled from a forked version of the sources.
+
+#### Quality and Scalability
+
+This brings in the great advantage that the new recovery is:
+
+1. as default as possible because as many parts as possible came from CentOS 8 Stream repositories.
+2. completely reproducible due to GitHub versioning and GitHub Action, also for those few packages out of CentOS.
+3. easy to upgrade from CentOS 8 to 9: busybox is static, json-c.so.5 is included in 9, others 2 are straighforward.
+4. easy to expand because everything available for CentOS 8 Stream can be added with a minimum effort.
+
+In short, **quality** about the product and **scalability** about the process. 
+
+---
+
+### A lot of fined-tuned details
 
 This recovery image is plenty of fine-tuned¹ details, and includes an [image to display](../../forum/todo/recovery-telnet-phonescreen.jpeg) properly the IP address telnet message. Plus, it automatically goes into recovery mode when the smartphone is connected to a laptop/PC USB, but not if it is connected to a power source. Otherwise, it boots normally. Therefore, it can be the default and the only boot image.
 
