@@ -12,7 +12,7 @@ The recovery multi-mode boot image is less than 8Mb bigger than the original:
 * `hybris-recovery.img` - 20.6 MB, original from SailFish OS
 * `rfos-boot-image.img` - 28.3 MB, refactored multi-mode boot image
     * with [busybox 1.36.1](https://github.com/robang74/sailfish-os-busybox), [yamu 1.2.1](https://github.com/robang74/yamui), [hw-ramdisk 1.1.2](https://github.com/robang74/hw-ramdisk) and [json-c 0.15](https://github.com/robang74/json-c) compiled from sources
-    * with new binaries: dd_rescue, parted, pigz, stdbuf, dd, cgdisk, gdisk, sgdisk and fixparts
+    * with new binaries: `dd_rescue`, `parted`, `pigz`, `stdbuf`, `dd`, `cgdisk`, `gdisk`, `sgdisk` and `fixparts`
     * with the related dependencies and libraries from CentOS
 
 Two are the reasons for the bigger size: new binaries added and having replace every binary and library in the original image with the counterpart from `CentOS 8 Stream` apart for four specific packages that instead have been recompiled from a forked version of the sources.
