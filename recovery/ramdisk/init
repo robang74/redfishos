@@ -24,22 +24,27 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.5
+# release: 0.1.8
 
 export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+#export LD_DEBUG=symbols,bindings #all
 
 /sbin/busybox-static --install -s
 /sbin/ldconfig
 
+if [ -s /.rwx ]; then
+    strn="chown root.root /\\2\; chmod \\1 /\\2;"
+    eval $(sed -e "s,^\([0-7]*\) \(.*\),$strn," /.rwx)
+fi &
+
+if ! grep -q ^sshd: /etc/passwd; then
+    addgroup sshd
+    adduser -h /var/empty/sshd -s /bin/false -g "priv.sep.sshd" -G sshd -D sshd
+fi &
+
 set -o allexport
 . /usr/bin/recovery-functions.env
 set +o allexport
-
-LOCAL_IP="10.42.66.66"
-LOCAL_BR="10.42.66.255"
-
-USB_IP="192.168.2.15"
-USB_BR="192.168.2.255"
 
 ################################################################################
 
@@ -49,27 +54,27 @@ echo "Doing mount config and all..."
 mount /dev
 mkdir /dev/pts /dev/shm
 mount -a
-cat /proc/mounts >/etc/mtab
+ln -sf /proc/mounts /etc/mtab
 mount -t configfs none /config
 
 yamui_animation
 
-print-banner.sh $LOCAL_IP >/dev/null &
+powerkey-handler.sh init
 
-powerkey-handler.sh start
+print-banner.sh $LOCAL_IP >/dev/null &
 
 for i in /sys/devices/system/cpu/cpu?/cpufreq/scaling_governor; do
      echo "conservative" >$i
 done
 
-#echo "Running mdev..."
-#mdev -s -f
-##echo /bin/mdev >/proc/sys/kernel/hotplug
+if false; then
+echo "Running mdev..."
+mdev -s -f
+echo /bin/mdev >/proc/sys/kernel/hotplug
+fi
 
 echo "USB config setting..."
 . /init.usb
-
-pause 2 # RAF: just to test the animation
 
 for i in $(seq 1 8); do
     dmesg | grep -q configfs-gadget && break

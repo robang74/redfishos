@@ -25,7 +25,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 ################################################################################
-# release: 0.1.1
+# release: 0.1.4
 
 usb_info() {
     echo "############ usb_info: $1 ##############"
@@ -43,11 +43,12 @@ echo /bin/mdev > /proc/sys/kernel/hotplug
 
 fi #############################################################################
 
-set -o allexport
+
 if [ -s /etc/sysconfig/display ]; then
+    set -o allexport
     . /etc/sysconfig/display
+    set +o allexport
 fi
-set +o allexport
 
 if [ -n "$DISPLAY_BRIGHTNESS_PATH" -a -n "$DISPLAY_BRIGHTNESS" ]; then
     write $DISPLAY_BRIGHTNESS_PATH $((DISPLAY_BRIGHTNESS / 2))
@@ -55,9 +56,9 @@ fi
 
 ip link set usb0 up
 ip link set rndis0 up
-if ipaddr add $LOCAL_IP/29 broadcast $LOCAL_BR dev rndis0 ; then
+if ipaddr add $LOCAL_IP/24 broadcast $LOCAL_BR dev rndis0 ; then
     USB_IFACE=rndis0
-elif ipaddr add $LOCAL_IP/29 broadcast $LOCAL_BR dev usb0 ; then
+elif ipaddr add $LOCAL_IP/24 broadcast $LOCAL_BR dev usb0 ; then
     USB_IFACE=usb0
 else
     usb_info "recovery: error, could not setup USB as usb0 or rndis0."
@@ -70,20 +71,24 @@ ipaddr add $USB_IP/24 broadcast $USB_BR dev $USB_IFACE label rndis0:0
 echo V > /dev/watchdog
 
 yes recovery | passwd root
+for i in passwd group shadow; do
+    cp -arf /etc/$i /etc/${i}-
+done
 
 sed -i "s/@IFACE@/$USB_IFACE/g" /etc/udhcpd.conf
 udhcpd
 
 usb_info "recovery: telnet on $USB_IFACE $LOCAL_IP running udhcpd"
 
-#yamui -t "recovery: connect USB cable and telnet to $LOCAL_IP" &
-yamui_banner_logo init
-
 # Remove recovery-menu lock if the /var/run is not on tmpfs.
 remove_lock
 
 echo "Starting telnetd..."
 telnetd -K -l /usr/bin/recovery-menu.sh
+sshd_execution noblock
+
+#yamui -t "recovery: connect USB cable and telnet to $LOCAL_IP" &
+yamui_banner_logo init
 
 # RAF, TODO: what is for this?
 echo "Starting yamui-screensaverd..."
