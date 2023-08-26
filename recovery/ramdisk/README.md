@@ -70,6 +70,18 @@ Before being a tool available for end-user, it can be a fundamental tool for an 
 
 ---
 
+### The binary compatibility
+
+> #### :information_source: **Note**
+> 
+> The recovery image adopted the `CentOS 8 stream` binary line, included the `glibc` while some applictions are still compiled for SailFish OS which employs a different `glibc` toolchain. The two are almost compatible but they differ enough to let some app crashes. For example `busybox` `telnetd` which is statically linked but compiled in a SFOS SDK container when is going to load at run time functions form CentOS glibc NSS library (even if it is configured to do not so, in theory) crashes. On the other side, the CentOS `sshd` presents a various kind of failures.
+
+Despite the differences between CentOS and SailFish OS glibc, a wrapper framework of 76 KB has been developed in order to let both running safe on the same recovery image. The layer size and complexity could potentially grown when the number of application will increase.
+
+However, on the long term it is reasonable that SailFish OS apps will be recompiled in a similar SDK but based on CentOS while some specific components in the recovery image like `busybox` and `dropbear` will be compiled statically linked against `musl` instead of `glibc`. Therefore, the binary libraries compatibility will be an issue that will affect a marginal number of applications.
+
+---
+
 ### Managing the display in recovery mode
 
 This is the message displayed to invite the user to connect via `telnet` to the recovery menu:
@@ -84,7 +96,11 @@ Until the IPv4 address `10.42.66.66` for telnet changes, the banner image should
 
 ### The recovery menu on telnet
 
-<img src="../recovery-menu-on-telnet.png" width="405px" height="616px">
+The recovery menu screenshot image is shown at its 50% size:
+
+<img src="../recovery-menu-on-telnet-3.png" height="343px" width="1016px">
+
+Right click and open in a tab, to enlarge.
 
 ---
 
