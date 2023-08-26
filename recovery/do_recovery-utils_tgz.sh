@@ -94,7 +94,7 @@ lib_escl="libopcodes"
 
 cd usr/bin; sudo ln -sf unpigz pigz; cd - >/dev/null
 sudo tar cvzf ../$tgz --exclude="usr/lib" --exclude="usr/share" \
-	--exclude=.MTREE --exclude=.BUILDINFO --exclude=.PKGINFO \
+    --exclude=.MTREE --exclude=.BUILDINFO --exclude=.PKGINFO \
     $(for i in $lib_excl; do echo --exclude={,usr/}lib*/$i*; done; \
       for i in $bin_excl; do echo --exclude={,usr/}*bin/$i; done;) \
     $(find ./ -maxdepth 1 ! -name \*.rpm |cut -d/ -f2-)

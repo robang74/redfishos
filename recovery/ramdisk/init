@@ -81,7 +81,7 @@ if dmesg | grep -q configfs-gadget; then
     . /init.hr
 else
     echo "initrd: USB connection NOT found, boot mode" > /dev/kmsg
-	proc_kill yamui
+    proc_kill yamui
 ##  echo >/proc/sys/kernel/hotplug
     umount /config
     . /init.hb
