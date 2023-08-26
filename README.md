@@ -68,6 +68,7 @@ Refactoring the SFOS is the main aim of this project, and therefore it deserves 
 
 * 1.3. a early-boot backup/restore scripts suite with the related after-flashing system configuration shell script.
   
+
 Without these facilities fully working, there is no reasonable chance to operate in a traceable and efficient way at OS level.
 
 <sup>________</sup>
