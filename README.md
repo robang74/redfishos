@@ -223,11 +223,17 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list. The following is about those development that are push in `main` for the users.
 
+* 26.08.2023, [RedFish OS recovery image](recovery/#the-binary-compatibility)
+
+  **description**: the RedFish OS recovery image supports CentOS and SFOS apps running, both.
+
+  **status**: ready for advanced users adoption, but it is not publicly available.
+
 * 24.08.2023, [RedFish OS recovery image](recovery/ramdisk#quality-and-scalability)
 
   **description**: the RedFish OS recovery image reached the levels of quality and scalability targeted.
 
-  **status**: ready for advanced users adoption, but it is not publicly available.
+  **status**: ready for advanced users testing, but it is not publicly available.
 
 * 21.08.2023, [RedFish OS recovery telnet menu](recovery/ramdisk#the-recovery-menu-on-telnet)
 
