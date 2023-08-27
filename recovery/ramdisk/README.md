@@ -10,7 +10,7 @@ This folder contains - by now - just a few scripts about the early `init` proces
 The recovery multi-mode boot image is less than 8Mb bigger than the original:
 
 * `hybris-recovery.img` - 20.6 MB, original from SailFish OS
-* `rfos-boot-image.img` - 28.3 MB, refactored multi-mode boot image
+* `rfos-boot-image.img` - 28.2 MB, refactored multi-mode boot image
     * with [busybox 1.36.1](https://github.com/robang74/sailfish-os-busybox), [yamu 1.2.1](https://github.com/robang74/yamui), [hw-ramdisk 1.1.2](https://github.com/robang74/hw-ramdisk) and [json-c 0.15](https://github.com/robang74/json-c) compiled from sources
     * with new binaries: `dd_rescue`, `parted`, `pigz`, `stdbuf`, `dd`, `cgdisk`, `gdisk`, `sgdisk` and `fixparts`
     * with the related dependencies and libraries from CentOS
@@ -105,6 +105,83 @@ The recovery menu screenshot image is shown at its 50% size:
 <img src="../recovery-menu-on-telnet-3.png" height="343px" width="1016px">
 
 Right click and open in a tab, to enlarge.
+
+---
+
+### Private git repo log
+
+This reported here below, is the private git repository log on branch `devel4`. The tags indicate the size of the recovery boot image expressed in kilobytes.
+
+<sub>
+    
+```gitlog
+* 10f0c47 - ramdisk: new busybox-static binary v1.36.1+git2-raf4 for SFOS  (tag: 28.152)
+* e31dba0 - powerkey-handler.sh: bug fix init /dev/tty inibition + better in menu 
+* 12b4846 - ramdisk: wraps openssh binaries to exclusively use libnss_files.so.2 
+* 56f50d8 - .apps: dd_rescue, dd_rhelp and dd as binary added as extra opt. comp. 
+* cd6be77 - .apps: dbclient added among the extra optional components 
+* 4432981 - .apps: ramdisk-functions.env appends 64 zero blocks to the image 
+* 31cd5d2 - .apps: created .stab as link to .apps/spacetabs.sh because gitshell 
+* de22b52 - .apps: this folder contains scripts and extra optional contentents 
+* 2480707 - ramdisk: dropbear static added in prepartion to replace sshd 
+* cab6c38 - ramdisk: /bin/nologin created as link to /bin/false 
+* d640064 - init: permissions and password management 
+* 511cad9 - init: grants ownership and rwx-settings to special files in .rwx 
+* b24cb03 - recovery-menu.sh: set HOME for 'root' as stated in /etc/passwd 
+* 0493cfd - recovery-menu.sh: interactive ash exit !0 trap in lock bug fix 
+* 522fcc7 - recovery-menu.sh: busybox version added on the menu header 
+* 1358a48 - recovery-menu.sh: fsck support added in lvm_mount() and reboot_device() 
+* deb95ea - recovery-menu.sh: fs_recovery() evolved for the new lvm2 + lock bug fix 
+* 15ff373 - recovery-menu.sh: filesystem check perform lvm mount 
+* aff4278 - recovery-functions.env: when sshd fails to start, show an error 
+* 7e98811 - recovery-functions.env: sshd starts without option -q 
+* 824f505 - init: sshd_execution() moved in functions and called after telnetd 
+* 9fee5f1 - recovery-functions.env: drop cache sets 'write trough' policy 
+* 5231538 - powerkey-handler.sh: present the shutdown by yamui (to improve) 
+* a17f8ed - ramdisk: dd_rescue, dd_rhelp and dd removed  (tag: 27.768)
+* 7ca5de1 - ramdisk: yamui et al, upgraded compiled from sources 
+* 5879f27 - ramdisk: json-c library updated compiled from sources 
+* 8fab501 - ramdisk: replacing all the SFOS binaries with CentOS 8 
+* d14b713 - ramdisk: replacing all the SFOS libraries with CentOS 8 
+* e057aac - recovery-menu.sh: new way of displaying ldd output 
+* 380944b - ramdisk-functions.env: renamed and updated 
+* 47d79e8 - ramdisk: cgdisk, gdisk, sgdisk and fixparts added new + dependencies  (tag: 26.940)
+* 7d2967a - ramdisk: tools stdbuf, parted and dd_rescue added to the image 
+* 3dd21ba - ramdisk.function: skip ramdisk.function and skip new additions 
+* 20e6f11 - recovery-menu.sh: libraries check added into the recovery menu 
+* 6e23da3 - ramdisk: removed lib64/libnss_*.so.2 not needed anymore  (tag: 25.600)
+* 5517755 - ramdisk: folders /lib64 and /usr/lib64 merged togheter 
+* ad37860 - ramdisk: folders /lib and /lib64 merged togheter 
+* 2721ba2 - ramdisk: folders /*/*bin merged togheter 
+* 37f2180 - ramdisk: folders /sbin and /bin merged togheter 
+* 5819f17 - ramdisk: folders /usr/sbin and /usr/bin merged togheter 
+* d3fadb8 - scripts: minor changes, mainly aesthetic 
+* 64137de - ramdisk: complete set of libraries, added those missing 
+* 654bb22 - ramdisk: sshd and scp upgrade from CentOS 8 repository 
+* 87925c3 - ramdisk: /usr/bin/bin removed, unpigz->pigz plus other minor changes 
+* eaf9c22 - ramdisk: evkey, reboot2 and rtc-clear updated compiled from sources 
+* eafc2b6 - ramdisk: lvm upgrade from CentOS 8 repository with its dependencies 
+* 11cb9bd - ramdisk: updated to busybox 1.36.1 with xz support in static 
+* da754e2 - powerkey-handler.sh bugfixing, p.3 
+* e403125 - recovery-menu.sh: reorganisation and nicer printouts, p.3 
+* 6dc44ec - powerkey-handler.sh bugfixing, p.2 
+* 0d6f493 - recovery-menu.sh: reorganisation and nicer printouts, p.1 
+* 755db3d - recovery-functions.env, bugfixing 
+* b71fc01 - powerkey-handler.sh bugfixing 
+* d90b8b7 - ramdisk.function: returns correctly the error code 
+* c80dd6b - recovery-menu.sh: reorganisation and nicer printouts 
+* 16e81d4 - .gitignore ignores etc/build becuse changes at every repackage 
+* 8e9c58c - ramdisk: shell scripts and flash_userdata_partition() cleaning 
+* 221d262 - ramdisk: working on flash_userdata_partition() 
+* 05e0e65 - ramdisk.function and spacetabs.sh added new 
+* 0143123 - recovery-menu.sh: recovery menu option b) added for boot_a flashing 
+* e1fc04d - ramdisk: sftp to flash the boot_a, untested and moving to netcat 
+* e3955be - ramdisk: commit the current state of the ramdisk folder  (tag: 22.312)
+```
+
+</sub>
+
+The first commit is authored on `Sun Aug 20 07:58:33 2023 +0200` and does not contain the starting point but a developed version good enough to be the starting point for the transition towards a CentOS 8 stream. The [logo folder](../../logo) in this repository is authored on `Sat Aug 19 22:48:48 2023 +0200` and the temporal correlation has a cause-effect relationship: as soon as I realised that I would be able to deliver in `stage1` a kind of product, I branded it.
 
 ---
 
