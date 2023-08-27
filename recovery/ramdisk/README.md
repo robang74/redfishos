@@ -80,6 +80,10 @@ Despite the differences between CentOS and SailFish OS glibc, a wrapper framewor
 
 However, on the long term it is reasonable that SailFish OS apps will be recompiled in a similar SDK but based on CentOS while some specific components in the recovery image like `busybox` and `dropbear` will be compiled statically linked against `musl` instead of `glibc`. Therefore, the binary libraries compatibility will be an issue that will affect a marginal number of applications.
 
+#### Why CentOS
+
+I made my selection among those distributions using the RPM format, like SailFish OS. Fedora and CentOS are the two most well-known candidates. In particular, Fedora 31 and CentOS 8 shown a kind of binary compatibility at the glibc library level. To upgrade the SFOS to an up-to-day distribution, it is required to step from Fedora 31 to 38 or from CentOS 8 to 9. This means that CentOS has a life spawn much longer, and therefore it is more suitable for a long-term business.
+
 ---
 
 ### Managing the display in recovery mode
