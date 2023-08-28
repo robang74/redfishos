@@ -108,6 +108,52 @@ Right click and open in a tab, to enlarge.
 
 ---
 
+### Some facts and stats
+
+A few facts and stats about the RFOS recovery image:
+
+- boot time since the kernel starts until the init script takes over: 3.12 seconds
+- init time in recovery mode 2.5s included 2s for waiting the USB network raises up
+- power consumption of 101 mAh while untouched with logo and IPv4 telnet banner at half of brightness
+- power consumption drops to 86 mAh when the screen brightness is dimmed to the minimum.
+
+Before the power-saving optimisation was started, the power consumption was always 136 mAh. Moreover, it does:
+
+- sfter 15 minutes, the display brightness is set to minimum, but the powerkey can raise it to maximum;
+- then, within 60 seconds, the display brightness will be capped to half of the maximum again.
+
+The powerkey-handler.sh is immortal, and start/stop simply enable/disable its action. Ignoring the powerkey event is shown with a text printed in the console and dimming the display brightness to 100% from 10% and back to 50% within about 2 seconds. If the powerkey event is not ignored and happens while the lock is taken, then the RFOS animation starts, and when the lock is released, the shutdown will be executed. The shutdown is presented with a 4 seconds long bar that it is filling, and usually at its half or 2/3 the system is shutdown.
+
+Forcing the device to reboot is always possible by pressing powerkey + volume up + down for a few seconds.
+
+At the beginning of the `init` script:
+
+- the CPUs governor is set to `conservative`;
+- the internal flash disk caching is disabled; 
+- the power control of the internal flash disk is set to `on`.
+
+Moreover, when the recovery init procedure is completed:
+
+- the display brightness is set to half of the maximum;
+- the firmware kernel load is disabled: it stops trying to load the missing firmware.
+
+The telnet service is raised as soon as possible, as well as the sshd. The telnet service offers the menu, while the sshd offers an interactive login shell based on `busybox ash` in which the recovery functions are pre-loaded into its environments. Mounting and umounting the root filesystem by `lvm` can be performed on the user's demand by the telnet recovery menu or by a ssh section using the proper functions `lvm_mount` and `lvm_umount`.
+
+In `/tmp/bms_current_avg.log` is stored the 10s average current absorbtion taken every second, and the `showbmscur` shows the statistics about it:
+
+```
+=> Current 10s average absorbtion:
+  \_ sleep drift: 4121 ppm 865.577 %
+  \_ load avg: 2.02 2.03 1.75 1/356 5935
+  \_ samples: 1670
+  \_ min: 86 mAh
+  \_ max: 101 mAh
+```
+
+As you can see `sleep 1` can last up to near 9 seconds. Possibly it happens when the CPU working frequency drops and the jiffies rate changes. While `sleep 60` is correct with a precision higher that 1:1000.
+
+---
+
 ### Private git repo log
 
 This reported here below, is the private git repository log on branch `devel4`. The tags indicate the size of the recovery boot image expressed in kilobytes.
