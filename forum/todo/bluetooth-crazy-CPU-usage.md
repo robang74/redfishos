@@ -48,18 +48,18 @@ Battery status: discharging
 log: /root/.batt_curr_stats.log
 data set: 1965 items
 
-now:  -337 mA
-min:   -59 mA
-max:  -801 mA
+now:  -337 mAh
+min:   -59 mAh
+max:  -801 mAh
 
-avg:  -232 mA ( 1 minute)
-avg:  -252 mA ( 2 minute)
-avg:  -234 mA ( 5 minute)
-avg:  -248 mA (10 minute)
-avg:  -235 mA (15 minute)
+avg:  -232 mAh ( 1 minute)
+avg:  -252 mAh ( 2 minute)
+avg:  -234 mAh ( 5 minute)
+avg:  -248 mAh (10 minute)
+avg:  -235 mAh (15 minute)
 ```
 
-The most interesting part is that the current absorbtion can greatly vary within a wide range: 60mA and 800mA (more than an order of magnitudo) while the average is quite stable between 230mA and 250mA (less than 10% of variance).
+The most interesting part is that the current absorbtion can greatly vary within a wide range: 60 mAh and 800 mAh (more than an order of magnitudo) while the average is quite stable between 230 mAh and 250 mAh (less than 10% of variance).
 
 Unfortunately, I also discovered that `sleep 1` is not as reliable as much as in other GNU/Linux systems. In fact, its time jittering is quite HUGE and a `sleep 1` lasts between 1s and 2.6s.
 

@@ -35,9 +35,9 @@ Move the syslog to a `tmpfs`, with the precaution to kill the syslog daemon - if
 
 > @ua0056 wrote:
 > 
-> Considering the average current draw during stand-by (display off) is about 30 mA, while it should presumably be less than 5, something is probably not being powered down. Such as a radio.
+> Considering the average current draw during stand-by (display off) is about 30 mAh, while it should presumably be less than 5, something is probably not being powered down. Such as a radio.
 
-At 230mA, my Xperia 10 II can last 12h. Doing a linear proportion at 5mA it would last 550h which is definitely too much even for a standby but not hibernated system. Using the same linear proportion, at 30mA it would last 92h and this sounds reasonable instead. At least for me.
+At 230 mAh, my Xperia 10 II can last 12h. Doing a linear proportion at 5 mAh it would last 550 hours which is definitely too much even for a standby but not hibernated system. Using the same linear proportion, at 30 mAh it would last 92h and this sounds reasonable instead. At least for me.
 
 > @ua0056 wrote:
 > 
