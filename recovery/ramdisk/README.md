@@ -106,6 +106,8 @@ For example, flashing all the partitions like SFOS  `flash.sh` script does, `boo
 
 <img src="../recovery-menu-on-telnet-flashing.png" width="375px" height="520px">
 
+After having flashed the userdata partition, it is possible to prepare it for being used by SFOS and the default root partition size is no longer 5GB but 8GB.
+
 <sub>
 
 ```
