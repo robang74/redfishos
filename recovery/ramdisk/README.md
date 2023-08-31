@@ -46,6 +46,44 @@ The final outcome is that we will connect our smartphone to our laptop/PC and as
 
 ---
 
+### A multi-boot image
+
+RedFish OS recovery image boots a freshly installed SailFish OS. The dots are full red but in the video are showing like orange.
+
+* https://youtu.be/IJM3DVA3YyE
+
+When connected to USB data link port, the RFOS boot image starts in recovery (maintenance) and allows to update the `boot_a` and `boot_b` partitions and flash the `userdata` partition plus others activities via telnet menu or SSH shell.
+
+Otherwise it boots normal into the operative system installed on the smartphone. In this case a fresh installation of SailFish OS 4.5.0.21 completed by the RFOS recovery image itself.
+
+Moreover, as you can see the average current absorption in around 100 mAh:
+
+<sub>
+
+```
+=> Current 10s average absorption:
+  \_ samples: 8859
+  \_ min: 99 mAh
+  \_ avg: 101 mAh
+  \_ max: 107 mAh
+=> System report and init log:
+  \_ load avg: 2.23 2.05 2.02 1/359 15271
+  \_ sleep drift: 4008 ppm 103.199 %
+[    3.048092] initrd: 1st line in /init.
+[    3.060950] initrd: recovery functions loaded.
+[    3.061077] initrd: preparation completed, start.
+[    3.069264] initrd: USB data link config, finding...
+[    4.692482] initrd: USB data link found at 5* attempt.
+[    4.718540] initrd: set display_bright_dim 2 and read 512.
+[    4.813341] initrd: current pid 1 current affinity list: 0.
+[    4.816395] initrd: telnet/ssh on 10.42.66.66, udhcpd running.
+[    5.000343] initrd: hostname 'recovery' init process completed.
+```
+
+</sub>
+
+---
+
 ### A supervising firmware
 
 In the [recovery image refactoring](../../forum/todo/recovery-image-refactoring.md) page, it was highlighted some shortcomings about the SailFish OS recovery image that was properly reworked. Instead, it rappresents a great opportunity to do much more stuff than a rare-events fallback minimal system but an ordinary tool for system mainteinance.
