@@ -52,6 +52,55 @@ In the [recovery image refactoring](../../forum/todo/recovery-image-refactoring.
 
 Obviously, having a full suite of scripts that can run on `busybox ash` with no adaptation or a little adaptation makes this image even more intriguing. In the long term, we can see it as a supervising firmware composed of three main components: a monolithic Linux kernel dedicated to a specific device, a full-features statically linked busybox and a minimal graphical interface like [yamui](https://github.com/robang74/yamui).
 
+A smartphone delivered with the RedFish OS recovery image installed in boot_a or in boot_b can deliver the complete flashing procedure for SailFish OS without the use of `fastboot` or any other tool at all. Just connect to the USB laptop/PC port, reboot, telnet, press U, press F, and then start on the laptop/PC the script that upload the images.
+
+Here below a video in which the SFOS is installed via the RedFish OS recovery image telnet menu:
+
+* https://youtu.be/EP10Evtl0wo
+
+It is possible to further simplify this process by opening the browser, selecting the folder that contains the images, and pressing OK to flash the smartphone completely. Potentially, the browser can download all the files that are not present in the folder and use the folder as storage instead.
+
+---
+
+### A tool for factory reset
+
+For example, flashing all the partitions like SFOS  `flash.sh` script does, `boot_a`, `dtbo_a`, `dtbo_b`, `oem_a`, `oem_b` and `userdata` using the RFOS recovery image with a single command takes 54 seconds — as long as the longer flashing procedure among all involved because the RFOS image can operate in parallel but not the `fastboot` command.
+
+<img src="../recovery-menu-on-telnet-flashing.png" width="375px" height="520px">
+
+<sub>
+
+```
+Flash all partitions but not boot_b, start.
+
+Flashing boot_a, netcat is waiting on 12340 port...
+Flashing dtbo_a, netcat is waiting on 12341 port...
+Flashing oem_a, netcat is waiting on 12342 port...
+Flashing userdata, netcat is waiting on 12349 port...
+Uploading: 25 221 677 1180 1602 
+Writing: wr wr wr wr wr wr 
+Flash userdata completed in 52.451s
+Flashing userdata by netcat/simg2img done.
+flushing /dev/mmcblk0p86: ok
+
+28860416 bytes (27.5MB) copied, 3.101750 seconds, 8.9MB/s
+flushing /dev/mmcblk0p42: ok
+
+279063 bytes (272.5KB) copied, 3.159021 seconds, 86.3KB/s
+25165824 bytes (24.0MB) copied, 0.289088 seconds, 83.0MB/s
+flushing /dev/mmcblk0p79: ok
+flushing /dev/mmcblk0p80: ok
+
+419430400 bytes (400.0MB) copied, 11.970527 seconds, 33.4MB/s
+419430400 bytes (400.0MB) copied, 4.078934 seconds, 98.1MB/s
+flushing /dev/mmcblk0p83: ok
+flushing /dev/mmcblk0p84: ok
+
+Flash all completed in 54.514s.
+```
+
+</sub>
+
 ---
 
 ### A system configurations manager
