@@ -224,6 +224,18 @@ The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idP
 
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list. The following is about those development that are push in `main` for the users.
 
+* 31.08.2023, [RedFish OS recovery image](recovery/ramdisk#a-tool-for-factory-reset)
+
+  **description**: the RedFish OS recovery image can install SailFish OS and prepare its 1st boot.
+
+  **status**: ready for advanced users adoption, but it is not publicly available.
+
+* 29.08.2023, [RedFish OS recovery image](recovery/ramdisk#a-multi-boot-image)
+
+  **description**: the RedFish OS recovery image can boot SailFish OS in normal mode (no USB data link).
+
+  **status**: ready for advanced users adoption, but it is not publicly available.
+
 * 26.08.2023, [RedFish OS recovery image](recovery/ramdisk#the-binary-compatibility)
 
   **description**: the RedFish OS recovery image supports CentOS and SFOS apps running, both.
