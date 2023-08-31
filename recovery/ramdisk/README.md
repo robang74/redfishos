@@ -151,7 +151,7 @@ Until the IPv4 address `10.42.66.66` for telnet changes, the banner image should
 
 The recovery menu screenshot image is shown at its 50% size:
 
-<img src="../recovery-menu-on-telnet-3.png" height="343px" width="1016px">
+<img src="../recovery-menu-on-telnet-4.png" height="370px" width="1020px">
 
 Right click and open in a tab, to enlarge.
 
