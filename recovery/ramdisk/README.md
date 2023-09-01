@@ -181,7 +181,7 @@ This is the message displayed to invite the user to connect via `telnet` to the 
 
 | image generated with gimp on the pc | image generated on-the-fly | telnet banner with RFOS logo |
 | ----------------------------------- | -------------------------- | ---------------------------- |
-| <img src="../../forum/todo/recovery-telnet-phonescreen.jpeg" width="357px" height="500px"> | <img src="../smartphone-rfos-banner.jpg" width="357px" height="500px"> | <img src="../smartphone-rfos-logo.jpg" width="357px" height="500px"> |
+| <img src="../../forum/todo/recovery-telnet-phonescreen.jpeg" width="357px" height="425px"> | <img src="../smartphone-rfos-banner.jpg" width="357px" height="425px"> | <img src="../smartphone-rfos-logo.jpg" width="357px" height="425px"> |
 
 Until the IPv4 address `10.42.66.66` for telnet changes, the banner image should not be created, but it is included in the recovery image. However, the banner script will continue to be useful when `yamui` will be able to support the font-size multiplicator and multi-line text displaying. In the meantime, the banner script can generate a new image in 1.5 seconds, while the USB data link detection requires about 2 seconds. Therefore, even in the worst case, it does not add any extra delay.
 
