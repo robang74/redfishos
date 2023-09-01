@@ -22,13 +22,10 @@ The two parts of these artworks can be separately used as RedFish OS logo and th
 | ------------- | ------------- |
 | <img src="rfos-logo-full-on-black-bw.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-bw.png" width="420px" height="226px"> |
 | <div align="center">black-white logo</div> | <div align="center">black-white logo</div> |
-| ------------- | ------------- |
 | <img src="rfos-logo-full-on-black-gray.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-gray.png" width="420px" height="226px"> |
 | <div align="center">gray-scale logo</div> | <div align="center">gray-scale logo</div> |
-| ------------- | ------------- |
 | <img src="rfos-logo-full-on-black-16c.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-16c.png" width="420px" height="226px"> |
 | <div align="center">indixed 16 colors logo</div> | <div align="center">indixed 16 colors logo</div> |
-| ------------- | ------------- |
 | <img src="rfos-logo-full-on-black-rgb.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-rgb.png" width="420px" height="226px"> |
 | <div align="center">RGB colors logo</div> | <div align="center">RGB colors logo</div> |
 
