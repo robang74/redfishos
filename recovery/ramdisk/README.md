@@ -68,7 +68,7 @@ Moreover, as you can see the average current absorption in around 100 mAh:
   \_ max: 107 mAh
 => System report and init log:
   \_ load avg: 2.23 2.05 2.02 1/359 15271
-  \_ sleep drift: 4008 ppm 103.199 %
+  \_ sleep drift: min +4008 ppm, max 103.199 %
 [    3.048092] initrd: 1st line in /init.
 [    3.060950] initrd: recovery functions loaded.
 [    3.061077] initrd: preparation completed, start.
@@ -232,7 +232,7 @@ In `/tmp/bms_current_avg.log` is stored the 10s average current absorbtion taken
 
 ```
 => Current 10s average absorbtion:
-  \_ sleep drift: 4121 ppm 865.577 %
+  \_ sleep drift: min +4121 ppm, max 865.577 %
   \_ load avg: 2.02 2.03 1.75 1/356 5935
   \_ samples: 1670
   \_ min: 86 mAh
