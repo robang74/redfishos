@@ -2,19 +2,55 @@
 <html>
    <head>
        <title>RedFish OS</title>
-       <meta name="author" content="Roberto A. Foglietta <roberto.foglietta@gmail.com>">
-       <script>
-           function change()
-           {
-               if ( document.getElementById("myButton1").value != "Unpress me" ) {
-                   document.getElementById("myButton1").value="Unpress me";
-                   var randomnumber=100+Math.ceil(Math.random()*15);
-                   document.body.style.background="black url(tiles/" + randomnumber +".png) repeat";
-               } else {
-                   document.getElementById("myButton1").value="  Press me  ";
-                   document.body.style.background="black";
-               }
-           }
+       <meta name="author"
+           content="Roberto A. Foglietta <roberto.foglietta@gmail.com>">
+       <script type="text/javascript">
+var trials = 3;
+function change()
+{
+   if ( trials ) trials = trials - 1;
+   var r = Math.floor(Math.random() * 6);
+   if ( trials || r % 6 ) {
+       if ( document.getElementById("button").value != "Unpress me" ) {
+           r = 101 + Math.floor(Math.random() * 15);
+           document.getElementById("button").value="Unpress me";
+           document.body.style.background="black url(tiles/"+ r +".png) repeat";
+       } else {
+           document.getElementById("button").value="  Press me  ";
+           document.body.style.background="black";
+       }
+       return;
+   }
+   const text = `== COPYRIGHT NOTICE ==
+
+(C) 2023, all rights reserved, Roberto A Foglietta <roberto.foglietta@gmail.com>
+
+The background tiles and the RedFish logo are protected under the copyright and
+trademark laws, and all rights are reserved. Therefore, these original artworks
+cannot be distributed without a written permission from the author.`;
+
+   var tx = document.getElementById("textarea");
+   tx.value = text;
+   var h = tx.scrollHeight
+   tx.setAttribute("style", "height:"+ h +"px;overflow-y:hidden;");
+   tx.style.height = 0;
+   tx.style.height = (tx.scrollHeight-16) + "px";
+   tx.style.visibility = "visible";
+
+   document.body.style.background="black"       
+
+   const names = [ "lineone", "testpage", "button", "linetwo" ];
+   names.forEach(function (name, index) {
+       tx = document.getElementById(name);
+       if(tx) {
+           tx.style.transition = "none";
+           tx.style.visibility = "hidden";
+           tx.value = "";
+           tx.style.width = "0px";
+           tx.style.height = "0px";
+       }
+   });
+}
        </script>
        <style>
            .text {
@@ -70,13 +106,40 @@
                box-shadow: 0px 2px 4px forestgreen;
            }
 
+           .unselectable {
+               -moz-user-select: -moz-none;
+               -khtml-user-select: none;
+               -webkit-user-select: none;
+               -o-user-select: none;
+               user-select: none;
+           }
+
            .body {
                zoom: 150%;
                background: black url(%IMAGE%) repeat;
            }
+
+           .textarea {
+               font-family: "monospace";
+               justify-content: center;
+               border: black 1px solid;
+               text-align: center;
+               visibility: hidden;
+               background: black;
+               color: lightgray;
+               font-size: 8px;
+               padding: 10px;
+               resize: none;
+               width: 390px;
+               height: 0px;
+           }
+
+           .textarea:hover {
+               border: grey 1px solid;
+           }
        </style>
    </head>
-   <body class="body" align="center">
+   <body class="body unselectable" align="center">
        <font color="white" style="font-family:ubuntu;">
            <p><br/></p>
            <h1>
@@ -84,15 +147,20 @@
                <br/>
                <font color="silver">Recovery&nbsp;Image</font>
            </h1>
-           <p style="font-size:1;"><br/></p>
        </font>
        <font color="grey" style="font-family:ubuntu;">
-           <h3>HTML Test Page</h3>
+           <p style="font-size:1;" id="lineone"><br/></p>
+           <h3 id="testpage">HTML Test Page</h3>
+           <textarea class="textarea unselectable" id="textarea"
+               onselectstart="return false;" onmousedown="return false;"
+               readonly></textarea>
            <p style="font-size:1;"><br/></p>
        </font>
-       <input class="button" type="button" onclick="change();" value="  Press me  " id="myButton1" />
-       <p style="font-size:16px;"><br/></p>
-       <font class="copyright">&copy; <a class="copyright" href="LICENSE">2023, Roberto A. Foglietta</a></font>
+       <input class="button" type="button" onclick="change();"
+           value="  Press me  " id="button" />
+       <p style="font-size:16px;" id="linetwo"><br/></p>
+       <font class="copyright">&copy; <a class="copyright"
+           href="COPYRIGHT">2023, Roberto A. Foglietta</a></font>
        <p style="font-size:16px;"><br/></p>
    </body>
 </html>
