@@ -360,8 +360,9 @@ The GPLv3 license applies to the composition unless you are the original author 
 Some files, documents, software, or firmware components can make an exception to the above general approach due to their specific copyright and license restrictions. In doubt, follow the thumb rule of fair use. Here is a list of them:
 
 * Vendor's proprietary blobs for Sony Xperia 10 II ([github repository fork](https://github.com/robang74/proprietary_vendor_sony_pdx201))
-* Jolla's copyright backup documentation ([Jolla folder](https://github.com/robang74/redfishos/tree/main/Jolla#about-jolla-folder))
-* RedFish OS which is all rights reserved and a trademark ([logo folder](https://github.com/robang74/redfishos/blob/devel/logo#redfish-os-logo))
+* Jolla's copyright backup documentation ([Jolla folder](Jolla#about-jolla-folder))
+* RedFish OS logo which is all rights reserved and a trademark ([logo folder](logo#redfish-os-logo))
+* RedFish OS recovery www folder content which is all rights reserved ([www folder](recovery/ramdisk/var/www#about-www-folder))
 
 For further information or requests about licensing and how to obtain a fork suitable for your own business, please write to the project maintainer and copyleft owner:
 
