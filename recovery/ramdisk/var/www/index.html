@@ -53,98 +53,104 @@ cannot be distributed without a written permission from the author.`;
 }
        </script>
        <style>
-           .text {
-               padding: 0px 0px 0px 0px;
-               display: inline-block;
-               vertical-align: top;
-               position: relative;
-               text-align: center;
-           }
+.text {
+    padding: 0px 0px 0px 0px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    text-align: center;
+}
 
-           .text::before {
-               transform: translateX(-50%);
-               border-radius: 100%;
-               position: absolute;
-               background: red;
-               right: 12.25%;
-               height: 12px;
-               width: 10px;
-               content: '';
-               top: 35%;
-           }
+.text::before {
+    transform: translateX(-50%);
+    border-radius: 100%;
+    position: absolute;
+    background: red;
+    right: 12.25%;
+    height: 12px;
+    width: 10px;
+    content: '';
+    top: 35%;
+}
 
-           .text:hover::before {
-               background: black url('hal-9000-eye.png') 50% 0 / contain no-repeat;
-               right: 4.25%;
-               height: 24px;
-               width: 24px;
-               top: 17.5%;
-           }
+.text:hover::before {
+    background: black url('hal-9000-eye.png') 50% 0 / contain no-repeat;
+    right: 4.25%;
+    height: 24px;
+    width: 24px;
+    top: 17.5%;
+}
 
-           .button {
-               color: black;
-               border-radius: 8px;
-               text-align: center;
-               position: relative;
-               background: darkgrey;
-               vertical-align: middle;
-               border: 3px solid silver;
-               transition-duration: 0.4s;
-               box-shadow: 0px 1px 4px red;
-               padding: 5px 10px 5px 10px;
-               width: 120px;
-               height: 30px;
-               z-index: 1;
-           }
+.button {
+    color: black;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    background: darkgrey;
+    vertical-align: middle;
+    border: 3px solid silver;
+    transition-duration: 0.4s;
+    box-shadow: 0px 1px 4px red;
+    padding: 5px 10px 5px 10px;
+    width: 120px;
+    height: 30px;
+    z-index: 1;
+}
 
-           .copyright {
-               color: dimgrey;
-               font-size: 10px;
-               font-family: "ubuntu";
-               text-decoration: none;
-               text-shadow: #404040 1px 1px 1px;
-           }
+.copyright {
+    color: dimgrey;
+    font-size: 10px;
+    font-family: "ubuntu";
+    text-decoration: none;
+    text-shadow: #404040 1px 1px 1px;
+}
 
-           .button:hover {
-               color: whitesmoke;
-               background: forestgreen;
-               box-shadow: 0px 2px 4px forestgreen;
-           }
+.button:hover {
+    color: whitesmoke;
+    background: forestgreen;
+    box-shadow: 0px 2px 4px forestgreen;
+}
 
-           .unselectable {
-               -moz-user-select: -moz-none;
-               -khtml-user-select: none;
-               -webkit-user-select: none;
-               -o-user-select: none;
-               user-select: none;
-           }
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
 
-           .body {
-               zoom: 150%;
-               background: black;
-           }
+.body {
+    width: 66%;
+    align: center;
+    background: black;
+    padding: 0 0 0 16%;
+    -ms-transform: scale(1.5);
+    -moz-transform: scale(1.5); /* Firefox */
+    -moz-transform-origin: 60% 0;
+    zoom: 150%;
+}
 
-           .textarea {
-               font-family: "monospace";
-               justify-content: center;
-               border: black 1px solid;
-               text-align: center;
-               visibility: hidden;
-               background: black;
-               color: lightgray;
-               font-size: 8px;
-               padding: 10px;
-               resize: none;
-               width: 390px;
-               height: 0px;
-           }
+.textarea {
+    font-family: "monospace";
+    justify-content: center;
+    border: black 1px solid;
+    text-align: center;
+    visibility: hidden;
+    background: black;
+    color: lightgray;
+    font-size: 8px;
+    padding: 10px;
+    resize: none;
+    width: 390px;
+    height: 0px;
+}
 
-           .textarea:hover {
-               border: grey 1px solid;
-           }
+.textarea:hover {
+    border: grey 1px solid;
+}
        </style>
    </head>
-   <body class="body unselectable" align="center">
+   <body class="body unselectable"><div align="center" id="for-firefox">
        <font color="white" style="font-family:ubuntu;">
            <p><br/></p>
            <h1>
@@ -167,5 +173,5 @@ cannot be distributed without a written permission from the author.`;
        <font class="copyright">&copy; <a class="copyright"
            href="COPYRIGHT">2023, Roberto A. Foglietta</a></font>
        <p style="font-size:16px;"><br/></p>
-   </body>
+   </div></body>
 </html>
