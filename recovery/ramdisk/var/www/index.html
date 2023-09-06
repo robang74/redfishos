@@ -37,7 +37,7 @@ cannot be distributed without a written permission from the author.`;
    tx.style.height = (tx.scrollHeight-16) + "px";
    tx.style.visibility = "visible";
 
-   document.body.style.background="black"       
+   document.body.style.background="black"
 
    const names = [ "lineone", "testpage", "button", "linetwo" ];
    names.forEach(function (name, index) {
@@ -59,13 +59,10 @@ cannot be distributed without a written permission from the author.`;
                vertical-align: top;
                position: relative;
                text-align: center;
-               min-width: 100px;
            }
 
            .text::before {
                transform: translateX(-50%);
-               padding: 0px 0px 0px 0px;
-               vertical-align: top;
                border-radius: 100%;
                position: absolute;
                background: red;
@@ -74,6 +71,14 @@ cannot be distributed without a written permission from the author.`;
                width: 10px;
                content: '';
                top: 35%;
+           }
+
+           .text:hover::before {
+               background: black url('hal-9000-eye.png') 50% 0 / contain no-repeat;
+               right: 4.25%;
+               height: 24px;
+               width: 24px;
+               top: 17.5%;
            }
 
            .button {
@@ -116,7 +121,7 @@ cannot be distributed without a written permission from the author.`;
 
            .body {
                zoom: 150%;
-               background: black url(%IMAGE%) repeat;
+               background: black;
            }
 
            .textarea {
