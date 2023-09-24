@@ -97,3 +97,5 @@ Notice that the first rendering of the recovery menu takes 461 ms, and in the pa
 ### Native ARM64 build enviroment
 
 The developers menu provides several functionalities to cope with the SailFish OS root filesystem and for preparing the `super` partition, which is 12GB in size on Sony Xperia 10 II, to provide an ARM 64bit native building toolchain based on CentOS 8 Stream for just 642 MB. The `super` partition is dedicated to termporarly store the OTA Android updates but can also permantly or temporarly host a native toolchain system. In fact, installing it requires about 35 seconds.
+
+The CentOS 8 Stream has choosen because to upgrade it to the last version is required just a step CentOS 9 Stream. While Fedora 31 should be updated to Fedora 39. This means that CentOS offers a long term support for each version and for this reason is much more affine with a business adoption. The two distributions have been take in consideration in the stage2 of the [SFOS refactoring plan](../README.md#about-sfos-refactoring) as starting point.
