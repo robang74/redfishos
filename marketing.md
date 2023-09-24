@@ -10,6 +10,8 @@ First of all, it is important to notice that this project does not aim to reach 
 
 The end-users might have several advantages in having RedFish OS pre-installed as a recovery image or as a supervising system, but they are not the targets of the RFOS marketing because most of the on-the-shelf smartphones do not allow to overwrite the boot or the recovery image, and those that allow it do so not by a bare-simple procedure. Otherwise, end-users would probably brick their smartphones or install a malicious rootkit instead of something really useful. Plus, it would void the vendor's warranty, obviously.
 
+Just to give you an idea: a Linux-based OS is about 1.5GB, while a modern Android system (10+) is about 2.5GB. The RedFish OS image is less than 30MB and includes the kernel with all the drivers compiled in, the vendor's binary firmwares, the command-line applications, and the networking services.
+
 ---
 
 ### Project presentation
@@ -128,3 +130,5 @@ Inspired by Punkt. MP01, I have decided to adapt their design to RedFish OS for 
 </div>
 
 What took more effort was the power-saving. The smartphone consumes a maximum of 81 mAh with the display on and in interactive mode, while it consumes 23 mAh on average when it is in standby waiting for an event. This means that with a 3600 mAh battery, it stands by for 156 hours. with little improvement towards 21.4 mAh on average, it will be a whole week.
+
+
