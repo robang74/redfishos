@@ -84,7 +84,7 @@ The **second stage** of the refactoring process can be divided into a few other 
 
 * 2.1. using the recovery image to create a basic root filesystem from scratch based on the full features of the busybox;
 
-* 2.2. including an advanced RPM tool like `yum` in order to leverage the CentOS 8 and Fedora 8 repositories to install a set of packages that will create a fully working root filesystem back-compatible with the last available version (4.5.0.21) of SaiFish OS;
+* 2.2. including an advanced RPM tool like `yum` in order to leverage the CentOS 8 and Fedora 31 repositories to install a set of packages that will create a fully working root filesystem back-compatible with the last available version (4.5.0.21) of SaiFish OS;
 
 * 2.3. adding on top of the RedFish OS the Jolla software layer related to the graphics UI, apps markets, and Alien Dalvik support (optional) in order to provide a fully back-compatibility system, at least for the most significant SFOS apps currently available.
 
