@@ -18,16 +18,20 @@ This folder contains some artwork about the RedFish logo.
 
 The two parts of these artworks can be separately used as RedFish OS logo and therefore are protected separately.
 
+<div align="center">
+
 | logo on black background | logo on white backgroud |
 | ------------- | ------------- |
-| <img src="rfos-logo-full-on-black-bw.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-bw.png" width="420px" height="226px"> |
+| <img src="rfos-logo-full-on-black-bw.png" width="210px" height="113px"> | <img src="rfos-logo-full-on-white-bw.png" width="210px" height="113px"> |
 | <div align="center">black-white logo</div> | <div align="center">black-white logo</div> |
-| <img src="rfos-logo-full-on-black-gray.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-gray.png" width="420px" height="226px"> |
+| <img src="rfos-logo-full-on-black-gray.png" width="210px" height="113px"> | <img src="rfos-logo-full-on-white-gray.png" width="210px" height="113px"> |
 | <div align="center">gray-scale logo</div> | <div align="center">gray-scale logo</div> |
-| <img src="rfos-logo-full-on-black-16c.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-16c.png" width="420px" height="226px"> |
+| <img src="rfos-logo-full-on-black-16c.png" width="210px" height="113px"> | <img src="rfos-logo-full-on-white-16c.png" width="210px" height="113px"> |
 | <div align="center">indixed 16 colors logo</div> | <div align="center">indixed 16 colors logo</div> |
-| <img src="rfos-logo-full-on-black-rgb.png" width="420px" height="226px"> | <img src="rfos-logo-full-on-white-rgb.png" width="420px" height="226px"> |
+| <img src="rfos-logo-full-on-black-rgb.png" width="210px" height="113px"> | <img src="rfos-logo-full-on-white-rgb.png" width="210px" height="113px"> |
 | <div align="center">RGB colors logo</div> | <div align="center">RGB colors logo</div> |
+
+</div>
 
 ### Pantones
 
@@ -39,7 +43,7 @@ The logo main colors are total black (`#000000`), pure white (`#ffffff`) and ful
 
 This is the animation which is displayed after the Sony logo until the system is up:
 
-<img src="rfos-anim-circles-16c-2x.gif" width="256px" height="256px">
+<p><div align="center"><img src="rfos-anim-circles-16c-2x.gif" width="256px" height="256px"></div></p>
 
 This animation seems very similar to the one presented by the SailFish OS but it is not a derived work. In fact, the original animation is based on 8 PNG images in grayscale (256x256 pixels), each of which is about 29 KB (58 blocks). When included in the `cpio.gz` archive, they cannot be compressed anymore, and keep their size. Instead of the RFOS animation, there are 8 PNG images in RGB 512x512 pixels, and in theory, that would have a size of 3 x 2 x 2 = 12 times bigger. Instead, they are about 5.3 KB (11 blocks).
 
@@ -56,7 +60,7 @@ This is the use of the RFOS logo in combination with the telnet IPv4 informative
 
 <img src="../recovery/ramdisk/res/images/ip-10.42.66.66.png" width="256px" height="256px">
 
-The script to print the banner and creating its related PNG image is available [here](r../ecovery/print-banner.sh).
+Initially to print the banner and creating its related PNG image was a task assigned to a specific [script](r../ecovery/print-banner.sh) due to the limitations of the `yamui` display manager. Now it is rendered in real-time thanks to the effort put into the development of [yamui fork](https://github.com/robang74/yamui) secifically tailored for this project. The `yamui` embedded font is more conventional but the extended functionalities developed can provide a more advanced and flexible display management while the embedded font can replaced by an external font in the future.
 
 ---
 
