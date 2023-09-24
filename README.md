@@ -6,26 +6,28 @@
  
 ```
 
+**Update, 24.09.2023** - After having seen the potential of having an advanced rescue image, a fleet management tool, a supervising OS, and how far RedFish OS can be customised to bring added value to vendors, distributors, and professional modders of mobile devices, the refactoring of SailFish OS has been set aside.
+
+Support for other smartphones like the Sony Xperia 10 III or IV, Gigaset GS5 and its variants, in particular the Rephone, can be added as long as concrete support is specifically received. While support for open hardware platforms like Pine64 or Librem smartphones can be added depending on the availability of developers and maintainers.
+
 > :warning: **Warning**
 > 
 > Despite the same name, this project is **NOT** related to this one: [RedFishOS by Richard Guerci](https://redfish.github.io/redfish-os/).
-
-Support for other smartphones like the Sony Xperia 10 III or IV, Gigaset GS5 and its variants, in particular the Rephone, can be added as long as concrete support is specifically received. While support for open hardware platforms like Pine64 or Librem smartphones can be added depending on the availability of developers and maintainers.
 
 ---
 
 ### Index
 
 1. [Fund raising](#fund-raising)
-2. [Marketing, introduction](#marketing)
-3. [About SFOS refactoring](#about-sfos-refactoring)
-4. [About SailFish OS](#about-sailfish-os)
-5. [About Xperia 10 II](#about-xperia-10-ii)
+2. [About RedFish OS](#about-redfish-os)
+3. [About Xperia 10 II](#about-xperia-10-ii)
+4. [About SFOS refactoring](#about-sfos-refactoring)
+5. [About SailFish OS](#about-sailfish-os)
 6. [About Open Device program](#about-open-device-program)
 7. [Useful documentation](#useful-documentation)
 8. [List of components](#list-of-components)
 9. [News and updates](#news--updates)
-10. [Forum](#forum)
+10. [Forum, no thanks](#forum)
 11. [License](#license)
 
 ---
@@ -51,13 +53,23 @@ Keep visiting this page to be updated about the project evolution. Technical pro
 
 ---
 
-### Marketing
+### About RedFish OS
 
 First of all, it is important to notice that this project does not aim to reach the end-user market directly. The RFOS marketing targets are the vendors, the distributors, the engineers, and the modders, including those who are doing such activities as hobbies. More information are available in the [marketing page](marketing.md).
+
+Just to give you an idea: a Linux-based OS is about 1.5GB, while a modern Android system (10+) is about 2.5GB. The RedFish OS image is less than 30MB and includes the kernel with all the drivers compiled in, the vendor's binary firmwares, the command-line applications, and the networking services.
 
 To learn how your business can benefit from the RedFish OS adoption, check this [PDF presentation](RedFishOS-presentation-A4.pdf) introduced by a less than 200 words executive summary.
 
 About the logo and the product branding, check the [logo folder](logo#redfish-os-logo). It contains the logo in several options, the pantones, the animation, how the textual menu interface presents itself and a couple of videos.
+
+---
+
+### About Xperia 10 II
+
+The Sony Electronics Xperia 10 II has an easy grip due to its unusual long bar ratio OLED 6" display (1080x2520) equipped with an ARM64 8-cores @2GHz, 4GB of RAM and 128GB of internal flash storage with a real writing speed above 100MB/s. On the communication side, it is a LTE 4G with GNSS/AGPS/GPS subsystem that also supports the Galileo constellation with a firmware upgrade (tested and working).
+
+The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idPhone2=10698) (codename `pdx201`) is a mid-range smartphone which was announced in February 2020, released in May 2020 and included [in June 2020](https://developer.sony.com/posts/xperia-10-ii-added-to-sonys-open-devices-program/) in the [Sony Open Device program](https://developer.sony.com/open-source/aosp-on-xperia-open-devices).
 
 ---
 
@@ -166,14 +178,6 @@ Some other proprietary software and vendor firmwares came from Sony Open Device 
 > :information_source: **Note**
 > 
 > In case you wish to redistribute the SFOS images, the alternative to fulfilling those obligations by yourself is to link to this page, whose aim is to collect all those FOSS contributions. However, you have to check for yourself if this list of resources is complete and updated with respect to the boot image that you wish to distribute. Usually, it is not unless you have paid for it.
-
----
-
-### About Xperia 10 II
-
-The Sony Electronics Xperia 10 II has an easy grip due to its unusual long bar ratio OLED 6" display (1080x2520) equipped with an ARM64 8-cores @2GHz, 4GB of RAM and 128GB of internal flash storage with a real writing speed above 100MB/s. On the communication side, it is a LTE 4G with GNSS/AGPS/GPS subsystem that also supports the Galileo constellation with a firmware upgrade (tested and working).
-
-The [Sony Xperia 10 II](https://www.gsmarena.com/compare.php3?idPhone1=10095&idPhone2=10698) (codename `pdx201`) is a mid-range smartphone which was announced in February 2020, released in May 2020 and included [in June 2020](https://developer.sony.com/posts/xperia-10-ii-added-to-sonys-open-devices-program/) in the [Sony Open Device program](https://developer.sony.com/open-source/aosp-on-xperia-open-devices).
 
 ---
 
@@ -362,11 +366,13 @@ Please check the [same section](https://github.com/robang74/redfishos/tree/devel
 
 ---
 
-### Forum
+### Forum, no thanks
 
 RedFish OS will probably (*never say never*) never have a dedicated forum, and the reason is that the "*forum*" is a Latin word that, in its etymological roots, is equivalent to "*agorà*" in ancient Greek meaning: a public physical place where people living in the same geographical area are used to meet each other for a variety of social activities, and not all of those activities are reputable as good, also for the moral and ethical of that time.
 
 Therefore, if you like the "forum" concept, embrace it in its original meaning and go out of your home or office and make friends in the real world. The only reasonable way to use a platform like a virtual e-forum is to use it as a wiki or a bulletin board, and also for these purposes, it is not the best tool because it easily drives people out of their tracks. In fact, in a virtual environment, the social dynamics are different.
+
+**Update, 24.09.2023** - The plan for SFOS refactoring has been set aside, as stated at the beginning of this page, and therefore every need for dealing with any e-forum platform is gone, completely.
 
 ---
 
