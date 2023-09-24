@@ -92,4 +92,8 @@ The menu available via `telnet` or via `ssh` has different specialised sections:
 
 Notice that the first rendering of the recovery menu takes 461 ms, and in the past it was about 360 ms. This is because the USB is set to sleep, like many other components. Obviously, the awake process introduced a latency of about 100 ms, but the current consumption dropped to 23 mAh from 46 mAh on average. It has been halved, and the overall advantage is pretty clear.
 
+---
+
+### Native ARM64 build enviroment
+
 The developers menu provides several functionalities to cope with the SailFish OS root filesystem and for preparing the `super` partition, which is 12GB in size on Sony Xperia 10 II, to provide an ARM 64bit native building toolchain based on CentOS 8 Stream for just 642 MB. The `super` partition is dedicated to termporarly store the OTA Android updates but can also permantly or temporarly host a native toolchain system. In fact, installing it requires about 35 seconds.
