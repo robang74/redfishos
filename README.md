@@ -57,6 +57,8 @@ First of all, it is important to notice that this project does not aim to reach 
 
 To learn how your business can benefit from the RedFish OS adoption, check this [PDF presentation](RedFishOS-presentation-A4.pdf) introduced by a less than 200 words executive summary.
 
+About the logo and the product branding, check the [logo folder](logo#redfish-os-logo). It contains the logo in several options, the pantones, the animation, how the textual menu interface presents itself and a couple of videos.
+
 ---
 
 ### About SFOS refactoring
