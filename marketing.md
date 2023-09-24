@@ -55,11 +55,11 @@ The use of videos is important to tune the expectations: give an idea of what ha
 
 1. a recovery image that can also boot another operative system based on Linux or Android
 
-    * [video on youtube, 1m17s](https://youtu.be/xT_MR-NgAcU) - RedFish OS recovery image boots a freshly installed SailFish OS.
+    * [video on youtube, 1m17s](https://youtu.be/xT_MR-NgAcU) - RedFish OS recovery image boots a freshly installed SailFish OS.
 
 2. a recovery image that can provide a straightforward interface to flash the entire smartphone
 
-    * [video on youtube, 1m11s](https://youtu.be/EP10Evtl0wo) - RedFish OS recovery image install SailFish OS by the telnet menu.
+    * [video on youtube, 1m11s](https://youtu.be/EP10Evtl0wo) - RedFish OS recovery image install SailFish OS by the telnet menu.
 
 In the first video, the smartphone boot image is flashed with the RedFish OS image, then it reboots with the recovery image, and then it reboots with the normal operative system, in this case SailFish OS. Notice that all of this takes 1m17s despite the fact that the smartphone vendor boot requires at least 20 seconds for each of the two reboots.
 
@@ -73,7 +73,7 @@ Offering a remote root-priviledged shell access is the best way to let engineers
 
 The menu available via `telnet` or via `ssh` has different specialised sections:
 
-<p><div align="center"><img src="../recovery/recovery-menu-on-telnet-all.png" width="990px" height="582px"></div></p>
+<p><div align="center"><img src="recovery/recovery-menu-on-telnet-all.png" width="990px" height="522px"></div></p>
 
 Notice that the first rendering of the recovery menu takes 461 ms, and in the past it was about 360 ms. This is because the USB is set to sleep, like many other components. Obviously, the awake process introduced a latency of about 100 ms, but the current consumption dropped to 23 mAh from 46 mAh on average. It has been halved, and the overall advantage is pretty clear.
 
@@ -95,13 +95,22 @@ In order to address this shortcoming, RedFish OS can provide advanced features w
 
 A supervising system or a remote fleet-management tool or an advanced recovery image are very valuable services also for the end-users because these tools help them in having as less problems as possible or fixing them as fast and as easy as possible. Unfortunately, all of these are valuable assets for vendors, distributors and professional modders but their customers, especially the end-users, rarely perceive all the effort and the value in carying about them.
 
-Instead, some advanced features like the Punkt MP01 virtual clone (or a Nokia 3310 virtual clone, depending the skin) can be perceived like an effective added value.
+Instead, some advanced features like the Punkt MP01 virtual clone (or a Nokia 3310 virtual clone, depending the skin) can be perceived like an effective added value. The [Punkt MP01](https://www.punkt.ch/en/products/mp01-mobile-phone/#buy) is sold at the sale price of $169 with 2G support only while the [Punkt MP02](https://www.punkt.ch/en/products/mp02-4g-mobile-phone/#buy) is sold for $379 with 2G, 3G and 4G support.
+
+The added value in having such a virtual clone is pretty clear also for the end-users. In fact, the can leave the office for holiday, disconnected themselves for enjoy their free time and still be reachable by TEXT and phone calls by a selected number of people. Moreover, in this mode the smartphone can endure between 3 and 6 days in stand-by depending the signal coverage with a full charge of the battery.
 
 ---
 
 ### Welcome back Nokia 3310
 
-[TODO]
+Inspired by Punkt. MP01, I have decided to adapt their design to RedFish OS for delivering an added-value advance feature. The photo below shows just a presentation, not even a working proof-of-concept. After all, the software adaptation to create it required just a working-day dedicated effort, and it would be insane to expect a full phone to work in such a small amount of time.
 
+What took more effort was the power-saving. The smartphone consumes a maximum of 81 mAh with the display on and in interactive mode, while it consumes 23 mAh on average when it is in standby waiting for an event. This means that with a 3600 mAh battery, it stands by for 156 hours. with little improvement towards 21.4 mAh on average, it will be a whole week.
 
+<div align="center">
 
+<img src="punkt-m01-virtual-clone.jpg" width="504px" height="504px">
+
+<sub>*On the right a high-exposure photo and on the right the same that shows the layer.*</sub>
+
+</div>
