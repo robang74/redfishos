@@ -17,15 +17,16 @@ Support for other smartphones like the Sony Xperia 10 III or IV, Gigaset GS5 and
 ### Index
 
 1. [Fund raising](#fund-raising)
-2. [About SFOS refactoring](#about-sfos-refactoring)
-3. [About SailFish OS](#about-sailfish-os)
-4. [About Xperia 10 II](#about-xperia-10-ii)
-5. [About Open Device program](#about-open-device-program)
-6. [Useful documentation](#useful-documentation)
-7. [List of components](#list-of-components)
-8. [News and updates](#news--updates)
-9. [Forum](#forum)
-10. [License](#license)
+2. [Marketing, introduction](#marketing)
+3. [About SFOS refactoring](#about-sfos-refactoring)
+4. [About SailFish OS](#about-sailfish-os)
+5. [About Xperia 10 II](#about-xperia-10-ii)
+6. [About Open Device program](#about-open-device-program)
+7. [Useful documentation](#useful-documentation)
+8. [List of components](#list-of-components)
+9. [News and updates](#news--updates)
+10. [Forum](#forum)
+11. [License](#license)
 
 ---
 
@@ -38,11 +39,7 @@ As much as you are interested in this project, you can concretely support a spec
 
 Roberto Foglietta is the document-id real persona name behind on-line `Roberto A. Foglietta` authorship brand, usually presented as:
 
-```bash
-
-(C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
-
-```
+      (C) 2023, Roberto A. Foglietta <roberto.foglietta@gmail.com>
 
 in the files headers, in the Change Logs, in the documents authorship or referal sections, on the websites footers, etc.
 
@@ -50,7 +47,15 @@ in the files headers, in the Change Logs, in the documents authorship or referal
 > 
 > The report of activities and related proof of expenses will be submitted only to those who contributed. On a regular basis: monthly, quarterly, or yearly, depending on the amount of support. Those nominative reports will be sent with the friendly clause to not publicly disclose those data before three years from the date of the report.
 
-If you are visiting this page to be updated about the project progression, jump to the [news and updates](#news--updates) section. 
+Keep visiting this page to be updated about the project evolution. Technical progression is reported in the [news and updates](#news--updates) section. 
+
+---
+
+### Marketing
+
+First of all, it is important to notice that this project does not aim to reach the end-user market directly. The RFOS marketing targets are the vendors, the distributors, the engineers, and the modders, including those who are doing such activities as hobbies. More information are available in the [marketing page](marketing.md).
+
+To learn how your business can benefit from the RedFish OS adoption, check this [PDF presentation](RedFishOS-presentation-A4.pdf) introduced by a less than 200 words executive summary.
 
 ---
 
