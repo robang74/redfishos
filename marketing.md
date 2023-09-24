@@ -1,10 +1,14 @@
 ## Marketing
 
+To learn how your business can benefit from the RedFish OS adoption, check this [PDF presentation](RedFishOS-presentation-A4.pdf) introduced by a less than 200 words executive summary.
+
+### Marketing targets
+
 First of all, it is important to notice that this project does not aim to reach the end-user market directly. The RFOS marketing targets are the vendors, the distributors, the engineers, and the modders, including those who are doing such activities as hobbies.
 
 The end-users might have several advantages in having RedFish OS pre-installed as a recovery image or as a supervising system, but they are not the targets of the RFOS marketing because most of the on-the-shelf smartphones do not allow to overwrite the boot or the recovery image, and those that allow it do so not by a bare-simple procedure. Otherwise, end-users would probably brick their smartphones or install a malicious rootkit instead of something really useful. Plus, it would void the vendor's warranty, obviously.
 
-### Product presentation
+### Project presentation
 
 RedFish OS has the primary goal of complementing Android rather than
 replacing it. It can serve for various purposes, such as a flashing tool,
@@ -25,8 +29,9 @@ their products for each SoC model and version. They relied on the hope
 that hardware producers would provide sufficient support, and they
 were involved in technical activities that were costly and challenging.
 
-For more details, the [a PDF presentation](RedFishOS-presentation-A4.pdf)
-is available for evaluation.
-
 ### Logo and brand
+
+[TODO]
+
+
 
