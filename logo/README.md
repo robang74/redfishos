@@ -67,39 +67,3 @@ This is the use of the RFOS logo in combination with the `telnet` IPv4 informati
 Initially, printing the banner and creating its related PNG image was a task assigned to a specific [script](r../ecovery/print-banner.sh) due to the limitations of the `yamui` display manager. Now it is rendered in real-time thanks to the effort put into the development of the [yamui fork](https://github.com/robang74/yamui) specifically tailored for this project.
 
 The `yamui` embedded font is more conventional, but the extended functionalities developed can provide a more advanced and flexible display management, while the embedded font can be replaced by an external font in the future. Refer to the [Punkt MP02 virtual clone](#punkt-mp02-virtual-clone) section for an example of the `yamui` advanced usage.
-
----
-
-### Recorded performances
-
-In these two videos, the RedFish OS is presented, providing two different tasks:
-
-1. a recovery image that can also boot another operative system based on Linux or Android
-
-    * [video on youtube, 1m17s](https://youtu.be/xT_MR-NgAcU) - RedFish OS recovery image boots a freshly installed SailFish OS.
-
-2. a recovery image that can provide a straightforward interface to flash the entire smartphone
-
-    * [video on youtube, 1m11s](https://youtu.be/EP10Evtl0wo) - RedFish OS recovery image install SailFish OS by the telnet menu.
-
-In the first video, the smartphone boot image is flashed with the RedFish OS image, then it reboots with the recovery image, and then it reboots with the normal operative system, in this case SailFish OS. Notice that all of this takes 1m17s despite the fact that the smartphone vendor boot requires at least 20 seconds for each of the two reboots.
-
-In the second video, the smartphone several partitios are re-flashed with SailFish OS official installation images set using the RedFish OS service instead of the `fastboot` mode or for some other operative systems like `/e/OS` the ADB mode. Notice that to complete the whole re-flashing procedure, which writes not less than 1.5GB of data in this case, it takes 70 seconds.
-
----
-
-### The recovery menu on telnet
-
-The menu available via `telnet` or via `ssh` has different specialised sections:
-
-<p><div align="center"><img src="../recovery/recovery-menu-on-telnet-all.png" width="990px" height="582px"></div></p>
-
-Notice that the first rendering of the recovery menu takes 461 ms, and in the past it was about 360 ms. This is because the USB is set to sleep, like many other components. Obviously, the awake process introduced a latency of about 100 ms, but the current consumption dropped to 23 mAh from 46 mAh on average. It has been halved, and the overall advantage is pretty clear.
-
----
-
-### Native ARM64 build environment
-
-The developers menu provides several functionalities to cope with the SailFish OS root filesystem and for preparing the `super` partition, which is 12GB in size on the Sony Xperia 10 II, to provide an ARM 64-bit native building toolchain based on CentOS 8 Stream for just 642 MB. The `super` partition is dedicated to temporarily storing the OTA Android updates but can also permanently or temporarily host a native toolchain system. In fact, installing it requires about 35 seconds.
-
-The CentOS 8 Stream has been chosen because upgrading it to the last version is required, just a step above the CentOS 9 Stream. While Fedora 31 should be updated to Fedora 39. This means that CentOS offers long-term support for each version, and for this reason, it is much more affine for business adoption. The two distributions have been taken into consideration in the stage2 of the [SFOS refactoring plan](../README.md#about-sfos-refactoring) as a starting point.
