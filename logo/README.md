@@ -14,6 +14,8 @@ This folder contains some artwork about the RedFish logo.
 > 
 > These artworks should be considered protected under the copyright and trademark laws, and all rights are reserved. Therefore, the RedFish logo cannot be used unless it has received written permission from the author: check [here](../#license).
 
+The logo and the motto have been proposed to specifically fit the taste and expectations of the [marketing targets](../marketing.md#marketing-targets): Linux embedded engineers in their middle-life age who are looking for an old-good-days simple and powerful tool to cope with mobile devices initially tailored for Android.
+
 ---
 
 The two parts of these artworks can be separately used as RedFish OS logo and therefore are protected separately.
@@ -58,19 +60,27 @@ The ratio between the size expected and the real one is about 2⁶ = 64 which is
 
 This is the use of the RFOS logo in combination with the telnet IPv4 informative banner:
 
-<img src="../recovery/ramdisk/res/images/ip-10.42.66.66.png" width="256px" height="256px">
+<p><div align="center"><img src="../recovery/ramdisk/res/images/ip-10.42.66.66.png" width="256px" height="256px"></div></p>
 
 Initially to print the banner and creating its related PNG image was a task assigned to a specific [script](r../ecovery/print-banner.sh) due to the limitations of the `yamui` display manager. Now it is rendered in real-time thanks to the effort put into the development of [yamui fork](https://github.com/robang74/yamui) secifically tailored for this project. The `yamui` embedded font is more conventional but the extended functionalities developed can provide a more advanced and flexible display management while the embedded font can replaced by an external font in the future.
 
 ---
 
-### The boot timing
+### Recorded performances
 
-Here in 1:1 video on youtube the 20s reboot sequence:
+In these two videos the RedFish OS is presented providing two different tasks:
 
-* https://youtu.be/j8iWLmYSx5I
+1. a recovery image that can also boot the another operative system based on Linux or Android
 
-In the video the red dots seem orange but they are red.
+    * [video on youtube, 1m17s](https://youtu.be/xT_MR-NgAcU) - RedFish OS recovery image boots a freshly installed SailFish OS.
+
+2. a recovery image that can provide a straightforward interface to flash the entire smartphone
+
+    * [video on youtube, 1m11s](https://youtu.be/EP10Evtl0wo) - RedFish OS recovery image install SailFish OS by the telnet menu.
+
+In the first video, the smartphone boot image is flashed with the RedFish OS image, then it reboots with it in recovery image and then it reboot with the normal operative system, in this case SailFish OS. Notice that all of this takes 1m17s despite the smartphone vendor boot requires 20 seconds at least for each of the two reboots.
+
+In the second video, the smartphone several partitios are re-flashed with SailFish OS official installation images set using the RedFish OS service instead of the `fastboot` mode or for some others operative systems like `/e/OS` the ADB mode. Notice that to complete the whole re-flashing procedure, which writes not less than 1.5GB of data in this case, it takes 70 seconds.
 
 ---
 
