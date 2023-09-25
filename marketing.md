@@ -49,9 +49,9 @@ Refer to the [logo folder](logo#redfish-os-logo) in order to learn more about it
 
 The logo and the motto have been proposed to specifically fit the taste and expectations of the [marketing targets](../marketing.md#marketing-targets): Linux embedded engineers in their middle-life age who are looking for an old-good-days simple and powerful tool to cope with mobile devices initially tailored for Android.
 
-| image generated with gimp on the pc | image generated on-the-fly | telnet banner with RFOS logo |
+| loading | working | reboot |
 | ----------------------------------- | -------------------------- | ---------------------------- |
-| <img src="forum/todo/recovery-telnet-phonescreen.jpeg" width="357px" height="400px"> | <img src="recovery/smartphone-rfos-banner.jpg" width="357px" height="400px"> | <img src="recovery/smartphone-rfos-logo.jpg" width="357px" height="400px"> |
+| <img src="redfish-os-load-time.jpg" width="300px" height="504px"> | <img src="redfish-os-work-time.jpg" width="300px" height="504px"> | <img src="redfish-os-boot-time.jpg" width="300px" height="504px"> |
 
 These images show the evolution of the graphic presentation. To improve power savings, the screen starts to darken after 15 minutes and can be switched back on by pressing the power button. A frontal green LED kept at low intensity informs the end-user that the smartphone is ON even when the display is completely dark.
 
