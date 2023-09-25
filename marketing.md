@@ -2,6 +2,8 @@
 
 To learn how your business can benefit from the RedFish OS adoption, check this [PDF presentation](RedFishOS-presentation-A4.pdf) introduced by a less than 200 words executive summary.
 
+Just to give you an idea: a Linux-based OS is about 1.5GB, while a modern Android system (10+) is about 2.5GB. The RedFish OS image is less than 30MB and includes the kernel with all the drivers compiled in, the vendor's binary firmwares, the command-line applications, and the networking services. The Sony firmware boot takes 20 seconds, while RedFish OS takes 5 seconds from when the Linux kernel starts to run and when all the services are ready.
+
 ---
 
 ### Marketing targets
@@ -9,8 +11,6 @@ To learn how your business can benefit from the RedFish OS adoption, check this 
 First of all, it is important to notice that this project does not aim to reach the end-user market directly. The RFOS marketing targets are the vendors, the distributors, the engineers, and the modders, including those who are doing such activities as hobbies.
 
 The end-users might have several advantages in having RedFish OS pre-installed as a recovery image or as a supervising system, but they are not the targets of the RFOS marketing because most of the on-the-shelf smartphones do not allow to overwrite the boot or the recovery image, and those that allow it do so not by a bare-simple procedure. Otherwise, end-users would probably brick their smartphones or install a malicious rootkit instead of something really useful. Plus, it would void the vendor's warranty, obviously.
-
-Just to give you an idea: a Linux-based OS is about 1.5GB, while a modern Android system (10+) is about 2.5GB. The RedFish OS image is less than 30MB and includes the kernel with all the drivers compiled in, the vendor's binary firmwares, the command-line applications, and the networking services.
 
 ---
 
@@ -49,7 +49,7 @@ Refer to the [logo folder](logo#redfish-os-logo) in order to learn more about it
 
 The logo and the motto have been proposed to specifically fit the taste and expectations of the [marketing targets](../marketing.md#marketing-targets): Linux embedded engineers in their middle-life age who are looking for an old-good-days simple and powerful tool to cope with mobile devices initially tailored for Android.
 
-| loading | working | reboot |
+| <sub>loading (led:yellow)</sub> | <sub>working (led:green)</sub> | <sub>reboot (led:red)</sub> |
 | ----------------------------------- | -------------------------- | ---------------------------- |
 | <img src="redfish-os-load-time.jpg" width="300px" height="504px"> | <img src="redfish-os-work-time.jpg" width="300px" height="504px"> | <img src="redfish-os-boot-time.jpg" width="300px" height="504px"> |
 
@@ -73,7 +73,7 @@ In these two videos, the RedFish OS is presented, providing two different tasks:
 
 In the first video, the smartphone boot image is flashed with the RedFish OS image, then it reboots with the recovery image, and after by the user demand it reboots with the normal operative system, in this case SailFish OS. Notice that all of this takes 1m17s despite the fact that the smartphone vendor's firmware boot requires at least 20 seconds for each of the two reboots.
 
-In the second video, the smartphone several partitios are re-flashed with SailFish OS official installation images set using the RedFish OS service instead of the `fastboot` mode or, for some other operative systems like `/e/OS` the ADB mode. Notice that to complete the whole re-flashing procedure, which writes not less than 1.5GB of data in this case, it takes about 70 seconds.
+In the second video, the smartphone several partitions are re-flashed with SailFish OS official installation images set using the RedFish OS service instead of the `fastboot` mode or, for some other operative systems like `/e/OS` the ADB mode. Notice that to complete the whole re-flashing procedure, which writes not less than 1.5GB of data in this case, it takes about 70 seconds.
 
 ---
 
@@ -119,7 +119,7 @@ The [Punkt MP01](https://www.punkt.ch/en/products/mp01-mobile-phone/#buy) is sol
 
 The added value of having such a virtual clone is pretty clear to end-users. In fact, they can leave the office for a holiday, disconnect themselves to enjoy their free time, and still be reachable by texts and phone calls from a selected number of people.
 
-Moreover, in this mode, the smartphone can endure between 3 and 6 days in standby, depending on the signal coverage, with a full charge of the battery.
+The phonebook, call history and text messages can be manage by a user-friendly web interface available only via USB cable to grant the privacy and securita. Moreover, in this mode, the smartphone can endure between 3 and 6 days in standby, depending on the signal coverage, with a full charge of the battery.
 
 ---
 
@@ -136,5 +136,3 @@ Inspired by Punkt. MP01, I have decided to adapt their design to RedFish OS for 
 </div>
 
 What took more effort was the power-saving. The smartphone consumes a maximum of 81 mAh with the display on and in interactive mode, while it consumes 23 mAh on average when it is in standby waiting for an event. This means that with a 3600 mAh battery, it stands by for 156 hours. with little improvement towards 21.4 mAh on average, it will be a whole week.
-
-
