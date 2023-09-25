@@ -6,7 +6,7 @@
  
 ```
 
-**Update, 24.09.2023** - After having seen the potential of having an advanced rescue image, a fleet management tool, a supervising OS, and how far RedFish OS can be customised to bring added value to vendors, distributors, and professional modders of mobile devices, the refactoring of SailFish OS has been set aside.
+**Update, 24.09.2023** - After having realised the potential of having an advanced rescue image, a fleet management tool, a supervising OS, and how far RedFish OS can be customised to bring added value to vendors, distributors, and professional modders of mobile devices, the refactoring of SailFish OS has been set aside.
 
 Support for other smartphones like the Sony Xperia 10 III or IV, Gigaset GS5 and its variants, in particular the Rephone, can be added as long as concrete support is specifically received. While support for open hardware platforms like Pine64 or Librem smartphones can be added depending on the availability of developers and maintainers.
 
