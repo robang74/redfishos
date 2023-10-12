@@ -245,6 +245,10 @@ Some other proprietary software and vendor firmwares came from Sony Open Device 
 
 ### News & updates
 
+After the first stage was completed, the review of the backlog suggested that RedFish OS can offer huge opportunities by itself and not as a refactoring project. Therefore it started a phase of marketing specifically oriented to technical people:
+
+* 24.09.2023, [RedFish OS marketing page](marketing.md) for engineers, developers and professional modders.
+
 Please check the [same section](https://github.com/robang74/redfishos/tree/devel#news--updates) in the `devel` branch for a more up-to-date list. The following is about those development that are push in `main` for the users.
 
 * 31.08.2023, [RedFish OS project first stage](#about-sfos-refactoring) **completed**.
