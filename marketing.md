@@ -136,3 +136,17 @@ Inspired by Punkt. MP01, I have decided to adapt their design to RedFish OS for 
 </div>
 
 What took more effort was the power-saving. The smartphone consumes a maximum of 81 mAh with the display on and in interactive mode, while it consumes 23 mAh on average when it is in standby waiting for an event. This means that with a 3600 mAh battery, it stands by for 156 hours. with little improvement towards 21.4 mAh on average, it will be a whole week.
+
+---
+
+### Persistent data and menu
+
+First of all, it is important to clarify that a recovery image for its nature SHOULD NOT rely on any kind of persistent data otherwise its mission to be ALWAYS available and ALWAYS identical in its features among services different boots would be gone and moreover a persistent data can break it.
+
+However, because the RedFish OS can be also used for assisting developers, modders and debuggers. It make sense that they can save some persistent data somewhere which is strictly associated with the bootable recovery image like the WLAN name and password, for example.
+
+This can be acceptable as far as and as long as that data can be used just after the boot and by a manual procedure like a specific menu. The persistence menu is a contextual one and depending the state of the persistence, it shows some options rather than others.
+
+<div align="center"><img src="recovery/persistence-menu.png" width="627px" height="320px"></div>
+
+The persistent data is written into a loop device which refers to the last 4MB of the boot partition. The persistence is granted by the script that generates the RedFish OS recovery image which limits its size in order that `fastboot` will never overwrite the last portion of the boot partition.
