@@ -205,7 +205,7 @@ Some other proprietary software and vendor firmwares came from Sony Open Device 
 
 ### List of components
 
-* [hibrys boot](https://github.com/robang74/hybris-boot) - This project enables the building of boot images for Google Android fastboot based devices.
+* [hybris boot](https://github.com/robang74/hybris-boot) - This project enables the building of boot images for Google Android fastboot based devices.
 * [yamui](https://github.com/robang74/yamui) - Yet Another Minimal UI. Tool for displaying graphical notifications in minimal environments like early boot/initrd, build-able by Github action :exclamation:
 * [busybox for SFOS](https://github.com/robang74/sailfish-os-busybox) - The busybox config and RPM spec for SailFish OS, buildable by Github action :exclamation:
 * [fsck.auto](https://github.com/robang74/fsck.auto) - This is a simple b/ash script for busybox fsck.auto to check the block device partition file system type.
@@ -237,7 +237,7 @@ Some other proprietary software and vendor firmwares came from Sony Open Device 
 
 > ### :warning: WARNING
 >
-> For its own P2P nature, there is no way to grant that the image downloaded is the original one unless you have a couple of strong hashes based on different algorithms of the original image that allow you to check such a download within a reasonable range of security. By the way, the same applies for every download from an untrusted web site (no https, ssl off-loading, man-in-the-middle), and sometimes also for those in https that have been hacked. As you can imagine, this implies almost every piece of software that we are currently running on our system. Hence, IT is an act of trust (demanding computation and sharing data) as much as any other religion... LOL.
+> For its own P2P nature, there is no way to grant that the image downloaded is the original one unless you have a couple of strong hashes based on different algorithms of the original image that allow you to check such a download within a reasonable range of security. By the way, the same applies for every download from an untrusted website (no https, ssl off-loading, man-in-the-middle), and sometimes also for those in https that have been hacked. As you can imagine, this implies almost every piece of software that we are currently running on our system. Hence, IT is an act of trust (demanding computation and sharing data) as much as any other religion... LOL.
 
 * [Sailfish OS older versions images](https://github.com/robang74/sailfish-os-torrents/tree/main) - A list of torrents files that might provide older SailFish OS images.
 
