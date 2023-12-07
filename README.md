@@ -27,7 +27,7 @@ Support for other smartphones like the Sony Xperia 10 III or IV, Gigaset GS5 and
 7. [Useful documentation](#useful-documentation)
 8. [List of components](#list-of-components)
 9. [News and updates](#news--updates)
-10. [Forum, no thanks](#forum)
+10. [Forum, no thanks](#forum-no-thanks)
 11. [License](#license)
 
 ---
