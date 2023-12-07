@@ -145,6 +145,31 @@ As you can see, the first stage is well defined in its aims and partially comple
 
 Moreover, some tasks can be moved from the current stage to the next if a scope change or integration need arises. In the moment that some people join the developing team, a project management tool will be used.
 
+<sup>________</sup>
+
+#### Rationale about SFOS refactoring
+
+> How to refactoring SFOS can be approached?
+
+The most effective approach is:
+
+- do **not** reinvent the wheel --> moving to a Linux distribution just supported by its community
+- do **not** create further barriers --> choosing such distribution for binary compatibility
+- do **not** create useless stress --> among those distributions choosing one that uses RPMs
+
+These three points brings us to the conclusion that SFOS refactoring is necessary and it is the premise to keep it updated with as less as possible effort.
+
+However, there are still in place 2 more HUGE issues:
+
+- bring value for a customers niche to support a business and/or intercept interested developers
+- deal with the closed source blobs which mainly are about hardware firmware and its support
+
+This requires an architectural change of the system in order to introduce another PoV into this sector. Hence, the following question was: 
+
+> what is missing and it would important to have?
+
+A recovery image was missing, clearly. This lack has been fulfill. At least, I did. A recovery image is an essential tool for everything above but also a tool that have brought in another PoV, and this is its the most of its value. Because another PoV was more essential than a tool. Everything else was a mere conseguence.
+
 ---
 
 ### About SailFish OS
