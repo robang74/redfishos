@@ -7,7 +7,7 @@ support to developers.
 
 For information about the project, read the business presentation on the dir:
 
-* [../RedFishOS-presentation-A4.pdf](../RedFishOS-presentation-A4.pdf)
+* [RedFishOS-presentation-A4.pdf](../RedFishOS-presentation-A4.pdf)
 
 Note that the first page contains a less than 200 words executive presentation.
 
@@ -15,13 +15,15 @@ Note that the first page contains a less than 200 words executive presentation.
 ### INDEX
 
 
-* [./beyhond-google-and-apple-duopoly.pdf](./beyhond-google-and-apple-duopoly.pdf) (presentation slides)
+* [beyhond-google-and-apple-duopoly.pdf](./beyhond-google-and-apple-duopoly.pdf) (presentation slides)
 
-* [./thinkphone-for-people-excutive-part.pdf](./thinkphone-for-people-excutive-part.pdf) (management manual)
+* [thinkphone-for-people-excutive-part.pdf](./thinkphone-for-people-excutive-part.pdf) (management manual)
 
-* [./thinkphone-for-people-opertive-part.pdf](./thinkphone-for-people-opertive-part.pdf) (operative manual)
+* [thinkphone-for-people-opertive-part.pdf](./thinkphone-for-people-opertive-part.pdf) (operative manual)
 
-* [./thinkphone-for-people-usbkey-part.pdf](./thinkphone-for-people-usbkey-part.pdf) (usbkey manual)
+* [thinkphone-for-people-usbkey-part.pdf](./thinkphone-for-people-usbkey-part.pdf) (usbkey manual)
+
+* [Linux-Android-and-RedFish-OS.pdf](./Linux-Android-and-RedFish-OS.pdf) (markets separation)
 
 
 ### SUMMARY
